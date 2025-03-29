@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      
+    <title>Welcome</title>      
+    <style>
+      body {
+        background: #E7D4B5;
+        color: rgb(45, 45, 45);
+        padding: 10px;
+        font-family: arial;
+      }
+      #all-contents {
+        max-width: 800px;
+        margin: auto;
+      }
+   
+      /* navigation menu */
+      nav { /*Text box color for Home and Portfolio*/
+        background: #74512daa;
+        margin: 0 auto;
+        margin-bottom: 20px;
+        display: flex;
+        padding: 10px;
+      }
+      h1 { /*My Name*/
+        display: flex;
+        align-items: center;
+        color: rgb(255, 255, 255);
+        flex: 1;
+        margin: 0;
+      }
+      a { /*The Home and Portfolio text color*/
+        text-decoration: none;
+        color: #ffffff;
+      }
+      #nav-ul {
+        list-style-image: none;
+      }
+      .nav-li {
+        display: inline-block;
+        padding: 0 10px;
+      }
+
+   
+      /* main container area beneath menu */
+      main { /*Text Box color*/
+        background: rgb(245, 238, 219);
+        display: flex;
+      }
+      .sidebar {
+        margin-right: 25px;
+        padding: 10px;
+      }
+      .sidebar-img {
+        width: 500px;
+      }
+      .content {
+        flex: 1;
+        padding: 15px;
+      }
+      #interests {
+        border: 4px silver ridge;
+        padding: 8px;
+      }
+      h2, h3 {
+        margin: 0px;
+      }
+   </style>
+  </head>
+
+<body>
+<!-- All content goes here -->
+  <div id="all-contents">
+
+    <nav>
+      <h1>Daniel Guo</h1>
+      <ul id="nav-ul">
+        <li class="nav-li">
+          <a href="index.html"> Home </a>
+        </li>
+        <li class="nav-li">
+          <a href="Portfolio.html"> Portfolio </a>
+        </li>
+      </ul>
+    </nav>
+    
+    <main>
+      <!-- Siebar section -->
+      <div class="sidebar">
+        <!--<img class="sidebar-img" src="https://i.etsystatic.com/13002770/r/il/48103e/2850133967/il_fullxfull.2850133967_icmg.jpg">-->
+      </div>
+
+        <!--Content section-->
+      <div class="content">
+        <h2>Daniel</h2>
+        <p>Description</p>
+        <!--Interests section-->
+        <div id="interests">
+          <h3>Interests</h3>
+           <ul>
+               <li>hobby</li>
+               <li>hobby</li>
+               <li>hobby</li>
+           </ul>
+        </div>
+      </div>
+    
+    </main>
+  
+  </div>
+
+</body>
+</html>
