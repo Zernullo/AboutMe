@@ -1,13 +1,18 @@
-/* ===== Variables & Base Styles ===== */
+/* ===== Global CSS for the entire website ===== */
+
+/* ===== VARIABLES & BASE STYLES ===== */
+
+/* CSS variables for colors, transition timing, and theme consistency */
 :root {
-  --primary-color: #ff4d4d;
-  --secondary-color: #1a1a1a;
-  --text-color: #f5f5f5;
-  --bg-color: #0d0d0d;
-  --card-bg: #1a1a1a;
-  --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --primary-color: #ff4d4d;          /* Main accent color */
+  --secondary-color: #1a1a1a;        /* Secondary dark color for backgrounds, etc. */
+  --text-color: #f5f5f5;             /* Default text color */
+  --bg-color: #0d0d0d;               /* Body background color */
+  --card-bg: #1a1a1a;                /* Background color for cards or panels */
+  --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Smooth animation */
 }
 
+/* Reset default styles, apply consistent box-sizing and font */
 * {
   margin: 0;
   padding: 0;
@@ -18,75 +23,89 @@
   font-family: 'Poppins', sans-serif;
 }
 
+/* Base html settings: root font size for rem scaling and smooth scrolling */
 html {
-  font-size: 62.5%;
-  scroll-behavior: smooth;
-  scroll-padding-top: 8rem;
+  font-size: 62.5%;                  /* 1rem = 10px for easier calculations */
+  scroll-behavior: smooth;           /* Smooth scroll for anchor links */
+  scroll-padding-top: 8rem;          /* Offset for fixed header */
 }
 
+/* Base body styling */
 body {
   width: 100%;
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-x: hidden;                /* Prevent horizontal scroll */
   background-color: var(--bg-color);
   color: var(--text-color);
-  line-height: 1.6;
+  line-height: 1.6;                  /* Default line spacing */
 }
 
-/* ===== Header Styles ===== */
+
+/* ===== HEADER (matches <header> in HTML) ===== */
+
+/* Fixed top header with padding, flex layout, and blur background */
 header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  padding: 2.5rem 9%;
-  background-color: transparent;
+  padding: 2.5rem 9% 2.5rem 5%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
   transition: var(--transition);
   backdrop-filter: blur(10px);
-  padding: 2.5rem 9% 2.5rem 5%;
+  background-color: transparent;     /* Transparent by default, changes on scroll */
 }
 
+/* Header styling when scrolled: background color, shadow, reduced padding */
 header.scrolled {
   background-color: rgba(10, 10, 10, 0.95);
   box-shadow: 0 0.5rem 1.5rem rgba(255, 77, 77, 0.15);
   padding: 1.5rem 9%;
 }
 
-/* Logo Image Styles */
+
+/* ===== LOGO (matches <a class="logo">) ===== */
+
+/* Logo container alignment */
 .logo {
   display: flex;
   align-items: center;
-  height: 7rem; /* Controls the logo container height */
-
+  height: 7rem;
 }
 
+/* Logo image styling: size, padding, background, shadow */
 .logo img {
   height: 100%;
   width: auto;
-  max-width: 150px; /* Prevents logo from becoming too wide */
+  max-width: 150px;
   transition: var(--transition);
   object-fit: contain;
-  border-radius: 12px; /* Added curved borders */
-  padding: 4px; /* Added some padding */
+  border-radius: 12px;
+  padding: 4px;
   background: rgba(255, 255, 255, 0.1);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Hover effect for logo: scale up, increase border radius and shadow */
 .logo:hover img {
   transform: scale(1.1);
-  border-radius: 16px; /* More pronounced curve on hover */
+  border-radius: 16px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
+
+/* ===== NAVIGATION BAR (matches <nav>) ===== */
+
+/* Navigation links layout */
 nav {
   display: flex;
   gap: 3.5rem;
 }
 
+/* Individual nav links styling */
 nav a {
   font-size: 1.7rem;
   color: var(--text-color);
@@ -96,6 +115,7 @@ nav a {
   padding: 0.5rem 0;
 }
 
+/* Underline effect for nav links */
 nav a::after {
   content: '';
   position: absolute;
@@ -107,16 +127,19 @@ nav a::after {
   transition: var(--transition);
 }
 
+/* Expand underline on hover or when link is active */
 nav a:hover::after,
 nav a.active::after {
   width: 100%;
 }
 
+/* Change link color on hover or active */
 nav a:hover,
 nav a.active {
   color: var(--primary-color);
 }
 
+/* Hamburger menu toggle for small screens */
 .menu-toggle {
   display: none;
   cursor: pointer;
@@ -130,198 +153,29 @@ nav a.active {
   color: var(--primary-color);
 }
 
-/* ===== Home Section ===== */
-.home {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 12rem 9% 5rem;
-  gap: 8rem;
-  position: relative;
-}
 
-.home::before {
-  content: '';
-  position: absolute;
-  top: -10%;
-  right: -10%;
-  width: 50rem;
-  height: 50rem;
-  background: radial-gradient(circle, rgba(255, 77, 77, 0.15) 0%, transparent 70%);
-  z-index: -1;
-}
 
-.home__content {
-  max-width: 65rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
+/* ===== RESPONSIVE DESIGN BREAKPOINTS ===== */
 
-.home__content h1 {
-  font-size: 5.5rem;
-  font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: 1.5rem;
-}
-
-.home__content h1 span {
-  color: var(--primary-color);
-  position: relative;
-}
-
-.home__content h1 span::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 0.3rem;
-  background: linear-gradient(90deg, var(--primary-color), transparent);
-}
-
-.home__content .info {
-  font-size: 3rem;
-  font-weight: 600;
-  margin-bottom: 2.5rem;
-  min-height: 4rem;
-  color: rgba(245, 245, 245, 0.8);
-}
-
-.home__content .info span {
-  color: var(--primary-color);
-  display: inline-block;
-  min-width: 250px;
-  text-align: left;
-}
-
-.home__content p {
-  font-size: 1.7rem;
-  line-height: 1.8;
-  margin-bottom: 3.5rem;
-  color: rgba(245, 245, 245, 0.7);
-}
-
-.home__bg {
-  position: relative;
-  width: 35vw;
-  max-width: 400px;
-  min-width: 300px;
-  animation: float 6s ease-in-out infinite;
-}
-
-.home__bg img {
-  width: 100%;
-  border-radius: 50%;
-  box-shadow: 0 0 30px rgba(255, 77, 77, 0.4);
-  border: 0.5rem solid rgba(255, 77, 77, 0.2);
-  transition: var(--transition);
-}
-
-.home__bg img:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0 40px rgba(255, 77, 77, 0.6);
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-2rem); }
-}
-
-.social-icons {
-  display: flex;
-  gap: 1.8rem;
-  margin-bottom: 3.5rem;
-}
-
-.social-icons a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 4.5rem;
-  height: 4.5rem;
-  background: rgba(255, 77, 77, 0.1);
-  border: 0.15rem solid var(--primary-color);
-  border-radius: 50%;
-  font-size: 2rem;
-  color: var(--primary-color);
-  transition: var(--transition);
-}
-
-.social-icons a:hover {
-  background: var(--primary-color);
-  color: var(--bg-color);
-  transform: translateY(-0.5rem) scale(1.1);
-  box-shadow: 0 0 20px rgba(255, 77, 77, 0.5);
-}
-
-.social-icons a[target="_blank"]::after {
-  content: "↗";
-  position: absolute;
-  font-size: 0.8em;
-  margin-left: 3px;
-  opacity: 0;
-  transition: var(--transition);
-}
-
-.social-icons a[target="_blank"]:hover::after {
-  opacity: 1;
-}
-
-.btn {
-  display: inline-block;
-  padding: 1.4rem 3.5rem;
-  background: var(--primary-color);
-  border-radius: 0.5rem;
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: var(--bg-color);
-  letter-spacing: 0.1rem;
-  transition: var(--transition);
-  cursor: pointer;
-  box-shadow: 0 0.5rem 1.5rem rgba(255, 77, 77, 0.3);
-}
-
-.btn:hover {
-  transform: translateY(-0.3rem) scale(1.03);
-  box-shadow: 0 0.8rem 2rem rgba(255, 77, 77, 0.4);
-}
-
-/* ===== Responsive Design ===== */
+/* Slightly smaller base font for large tablets/desktops */
 @media (max-width: 1200px) {
-  html {
-    font-size: 58%;
-  }
-  
-  .home {
-    gap: 6rem;
-  }
+  html { font-size: 58%; }
 }
 
+/* Header padding adjustments for medium screens */
 @media (max-width: 991px) {
-  header {
-    padding: 2rem 5%;
-  }
-  
-  header.scrolled {
-    padding: 1.5rem 5%;
-  }
-  
-  .home {
-    padding: 12rem 5% 5rem;
-  }
+  header { padding: 2rem 5%; }
+  header.scrolled { padding: 1.5rem 5%; }
 }
 
+/* Small screens (tablets): show hamburger, slide-in nav, adjust logo size */
 @media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-  }
-  
+  .menu-toggle { display: block; }
+
   nav {
     position: fixed;
     top: 0;
-    right: -100%;
+    right: -100%;               /* hidden by default */
     width: 70%;
     height: 100vh;
     background-color: var(--secondary-color);
@@ -333,69 +187,16 @@ nav a.active {
     z-index: 1000;
     box-shadow: -0.5rem 0 1.5rem rgba(0, 0, 0, 0.2);
   }
-  
-  nav.active {
-    right: 0;
-  }
-  
-  .home {
-    flex-direction: column-reverse;
-    text-align: center;
-    gap: 5rem;
-    padding-top: 15rem;
-  }
-  
-  .home__content {
-    align-items: center;
-    text-align: center;
-  }
-  
-  .home__bg {
-    width: 60vw;
-  }
-  
-  .social-icons {
-    justify-content: center;
-    width: 100%;
-  }
-  
-  .home__content h1 span::after {
-    background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
-  }
 
-  /* Adjust logo for mobile */
-  .logo {
-    height: 6rem; /* Slightly reduced for mobile */
-  }
-  .logo img {
-    max-width: 150px; /* Adjusted for mobile */
-    border-radius: 10px;
-  }
+  nav.active { right: 0; }       /* Slide-in nav when active */
+
+  .logo { height: 6rem; }
+  .logo img { max-width: 150px; border-radius: 10px; }
 }
 
+/* Extra small screens (phones): smaller font, smaller logo */
 @media (max-width: 480px) {
-  html {
-    font-size: 52%;
-  }
-  
-  .home__content h1 {
-    font-size: 4.8rem;
-  }
-  
-  .home__content .info {
-    font-size: 2.6rem;
-  }
-  
-  .home__bg {
-    width: 75vw;
-  }
-
-  /* Smaller logo for very small screens */
-  .logo {
-    height: 4rem;
-  }
-  .logo img {
-    max-width: 130px;
-    border-radius: 8px;
-  }
+  html { font-size: 52%; }
+  .logo { height: 4rem; }
+  .logo img { max-width: 130px; border-radius: 8px; }
 }

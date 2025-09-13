@@ -1,0 +1,213 @@
+/* ===== HOME SECTION (matches <section class="home">) ===== */
+
+/* Main container for the home section: centers content, adds spacing, sets min height */
+.home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 12rem 9% 5rem;
+  gap: 8rem;
+  position: relative;
+}
+
+/* Decorative gradient circle behind the home section */
+.home::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  width: 50rem;
+  height: 50rem;
+  background: radial-gradient(circle, rgba(255,77,77,0.15) 0%, transparent 70%);
+  z-index: -1;
+}
+
+/* Container for text content in the home section */
+.home__content {
+  max-width: 65rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Main heading in home section */
+.home__content h1 {
+  font-size: 5.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+/* Highlighted span inside h1 (usually the primary color text) */
+.home__content h1 span {
+  color: var(--primary-color);
+  position: relative;
+}
+
+/* Underline effect for the highlighted span using ::after pseudo-element */
+.home__content h1 span::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0.3rem;
+  background: linear-gradient(90deg, var(--primary-color), transparent);
+}
+
+/* Subheading/info text in home section */
+.home__content .info {
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 2.5rem;
+  min-height: 4rem;
+  color: rgba(245,245,245,0.8);
+}
+
+/* Highlighted part of info text */
+.home__content .info span {
+  color: var(--primary-color);
+  display: inline-block;
+  min-width: 250px;
+  text-align: left;
+}
+
+/* Paragraph description text in home section */
+.home__content p {
+  font-size: 1.7rem;
+  line-height: 1.8;
+  margin-bottom: 3.5rem;
+  color: rgba(245,245,245,0.7);
+}
+
+/* Container for the home section image or background illustration */
+.home__bg {
+  position: relative;
+  width: 35vw;
+  max-width: 400px;
+  min-width: 300px;
+  animation: float 6s ease-in-out infinite; /* floating animation */
+}
+
+/* Image styling inside home__bg */
+.home__bg img {
+  width: 100%;
+  border-radius: 50%;
+  box-shadow: 0 0 30px rgba(255,77,77,0.4);
+  border: 0.5rem solid rgba(255,77,77,0.2);
+  transition: var(--transition);
+}
+
+/* Hover effect for the image: scales up and enhances shadow */
+.home__bg img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 40px rgba(255,77,77,0.6);
+}
+
+/* Keyframes for floating animation of the image */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2rem); }
+}
+
+
+/* ===== SOCIAL ICONS (matches .social-icons) ===== */
+
+/* Container for social media icons: horizontal spacing */
+.social-icons {
+  display: flex;
+  gap: 1.8rem;
+  margin-bottom: 3.5rem;
+}
+
+/* Styling for each social icon link */
+.social-icons a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  background: rgba(255,77,77,0.1);
+  border: 0.15rem solid var(--primary-color);
+  border-radius: 50%;
+  font-size: 2rem;
+  color: var(--primary-color);
+  transition: var(--transition);
+}
+
+/* Hover effect for social icons: changes color, lifts, and adds shadow */
+.social-icons a:hover {
+  background: var(--primary-color);
+  color: var(--bg-color);
+  transform: translateY(-0.5rem) scale(1.1);
+  box-shadow: 0 0 20px rgba(255,77,77,0.5);
+}
+
+/* External link indicator (arrow) */
+.social-icons a[target="_blank"]::after {
+  content: "↗";
+  position: absolute;
+  font-size: 0.8em;
+  margin-left: 3px;
+  opacity: 0;
+  transition: var(--transition);
+}
+
+/* Show arrow on hover for external links */
+.social-icons a[target="_blank"]:hover::after {
+  opacity: 1;
+}
+
+/* ===== BUTTON (matches <a class="btn">) ===== */
+
+/* Primary button styling: padding, color, shadow, hover effect */
+.btn {
+  display: inline-block;
+  padding: 1.4rem 3.5rem;
+  background: var(--primary-color);
+  border-radius: 0.5rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--bg-color);
+  letter-spacing: 0.1rem;
+  transition: var(--transition);
+  cursor: pointer;
+  box-shadow: 0 0.5rem 1.5rem rgba(255, 77, 77, 0.3);
+}
+
+.btn:hover {
+  transform: translateY(-0.3rem) scale(1.03);
+  box-shadow: 0 0.8rem 2rem rgba(255, 77, 77, 0.4);
+}
+
+
+
+
+/* ===== HOME RESPONSIVE ===== */
+
+/* Medium screens: reduce gap */
+@media (max-width:1200px) { 
+  .home { gap:6rem; } 
+}
+
+/* Small screens: reduce padding */
+@media (max-width:991px) { 
+  .home { padding:12rem 5% 5rem; } 
+}
+
+/* Tablets: stack content vertically, center align text and social icons, adjust image size */
+@media (max-width:768px){
+  .home { flex-direction: column-reverse; text-align:center; gap:5rem; padding-top:15rem; }
+  .home__content { align-items:center; text-align:center; }
+  .home__bg { width:60vw; }
+  .social-icons { justify-content:center; width:100%; }
+  .home__content h1 span::after { background: linear-gradient(90deg, transparent, var(--primary-color), transparent); }
+}
+
+/* Mobile phones: smaller text and larger image relative to screen */
+@media (max-width:480px){
+  .home__content h1 { font-size:4.8rem; }
+  .home__content .info { font-size:2.6rem; }
+  .home__bg { width:75vw; }
+}
