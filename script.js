@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Check if the element exists before proceeding
   if (roleElement) { 
     const roles = [
-      "Cyber Security", 
+      "Cybersecurity", 
       "Artifical Intelligence", 
       "Machine Learning",
       "Software Engineer", 
