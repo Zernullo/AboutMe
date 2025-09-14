@@ -52,6 +52,15 @@
   color: rgba(245, 245, 245, 0.8);
 }
 
+.project-item a {
+  font-size: 1.2rem;
+  display: inline-block;
+  margin-top: 1rem;
+  color: #1E90FF;
+  text-decoration: none;
+  font-weight: 500;
+}
+
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 991px) {
   .projects {

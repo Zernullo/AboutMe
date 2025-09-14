@@ -1,0 +1,187 @@
+/* ===== EDUCATION PAGE STYLES ===== */
+.education {
+  padding: 12rem 9% 2rem;  /* Leave space for fixed header */
+  display: flex;
+  min-height: auto; /* Adjusted to fit content */
+  flex-direction: column;
+}
+
+.education h2 {
+  font-size: 4.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+}
+
+.education-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.education-item {
+  background: rgba(255, 77, 77, 0.05);
+  padding: 2rem 3rem;
+  border-left: 0.5rem solid var(--primary-color);
+  border-radius: 1rem;
+  transition: var(--transition);
+}
+
+.education-item:hover {
+  background: rgba(255, 77, 77, 0.1);
+}
+
+.education-item h3 {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.education-item p {
+  font-size: 1.7rem;
+  color: rgba(245, 245, 245, 0.8);
+}
+
+.education-item span {
+  font-size: 1.5rem;
+  color: rgba(245, 245, 245, 0.6);
+}
+
+.languages {
+  padding: 1rem 9% 2rem;  /* Leave space for fixed header */
+  display: flex;
+  min-height: auto; /* Adjusted to fit content */
+  flex-direction: column;
+}
+
+.languages h2 {
+  font-size: 4.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+}
+
+.languages p {
+    font-size: 1.7rem;
+    color: rgba(245, 245, 245, 0.8);
+    margin-bottom: 2rem;
+}
+
+.languages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.language-item {
+  background: rgba(255, 77, 77, 0.05);
+  padding: 1.5rem 2.5rem;
+  border-left: 0.5rem solid var(--primary-color);
+  border-radius: 1rem;
+  transition: var(--transition);
+}
+
+.language-item:hover {
+  background: rgba(255, 77, 77, 0.1);
+}
+
+.language-item a {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+
+.classes {
+  padding: 10rem 9% 2rem;  /* Leave space for fixed header */
+  display: flex;
+  min-height: auto; /* Adjusted to fit content */
+  flex-direction: column;
+}
+
+.classes h2 {
+  font-size: 4.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+}
+
+.classes p {
+    font-size: 1.7rem;
+    color: rgba(245, 245, 245, 0.8);
+    margin-bottom: 2rem;
+}
+
+.classes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.class-item {
+  background: rgba(255, 77, 77, 0.05);
+  padding: 1.5rem 2.5rem;
+  border-left: 0.5rem solid var(--primary-color);
+  border-radius: 1rem;
+  transition: var(--transition);
+}
+
+.class-item:hover {
+  background: rgba(255, 77, 77, 0.1);
+}
+
+.class-item a {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+
+/* ===== RESPONSIVE DESIGN BREAKPOINTS ===== */
+@media (max-width: 991px) {
+  .education, .languages, .classes {
+    padding: 10rem 5% 5rem;  /* Reduce side padding */
+  }
+
+  .education h2, .languages h2, .classes h2 {
+    font-size: 3.8rem;
+  }
+
+  .education-item, .language-item, .class-item {
+    padding: 1.8rem 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .education, .languages, .classes {
+    padding: 9rem 5% 5rem;   /* Further reduce top padding */
+  }
+
+  .education h2, .languages h2, .classes h2 {
+    font-size: 3.5rem;
+  }
+
+  .education-item, .language-item, .class-item {
+    padding: 1.5rem 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .education, .languages, .classes {
+    padding: 8rem 3% 5rem;   /* Minimal padding for small screens */
+  }
+
+  .education h2, .languages h2, .classes h2 {
+    font-size: 3rem;
+  }
+
+  .education-item, .language-item, .class-item {
+    padding: 1.2rem 1.5rem;
+  }
+
+  .education-item h3, .language-item h3, .class-item h3 {
+    font-size: 1.8rem;
+  }
+
+  .education-item p, .language-item p, .class-item p {
+    font-size: 1.5rem;
+  }
+}
+

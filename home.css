@@ -159,10 +159,9 @@
   opacity: 1;
 }
 
-/* ===== BUTTON (matches <a class="btn">) ===== */
-
+/* ===== PROJECT BUTTON (matches <a class="btn">) ===== */
 /* Primary button styling: padding, color, shadow, hover effect */
-.btn {
+#btn {
   display: inline-block;
   padding: 1.4rem 3.5rem;
   background: var(--primary-color);
@@ -176,7 +175,7 @@
   box-shadow: 0 0.5rem 1.5rem rgba(255, 77, 77, 0.3);
 }
 
-.btn:hover {
+#btn:hover {
   transform: translateY(-0.3rem) scale(1.03);
   box-shadow: 0 0.8rem 2rem rgba(255, 77, 77, 0.4);
 }

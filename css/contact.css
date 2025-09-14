@@ -1,0 +1,122 @@
+/* ===== CONTACT PAGE STYLES ===== */
+.contact {
+  min-height: 100vh;
+  padding: 12rem 9% 5rem; /* Leaves space for fixed header */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 4rem;
+  color: var(--text-color);
+}
+
+.contact__content {
+  max-width: 70rem;
+  width: 100%;
+}
+
+.contact__content h2 {
+  font-size: 4.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+}
+
+.contact__content p {
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  color: rgba(245, 245, 245, 0.8);
+}
+
+/* Contact Info */
+.contact-info p {
+  font-size: 1.7rem;
+  margin-bottom: 1.5rem;
+}
+
+.contact-info i {
+  color: var(--primary-color);
+  margin-right: 1rem;
+}
+
+.contact-info a {
+  color: #1E90FF
+}
+
+
+
+
+/* Social Icons (reuse existing style) */
+.contact .social-icons {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  font-size: 3rem;
+}
+
+/* Contact Form */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 50rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 1.2rem 1.5rem;
+  font-size: 1.6rem;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 0.15rem solid var(--primary-color);
+  color: var(--text-color);
+  transition: var(--transition);
+  width: 100%;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 10px rgba(255, 77, 77, 0.3);
+}
+
+.contact-form button {
+  padding: 1.4rem 3rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  background: var(--primary-color);
+  color: var(--bg-color);
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 0.5rem 1.5rem rgba(255, 77, 77, 0.3);
+}
+
+.contact-form button:hover {
+  transform: translateY(-0.3rem) scale(1.03);
+  box-shadow: 0 0.8rem 2rem rgba(255, 77, 77, 0.4);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 991px) {
+  .contact { padding: 12rem 5% 5rem;}
+}
+
+@media (max-width: 768px) {
+  .contact__content h2 {font-size: 3.8rem;}
+
+  .contact__content p,
+  .contact-info p {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact__content h2 {font-size: 3.2rem;}
+
+  .contact__content p,
+  .contact-info p {
+    font-size: 1.4rem;
+  }
+}

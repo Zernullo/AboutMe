@@ -6,6 +6,7 @@
   <title>Portfolio Website</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Font Awesome -->
   <link rel="stylesheet" href="../style.css"> <!-- Global CSS -->
+  <link rel="stylesheet" href="../css/contact.css">  <!-- Contact-specific CSS -->
 </head>
 <body>
   <header>
@@ -22,6 +23,31 @@
   </header>
 
   <!-- PAGE CONTENT GOES HERE -->
+   <section class="contact">
+    <div class="contact__content">
+      <h2>Contact Me</h2>
+      <p>If you’d like to get in touch, feel free to reach out via email or connect on social media:</p>
+
+      <div class="contact-info">
+        <p><i class="fas fa-envelope"></i> Personal Email: <a href="mailto:dguo83212@gmail.com">dguo83212@gmail.com</a></p>
+        <p><i class="fas fa-envelope"></i> School Email: <a href="mailto:dguo1@lsu.edu">dguo1@lsu.edu</a></p>
+        <p><i class="fas fa-phone"></i> Phone: <a href="tel:+9293171863">+1 929 317 1863</a></p>
+      </div>
+
+      <div class="social-icons">
+        <a href="https://www.linkedin.com/in/daniel-guo-8251062b6/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/Zernullo" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+        <a href="https://instagram.com/dguo83212" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+      </div>
+
+      <form class="contact-form" action="mailto:dguo83212@gmail.com" method="post" enctype="text/plain">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </div>
+  </section>
 
   <script src="../script.js"></script>
 </body>
