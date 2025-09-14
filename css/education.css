@@ -47,7 +47,7 @@
 }
 
 .languages {
-  padding: 1rem 9% 2rem;  /* Leave space for fixed header */
+  padding: 10rem 9% 2rem;  /* Leave space for fixed header */
   display: flex;
   min-height: auto; /* Adjusted to fit content */
   flex-direction: column;
