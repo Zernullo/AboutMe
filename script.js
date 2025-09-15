@@ -4,14 +4,14 @@ document.addEventListener('DOMContentLoaded', function() {
   const menuToggle = document.createElement('div');
   menuToggle.className = 'menu-toggle';
   menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-  document.querySelector('header').appendChild(menuToggle);
+  document.querySelector('header').appendChild(menuToggle); // Append to header, at the end of header
   
-  const nav = document.querySelector('nav');
-  const navLinks = document.querySelectorAll('nav a');
+  const mainNav = document.querySelector('nav.main_nav');
+  const navLinks = mainNav.querySelectorAll('a');
   
   menuToggle.addEventListener('click', function() {
-    nav.classList.toggle('active');
-    menuToggle.innerHTML = nav.classList.contains('active') 
+    mainNav.classList.toggle('active');
+    menuToggle.innerHTML = mainNav.classList.contains('active') 
       ? '<i class="fas fa-times"></i>' 
       : '<i class="fas fa-bars"></i>';
   });
@@ -19,8 +19,8 @@ document.addEventListener('DOMContentLoaded', function() {
   // Close mobile menu when clicking a link
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
-      if (nav.classList.contains('active')) {
-        nav.classList.remove('active');
+      if (mainNav.classList.contains('active')) {
+        mainNav.classList.remove('active');
         menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
       }
     });

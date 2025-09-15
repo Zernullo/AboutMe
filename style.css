@@ -100,13 +100,13 @@ header.scrolled {
 /* ===== NAVIGATION BAR (matches <nav>) ===== */
 
 /* Navigation links layout */
-nav {
+.main_nav {
   display: flex;
   gap: 3.5rem;
 }
 
 /* Individual nav links styling */
-nav a {
+.main_nav a {
   font-size: 1.7rem;
   color: var(--text-color);
   font-weight: 500;
@@ -116,7 +116,7 @@ nav a {
 }
 
 /* Underline effect for nav links */
-nav a::after {
+.main_nav a::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -128,14 +128,14 @@ nav a::after {
 }
 
 /* Expand underline on hover or when link is active */
-nav a:hover::after,
-nav a.active::after {
+.main_nav a:hover::after,
+.main_nav a.active::after {
   width: 100%;
 }
 
 /* Change link color on hover or active */
-nav a:hover,
-nav a.active {
+.main_nav a:hover,
+.main_nav a.active {
   color: var(--primary-color);
 }
 
@@ -172,11 +172,11 @@ nav a.active {
 @media (max-width: 768px) {
   .menu-toggle { display: block; }
 
-  nav {
+  .main_nav {
     position: fixed;
     top: 0;
     right: -100%;               /* hidden by default */
-    width: 70%;
+    width: 50%;
     height: 100vh;
     background-color: var(--secondary-color);
     flex-direction: column;
@@ -188,7 +188,7 @@ nav a.active {
     box-shadow: -0.5rem 0 1.5rem rgba(0, 0, 0, 0.2);
   }
 
-  nav.active { right: 0; }       /* Slide-in nav when active */
+  .main_nav.active { right: 0; }       /* Slide-in nav when active */
 
   .logo { height: 6rem; }
   .logo img { max-width: 150px; border-radius: 10px; }
