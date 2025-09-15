@@ -6,20 +6,20 @@
   flex-direction: column;
 }
 
-.education h2 {
+.education h2, .languages h2, .classes h2 {
   font-size: 4.5rem;
   font-weight: 700;
   margin-bottom: 2rem;
   color: var(--primary-color);
 }
 
-.education-list {
+.education-list, .languages-list, .classes-list {
   display: flex;
   flex-direction: column;
   gap: 3rem;
 }
 
-.education-item {
+.education-item, .language-item, .class-item {
   background: rgba(255, 77, 77, 0.05);
   padding: 2rem 3rem;
   border-left: 0.5rem solid var(--primary-color);
@@ -27,18 +27,23 @@
   transition: var(--transition);
 }
 
-.education-item:hover {
+.education-item:hover, .language-item:hover, .class-item:hover {
   background: rgba(255, 77, 77, 0.1);
 }
 
-.education-item h3 {
+.education-item h3, .language-item h3, .class-item h3 {
   font-size: 2.2rem;
   margin-bottom: 0.5rem;
 }
 
-.education-item p {
+.education-item p, .language-item p, .class-item p {
   font-size: 1.7rem;
   color: rgba(245, 245, 245, 0.8);
+}
+.language-item a, .class-item a {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
 }
 
 .education-item span {
@@ -46,92 +51,10 @@
   color: rgba(245, 245, 245, 0.6);
 }
 
-.languages {
-  padding: 10rem 9% 2rem;  /* Leave space for fixed header */
-  display: flex;
-  min-height: auto; /* Adjusted to fit content */
-  flex-direction: column;
-}
-
-.languages h2 {
-  font-size: 4.5rem;
-  font-weight: 700;
-  margin-bottom: 2rem;
-  color: var(--primary-color);
-}
-
-.languages p {
+.languages p, .classes p, .education p {
     font-size: 1.7rem;
     color: rgba(245, 245, 245, 0.8);
-    margin-bottom: 2rem;
-}
-
-.languages-list {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.language-item {
-  background: rgba(255, 77, 77, 0.05);
-  padding: 1.5rem 2.5rem;
-  border-left: 0.5rem solid var(--primary-color);
-  border-radius: 1rem;
-  transition: var(--transition);
-}
-
-.language-item:hover {
-  background: rgba(255, 77, 77, 0.1);
-}
-
-.language-item a {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-  color: var(--text-color);
-}
-
-.classes {
-  padding: 10rem 9% 2rem;  /* Leave space for fixed header */
-  display: flex;
-  min-height: auto; /* Adjusted to fit content */
-  flex-direction: column;
-}
-
-.classes h2 {
-  font-size: 4.5rem;
-  font-weight: 700;
-  margin-bottom: 2rem;
-  color: var(--primary-color);
-}
-
-.classes p {
-    font-size: 1.7rem;
-    color: rgba(245, 245, 245, 0.8);
-    margin-bottom: 2rem;
-}
-
-.classes-list {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.class-item {
-  background: rgba(255, 77, 77, 0.05);
-  padding: 1.5rem 2.5rem;
-  border-left: 0.5rem solid var(--primary-color);
-  border-radius: 1rem;
-  transition: var(--transition);
-}
-
-.class-item:hover {
-  background: rgba(255, 77, 77, 0.1);
-}
-
-.class-item a {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-  color: var(--text-color);
+    margin-bottom: 1rem;
 }
 
 /* ===== RESPONSIVE DESIGN BREAKPOINTS ===== */
