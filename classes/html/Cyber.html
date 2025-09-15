@@ -6,6 +6,7 @@
   <title>Portfolio Website</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Font Awesome -->
   <link rel="stylesheet" href="../../style.css"> <!-- Global CSS -->
+  <link rel="stylesheet" href="../../dropdown.css"> <!-- Classes-specific CSS -->
   <script src="../../script.js"></script>
 </head>
 <body>
@@ -13,8 +14,33 @@
     <a href="../../index.html" class="logo">
       <img src="../../img/ZernulloLogo.png" alt="Zernullo Logo">
     </a>
+
+    <nav class="drop_down">
+    <div class="dropdown-language">
+        <button class="dropbtn-language">Language</button>
+        <div class="diff-language">
+            <a href="../../languages/html/python.html">Python</a>
+            <a href="../../languages/java.html">Java</a>
+            <a href="../../languages/html/C.html">C</a>
+            <a href="../../languages/html/C#.html">C#</a>
+            <a href="../../languages/html/C++.html">C++</a>
+            <a href="../../languages/javascript.html">JavaScript</a>
+        </div>
+    </div>
+
+    <div class="dropdown-classes">
+        <button class="dropbtn-classes">Classes</button>
+        <div class="diff-classes">
+            <a href="Cyber.html">Intro to Cybersecurity</a>
+            <a href="OS.html">Object Systems</a>
+            <a href="CN.html">Computer Networks</a>
+            <a href="AI.html">Artifical Intelligence</a>
+            <a href="EC.html">Ethics in Computing</a>
+        </div>
+    </div>
+    </nav>
    
-    <nav>
+    <nav class="main_nav">
       <a href="../../index.html">Home</a>
       <a href="../../html/education.html" class="active">Education</a>
       <a href="../../html/projects.html">Projects</a>

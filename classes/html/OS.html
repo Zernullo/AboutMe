@@ -6,6 +6,8 @@
   <title>Portfolio Website</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Font Awesome -->
   <link rel="stylesheet" href="../../style.css"> <!-- Global CSS -->
+  <link rel="stylesheet" href="../../dropdown.css"> <!-- Classes-specific CSS -->
+  <link rel="stylesheet" href="../css/OS.css">  <!-- Education-specific CSS -->
   <script src="../../script.js"></script>
 </head>
 <body>
@@ -13,8 +15,33 @@
     <a href="../../index.html" class="logo">
       <img src="../../img/ZernulloLogo.png" alt="Zernullo Logo">
     </a>
+
+    <nav class="drop_down">
+    <div class="dropdown-language">
+        <button class="dropbtn-language">Language</button>
+        <div class="diff-language">
+            <a href="../../languages/html/python.html">Python</a>
+            <a href="../../languages/html/java.html">Java</a>
+            <a href="../../languages/html/C.html">C</a>
+            <a href="../../languages/html/C#.html">C#</a>
+            <a href="../../languages/html/C++.html">C++</a>
+            <a href="../../languages/javascript.html">JavaScript</a>
+        </div>
+    </div>
+
+    <div class="dropdown-classes">
+        <button class="dropbtn-classes">Classes</button>
+        <div class="diff-classes">
+            <a href="Cyber.html">Intro to Cybersecurity</a>
+            <a href="OS.html">Object Systems</a>
+            <a href="CN.html">Computer Networks</a>
+            <a href="AI.html">Artifical Intelligence</a>
+            <a href="EC.html">Ethics in Computing</a>
+        </div>
+    </div>
+    </nav>
    
-    <nav>
+    <nav class="main_nav">
       <a href="../../index.html">Home</a>
       <a href="../../html/education.html" class="active">Education</a>
       <a href="../../html/projects.html">Projects</a>
@@ -23,6 +50,38 @@
   </header>
 
   <!-- PAGE CONTENT GOES HERE -->
+  <section class="classes">
+      <h1>Object Systems</h1>
+      <p id="Reference">Reference: LSU Professor Daniel Donze 
+          <br>
+          &emsp;&emsp;&emsp;&emsp;&emsp; 
+          Daniel Guo
+          <br>
+          &emsp;&emsp;&emsp;&emsp;&emsp;
+          ChatGBT
+          <br>
+          Date Taken: Fall 2025
+          <br>
+          Status: Work in Progress
+      </p>
+
+      <h2>Index</h2>
+
+      <ul>
+        <li>Computational history</li>
+        <li>Operating System Design</li>
+        <li>Operating Systen Theory</li>
+        <li>Historical Architectures</li>
+      </ul>
+
+      <h2>Summary</h2>
+      <p>An Operating System (OS) is the fundamental software that enables a computer to function by managing its hardware resources and providing a platform for applications to run. 
+         It serves as a bridge between the user, application programs, and the hardware, handling tasks such as memory allocation, process scheduling, input/output operations, and file management. 
+         The OS also offers security features, networking capabilities, and a user interface—either graphical or command-line—so users can interact with the system. Examples of popular operating systems include Windows, macOS, Linux, Android, and iOS.
+      </p>
+
+      <p></p>
+  <section>
 
 </body>
 </html>
