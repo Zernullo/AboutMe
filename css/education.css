@@ -1,25 +1,25 @@
 /* ===== EDUCATION PAGE STYLES ===== */
-.education {
+.education, .experience, .languages, .classes {
   padding: 12rem 9% 2rem;  /* Leave space for fixed header */
   display: flex;
   min-height: auto; /* Adjusted to fit content */
   flex-direction: column;
 }
 
-.education h2, .languages h2, .classes h2 {
+.education h2, .experience h2,.languages h2, .classes h2 {
   font-size: 4.5rem;
   font-weight: 700;
   margin-bottom: 2rem;
   color: var(--primary-color);
 }
 
-.education-list, .languages-list, .classes-list {
+.education-list, .experience-list, .languages-list, .classes-list {
   display: flex;
   flex-direction: column;
   gap: 3rem;
 }
 
-.education-item, .language-item, .class-item {
+.education-item, .experience-item, .language-item, .class-item {
   background: rgba(255, 77, 77, 0.05);
   padding: 2rem 3rem;
   border-left: 0.5rem solid var(--primary-color);
@@ -27,31 +27,39 @@
   transition: var(--transition);
 }
 
-.education-item:hover, .language-item:hover, .class-item:hover {
+.education-item:hover, .experience-item:hover, .language-item:hover, .class-item:hover {
   background: rgba(255, 77, 77, 0.1);
 }
 
-.education-item h3, .language-item h3, .class-item h3 {
+.education-item h3, .experience-item h3 {
   font-size: 2.2rem;
   margin-bottom: 0.5rem;
 }
 
-.education-item p, .language-item p, .class-item p {
+.education-item p, .experience-item p, .language-item p, .class-item p {
   font-size: 1.7rem;
   color: rgba(245, 245, 245, 0.8);
 }
+
+.experience-item ul {
+  margin-top: 0.5rem;
+  padding-left: 1.5rem;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
 .language-item a, .class-item a {
   font-size: 2rem;
   margin-bottom: 0.5rem;
   color: var(--text-color);
 }
 
-.education-item span {
+.education-item span, .experience-item span {
   font-size: 1.5rem;
   color: rgba(245, 245, 245, 0.6);
 }
 
-.languages p, .classes p, .education p {
+.education p, .experience p, .languages p, .classes p {
     font-size: 1.7rem;
     color: rgba(245, 245, 245, 0.8);
     margin-bottom: 1rem;
@@ -59,51 +67,51 @@
 
 /* ===== RESPONSIVE DESIGN BREAKPOINTS ===== */
 @media (max-width: 991px) {
-  .education, .languages, .classes {
+  .education, .experience,.languages, .classes {
     padding: 10rem 5% 5rem;  /* Reduce side padding */
   }
 
-  .education h2, .languages h2, .classes h2 {
+  .education h2, .experience h2,.languages h2, .classes h2 {
     font-size: 3.8rem;
   }
 
-  .education-item, .language-item, .class-item {
+  .education-item, .experience-item, .language-item, .class-item {
     padding: 1.8rem 2.5rem;
   }
 }
 
 @media (max-width: 768px) {
-  .education, .languages, .classes {
+  .education, .experience,.languages, .classes {
     padding: 9rem 5% 5rem;   /* Further reduce top padding */
   }
 
-  .education h2, .languages h2, .classes h2 {
+  .education h2, .experience h2, .languages h2, .classes h2 {
     font-size: 3.5rem;
   }
 
-  .education-item, .language-item, .class-item {
+  .education-item, .experience-item, .language-item, .class-item {
     padding: 1.5rem 2rem;
   }
 }
 
 @media (max-width: 480px) {
-  .education, .languages, .classes {
+  .education, .experience, .languages, .classes {
     padding: 8rem 3% 5rem;   /* Minimal padding for small screens */
   }
 
-  .education h2, .languages h2, .classes h2 {
+  .education h2, .experience h2, .languages h2, .classes h2 {
     font-size: 3rem;
   }
 
-  .education-item, .language-item, .class-item {
+  .education-item, .experience-item, .language-item, .class-item {
     padding: 1.2rem 1.5rem;
   }
 
-  .education-item h3, .language-item h3, .class-item h3 {
+  .education-item h3, .experience-item h3 {
     font-size: 1.8rem;
   }
 
-  .education-item p, .language-item p, .class-item p {
+  .education-item p, .experience-item p, .language-item p, .class-item p {
     font-size: 1.5rem;
   }
 }
