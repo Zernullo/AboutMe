@@ -19,6 +19,7 @@
 .classes h2 { /* Section Titles */
   font-size: 2.5rem;
   font-weight: 600;
+  margin-bottom: 1rem;
   text-decoration: underline;
   color: var(--primary-color)
 }
@@ -26,14 +27,13 @@
 .classes h3 { /* Subsection Titles */
   font-size: 2rem;
   font-weight: 400;
-  margin-bottom: 1rem;
   color: white;
   font-weight: bold;
 }
 
 #Reference { /* Reference Titles */
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 3rem;
   color: rgba(245,245,245,0.7);
 }
@@ -56,7 +56,7 @@
 .none {
   padding-left: 2rem;
   margin-bottom: 2rem;
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   color: rgba(245,245,245,0.7);
 }
 
