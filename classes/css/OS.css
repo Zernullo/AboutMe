@@ -55,6 +55,7 @@
 .squares,
 .none {
   padding-left: 2rem;
+  margin-top: -2rem;
   margin-bottom: 2rem;
   font-size: 1.7rem;
   color: rgba(245,245,245,0.7);

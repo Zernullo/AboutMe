@@ -52,23 +52,15 @@
   <!-- PAGE CONTENT GOES HERE -->
   <section class="classes">
       <h1>Object Systems</h1>
-      <p id="Reference">Reference: LSU Professor Daniel Donze 
-          <br>
-          &emsp;&emsp;&emsp;&emsp;&emsp; 
-          Daniel Guo
-          <br>
-          &emsp;&emsp;&emsp;&emsp;&emsp;
-          ChatGBT
-          <br>
+      <p id="Reference">
           Date Taken: Fall 2025
           <br>
           Status: Work in Progress
       </p>
 
       <h2>Index</h2>
-
-      <ul>
-        <li>Computational history</li>
+      <ul class="Bullets">
+        <li>Computational History</li>
         <li>Operating System Design</li>
         <li>Operating Systen Theory</li>
         <li>Historical Architectures</li>
@@ -79,8 +71,139 @@
          It serves as a bridge between the user, application programs, and the hardware, handling tasks such as memory allocation, process scheduling, input/output operations, and file management. 
          The OS also offers security features, networking capabilities, and a user interface—either graphical or command-line—so users can interact with the system. Examples of popular operating systems include Windows, macOS, Linux, Android, and iOS.
       </p>
+      
+      <h2>Computer History</h2>
+      <h3>Computational Hardware Timeline</h3>
+      <p>
+        1945 - Mechanical computations using gears and levers
+        <br>
+        1945-1955 - Vaccuum tubes for electronic calculations
+        <br>
+        1960 - Transistors replace vaccuum tubes
+        <br>
+        1970 - Integrated Circuits (ICs) allow for miniaturization, increased speed, and reduced cost
+        <br>
+        1980 - CPU (Central Processing Unit) becomes the brain of the computer, executing instructions and managing data flow
+        <br><br>
+        Enigma Machine (1930) - Used for encrypting and decrypting messages during World War II.
+      </p>
+      <ul>
+        <li>Series of rotors that changed electrical connections based on their configuration</li>
+        <li>Electronic Numerical Integrator and Computer</li>
+        <li>Made to calculate bomb trajectories</li>
+        <li>Used 18k vaccuum tubes</li>
+        <li>5000 operations / sec (read/write/add)</li>
+        <li>500 FLOPS</li>
+        <li>Programmed with punch cards</li>
+      </ul>
 
-      <p></p>
+      <p>Univac & IBM 701 (1950s) - Early commercial computers used for business and scientific applications.</p>
+      <ul>
+        <li>Universal Automatic Computer (UNIVAC)</li>
+        
+        <li>First commercially available computer</li>
+        <li>Used for census data, weather prediction, and military applications</li>
+        <li>Used vaccuum tubes</li>
+        <li>Stored programs in memory</li>
+        <li>Predicted Eisenhower's landslide electoral victory in 1952</li>
+        <li>International Business Machines (IBM) 701 - Competitor to UNIVAC 1103, roughly same computation performance, released in 1952</li>
+      </ul>      
+      
+      <p>Atlas (1960s) - One of the first supercomputers, used for scientific research and complex calculations.</p>
+      <ul>
+        <li>Developed by the University of Manchester and Ferranti</li>
+        <li>Used for scientific research, weather forecasting, and nuclear simulations</li>
+        <li>Introduced virtual memory concept</li>
+        <li>Used transistors</li>
+        <li>Could perform 1 million instructions per second (MIPS)</li>
+      </ul>
+
+      <p>
+        PDP 7 (1960s) - Early minicomputer that made computing more accessible to smaller businesses and institutions. Unix was programmed on this
+        <br><br>
+        Appollo Moon Program (1960s) - Used for navigation and control of the Apollo spacecraft. 
+        <br><br>
+        Batch Processing Systems (1950s-1960s) - Early operating systems that processed jobs in batches without user interaction.
+        <br><br>
+        Decsystem 10 / PDP 10 (1960s-1980s) - Time-sharing systems that allowed multiple users to access the computer simultaneously.
+        <br><br>
+        Multics Operating System (1964-1969) - Influential time-sharing operating system that introduced many concepts used in modern OS. Collaborative project between MIT, Bell Labs, and GE. Some modern OS concepts introduced by Multics include hierarchical file systems, dynamic linking, and security features.
+        <br><br>
+        PDP 11 (1970s) - Popular minicomputer that supported various operating systems, including Unix. C was developed on this. Ran very Influential OS including Unix, RT-11, and RSX-11.
+        <br><br>
+        UNIX (UNiplexed Information and Computing Service) (1969) - A powerful, multiuser operating system developed at Bell Labs, by Ken Thompson & Dennis Ritchie. Known for its simplicity, portability, and multitasking capabilities. Written in assembly until V4, where it was re-written in C. It introduced the concept of pipes, allowing the output of one program to be used as input for another. It also popularized the use of plain text files for configuration and data storage.
+        <br><br>
+        Vax (Virtual Address eXtension) (1977) - A line of computers developed by Digital Equipment Corporation (DEC) that supported the VMS operating system. Known for its virtual memory capabilities and support for multiple programming languages.
+        <br><br>
+        Xerox Alto (1970s) - An early personal computer developed at Xerox PARC that introduced the graphical user interface (GUI) concept. It featured a bitmapped display, a mouse, and a desktop metaphor, influencing future GUI designs.
+        <br><br>
+        Altair 8800 (1970s) - One of the first microcomputers, which sparked the personal computer revolution. It was based on the Intel 8080 microprocessor and was sold as a kit that users had to assemble themselves.
+        <br><br>
+        IBM's Personal Computer (PC) (1981) - The IBM PC set the standard for personal computers and led to the widespread adoption of the x86 architecture. It ran MS-DOS, an operating system developed by Microsoft.
+        <br><br>
+        Commodore 64 (1982) - A popular home computer known for its affordability and extensive software library. It featured a built-in BASIC interpreter and was widely used for gaming and educational purposes.
+        <br><br>
+        Macintosh (1984) - Apple's Macintosh introduced a user-friendly GUI and was one of the first computers to use a mouse. It ran the Mac OS, which emphasized ease of use and design.
+        <br><br>
+        Beige, Dial-up, World Wide Web (1990s) - The rise of the internet and web browsers transformed computing, making information and communication more accessible. Operating systems began to integrate networking capabilities. Birth of modern OS with Windows 95, Mac OS 8, and Linux.
+      </p>
+
+      <h2>Operating System Theory</h2>
+      <p>
+        An operating system (OS) is a complex piece of software that manages computer hardware and software resources, providing a stable and consistent environment for applications to run. The core functions of an OS include process management, memory management, file system management, device management, and security. Here are some key concepts in operating system theory:
+        <br><br>
+        1. Process Management: The OS is responsible for creating, scheduling, and terminating processes (programs in execution). It allocates CPU time to processes based on scheduling algorithms (e.g., round-robin, priority-based) and manages context switching between processes.
+        <br><br>
+        2. Memory Management: The OS manages the computer's memory, allocating space to processes as needed. It uses techniques like paging and segmentation to optimize memory usage and ensure that each process has access to its required memory without interfering with others.
+        <br><br>
+        3. File System Management: The OS provides a hierarchical file system that allows users and applications to store, retrieve, and organize data on storage devices. It handles file creation, deletion, reading, writing, and permissions.
+        <br><br>
+        4. Device Management: The OS manages hardware devices (e.g., printers, disk drives) through device drivers that facilitate communication between the OS and the hardware. It handles input/output operations and ensures efficient use of devices.
+        <br><br>
+        5. Security and Protection: The OS implements security measures to protect data and resources from unauthorized access. This includes user authentication, access control lists (ACLs), encryption, and secure communication protocols.
+        <br><br>
+        6. User Interface: The OS provides a user interface (UI), which can be command-line based or graphical (GUI), allowing users to interact with the system and manage files, applications, and settings.
+        <br><br>
+        7. Multitasking and Multiprocessing: Modern operating systems support multitasking (running multiple processes simultaneously) and multiprocessing (using multiple CPU cores) to improve performance and responsiveness.
+        <br><br>
+        8. Virtualization: Many operating systems support virtualization technologies that allow multiple virtual machines (VMs) to run on a single physical machine, enabling better resource utilization and isolation.
+      </p>
+
+      <p>
+        <br>
+        Sturcture of an OS:
+        <br>
+        1. Kernel: The core component of the OS that manages system resources and provides essential services to other parts of the OS and applications. It operates in a privileged mode (kernel mode) with direct access to hardware.
+        <br><br>
+        2. Application Layer: The layer where user applications run. It interacts with the OS through system calls to request services like file access, memory allocation, and process management.
+        <br><br>
+        3. Device Drivers: Software modules that allow the OS to communicate with hardware devices. They translate OS commands into device-specific operations.
+        <br><br>
+        4. TCP/IP Stack: A set of protocols that enable network communication. The OS manages the TCP/IP stack to facilitate data transmission over networks.
+        <br><br>
+        5. File System: The component that organizes and manages data storage on disks and other storage devices. It provides a way to create, read, write, and delete files.
+      </p>
+
+      <p>
+        MS-DOS (Microsoft Disk Operating System) - An early operating system for IBM PCs and compatibles, known for its command-line interface and simplicity. It was widely used in the 1980s and early 1990s before being largely replaced by Windows.
+      </p>
+
+      <p>
+        Monolithic Kernel - A kernel architecture where all OS services run in a single address space, providing high performance but potentially less stability due to the lack of isolation between services. Examples include Linux and traditional Unix systems. User Space interacts with kernal through system calls (Example: read(), write(), open(), close()). Windows and Linux are examples of monolithic kernels.
+        <br>
+        1. Kernal Space - The privileged mode where the kernel operates, with direct access to hardware and system resources. Splits User space and kernal space.
+        <br>
+        2. User Space - The non-privileged mode where user applications run, with restricted access to system resources.
+        <br><br>
+      </p>
+
+      <p>
+        Hybrid Kernel - A kernel architecture that combines elements of monolithic and microkernel designs, aiming to balance performance and modularity. Examples include Windows NT, MacOS IOS, and Andriod. It runs some services in kernal space and some in user space.
+      </p>
+      <img src="" alt="">
+
+      
+
   <section>
 
 </body>
