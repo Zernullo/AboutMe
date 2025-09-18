@@ -2,36 +2,35 @@
 .classes {
   padding: 12rem 9% 2rem;  /* Leave space for fixed header */
   display: flex;
-  min-height: auto; /* Adjusted to fit content */
+  min-height: auto;        /* Adjusted to fit content */
   flex-direction: column;
 
-  margin-left: auto;   /* center horizontally */
-  margin-right: auto;  /* center horizontally */
-  text-align: left;    /* keep text inside aligned left */  
+  margin-left: auto;       /* center horizontally */
+  margin-right: auto;      /* center horizontally */
+  text-align: left;        /* keep text inside aligned left */  
 }
 
-.classes h1 { /* Page Title */
+.classes h1 {              /* Page Title */
   font-size: 4.5rem;
   font-weight: 700;
   color: var(--primary-color);
 }
 
-.classes h2 { /* Section Titles */
+.classes h2 {              /* Section Titles */
   font-size: 2.5rem;
   font-weight: 600;
   margin-bottom: 1rem;
   text-decoration: underline;
-  color: var(--primary-color)
+  color: var(--primary-color);
 }
 
-.classes h3 { /* Subsection Titles */
+.classes h3 {              /* Subsection Titles */
   font-size: 2rem;
-  font-weight: 400;
-  color: white;
   font-weight: bold;
+  color: white;
 }
 
-#Reference { /* Reference Titles */
+#Reference {               /* Reference Titles */
   font-size: 1rem;
   font-weight: 700;
   margin-bottom: 3rem;
@@ -46,7 +45,6 @@
 }
 
 /* == Lists Styles == */
-
 .classes ul,
 .classes ol,
 .bullets,
@@ -55,7 +53,7 @@
 .squares,
 .none {
   padding-left: 2rem;
-  margin-top: -2rem;
+  margin-top: 1rem;
   margin-bottom: 2rem;
   font-size: 1.7rem;
   color: rgba(245,245,245,0.7);
