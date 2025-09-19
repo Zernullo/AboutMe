@@ -64,3 +64,25 @@
 .squares { list-style-type: square; }
 .none { list-style-type: none; }
 .numbers { list-style-type: decimal; }
+
+/* == IMG == */
+.img-container {
+  width: 100%;
+  padding-top: 56.25%;      /* 16:9 ratio (height ÷ width × 100) */
+  position: relative;
+  background-color: #000;   /* Background for letterboxing */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.img-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;      /* Keeps entire image visible */
+}
+
+

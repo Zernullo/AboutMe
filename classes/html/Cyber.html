@@ -314,9 +314,32 @@
 
     <h3>Access Control Policies</h3>
     <ol class="number">
-      <li>Discretionary access control (DAC) - Controls access based on the identity of the requestor and on access rules (authorizations) stating what requestors are (or are not) allowed to do</li>
-      <li>Mandatory access control (MAC) SLIDE 25 on LECTURE 3</li>
+      <li>Discretionary Access Control (DAC) - Controls access based on the identity of the requestor and on access rules (authorizations) stating what requestors are (or are not) allowed to do</li>
+      <li>Mandatory Access Control (MAC) - Controls access based on comparing security labels with security clearances</li>
+      <li>Role-Based Access Contol (RBAC) - Controls access based on the roles that users have within the system and on rules stating what accesses are allowed to users in given roles</li>
+      <li>Attribute-Based Access Contol (ABAC) - COntols access based on attributes of the user, the resource to be accessed, and curretnt environmental conditions</li>
     </ol>
+
+    <h3>Subjects, Objects, and Access Rights</h3>
+    <ol class="number">
+      <li>Subject - An entity capable of accessing objects. Three classes: Owner, Group, World</li>
+      <li>Object - A resource to which access is controlled. Entity used to contain and/or receive information</li>
+      <li>Access Rights - Describes the way in which a subject may access and object. Could include: Read, Write, Execute, Delete, Create, and Search</li>
+    </ol>
+
+    <h3>Unix File Access</h3>
+    <p>UNIX files are administered using indoes (Index Nodes)</p>
+    <ul class="bullets">
+      <li>Control structures with key information needed for a particular file</li>
+      <li>Serveral file names may be associated with a single inode</li>
+      <li>An active inode is associated with exactly one file</li>
+      <li>File attributes, permissions and control information are sorted in the inode</li>
+      <li>On the disk there is an inode table, or indode list, that contains the indode of all the files in the file system</li>
+      <li>When a file is opened its inode is brought into main memory and stored in a memory resident inode table</li>
+    </ul>
+    <div class="img-container">
+      <img src="../../img/CyberPic/UnixFileAccess.png" alt="Unix File Access">
+    </div>
 
 
   </section>
