@@ -1,23 +1,23 @@
 /* CSS for OS Page */
 .classes {
-  padding: 12rem 9% 2rem;  /* Leave space for fixed header */
+  padding: 12rem 9% 2rem;
   display: flex;
-  min-height: auto;        /* Adjusted to fit content */
   flex-direction: column;
-
-  margin-left: auto;       /* center horizontally */
-  margin-right: auto;      /* center horizontally */
-  text-align: left;        /* keep text inside aligned left */  
+  align-items: flex-start;
+  max-width: 1200px; /* Prevents stretching on large screens */
+  margin: 0 auto;
+  text-align: left;
 }
 
+
 .classes h1 {              /* Page Title */
-  font-size: 4.5rem;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
   font-weight: 700;
   color: var(--primary-color);
 }
 
 .classes h2 {              /* Section Titles */
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 4vw, 2.5rem);
   font-weight: 600;
   margin-bottom: 1rem;
   text-decoration: underline;
@@ -30,6 +30,14 @@
   color: white;
 }
 
+.classes h4 {
+  font-size: clamp(1rem, 2vw, 1.7rem);
+  font-weight: 600;            /* Semi-bold */
+  margin-top: 1rem;            /* Space above */
+  color: rgba(245,245,245,0.7); /* Matches your headings */
+}
+
+
 #Reference {               /* Reference Titles */
   font-size: 1rem;
   font-weight: 700;
@@ -38,8 +46,8 @@
 }
 
 .classes p {
-  font-size: 1.7rem;
-  line-height: 1.8;
+  font-size: clamp(1rem, 2vw, 1.7rem);
+  line-height: 1.9;
   margin-bottom: 2rem;
   color: rgba(245,245,245,0.7);
 }
@@ -65,24 +73,23 @@
 .none { list-style-type: none; }
 .numbers { list-style-type: decimal; }
 
+.classes li {
+  margin-bottom: 0.7rem;
+}
+
+
 /* == IMG == */
 .img-container {
-  width: 100%;
-  padding-top: 56.25%;      /* 16:9 ratio (height ÷ width × 100) */
-  position: relative;
-  background-color: #000;   /* Background for letterboxing */
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  margin: 2rem 0;
+  display: flex;
+  justify-content: center;
 }
 
 .img-container img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;      /* Keeps entire image visible */
+  width: clamp(200px, 60%, 600px); /* Minimum 200px, scales to 60%, max 600px */
+  height: auto;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  margin-bottom: 2rem;
 }
-
 

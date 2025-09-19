@@ -50,298 +50,220 @@
   </header>
 
   <!-- PAGE CONTENT GOES HERE -->
-  <section class="classes">
-    <h1>Intro To Cyber</h1>
-    <p id="Reference">
-      Date Taken: September 16, 2025 (Fall 2025)
-      <br>
-      Status: Work in Progress
-    </p>
+<section class="classes">
+  <h1>Intro To Cyber</h1>
+  <p id="Reference">
+    Date Taken: September 16, 2025 (Fall 2025)<br>
+    Status: Work in Progress
+  </p>
 
-    <!--Summary-->
-    <h2>Summary</h2>
-    <p>
-      Cybersecurity is the pratice of protecting computers, networks, data from unauthorized access, attacks, or damage. 
-      It involves oreventing, detecing, and responding to threats like viruses, malware, phising, and hacking.
-      The key conepts in cybersecurity include: (CIA)
-    </p>
+  <!-- Summary -->
+  <h2>Summary</h2>
+  <p>
+    Cybersecurity is the practice of protecting computers, networks, and digital information from unauthorized access, attacks, or damage. 
+    It involves preventing, detecting, and responding to threats like viruses, malware, phishing, ransomware, and hacking attempts.
+    The key concepts in cybersecurity are summarized by the <strong>CIA Triad</strong>: <strong>Confidentiality, Integrity, and Availability</strong>, which provide a framework for designing and implementing security measures.
+  </p>
 
-    <p>
-      Confidentiality: Ensuring that sensitive information is only accessible to authorized individuals or systems. In short, keeping data private and secure to prevent unauthorized access.
-    </p>
-    <ul class="bullets">
-      <li>Encryption - Encode messages so only certain people can read it</li>
-      <li>Access Controls - Encode messages soonly certain people can read it</li>
-      <li>Two-Factor Authentication - Additional comfirmation before information is disclosed</li>
-    </ul>
+  <h3>Confidentiality</h3>
+  <p>Confidentiality ensures that sensitive information is only accessible to authorized individuals or systems. It prevents unauthorized disclosure of data, protecting privacy and proprietary information.</p>
+  <ul class="bullets">
+    <li><strong>Encryption:</strong> Transforming information into unreadable formats for unauthorized users. Only those with the correct decryption key can access the data.</li>
+    <li><strong>Access Controls:</strong> Mechanisms like passwords, biometrics, and role-based permissions restrict access to sensitive data.</li>
+    <li><strong>Two-Factor Authentication (2FA):</strong> Adds an extra layer of security by requiring two forms of verification before granting access, such as a password and a mobile verification code.</li>
+  </ul>
 
-    <p>
-      Integrity: Maintaining the accuracy and consistency of data, preventing unauthorized modifications or alterations. In short, ensuring that data remains trustworthy and unaltered.
-    </p>
-    <ul class="bullets">
-      <li>Hashing - Map data of an arbitrary length to data of a fixed length. In short, it helps verify that data has not been altered.</li>
-      <li>Digital Signatures - Provide proof of data origin and integrity using cryptographic techniques.</li>
-      <li>Certificates - Combine with digital signature to verify an individual</li>
-      <li>Non-repudiation - Provides proof of integrity, can be asserted to be genuine</li>
-    </ul>
+  <h3>Integrity</h3>
+  <p>Integrity ensures that data remains accurate, consistent, and trustworthy. Unauthorized modification or corruption of data is prevented, and users can rely on its authenticity.</p>
+  <ul class="bullets">
+    <li><strong>Hashing:</strong> Converts data into a fixed-size string of characters (hash value) to detect any unauthorized changes to the original data.</li>
+    <li><strong>Digital Signatures:</strong> Cryptographic technique that verifies the authenticity and integrity of a message or document.</li>
+    <li><strong>Certificates:</strong> Digital credentials that verify the identity of users, systems, or devices, ensuring secure communication.</li>
+    <li><strong>Non-repudiation:</strong> Provides proof that a transaction or communication took place, preventing entities from denying their actions.</li>
+  </ul>
+  <div class="img-container">
+    <img src="../../img/CyberPic/DigitalSignature.png" alt="Create Digital Signatures">
+    <img src="../../img/CyberPic/DigitalSignature2.png" alt="Verify Digital Signatures">
+  </div>
 
-    <p>
-      Availability: Ensuring that information and systems are accessible and functional when needed by authorized users. In short, making sure that data and services are available when required.
-    </p>
-    <ul class="bullets">
-      <li>Redundancy - Build services that will always be available</li>
-      <li>Fault Tolerance - System will continue to run, even when a failure occurs</li>
-      <li>Patching - Stability, close security holes</li>
-    </ul>
 
-    <!-- Lecture 1 & 2 -->
-    <h2>General Security Concepts (Lecture 1 & 2)</h2>
-    <h3>Security Control</h3>
-    <p>
-      Security controls are safeguards or countermeasures used to protect information systems, data, and resources.
-      They reduce risk by preventing, detecting, or mitigating security threats and vulnerabilities.
-      Security Controls is also grouped into 3 main cateogories:
-      <br><br>
-      Administrative Controls: Policies, procedures, and guidelines that govern the overall security posture of an organization.
-      <br>
-      Technical Controls: Security measures implemented through technology, such as firewalls, encryption, and access controls.
-      <br>
-      Physical Controls: Measures that protect physical assets, such as locks, surveillance cameras, and security guards.
-    </p>
+  <h3>Availability</h3>
+  <p>Availability ensures that authorized users can access information and systems when needed. Systems must remain operational, resilient, and recoverable from failures or attacks.</p>
+  <ul class="bullets">
+    <li><strong>Redundancy:</strong> Duplicate systems or components that ensure continued operation in case of hardware or software failures.</li>
+    <li><strong>Fault Tolerance:</strong> Systems designed to operate correctly even when one or more components fail.</li>
+    <li><strong>Patching:</strong> Regular updates to software and systems to fix security vulnerabilities and maintain stable operation.</li>
+  </ul>
 
-    <h3>Control Cateogories</h3>
-    <p>
-      Control cotegories describe how security controls are implemented and managed within an organization.
-      They provide a framework for understanding the different types of controls and their roles in maintaining security.
-      The 5 main control categories are:      
-    </p>
-    <ol>
-      <li>Prventive Controls - Stops a threat before it happens (Ex. firewalls, access restrictions, security awareness training).</li>
-      <li>Detective Controls - Identify and alert you to a threat or incident (Ex. intrusion dection systems, audit logs, security cameras).</li>
-      <li>Corrective Controls - Respond to and fix issues arter a threat has occured (Ex. restoring backups, patching vulnerabilities, reconfiguring firewalls).</li>
-      <li>Deterrent Controls - Discourgae attackers or violations by making the cost or risk unattractive (Ex. warning banners, legal notices, visible cameras).</li>
-      <li>Compensating Controls - Alternative measures used when primary controls are not feasible or effective (Ex. using multi-factor authentication when biometric (physical) systems are unavailable).</li>
-    </ol>
+  <!-- Lecture 1 & 2 -->
+  <h2>General Security Concepts (Lecture 1 & 2)</h2>
 
-    <h3>Preventive Control Types</h3>
-    <p>
-      Preventive controls are security measures designed to stop threats or incidents before they occur.
-      They aim to reduce the likelihood of a security breach by implementing barriers and safeguards.
-      Common types of preventive controls include:
-      <br><br>
-      Administrative Controls: Policies, procedures, and training programs that promote security awareness and best practices.
-      <br>
-      Technical Controls: Firewalls, encryption, access controls, and intrusion prevention systems that protect against unauthorized access and attacks.
-      <br>
-      Physical Controls: Locks, security guards, and surveillance systems that protect physical assets and facilities.
-    </p>
+  <h3>Security Controls</h3>
+  <p>
+    Security controls are safeguards or countermeasures designed to protect information systems, networks, and assets. 
+    They aim to reduce risks by preventing, detecting, or mitigating threats and vulnerabilities. 
+    Controls are grouped into three main categories:
+  </p>
+  <ul class="bullets">
+    <li><strong>Administrative Controls:</strong> Policies, procedures, and guidelines that define organizational security standards, such as employee training, access policies, and incident response plans.</li>
+    <li><strong>Technical Controls:</strong> Tools and technologies like firewalls, encryption, antivirus software, and intrusion detection systems that enforce security at the hardware or software level.</li>
+    <li><strong>Physical Controls:</strong> Measures that protect physical assets, such as security guards, locks, badges, fences, surveillance cameras, and environmental protections (fire or flood systems).</li>
+  </ul>
 
-    <h3>Deterrent Control Types</h3>
-    <p>
-      Deterrent controls are security measures designed to discourage potential attackers or violators by making the cost or risk of an attack unattractive.
-      They aim to prevent security incidents by creating a perception of increased difficulty or consequences for malicious actions.
-      Main types of deterrent controls include:
-      <br><br>
-      Administrative Controls: Warning banners, legal notices, and policies that inform users of the consequences of unauthorized actions.
-      <br>
-      Technical Controls: Visible security measures, such as cameras and alarms, that increase the perceived risk of detection.
-      <br>
-      Physical Controls: Fences, security guards, and lighting that create physical barriers and increase the effort required to breach security.
-    </p>
+  <h3>Control Categories</h3>
+  <p>Security controls are organized to provide comprehensive protection and include the following categories:</p>
+  <ol class="numbers">
+    <li><strong>Preventive Controls:</strong> Measures designed to stop security incidents before they occur. Examples include firewalls, access restrictions, and employee security awareness programs.</li>
+    <li><strong>Detective Controls:</strong> Measures to identify and detect incidents as they happen, such as intrusion detection systems, audit logs, and surveillance cameras.</li>
+    <li><strong>Corrective Controls:</strong> Steps taken to correct or restore systems after an incident, like restoring backups, patching vulnerabilities, or reconfiguring affected systems.</li>
+    <li><strong>Deterrent Controls:</strong> Mechanisms that discourage malicious actions by making attacks costly or risky, e.g., warning banners, visible cameras, and legal notices.</li>
+    <li><strong>Compensating Controls:</strong> Alternative measures used when primary controls are unavailable or insufficient, like using multi-factor authentication when biometrics are unavailable.</li>
+  </ol>
 
-    <h3>Detective Control Types</h3>
-    <p>
-      Detective controls are security measures designed to identify and alert you to threats or incidents as they occur.
-      They aim to provide timely information about security events, enabling organizations to respond quickly and effectively.
-      Main types of detective controls include:
-      <br><br>
-      Administrative Controls: Regular audits, reviews, and monitoring of security policies and procedures to identify potential issues.
-      <br>
-      Technical Controls: Intrusion detection systems, security information and event management (SIEM) systems, and audit logs that monitor network and system activity for signs of compromise.
-      <br>
-      Physical Controls: Security cameras, motion detectors, and access logs that monitor physical access to facilities and assets.
-    </p>
+  <h3>Types of Security Controls</h3>
+  <ul class="bullets">
+    <li><strong>Preventive:</strong> Administrative, technical, and physical measures to proactively stop attacks or unauthorized activity.</li>
+    <li><strong>Deterrent:</strong> Controls that create psychological or visible obstacles to discourage malicious actions.</li>
+    <li><strong>Detective:</strong> Continuous monitoring and auditing to detect anomalies or breaches promptly.</li>
+    <li><strong>Corrective:</strong> Actions and tools to recover systems and data after a security incident.</li>
+    <li><strong>Compensating:</strong> Alternative methods to maintain security when primary controls cannot be applied.</li>
+    <li><strong>Directive:</strong> Policies, guidelines, and signage that guide user behavior and ensure compliance with security practices.</li>
+  </ul>
 
-    <h3>Corrective Control Types</h3>
-    <p>
-      Corrective controls are security measures designed to respond to and fix issues after a threat or incident has occurred.
-      They aim to restore systems and data to their normal state, minimize damage, and prevent future occurrences.
-      Main types of corrective controls include:
-      <br><br>
-      Administrative Controls: Incident response plans, disaster recovery plans, and business continuity plans that outline procedures for responding to security incidents.
-      <br>
-      Technical Controls: Patching vulnerabilities, restoring backups, and reconfiguring firewalls to address security weaknesses and recover from attacks.
-      <br>
-      Physical Controls: Repairing physical damage, replacing compromised locks, and enhancing physical security measures after a breach.
-    </p>
+  <h3>Managing Security Controls</h3>
+  <ul class="bullets">
+    <li><strong>Risk Assessment:</strong> Identify and evaluate threats and vulnerabilities to determine appropriate controls.</li>
+    <li><strong>Control Selection:</strong> Choose the most effective safeguards based on risk, regulatory requirements, and organizational objectives.</li>
+    <li><strong>Implementation:</strong> Properly deploy and configure security measures to integrate with the organization's environment.</li>
+    <li><strong>Monitoring:</strong> Continuously observe controls for effectiveness and detect potential issues through audits and real-time monitoring.</li>
+    <li><strong>Improvement:</strong> Update and enhance controls to address emerging threats and evolving risks.</li>
+  </ul>
 
-    <h3>Compensating Control Types</h3>
-    <p>
-      Compensating controls are alternative security measures used when primary controls are not feasible or effective.
-      They aim to provide a similar level of protection by addressing the same risk through different means.
-      Main types of compensating controls include:
-      <br><br>
-      Administrative Controls: Implementing additional policies, procedures, or training programs to mitigate risks when primary controls are unavailable.
-      <br>
-      Technical Controls: Using multi-factor authentication, network segmentation, or enhanced monitoring to compensate for the absence of primary technical controls.
-      <br>
-      Physical Controls: Increasing physical security measures, such as additional locks or security personnel, when primary physical controls are not in place.
-    </p>
+  <!-- Physical Security -->
+  <h3>Physical Security</h3>
+  <p>
+    Physical security protects buildings, facilities, equipment, and personnel from unauthorized access, theft, and environmental hazards. 
+    It ensures the safety of assets and personnel, preventing damage or disruption to operations.
+  </p>
+  <h4>Key Components:</h4>
+  <ul class="bullets">
+    <li><strong>Access Control:</strong> Locks, security personnel, keycards, and biometric systems to limit entry to authorized personnel.</li>
+    <li><strong>Surveillance:</strong> Cameras, motion sensors, and alarms to monitor activity and detect potential threats.</li>
+    <li><strong>Environmental Controls:</strong> Systems protecting against fire, floods, extreme temperatures, and other environmental risks.</li>
+    <li><strong>Security Policies:</strong> Procedures for visitor management, asset protection, and emergency response.</li>
+    <li><strong>Training and Awareness:</strong> Educating staff on physical security measures and their responsibilities in maintaining a safe environment.</li>
+  </ul>
+  <h4>Examples:</h4>
+  <ul class="bullets">
+    <li><strong>Fences and Gates:</strong> Physical barriers to prevent unauthorized access to facilities.</li>
+    <li><strong>Security Guards:</strong> Personnel who monitor premises and respond to incidents.</li>
+    <li><strong>Surveillance Cameras:</strong> Monitor activity and provide evidence in case of breaches.</li>
+    <li><strong>Alarm Systems:</strong> Notify security teams immediately when unauthorized access is detected.</li>
+  </ul>
 
-    <h3>Directive Control Types</h3>
-    <p>
-      Directive controls are security measures designed to guide and influence user behavior towards desired security practices.
-      They aim to promote compliance with security policies and procedures by providing clear instructions and expectations.
-      Main types of directive controls include:
-      <br><br>
-      Administrative Controls: Security policies, procedures, and guidelines that outline acceptable use, data handling, and incident reporting requirements.
-      <br>
-      Technical Controls: User access controls, role-based access management, and system configurations that enforce security policies and limit user actions.
-      <br>
-      Physical Controls: Signage, access restrictions, and facility layouts that direct user movement and behavior within secure areas.
-    </p>
+  <!-- Access Control -->
+  <h2>Access Control (Lecture 3 & 4)</h2>
+  <h3>Definitions</h3>
+  <ul class="bullets">
+    <li><strong>NIST IR 7298:</strong> The process of granting or denying requests to obtain and use information and services based on access rules and authorization.</li>
+    <li><strong>RFC 4949:</strong> Regulates system resource usage according to a security policy, allowing access only to authorized users, processes, or devices.</li>
+  </ul>
 
-    <h3>Managing Security Controls</h3>
-    <p>
-      Managing security controls involves the ongoing process of implementing, monitoring, and improving security measures to protect an organization's information systems and assets.
-      Effective management of security controls requires a comprehensive approach that includes:
-      <br><br>
-      Risk Assessment: Identifying and evaluating potential threats and vulnerabilities to determine the appropriate security controls needed to mitigate risks.
-      <br>
-      Control Selection: Choosing the most effective security controls based on the organization's risk profile, regulatory requirements, and business objectives.
-      <br>
-      Implementation: Deploying and configuring security controls to ensure they are properly integrated into the organization's IT environment.
-      <br>
-      Monitoring: Continuously monitoring the effectiveness of security controls through audits, reviews, and real-time monitoring tools to detect potential issues.
-      <br>
-      Improvement: Regularly reviewing and updating security controls to address emerging threats, vulnerabilities, and changes in the organization's risk landscape.
-    </p>
-
-    <h3>Physical Security</h3>
-    <p>
-      Physical security involves protecting physical assets, facilities, and personnel from unauthorized access, damage, or theft.
-      It encompasses a range of measures designed to safeguard an organization's tangible resources and ensure the safety of its employees.
-      Key components of physical security include:
-      <br><br>
-      Access Control: Implementing measures such as locks, security guards, and access cards to restrict entry to authorized personnel only.
-      <br>
-      Surveillance: Using cameras, motion detectors, and alarm systems to monitor and detect unauthorized activity within and around facilities.
-      <br>
-      Environmental Controls: Protecting physical assets from environmental hazards such as fire, flood, and extreme temperatures through the use of fire suppression systems, climate control, and secure storage.
-      <br>
-      Security Policies: Establishing clear policies and procedures for physical security, including visitor management, asset handling, and emergency response protocols.
-      <br>
-      Training and Awareness: Educating employees on the importance of physical security and their role in maintaining a secure environment.
-      <br><br>
-      Examples of Physical Security Measures:
-      <br>
-      Fences and Gates: Creating physical barriers to deter unauthorized access to facilities.
-      <br>
-      Security Guards: Employing personnel to monitor and protect facilities and assets.
-      <br>
-      Surveillance Cameras: Installing cameras to monitor activity and provide evidence in case of security incidents.
-      <br>
-      Alarm Systems:u Using alarms to alert security personnel of unauthorized access or breaches.
-    </p>
-
-    <!-- Lecture 3 & 4 -->
-    <h2>Access Control (Lecture 3 & 4)</h2>
-    <h3>Access Control</h3>
-    <p>NIST IR 7298 defines access control as: The process of granting or denying specific requests to obatin and use informationa and related information processing services. Enter specific physical facilities</p>
-    <p> RFC 4949 defines access control as: a process by which use of system resources is regulated according to a security policy and is permitted only by authorized entities (users, programs, processes, or other systems) according to that policy</p>
-    
-    <h3>Authentication, Authorization, and Accounting (AAA) Framework</h3>
-    <ol class="number">
-      <li>Authentication - Prove you are who you say you are. Password and other authentication factors</li>
+  <h3>AAA Framework</h3>
+  <ol class="numbers">
+    <li>
+      <strong>Authentication:</strong> Verifying identity using passwords, certificates, or tokens.
       <ul class="circles">
-        <li>
-          You have to manage many devices, often including devices that you will never physically see. 
-          This makes traditional access methods, like typing passwords, impractical for large-scale systems.
-        </li>
-        <li>
-          A system cannot type a password on its own. Automated devices need a secure method to authenticate themselves without human intervention.
-        </li>
-        <li>
-          How can you truly authenticate a device? By placing a digitally signed certificate on the device. 
-          This certificate acts as a trusted identity that the system can verify automatically.
-        </li>
-        <li>
-          Other business processes rely on the certificate as well. 
-          For example, access to a VPN may be granted only to devices with valid certificates, and management software can validate the end device before allowing it to connect or perform operations.
-        </li>
+        <li>Automated devices may authenticate using digital certificates for large-scale management.</li>
+        <li>Certificates ensure secure access to services like VPNs and management software.</li>
       </ul>
-
-      <li>Authorization - Based on your identification and authentication, what access do you have?</li>
-      <ul class="circle">
-        <li>
-          The user or device has now been successfully authenticated. 
-          Authentication verifies the identity of the entity trying to access the system, ensuring that only legitimate users or devices are allowed in.
-        </li>
-        <li>
-          Users and services interact with data and applications. 
-          If you manually assign permissions to each individual user for every resource, the process quickly becomes unmanageable as the system grows. 
-          This approach is error-prone, difficult to audit, and can create serious security risks in large environments.
-        </li>
-        <li>
-          Put an authorization model in the middle to centralize control and simplify management. 
-          Permissions should be defined using roles (e.g., Manager, Developer), organizational structures (e.g., Department, Team), or attributes (e.g., job title, location). 
-          This allows you to manage access at a higher level of abstraction, making it scalable, consistent, and easier to maintain.
-        </li>
-      </ul>
-
-
-      <li>Accounting (or Auditing) - Resources used: Login time, data sent and received, logout time</li>
+    </li>
+    <li>
+      <strong>Authorization:</strong> Determining which resources an authenticated user or device can access.
       <ul class="circles">
-        <li>
-          Accounting departments often manage many financial records, transactions, and reports, sometimes across multiple locations or systems that you may never physically access. 
-          Manual verification of every entry or system access is impractical at scale.
-        </li>
-        <li>
-          Systems cannot manually approve transactions or reconcile accounts without proper automation and controls. 
-          Relying solely on passwords or manual input increases the risk of errors and fraud.
-        </li>
-        <li>
-          How can you securely authenticate accounting systems and devices? 
-          By implementing digital certificates or secure tokens that verify the identity of the system or software interacting with financial data.
-        </li>
-        <li>
-          Other business processes rely on this secure authentication. 
-          For instance, only authorized systems with valid certificates can access payroll data, submit invoices, or connect to accounting software. 
-          This ensures compliance, prevents unauthorized access, and allows management tools to validate and monitor all end devices and processes.
-        </li>
+        <li>Role-based or attribute-based authorization simplifies access management in large environments.</li>
       </ul>
-    </ol>
+    </li>
+    <li>
+      <strong>Accounting (Auditing):</strong> Logging resource usage, such as login time, activity, and logout, for monitoring and compliance.
+      <ul class="circles">
+        <li>Ensures that only authorized systems access sensitive information and tracks all activity for auditing purposes.</li>
+      </ul>
+    </li>
+  </ol>
 
-    <h3>Access Control Policies</h3>
-    <ol class="number">
-      <li>Discretionary Access Control (DAC) - Controls access based on the identity of the requestor and on access rules (authorizations) stating what requestors are (or are not) allowed to do</li>
-      <li>Mandatory Access Control (MAC) - Controls access based on comparing security labels with security clearances</li>
-      <li>Role-Based Access Contol (RBAC) - Controls access based on the roles that users have within the system and on rules stating what accesses are allowed to users in given roles</li>
-      <li>Attribute-Based Access Contol (ABAC) - COntols access based on attributes of the user, the resource to be accessed, and curretnt environmental conditions</li>
-    </ol>
+  <h3>Access Control Policies</h3>
+  <ol class="numbers">
+    <li><strong>Discretionary Access Control (DAC):</strong> Access granted based on identity and rules defined by owners.</li>
+    <li><strong>Mandatory Access Control (MAC):</strong> Access based on security labels compared to user clearances.</li>
+    <li><strong>Role-Based Access Control (RBAC):</strong> Permissions assigned according to organizational roles.</li>
+    <li><strong>Attribute-Based Access Control (ABAC):</strong> Access determined by user, resource, and environment attributes.</li>
+  </ol>
 
-    <h3>Subjects, Objects, and Access Rights</h3>
-    <ol class="number">
-      <li>Subject - An entity capable of accessing objects. Three classes: Owner, Group, World</li>
-      <li>Object - A resource to which access is controlled. Entity used to contain and/or receive information</li>
-      <li>Access Rights - Describes the way in which a subject may access and object. Could include: Read, Write, Execute, Delete, Create, and Search</li>
-    </ol>
+  <h3>Subjects, Objects, and Access Rights</h3>
+  <ol class="numbers">
+    <li><strong>Subject:</strong> Entity (user or device) capable of accessing objects.</li>
+    <li><strong>Object:</strong> Resource being accessed or controlled.</li>
+    <li><strong>Access Rights:</strong> Permissions granted to subjects (Read, Write, Execute, Delete, Create, Search).</li>
+  </ol>
+  <div class="img-container">
+    <img src="../../img/CyberPic/AccessRight.png" alt="Access Control/Rights">
+  </div>
 
-    <h3>Unix File Access</h3>
-    <p>UNIX files are administered using indoes (Index Nodes)</p>
-    <ul class="bullets">
-      <li>Control structures with key information needed for a particular file</li>
-      <li>Serveral file names may be associated with a single inode</li>
-      <li>An active inode is associated with exactly one file</li>
-      <li>File attributes, permissions and control information are sorted in the inode</li>
-      <li>On the disk there is an inode table, or indode list, that contains the indode of all the files in the file system</li>
-      <li>When a file is opened its inode is brought into main memory and stored in a memory resident inode table</li>
-    </ul>
-    <div class="img-container">
-      <img src="../../img/CyberPic/UnixFileAccess.png" alt="Unix File Access">
-    </div>
+  <h3>Unix File Access</h3>
+  <p>UNIX files are managed using <strong>inodes</strong> (Index Nodes), which store metadata and control information for files.</p>
+  <ul class="bullets">
+    <li>Inodes contain file attributes, permissions, and location information on disk.</li>
+    <li>Multiple file names can link to the same inode, allowing shared access.</li>
+    <li>Active inodes are loaded into memory for fast access by the operating system.</li>
+    <li>The inode table on disk tracks all file inodes for the file system.</li>
+  </ul>
+  <div class="img-container">
+    <img src="../../img/CyberPic/UnixFileAccess.png" alt="Unix File Access">
+  </div>
+
+  <h3>Zero Trust</h3>
+  <p>Zero Trust means never automatically trust anything inside or outside your network. 
+    Even if someone is already inside, they must prove who they are and have permission to access resources. 
+    This approach checks every person, device, and process using things like multi-factor authentication, encryption, access controls, firewalls, and monitoring to keep the network secure.
+  </p>
+  <h4>Planes of Operation</h4>
+  <ul class="bullets">
+    <li><strong>Divide The Network Into Planes</strong> - Works for physical devices, virtual systems, and cloud setups.</li>
+    <li><strong>Data Plane</strong> - Moves and handles the actual data—sends, encrypts, and routes packets.</li>
+    <li><strong>Control Plane</strong> - Tells the data plane what to do—sets rules, policies, and routing decisions.</li>
+  </ul>
+  <div class="img-container">
+    <img src="../../img/CyberPic/PlanesOfOperation.png" alt="Planes Of Operation">
+  </div>
+  <h4>Security Zones</h4>
+  <ul class="bullets">
+    <li><strong>Security isn't just one-to-one</strong> - Grouping systems into zones helps manage security better.</li>
+    <li><strong>Zones Show Trust Levels</strong> - hink about where traffic is coming from and going to—trusted vs. untrusted, internal vs. external networks, or different departments like Marketing, IT, Accounting, HR.</li>
+    <li><strong>Zones Control Access</strong> - Sometimes just being in the wrong zone is enough to block access. Some zones are automatically trusted.</li>
+  </ul>
+  <h4>Policy Enforcement Point (PEP)</h4>
+  <p>They acts like a gatekeeper for the network. Decides what to do with connections: allows them, monitors them, or blocks them. Can be made of serval parts working together.</p>
+  <h4>Applying Trust In The Planes</h4>
+  <ul class="bullets">
+    <li><strong>Policy Decision Point (PDP)</strong> - Decides whether someone or something should be allowed access.</li>
+    <li><strong>Policy Engine</strong> - Checks the rules and other information, then decides to allow, deny, or revoke access.</li>
+    <li><strong>Policy Administrator</strong> - Talks to the gatekeeper (PEP), gives access tokens or credentials, and tells the PEP whether to allow access. Can also make authentication stronger if needed.</li>
+  </ul>
+  <div class="img-container">
+    <img src="../../img/CyberPic/ApplyingTrustInPlanes.png" alt="Applying Trust In The Planes">
+  </div>
+
+  <!--Finish lecture 3 start Lecture 4 here-->
 
 
-  </section>
+
+
+
+
+
+
+</section>
+
 </body>
 </html>
