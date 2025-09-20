@@ -82,11 +82,19 @@
 .img-container {
   margin: 2rem 0;
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;          /* ➡ Images wrap to a new line */
+  justify-content: center;  /* ➡ Center them */
+  gap: 1rem;                /* ➡ Space between images */
 }
 
 .img-container img {
-  width: clamp(200px, 60%, 600px); /* Minimum 200px, scales to 60%, max 600px */
+  /* Responsive width clamp(min, preferred, max)
+  *The browser looks at the preferred value:
+  *If it’s smaller than min, it uses min.
+  *If it’s bigger than max, it uses max.
+  *Otherwise, it uses the preferred value as-is. 
+  */
+  width: clamp(200px, 80%, 450px);
   height: auto;
   border-radius: 1.5rem;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);

@@ -82,8 +82,8 @@
     <li><strong>Non-repudiation:</strong> Provides proof that a transaction or communication took place, preventing entities from denying their actions.</li>
   </ul>
   <div class="img-container">
-    <img src="../../img/CyberPic/DigitalSignature.png" alt="Create Digital Signatures">
-    <img src="../../img/CyberPic/DigitalSignature2.png" alt="Verify Digital Signatures">
+    <img src="../../img/CyberPic/Lecture2/DigitalSignature.png" alt="Create Digital Signatures">
+    <img src="../../img/CyberPic/Lecture2/DigitalSignature2.png" alt="Verify Digital Signatures">
   </div>
 
 
@@ -161,8 +161,8 @@
     <li><strong>Alarm Systems:</strong> Notify security teams immediately when unauthorized access is detected.</li>
   </ul>
 
-  <!-- Access Control -->
-  <h2>Access Control (Lecture 3 & 4)</h2>
+  <!-- Lecture 3 -->
+  <h2>Access Control (Lecture 3)</h2>
   <h3>Definitions</h3>
   <ul class="bullets">
     <li><strong>NIST IR 7298:</strong> The process of granting or denying requests to obtain and use information and services based on access rules and authorization.</li>
@@ -207,7 +207,7 @@
     <li><strong>Access Rights:</strong> Permissions granted to subjects (Read, Write, Execute, Delete, Create, Search).</li>
   </ol>
   <div class="img-container">
-    <img src="../../img/CyberPic/AccessRight.png" alt="Access Control/Rights">
+    <img src="../../img/CyberPic/Lecture3/AccessRight.png" alt="Access Control/Rights">
   </div>
 
   <h3>Unix File Access</h3>
@@ -219,7 +219,7 @@
     <li>The inode table on disk tracks all file inodes for the file system.</li>
   </ul>
   <div class="img-container">
-    <img src="../../img/CyberPic/UnixFileAccess.png" alt="Unix File Access">
+    <img src="../../img/CyberPic/Lecture3/UnixFileAccess.png" alt="Unix File Access">
   </div>
 
   <h3>Zero Trust</h3>
@@ -234,7 +234,7 @@
     <li><strong>Control Plane</strong> - Tells the data plane what to do—sets rules, policies, and routing decisions.</li>
   </ul>
   <div class="img-container">
-    <img src="../../img/CyberPic/PlanesOfOperation.png" alt="Planes Of Operation">
+    <img src="../../img/CyberPic/Lecture3/PlanesOfOperation.png" alt="Planes Of Operation">
   </div>
   <h4>Security Zones</h4>
   <ul class="bullets">
@@ -243,7 +243,10 @@
     <li><strong>Zones Control Access</strong> - Sometimes just being in the wrong zone is enough to block access. Some zones are automatically trusted.</li>
   </ul>
   <h4>Policy Enforcement Point (PEP)</h4>
-  <p>They acts like a gatekeeper for the network. Decides what to do with connections: allows them, monitors them, or blocks them. Can be made of serval parts working together.</p>
+  <p>They acts like a gatekeeper for the network. 
+    Decides what to do with connections: allows them, monitors them, or blocks them. 
+    Can be made of serval parts working together.
+  </p>
   <h4>Applying Trust In The Planes</h4>
   <ul class="bullets">
     <li><strong>Policy Decision Point (PDP)</strong> - Decides whether someone or something should be allowed access.</li>
@@ -251,10 +254,200 @@
     <li><strong>Policy Administrator</strong> - Talks to the gatekeeper (PEP), gives access tokens or credentials, and tells the PEP whether to allow access. Can also make authentication stronger if needed.</li>
   </ul>
   <div class="img-container">
-    <img src="../../img/CyberPic/ApplyingTrustInPlanes.png" alt="Applying Trust In The Planes">
+    <img src="../../img/CyberPic/Lecture3/ApplyingTrustInPlanes.png" alt="Applying Trust In The Planes">
   </div>
 
-  <!--Finish lecture 3 start Lecture 4 here-->
+  <!--Lecture 4 & 5-->
+  <h2>Public Key Infrastructure (PKI) (Lecture 4 & 5)</h2>
+  <p>PKI is a framework of technologies, policies, and procedures used to manage digital keys and certificates to enable secure electronic communication. 
+    PKI is the backbone for many security services like HTTPS, digital signatures, and encrypted emails.
+  </p>
+  <h4>Key Components:</h4>
+  <ul class="bullets">
+    <li><strong>Public and Private Keys:</strong> A pair of cryptographic keys used for secure communication. The public key encrypts data, while the private key decrypts it.</li>
+    <li><strong>Digital Certificates:</strong> Electronic documents that verify the identity of individuals, organizations, or devices. They contain the public key and are issued by a trusted Certificate Authority (CA).</li>
+    <li><strong>Certificate Authority (CA):</strong> A trusted entity that issues and manages digital certificates. It verifies the identity of certificate requesters before issuing certificates.</li>
+    <li><strong>Registration Authority (RA):</strong> An intermediary that verifies the identity of users requesting certificates before they are issued by the CA.</li>
+    <li><strong>Certificate Revocation List (CRL):</strong> A list of revoked certificates that are no longer valid. It helps ensure that compromised or expired certificates are not used.</li>
+    <li><strong>Key Management:</strong> The processes and policies for generating, distributing, storing, and revoking cryptographic keys to ensure their security and integrity.</li>
+  </ul>
+
+  <h3>Symmetric Encryption</h3>
+  <p>Symmetric encryption uses the same (shared) key for both encryption and decryption. 
+    It is fast and efficient for large amounts of data but requires secure key distribution.
+  </p>
+  <ul class="bullets">
+    <li><strong>Examples:</strong> AES (Advanced Encryption Standard), DES (Data Encryption Standard), 3DES (Triple DES).</li>
+    <li><strong>Use Cases:</strong> Encrypting files, databases, and communication channels where both parties can securely share the key.</li>
+  </ul>
+  <div class="img-container">
+    <img src="../../img/CyberPic/Lecture4&5/SymmetricKey.png" alt="Symmetric Key Encryption">
+  </div>
+  <h4>Attacking Symmetric Encryption</h4>
+  <p>Attacking symmetric encryption means trying to break or weaken a cryptographic system that uses the same key for encryption and decryption. 
+    Understanding these attacks is essential for learning how to design or choose secure algorithms. Here's some examples:
+  </p>
+  <ul class="bullets">
+    <li><strong>Brute Force Attack:</strong> Trying all possible key combinations until the correct one is found. The longer the key, the more secure it is against brute force attacks.</li>
+    <li><strong>Cryptanalysis:</strong> Analyzing the encryption algorithm and its weaknesses to find patterns or vulnerabilities that can be exploited to break the encryption.</li>
+    <li><strong>Key Management Attacks:</strong> Targeting the processes of key generation, distribution, and storage to gain access to the symmetric key.</li>
+  </ul>
+  <div class="img-container">
+    <img src="../../img/CyberPic/Lecture4&5/AttackSymmetricKey.png" alt="Attacking Symmetric Key Encryption">
+  </div>
+  <h4>Data Encryption Standard (DES)</h4>
+  <p>DES is a symmetric-key algorithm for the encryption of digital data. 
+    It was widely used in the past but is now considered insecure due to its short key length (56 bits), making it vulnerable to brute-force attacks.
+  </p>
+  <ul class="bullets">
+    <li><strong>Structure:</strong> DES operates on 64-bit blocks of data using a series of permutations and substitutions based on a 56-bit key.</li>
+    <li><strong>Weaknesses:</strong> The short key length makes it susceptible to brute-force attacks, and advances in computing power have rendered it obsolete for secure applications.</li>
+    <li><strong>Successors:</strong> Triple DES (3DES) was introduced to enhance security by applying the DES algorithm three times with different keys, but it is also being phased out in favor of more secure algorithms like AES.</li>
+  </ul>
+  <h4>Triple DES (3DES)</h4>
+  <p>Triple DES (3DES) is an enhancement of the original DES algorithm that applies the DES encryption process three times to each data block. 
+    It was developed to provide a more secure alternative to DES, which had become vulnerable to brute-force attacks due to its short key length.
+  </p>
+  <ul class="bullets">
+    <li><strong>Structure:</strong> 3DES uses three 56-bit (168-bits) keys (K1, K2, K3) and performs the following operations: Encrypt with K1, Decrypt with K2, Encrypt with K3.</li>
+    <li><strong>Key Length:</strong> The effective key length of 3DES is 112 bits (when using two keys) or 168 bits (when using three keys), making it significantly more secure than DES.</li>
+    <li><strong>Use Cases:</strong> 3DES has been used in various applications, including financial services and secure communications, but it is being phased out in favor of more modern algorithms like AES due to its slower performance and vulnerabilities to certain attacks.</li>
+  </ul>
+  <h4>Advanced Encryption Standard (AES)</h4>
+  <p>AES is a widely used symmetric encryption algorithm that provides strong security and efficiency. 
+    It is the standard for encrypting sensitive data and is used in various applications, including secure communications, data storage, and financial transactions. 
+    This became the standard in 2001, replacing DES and 3DES due to their vulnerabilities.
+  </p>
+  <ul class="bullets">
+    <li><strong>Structure:</strong> AES operates on 128-bit blocks of data and supports key sizes of 128, 192, or 256 bits. It uses a series of substitution and permutation operations in multiple rounds to transform plaintext into ciphertext.</li>
+    <li><strong>Security:</strong> AES is considered highly secure and resistant to known cryptographic attacks. Its strength increases with longer key lengths, making it suitable for protecting sensitive information.</li>
+    <li><strong>Use Cases:</strong> AES is widely used in various applications, including VPNs, secure file storage, wireless communications (WPA2), and government communications.</li>
+  </ul>
+  <div class="img-container">
+    <img src="../../img/CyberPic/Lecture4&5/AverageTimeKeySearch.png" alt="Average Time for Key Search">
+  </div>
+
+  <h4>Practical Security Issues</h4>
+  <p>Several practical security issues can arise when implementing and using encryption systems. 
+    These issues can compromise the effectiveness of encryption and expose sensitive data to unauthorized access. 
+    Typically, symmetric encryption is applied to a unit of data larger than a single 64-bit or 128-bit block. 
+    This is done using a mode of operation, which defines how to repeatedly apply the cipher's single-block operation to securely transform amounts of data larger than a block. 
+    Common modes include ECB (Electronic Codebook), CBC (Cipher Block Chaining), and GCM (Galois/Counter Mode).
+    Some common practical security issues include:</p>
+  </p>
+  <ul class="bullets">
+    <li><strong>Key Management:</strong> Securely generating, distributing, storing, and revoking cryptographic keys is crucial to maintaining the integrity of encryption systems.</li>
+    <li><strong>Algorithm Selection:</strong> Choosing strong, well-vetted encryption algorithms and avoiding outdated or weak ones is essential for effective security.</li>
+    <li><strong>Implementation Flaws:</strong> Poorly implemented encryption algorithms can introduce vulnerabilities, such as side-channel attacks or improper padding.</li>
+    <li><strong>User Practices:</strong> Educating users on secure password practices and the importance of protecting sensitive information helps prevent social engineering attacks.</li>
+    <li><strong>Regulatory Compliance:</strong> Adhering to industry standards and regulations (e.g., GDPR, HIPAA) ensures that encryption practices meet legal requirements for data protection.</li>
+  </ul>
+  <div class="img-container">
+    <img src="../../img//CyberPic/Lecture4&5/TypeOfSymmetric.png" alt="Types of Symmetric Encryption">
+  </div>
+  <h4>Block & Stream Ciphers</h4>
+  <p>Block ciphers and stream ciphers are two types of symmetric encryption algorithms used to secure data. 
+    They differ in how they process and encrypt data, making them suitable for different use cases.
+  </p>
+  <ul class="bullets">
+    <li><strong>Block Ciphers:</strong> Encrypt fixed-size blocks of data (e.g., 64 or 128 bits) using the same key for each block. Examples include AES and DES.</li>
+    <li><strong>Stream Ciphers:</strong> Encrypt data one bit or byte at a time, often using a keystream generated from a seed value. Examples include RC4 and Salsa20.</li>
+    <li><strong>Use Cases:</strong> Block ciphers are typically used for encrypting files and data at rest, while stream ciphers are often used for real-time communications and streaming data.</li>
+  </ul>
+  <h4>Message Authentication</h4>
+  <p>Message authentication ensures that a message has not been altered and verifies the sender's identity. 
+    It provides integrity and authenticity to communications, preventing tampering and impersonation.
+  </p>
+  <ul class="bullets">
+    <li><strong>Hash Functions:</strong> Generate a fixed-size hash value from the message, which can be used to verify integrity. Examples include SHA-256 and MD5.</li>
+    <li><strong>Message Authentication Codes (MACs):</strong> Combine a secret key with the message to create a unique code that verifies both integrity and authenticity. Examples include HMAC (Hash-based MAC).</li>
+    <li><strong>Digital Signatures:</strong> Use asymmetric cryptography to sign messages, providing non-repudiation and authenticity. Examples include RSA and ECDSA signatures.</li>
+  </ul>
+  <h4>Message Authentication Without Confidentiality</h4>
+  <p>Message authentication without confidentiality focuses on ensuring the integrity and authenticity of a message without encrypting its content. 
+    This approach is useful when the message needs to be publicly readable but still requires verification that it has not been altered and comes from a legitimate source.
+  </p>
+  <ul class="bullets">
+    <li><strong>Hash Functions:</strong> Generate a hash value from the message, which can be shared alongside the message for integrity verification.</li>
+    <li><strong>Message Authentication Codes (MACs):</strong> Use a secret key to create a MAC that accompanies the message, allowing recipients to verify its authenticity and integrity.</li>
+    <li><strong>Digital Signatures:</strong> Sign the message with a private key, allowing anyone with the corresponding public key to verify its authenticity without encrypting the message itself.</li>
+  </ul>
+  <div class="img-container">
+    <img src="../../img/CyberPic/Lecture4&5/MAC.png" alt="Message Authentication Code">
+    <img src="../../img/CyberPic/Lecture4&5/MAH.png" alt="Message Authentication Hash">
+  </div>
+  <h4>Security Hash Functions</h4>
+  <p>Security hash functions are cryptographic algorithms that take an input (or 'message') and produce a fixed-size string of characters, typically a hash value or digest. 
+    They are designed to be fast to compute and difficult to reverse-engineer, ensuring that even a small change in the input results in a significantly different hash value.
+    There are two approaches to attacking a secure hash function:
+  </p>
+  <ul class="bullets">
+    <li>Cryptanalysis - Exploit logical weaknesses in the algorithm</li>
+    <li>Brute Force - Try all possible inputs to find a collision</li>
+  </ul>
+  <p>
+    Common security hash functions include SHA-256 , SHA-3, and BLAKE2, which are widely used in digital signatures, data integrity verification, and password hashing. 
+    Secure Hash Algorithms (SHA) are a family of cryptographic hash functions designed to provide data integrity and authenticity.
+    SHA-1, SHA-2 (including SHA-256 and SHA-512), and SHA-3 are commonly used variants, with SHA-256 being widely adopted for its balance of security and performance.
+  </p>
+
+  <h3>Public-Key Encryption Syructure</h3>
+  <p>Public-key encryption, also known as asymmetric encryption, uses a pair of keys: a public key for encryption and a private key for decryption. 
+    This structure allows secure communication without the need to share a secret key in advance.
+  </p>
+  <div class="img-container">
+    <img src="../../img/CyberPic/Lecture4&5/PKC.png" alt="Punlic Key Cryptography">
+    <img src="../../img/CyberPic/Lecture4&5/PKC2.png" alt="Public Key Cryptography">
+    <img src="../../img/CyberPic/Lecture4&5/ApplicationPKC.png" alt="Appilications of Public Key Cryptography">
+  </div>
+  <h4>Requirements For Public-Key Cryptosystems</h4>
+  <p>Public-key cryptosystems must meet several requirements to ensure secure and effective communication. 
+    These requirements include:
+  </p>
+  <ul class="bullets">
+    <li><strong>Key Pair Generation:</strong> The system must be able to generate a pair of mathematically related keys (public and private) that are unique to each user.</li>
+    <li><strong>Public Key Distribution:</strong> The public key must be easily distributable and accessible to anyone who wants to send encrypted messages to the key owner.</li>
+    <li><strong>Private Key Security:</strong> The private key must be kept secret and secure by the key owner, as it is used for decryption and signing.</li>
+    <li><strong>Encryption and Decryption:</strong> The system must allow anyone to encrypt messages using the recipient's public key, while only the recipient can decrypt them using their private key.</li>
+    <li><strong>Digital Signatures:</strong> The system should support digital signatures, allowing users to sign messages with their private key, which can be verified by others using the corresponding public key.</li>
+    <li><strong>Non-repudiation:</strong> The system should provide non-repudiation, ensuring that a sender cannot deny having sent a message if it was signed with their private key.</li>
+    <li><strong>Scalability:</strong> The system should be scalable to accommodate a large number of users and keys without significant performance degradation.</li>
+    <li><strong>Resistance to Attacks:</strong> The cryptosystem must be resistant to various types of attacks, such as brute-force attacks, chosen-plaintext attacks</li>
+  </ul>
+  <h4>Asymmetric Encryption Algorithms</h4>
+  <p>Asymmetric encryption algorithms use a pair of keys (public and private) for secure communication. 
+    Public keys are used for encryption, while private keys are used for decryption.
+    Common asymmetric encryption algorithms include:
+  </p>
+  <ul class="bullets">
+    <li><strong>RSA (Rivest-Shamir-Adleman):</strong> One of the first public-key cryptosystems, widely used for secure data transmission and digital signatures. It relies on the mathematical properties of large prime numbers.</li>
+    <li><strong>ECC (Elliptic Curve Cryptography):</strong> Uses the mathematics of elliptic curves to provide strong security with smaller key sizes, making it efficient for mobile and resource-constrained devices. Security Like RSA, but with much smaller keys</li>
+    <li><strong>DSA (Digital Signature Algorithm):</strong> A standard for digital signatures that provides authentication and integrity for messages. It is often used in conjunction with other encryption algorithms. Provides only a digital signature function with SHA-1. Cannot be used for encryption or key exchange.</li>
+    <li><strong>ElGamal:</strong> An asymmetric encryption algorithm based on the Diffie-Hellman key exchange, providing both encryption and digital signatures.</li>
+    <li><strong>Diffie-Hellman:</strong> A key exchange algorithm that allows two parties to securely share a secret key over an insecure channel, which can then be used for symmetric encryption.</li>
+  </ul>
+  <div class="img-container">
+    <img src="../../img/CyberPic/Lecture4&5/DS.png" alt="Simplified Depiction of Essential Elements of Digital Signature Process">
+    <img src="../../img/CyberPic/Lecture4&5/PublicCertificate.png" alt="Public-Key Certificate Use">
+    <img src="../../img/CyberPic/Lecture4&5/DE.png" alt="Digital Envelope">
+  </div>  
+  <h4>Random Numbers</h4>
+  <p>Random numbers are essential in cryptography for generating keys, initialization vectors, and nonces. 
+    They must be unpredictable and uniformly distributed to ensure the security of cryptographic systems.
+    There are two main types of random number generators:
+  </p>
+  <ul class="bullets">
+    <li><strong>Pseudo-Random Number Generators (PRNGs):</strong> Algorithms that use mathematical formulas or pre-calculated tables to produce sequences of numbers that approximate the properties of random numbers. They are deterministic and can be reproduced if the initial seed value is known.</li>
+    <li><strong>True Random Number Generators (TRNGs):</strong> Devices that generate random numbers from physical processes, such as electronic noise or radioactive decay. They are non-deterministic and provide higher security for cryptographic applications.</li>
+  </ul>
+
+  <!--Lecture 6-->
+  <h2>Encryption Continuation (Lecture 6)</h2>
+  <h4>The Key Pair</h4>
+  <p>In asymmetric encryption, a key pair consists of a public key and a private key. 
+    Key generation, build both the 
+    The security of the system relies on the mathematical relationship between the two keys, making it computationally infeasible to derive the private key from the public key.
+  </p>
 
 
 
