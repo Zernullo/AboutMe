@@ -1,0 +1,103 @@
+/* CSS for OS Page */
+.classes {
+  padding: 12rem 9% 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 1200px; /* Prevents stretching on large screens */
+  margin: 0 auto;
+  text-align: left;
+}
+
+
+.classes h1 {              /* Page Title */
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.classes h2 {              /* Section Titles */
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-decoration: underline;
+  color: var(--primary-color);
+}
+
+.classes h3 {              /* Subsection Titles */
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+}
+
+.classes h4 {
+  font-size: clamp(1rem, 2vw, 1.7rem);
+  font-weight: 600;            /* Semi-bold */
+  margin-top: 1rem;            /* Space above */
+  color: rgba(245,245,245,0.7); /* Matches your headings */
+}
+
+
+#Reference {               /* Reference Titles */
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  color: rgba(245,245,245,0.7);
+}
+
+.classes p {
+  font-size: clamp(1rem, 2vw, 1.7rem);
+  line-height: 1.9;
+  margin-bottom: 2rem;
+  color: rgba(245,245,245,0.7);
+}
+
+/* == Lists Styles == */
+.classes ul,
+.classes ol,
+.bullets,
+.numbers,
+.circles,
+.squares,
+.none {
+  padding-left: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  font-size: 1.7rem;
+  color: rgba(245,245,245,0.7);
+}
+
+.bullets { list-style-type: disc; }
+.circles { list-style-type: circle; }
+.squares { list-style-type: square; }
+.none { list-style-type: none; }
+.numbers { list-style-type: decimal; }
+
+.classes li {
+  margin-bottom: 0.7rem;
+}
+
+
+/* == IMG == */
+.img-container {
+  margin: 2rem 0;
+  display: flex;
+  flex-wrap: wrap;          /* ➡ Images wrap to a new line */
+  justify-content: center;  /* ➡ Center them */
+  gap: 1rem;                /* ➡ Space between images */
+}
+
+.img-container img {
+  /* Responsive width clamp(min, preferred, max)
+  *The browser looks at the preferred value:
+  *If it’s smaller than min, it uses min.
+  *If it’s bigger than max, it uses max.
+  *Otherwise, it uses the preferred value as-is. 
+  */
+  width: clamp(200px, 80%, 450px);
+  height: auto;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  margin-bottom: 2rem;
+}
+
