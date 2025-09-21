@@ -63,7 +63,7 @@
   padding-left: 2rem;
   margin-top: 1rem;
   margin-bottom: 2rem;
-  font-size: 1.7rem;
+  font-size: clamp(1rem, 2vw, 1.7rem);
   color: rgba(245,245,245,0.7);
 }
 
@@ -83,6 +83,7 @@
   margin: 2rem 0;
   display: flex;
   flex-wrap: wrap;          /* ➡ Images wrap to a new line */
+  align-self: center;       /* ➡ Center the container itself */
   justify-content: center;  /* ➡ Center them */
   gap: 1rem;                /* ➡ Space between images */
 }
