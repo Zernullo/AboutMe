@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio Website</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Font Awesome -->
-  <link rel="stylesheet" href="../../All Pages/style.css"> <!-- Global CSS -->
-  <link rel="stylesheet" href="../../All Pages/dropdown.css"> <!-- Classes-specific CSS -->
-  <link rel="stylesheet" href="../../All Pages/classPages.css"> <!-- Classes-specific CSS -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio Website - Object Systems</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../../All Pages/style.css">
+  <link rel="stylesheet" href="../../All Pages/dropdown.css">
+  <link rel="stylesheet" href="../../All Pages/classPages.css">
   <script src="../../script.js"></script>
 </head>
 <body>
   <header>
     <a href="../../index.html" class="logo">
-      <img src="../../img/ZernulloLogo.png" alt="Zernullo Logo">
+      <img src="../../img/ZernulloLogo.png" alt="Zernullo Logo" />
     </a>
-
     <nav class="drop_down">
       <div class="dropdown-language">
         <button class="dropbtn-language">Language</button>
@@ -28,19 +27,17 @@
           <a href="../../languages/javascript.html">JavaScript</a>
         </div>
       </div>
-
       <div class="dropdown-classes">
         <button class="dropbtn-classes">Classes</button>
         <div class="diff-classes">
           <a href="Cyber.html">Intro to Cybersecurity</a>
           <a href="OS.html">Object Systems</a>
           <a href="CN.html">Computer Networks</a>
-          <a href="AI.html">Artifical Intelligence</a>
+          <a href="AI.html">Artificial Intelligence</a>
           <a href="EC.html">Ethics in Computing</a>
         </div>
       </div>
     </nav>
-
     <nav class="main_nav">
       <a href="../../index.html">Home</a>
       <a href="../../html/education.html" class="active">Education</a>
@@ -49,159 +46,322 @@
     </nav>
   </header>
 
-  <!-- PAGE CONTENT GOES HERE -->
   <section class="classes">
     <h1>Object Systems</h1>
     <p id="Reference">
-      Date Taken: Fall 2025
-      <br>
+      Date Taken: Fall 2025<br/>
       Status: Work in Progress
     </p>
 
-    <h2>Index</h2>
-    <ul class="Bullets">
-      <li>Computational History</li>
-      <li>Operating System Design</li>
-      <li>Operating Systen Theory</li>
-      <li>Historical Architectures</li>
-    </ul>
 
     <h2>Summary</h2>
     <p>
-      An Operating System (OS) is the fundamental software that enables a computer to function by managing its hardware resources and providing a platform for applications to run. 
-      It serves as a bridge between the user, application programs, and the hardware, handling tasks such as memory allocation, process scheduling, input/output operations, and file management. 
-      The OS also offers security features, networking capabilities, and a user interface—either graphical or command-line—so users can interact with the system. Examples of popular operating systems include Windows, macOS, Linux, Android, and iOS.
+      An Operating System (OS) is the essential software that enables a computer to function. It manages hardware resources, provides services for applications, and offers an interface for users. Tasks include process scheduling, memory allocation, file management, device control, and security. Examples include Windows, macOS, Linux, Android, and iOS.
     </p>
+
+    <!--Lecture 1-->
+    <h2>What's Covered? (Lecture 1)</h2>
+    <ul class="Bullets">
+      <li>Computational History</li>
+      <li>Operating System Design</li>
+      <li>Operating System Theory</li>
+      <li>Historical Architectures</li>
+    </ul>
 
     <h2>Computer History</h2>
     <h3>Computational Hardware Timeline</h3>
     <p>
-      1945 - Mechanical computations using gears and levers
-      <br>
-      1945-1955 - Vaccuum tubes for electronic calculations
-      <br>
-      1960 - Transistors replace vaccuum tubes
-      <br>
-      1970 - Integrated Circuits (ICs) allow for miniaturization, increased speed, and reduced cost
-      <br>
-      1980 - CPU (Central Processing Unit) becomes the brain of the computer, executing instructions and managing data flow
-      <br><br>
-      Enigma Machine (1930) - Used for encrypting and decrypting messages during World War II.
+      1945 - Mechanical computations using gears and levers.<br/>
+      1945-1955 - Vacuum tubes enabled early electronic calculations.<br/>
+      1960 - Transistors replaced vacuum tubes, increasing efficiency and reliability.<br/>
+      1970 - Integrated Circuits (ICs) brought miniaturization, faster processing, and reduced costs.<br/>
+      1980 - CPUs became the "brain" of computers, managing instructions and data flow.
     </p>
+
+    <h4>Enigma Machine (1930)</h4>
     <ul>
-      <li>Series of rotors that changed electrical connections based on their configuration</li>
-      <li>Electronic Numerical Integrator and Computer</li>
-      <li>Made to calculate bomb trajectories</li>
-      <li>Used 18k vaccuum tubes</li>
-      <li>5000 operations / sec (read/write/add)</li>
-      <li>500 FLOPS</li>
-      <li>Programmed with punch cards</li>
+      <li>Used during WWII for encrypting and decrypting secret messages.</li>
+      <li>Featured rotors that changed electrical connections to create complex ciphers.</li>
     </ul>
 
-    <p>Univac & IBM 701 (1950s) - Early commercial computers used for business and scientific applications.</p>
+    <h4>Electronic Numerical Integrator and Computer (ENIAC)</h4>
     <ul>
-      <li>Universal Automatic Computer (UNIVAC)</li>
-      <li>First commercially available computer</li>
-      <li>Used for census data, weather prediction, and military applications</li>
-      <li>Used vaccuum tubes</li>
-      <li>Stored programs in memory</li>
-      <li>Predicted Eisenhower's landslide electoral victory in 1952</li>
-      <li>International Business Machines (IBM) 701 - Competitor to UNIVAC 1103, roughly same computation performance, released in 1952</li>
+      <li>Designed to calculate bomb trajectories.</li>
+      <li>Contained ~18,000 vacuum tubes.</li>
+      <li>Performed 5,000 operations per second.</li>
+      <li>Programmed using punch cards.</li>
     </ul>
 
-    <p>Atlas (1960s) - One of the first supercomputers, used for scientific research and complex calculations.</p>
+    <h4>UNIVAC & IBM 701 (1950s)</h4>
     <ul>
-      <li>Developed by the University of Manchester and Ferranti</li>
-      <li>Used for scientific research, weather forecasting, and nuclear simulations</li>
-      <li>Introduced virtual memory concept</li>
-      <li>Used transistors</li>
-      <li>Could perform 1 million instructions per second (MIPS)</li>
+      <li>UNIVAC: First commercially available computer used for census, weather, and military applications.</li>
+      <li>IBM 701: Competitor to UNIVAC, similar computation power, released in 1952.</li>
     </ul>
 
-    <p>
-      PDP 7 (1960s) - Early minicomputer that made computing more accessible to smaller businesses and institutions. Unix was programmed on this
-      <br><br>
-      Appollo Moon Program (1960s) - Used for navigation and control of the Apollo spacecraft. 
-      <br><br>
-      Batch Processing Systems (1950s-1960s) - Early operating systems that processed jobs in batches without user interaction.
-      <br><br>
-      Decsystem 10 / PDP 10 (1960s-1980s) - Time-sharing systems that allowed multiple users to access the computer simultaneously.
-      <br><br>
-      Multics Operating System (1964-1969) - Influential time-sharing operating system that introduced many concepts used in modern OS. Collaborative project between MIT, Bell Labs, and GE. Some modern OS concepts introduced by Multics include hierarchical file systems, dynamic linking, and security features.
-      <br><br>
-      PDP 11 (1970s) - Popular minicomputer that supported various operating systems, including Unix. C was developed on this. Ran very Influential OS including Unix, RT-11, and RSX-11.
-      <br><br>
-      UNIX (UNiplexed Information and Computing Service) (1969) - A powerful, multiuser operating system developed at Bell Labs, by Ken Thompson & Dennis Ritchie. Known for its simplicity, portability, and multitasking capabilities. Written in assembly until V4, where it was re-written in C. It introduced the concept of pipes, allowing the output of one program to be used as input for another. It also popularized the use of plain text files for configuration and data storage.
-      <br><br>
-      Vax (Virtual Address eXtension) (1977) - A line of computers developed by Digital Equipment Corporation (DEC) that supported the VMS operating system. Known for its virtual memory capabilities and support for multiple programming languages.
-      <br><br>
-      Xerox Alto (1970s) - An early personal computer developed at Xerox PARC that introduced the graphical user interface (GUI) concept. It featured a bitmapped display, a mouse, and a desktop metaphor, influencing future GUI designs.
-      <br><br>
-      Altair 8800 (1970s) - One of the first microcomputers, which sparked the personal computer revolution. It was based on the Intel 8080 microprocessor and was sold as a kit that users had to assemble themselves.
-      <br><br>
-      IBM's Personal Computer (PC) (1981) - The IBM PC set the standard for personal computers and led to the widespread adoption of the x86 architecture. It ran MS-DOS, an operating system developed by Microsoft.
-      <br><br>
-      Commodore 64 (1982) - A popular home computer known for its affordability and extensive software library. It featured a built-in BASIC interpreter and was widely used for gaming and educational purposes.
-      <br><br>
-      Macintosh (1984) - Apple's Macintosh introduced a user-friendly GUI and was one of the first computers to use a mouse. It ran the Mac OS, which emphasized ease of use and design.
-      <br><br>
-      Beige, Dial-up, World Wide Web (1990s) - The rise of the internet and web browsers transformed computing, making information and communication more accessible. Operating systems began to integrate networking capabilities. Birth of modern OS with Windows 95, Mac OS 8, and Linux.
-    </p>
+    <h4>Atlas (1960s)</h4>
+    <ul>
+      <li>Among the first supercomputers, developed by the University of Manchester and Ferranti.</li>
+      <li>Used for weather forecasting, nuclear simulations, and scientific research.</li>
+      <li>Introduced virtual memory.</li>
+    </ul>
+
+    <h4>PDP Series and Early Innovations</h4>
+    <ul>
+      <li>PDP-7: Early minicomputer, Unix was developed here.</li>
+      <li>Apollo Program: Guided spacecraft navigation and control.</li>
+      <li>Batch Processing Systems: Early OS that processed jobs without user interaction.</li>
+      <li>Multics (1964-1969): Introduced hierarchical file systems and dynamic linking.</li>
+      <li>PDP-11: Supported Unix, C language development, and multiple operating systems.</li>
+      <li>UNIX (1969): Portable, multitasking OS written in C after Version 4. Introduced pipes and plain-text configuration.</li>
+      <li>VAX (1977): Digital Equipment Corporation’s line supporting VMS OS with virtual memory.</li>
+      <li>Xerox Alto (1970s): Early PC introducing the GUI, influencing future desktop metaphors.</li>
+      <li>Altair 8800 (1970s): Sparked the personal computer revolution.</li>
+      <li>IBM PC (1981): Standardized x86 architecture and ran MS-DOS.</li>
+      <li>Commodore 64 (1982): Affordable home computer with a rich software library.</li>
+      <li>Macintosh (1984): Introduced user-friendly GUI and mouse-based interaction.</li>
+      <li>1990s: Internet and WWW transformed computing—Windows 95, Mac OS 8, and Linux marked modern OS development.</li>
+    </ul>
 
     <h2>Operating System Theory</h2>
     <p>
-      An operating system (OS) is a complex piece of software that manages computer hardware and software resources, providing a stable and consistent environment for applications to run. The core functions of an OS include process management, memory management, file system management, device management, and security. Here are some key concepts in operating system theory:
-      <br><br>
-      1. Process Management: The OS is responsible for creating, scheduling, and terminating processes (programs in execution). It allocates CPU time to processes based on scheduling algorithms (e.g., round-robin, priority-based) and manages context switching between processes.
-      <br><br>
-      2. Memory Management: The OS manages the computer's memory, allocating space to processes as needed. It uses techniques like paging and segmentation to optimize memory usage and ensure that each process has access to its required memory without interfering with others.
-      <br><br>
-      3. File System Management: The OS provides a hierarchical file system that allows users and applications to store, retrieve, and organize data on storage devices. It handles file creation, deletion, reading, writing, and permissions.
-      <br><br>
-      4. Device Management: The OS manages hardware devices (e.g., printers, disk drives) through device drivers that facilitate communication between the OS and the hardware. It handles input/output operations and ensures efficient use of devices.
-      <br><br>
-      5. Security and Protection: The OS implements security measures to protect data and resources from unauthorized access. This includes user authentication, access control lists (ACLs), encryption, and secure communication protocols.
-      <br><br>
-      6. User Interface: The OS provides a user interface (UI), which can be command-line based or graphical (GUI), allowing users to interact with the system and manage files, applications, and settings.
-      <br><br>
-      7. Multitasking and Multiprocessing: Modern operating systems support multitasking (running multiple processes simultaneously) and multiprocessing (using multiple CPU cores) to improve performance and responsiveness.
-      <br><br>
-      8. Virtualization: Many operating systems support virtualization technologies that allow multiple virtual machines (VMs) to run on a single physical machine, enabling better resource utilization and isolation.
+      An OS manages hardware and software resources, ensuring stability and efficiency. Key concepts include:
     </p>
+    <ul>
+      <li><strong>Process Management:</strong> Creates, schedules, and terminates processes using algorithms like round-robin or priority-based scheduling.</li>
+      <li><strong>Memory Management:</strong> Allocates and optimizes RAM using paging or segmentation.</li>
+      <li><strong>File System Management:</strong> Handles file creation, deletion, and permissions within a hierarchical structure.</li>
+      <li><strong>Device Management:</strong> Uses drivers to coordinate with printers, disks, and other peripherals.</li>
+      <li><strong>Security and Protection:</strong> Employs authentication, access control, and encryption to protect data.</li>
+      <li><strong>User Interface:</strong> Provides GUI or command-line tools for interaction.</li>
+      <li><strong>Multitasking & Multiprocessing:</strong> Supports simultaneous processes and multi-core utilization.</li>
+      <li><strong>Virtualization:</strong> Runs multiple virtual machines for resource efficiency and isolation.</li>
+    </ul>
+
+    <h3>Structure of an OS</h3>
+    <ul>
+      <li><strong>Kernel:</strong> Core component managing hardware and resources.</li>
+      <li><strong>Application Layer:</strong> Where user programs interact with OS through system calls.</li>
+      <li><strong>Device Drivers:</strong> Translate OS commands to hardware operations.</li>
+      <li><strong>TCP/IP Stack:</strong> Protocol suite enabling network communication.</li>
+      <li><strong>File System:</strong> Organizes and manages stored data.</li>
+    </ul>
+    <div class="img-container">
+      <img src="../../img/classes/OSPic/Lecture1/StructureOS.png" alt="Operating System Structure">
+    </div>
+
+    <h3>Kernel Architectures</h3>
+    <ul>
+      <li><strong>Monolithic Kernel:</strong> All OS services run in a single address space. Examples: Linux, Unix. High performance but less isolation between components.</li>
+      <li><strong>Hybrid Kernel:</strong> Combines monolithic and microkernel designs for balance. Examples: Windows NT, macOS, Android.</li>
+    </ul>
 
     <p>
-      <br>
-      Sturcture of an OS:
-      <br>
-      1. Kernel: The core component of the OS that manages system resources and provides essential services to other parts of the OS and applications. It operates in a privileged mode (kernel mode) with direct access to hardware.
-      <br><br>
-      2. Application Layer: The layer where user applications run. It interacts with the OS through system calls to request services like file access, memory allocation, and process management.
-      <br><br>
-      3. Device Drivers: Software modules that allow the OS to communicate with hardware devices. They translate OS commands into device-specific operations.
-      <br><br>
-      4. TCP/IP Stack: A set of protocols that enable network communication. The OS manages the TCP/IP stack to facilitate data transmission over networks.
-      <br><br>
-      5. File System: The component that organizes and manages data storage on disks and other storage devices. It provides a way to create, read, write, and delete files.
+      MS-DOS: Early OS for IBM PCs, known for its simple command-line interface. Replaced by Windows in the 1990s.
     </p>
+    <div class="img-container">
+      <img src="../../img/classes/OSPic/Lecture1/MS-DOS.png" alt="MS-DOS Operating System Structure">
+    </div>
 
+    <h3>Monolithic Kernel</h3>
+    <p>Splits User space and kernel</p>
+    <ul class="Bullets">
+      <li><strong>Kernal Space</strong> -  Operating system components</li>
+      <li><strong>User Space</strong> - User applications and data</li>
+    </ul>
+    <p>User space interacts with the kernel through System Calls. Examples: Windows, Linux</p>
+    <div class="img-container">
+      <img src="../../img/classes/OSPic/Lecture1/MK.png" alt="Monolithic Kernel - Bad Address Access">
+      <img src="../../img/classes/OSPic/Lecture1/MK2.png" alt="Monolithic Kernel Structure">
+      <img src="../../img/classes/OSPic/Lecture1/MK3.png" alt="Monilithic Kernel Based Operating System Structure">
+    </div>
+    <h3>Microkernel</h3>
     <p>
-      MS-DOS (Microsoft Disk Operating System) - An early operating system for IBM PCs and compatibles, known for its command-line interface and simplicity. It was widely used in the 1980s and early 1990s before being largely replaced by Windows.
+      Pushes everything but the bare minimum into user space. Device drivers -> User Space and Memory Manager -> kernel. Allows for easier extension of OS. Examples: Minix, QNX
     </p>
-
+    <div class="img-container">
+      <img src="../../img/classes/OSPic/Lecture1/MicroKernel.png" alt="Microkernel Structure"> 
+      <img src="../../img/classes/OSPic/Lecture1/MicroKernel2.png" alt="Microkernel Based Operating System Structure"> 
+    </div>
+    <h3>Hybrid Kernel</h3>
+    <p>Combines aspects of monolithic and microkernel designs. Core services in kernel space, others in user space. Examples: Windows NT, macOS, Android</p>
+    <div class="img-container">
+      <img src="../../img/classes/OSPic/Lecture1/HybridKernel.png" alt="Hybrid Kernel Structure">
+    </div>
+    <h3>Loadable Kernel Modules</h3>
     <p>
-      Monolithic Kernel - A kernel architecture where all OS services run in a single address space, providing high performance but potentially less stability due to the lack of isolation between services. Examples include Linux and traditional Unix systems. User Space interacts with kernal through system calls (Example: read(), write(), open(), close()). Windows and Linux are examples of monolithic kernels.
-      <br>
-      1. Kernal Space - The privileged mode where the kernel operates, with direct access to hardware and system resources. Splits User space and kernal space.
-      <br>
-      2. User Space - The non-privileged mode where user applications run, with restricted access to system resources.
-      <br><br>
+      Modern OS (Windows, Mac, Linux) support some degree of loading into the kernel.
+      Called Loadable Kernel Modules (LKMs) in Linux.
+      Allow dynamic extension of kernel functionality without rebooting.
+      Examples: Device drivers, file systems, system calls, subsystems.
     </p>
-
+    <h3>Reak-Time Operating System</h3>
     <p>
-      Hybrid Kernel - A kernel architecture that combines elements of monolithic and microkernel designs, aiming to balance performance and modularity. Examples include Windows NT, MacOS IOS, and Andriod. It runs some services in kernal space and some in user space.
+      Operating systems with deadlines for tasks. Hard -> MUST be met. Soft -> SHOULD be met but not critical.
+    </p>
+    <ul class="bullets">
+      <li><strong>Hard RT</strong> - Airplanes, Cars, Robotics</li>
+      <li><strong>Soft RT</strong> - Video Streaming, Online Gaming, Multimedia</li>
+    </ul>
+    <h3>Device Operating Systems</h3>
+    <p>
+      Operating systems will vary in design based on the target device.
+      Examples: Windows (PCs), Android (Mobile), iOS (Apple Devices), Linux (Servers/Desktops).
+      Each type of device poses a different set of challenges and goals.
     </p>
 
-    <img src="" alt="">
+    <!--Lecture 2-->
+    <h2>What's Covered? (Lecture 2)</h2>
+    <ul class="Bullets">
+      <li>Computer Architecture</li>
+      <li>Hardware</li>
+      <li>Softwares Programming</li>
+      <li>Virtualization</li>
+    </ul>
+    <h2>Computer Architecture</h2>
+    <h3>Operating System Services</h3>
+    <p>
+      Operating systems provide an environment for execution of programs and services to programs and users.
+      One set of operating-system services provides functions that are helpful to the user:
+    </p>
+    <ul class="bullets">
+      <li>User Interface - Almost all opertaing systems have a user interface (UI)</li>
+      <ul class="circles">
+        <li>Varies between Command-Line (CLI), Graphics User Interface (GUI), touch-screen, Batch</li>
+      </ul>
+      <li><strong>I/O Operations</strong> - A running program may require I/O, which may involve a file or an I/O device</li>
+      <li><strong>Program execution</strong> - The system must be able to load a program into memory and to run that program, end execution, either normally or abnormally (indicating error)</li>
+      <li><strong>File-system manipulation</strong> - The file system is a repository of information. The operating system must provide functions to create files and directories, to delete them, to read and write data, and to search for files.</li>
+      <li><strong>Communications</strong> - In many systems, processes need to exchange information. This exchange may occur between processes executing on the same computer or between processes executing on different systems connected by a network.</li>
+      <li><strong>Error detection</strong> - Both the hardware and the software need to be able to detect and correct errors. The operating system needs to be aware of possible errors. For each type of error, OS should take the appropriate action to ensure correct and consistent computing</li>
+      <li><strong>Resource allocation</strong> - When multiple users or multiple jobs running concurrently, resources must be allocated to each of them. Many types of resources - CPU cycles, main memory, file storage, I/O devices.</li>
+      <li><strong>Logging</strong> - To keep track of which users use how much and what kinds of computer resources</li>
+    </ul>
+    <h3>System Boot</h3>
+    <p>
+      When a system powers on, execution begins at a fixed memory location. 
+      The BIOS (or modern UEFI) finds a bootable device and loads a small bootstrap loader from ROM/EEPROM. 
+      The loader locates and loads the kernel into memory, starting the OS. 
+      Sometimes this uses a two-step process with a boot block on disk. 
+      GRUB is a common loader that supports multiple kernels, disks, and boot options. 
+      Boot loaders can also start the system in specific states, like single-user mode.
+    </p>
+    <div class="img-container">
+      <img src="../../img/classes/OSPic/Lecture2/AbstractView.png" alt="Abstract View of Components of Modern Computer">
+      <img src="../../img/classes/OSPic/Lecture2/AbstractView2.png" alt="Abstract View of Components of Modern Computer 2">
+      <img src="../../img/classes/OSPic/Lecture2/AbstractView3.png" alt="Abstract View of Components of Modern Computer 3">
+      <img src="../../img/classes/OSPic/Lecture2/Single-Processor.png" alt="Single Processor System">
+    </div>
+    <h3>MultiProcessor/Parallel Systems</h3>
+    <p>
+      Multiprocessor systems (also called parallel systems) have two or more processors in close communication, sharing the computer bus, the clock, and sometimes memory and peripheral devices. 
+      The main advantage of multiprocessor systems is their increased throughput and reliability.
+      Multiprocessor systems are classified into two categories: tightly coupled and loosely coupled.
+    </p>
+    <ul class="bullets">
+      <li><strong>Tightly Coupled</strong> - Multiprocessor systems that share memory and a clock. Examples: Symmetric Multiprocessing (SMP), Asymmetric Multiprocessing (AMP)</li>
+      <li><strong>Loosely Coupled</strong> - Systems with multiple independent processors, each with its own memory and OS, connected via a network. Examples: Clusters, Grids</li>
+    </ul>
+    <div class="img-container">
+      <img src="../../img/classes/OSPic/Lecture2/Multiprocessor.png" alt="Multiprocessor System">
+      <img src="../../img/classes/OSPic/Lecture2/Multiprocessor2.png" alt="Symmetric Multiprocessor System and Asymmetric Multiprocessor System">
+      <img src="../../img/classes/OSPic/Lecture2/Multiprocessor3.png" alt="Multi-Core Processor System">
+    </div>
+    <h3>Caching</h3>
+    <p>
+      Cache is a smaller, faster memory that stores copies of frequently accessed data from main memory. 
+      It reduces the time to access data and improves overall system performance. 
+      Caches are organized in levels (L1, L2, L3) based on their proximity to the CPU.
+      Caches use various strategies for data management, including write-through and write-back policies.
+    </p>
+    <div class="img-container">
+      <img src="../../img/classes/OSPic/Lecture2/Caching.png" alt="Cache Memory Hierarchy">
+      <img src="../../img/classes/OSPic/Lecture2/Caching2.png" alt="Cache Memory Structure">
+      <img src="../../img/classes/OSPic/Lecture2/Caching3.png" alt="Storage System Hierarchy">
+    </div>
+    <h3>Command Line Interpreter</h3>
+    <p>
+      The command-line interpreter (CLI), or shell, is a program that reads and executes commands from the user. 
+      It provides an interface for users to interact with the operating system by typing commands. 
+      Examples include Bash (Linux), Command Prompt (Windows), and PowerShell (Windows).
+      The shell can execute built-in commands and launch other programs.
+    </p>
+    <div class="img-container">
+      <img src="../../img/classes/OSPic/Lecture2/BourneShell.png" alt="Bourne Shell">
+    </div>
+    <h3>Graphical User Interface</h3>
+    <p>
+      A graphical user interface (GUI) allows users to interact with the operating system through graphical elements like windows, icons, and menus. 
+      GUIs are more user-friendly than command-line interfaces, especially for non-technical users. 
+      Examples include Windows Explorer (Windows), Finder (macOS), and GNOME/KDE (Linux).
+      GUIs often include features like drag-and-drop, context menus, and visual feedback.
+    </p>
+    <p>
+      Many operating systems support both CLI and GUI, allowing users to choose their preferred method of interaction.
+    </p>
+    <h3>Touchscreen Interfaces</h3>
+    <p>
+      Touchscreen interfaces are designed for devices with touch-sensitive screens, such as smartphones and tablets. 
+      They allow users to interact with the operating system using gestures like tapping, swiping, and pinching. 
+      Examples include iOS (Apple devices) and Android (various manufacturers).
+      Touchscreen interfaces often feature large icons and buttons for ease of use.
+    </p>
+    <h3>I/O Devices</h3>
+    <p>
+      Input/output (I/O) devices are hardware components that allow a computer to communicate with the external world. 
+      Common input devices include keyboards, mice, and touchscreens, while common output devices include monitors, printers, and speakers. 
+      The operating system manages I/O devices through device drivers, which are specialized programs that translate OS commands into device-specific operations.
+      Examples of I/O devices include:
+    </p>
+    <ul class="bullets">
+      <li><strong>Input Devices:</strong> Keyboard, Mouse, Touchscreen, Scanner, Microphone</li>
+      <li><strong>Output Devices:</strong> Monitor, Printer, Speakers, Headphones</li>
+      <li><strong>Storage Devices:</strong> Hard Drive, SSD, USB Flash Drive, Optical Drive</li>
+      <li><strong>Network Devices:</strong> Network Interface Card (NIC), Wi-Fi Adapter, Router</li>
+    </ul>
+    <h3>Direct Memory Access (DMA)</h3>
+    <p>
+      Direct Memory Access (DMA) is a feature that allows certain hardware subsystems to access main memory independently of the CPU. 
+      This improves performance by offloading data transfer tasks from the CPU, allowing it to focus on other processing tasks. 
+      DMA is commonly used for high-speed data transfers, such as disk I/O and network communication.
+      The DMA controller manages the data transfer process, coordinating between the device and memory.
+    </p>
+    <h3>Interrupts</h3>
+    <p>
+      An interrupt is a signal sent to the CPU by hardware or software indicating an event that needs immediate attention. 
+      When an interrupt occurs, the CPU temporarily halts its current operations, saves its state, and executes an interrupt handler to address the event. 
+      After handling the interrupt, the CPU resumes its previous tasks.
+      Interrupts are essential for efficient I/O operations and real-time processing.
+      Types of interrupts include:
+    </p>
+    <ul class="bullets">
+      <li><strong>Hardware Interrupts:</strong> Generated by hardware devices (e.g., keyboard, mouse, network card) to signal events like data availability or errors.</li>
+      <li><strong>Software Interrupts:</strong> Generated by software instructions to request system services or signal exceptions (e.g., division by zero).</li>
+      <li><strong>Maskable Interrupts:</strong> Can be ignored or delayed by the CPU using interrupt masking techniques.</li>
+      <li><strong>Non-Maskable Interrupts (NMI):</strong> Cannot be ignored and are used for critical events like hardware failures.</li>
+    </ul>
+    <div class="img-container">
+      <img src="../../img/classes/OSPic/Lecture2/Interrupts.png" alt="Interrupt Handling Process">
+      <img src="../../img/classes/OSPic/Lecture2/Interrupts2.png" alt="Interrupt Structure">
+      <img src="../../img/classes/OSPic/Lecture2/Interrupts3.png" alt="Interrupt Structure">
+    </div>
+    <h3>Security and Protection in Modern Computers</h3>
+    <p>
+      Modern computers implement various security and protection mechanisms to safeguard data and resources. 
+      These include:
+    </p>
+    <ul class="bullets">
+      <li>CPU Protection</li>
+      <ul class="circles">
+        <li>Dual-Mode operation for CPU</li>
+        <li>CPU Modes: User Mode and Kernel Mode to restrict access to critical system resources.</li>
+        <li>Memory Protection: Prevents processes from accessing memory allocated to other processes.</li>
+        <li>Goal - Protect OS from user-level software and support features like process scheduling</li>
+      </ul>
+    </ul>
+
+
+    
+    
   </section>
 </body>
 </html>
