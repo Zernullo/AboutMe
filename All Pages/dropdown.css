@@ -54,6 +54,18 @@
   border-radius: 0.5rem;
   z-index: 1000;
   flex-direction: column;
+
+  /* NEW: scroll settings */
+  max-height: 200px;   /* adjust this value to your design */
+  overflow-y: auto;    /* enables vertical scrolling */
+}
+
+/* Scroll*/
+.diff-language::-webkit-scrollbar-thumb,
+.diff-classes::-webkit-scrollbar-thumb,
+.diff-lecture::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 3px;
 }
 
 /* Links inside dropdown */
@@ -82,4 +94,48 @@
 .dropdown-classes:hover .diff-classes,
 .dropdown-lecture:hover .diff-lecture {
   display: flex;
+}
+
+/* Adjust dropdowns for smaller screens */
+@media (max-width: 768px) {
+  .drop_down {
+    gap: 1rem;              /* less space between buttons */
+    padding: 0 0 0 10px;    /* smaller left padding */
+  }
+
+  .dropbtn-language,
+  .dropbtn-classes,
+  .dropbtn-lecture {
+    width: 120px;           /* narrower buttons */
+    padding: 8px 12px;      /* reduce padding */
+    font-size: 14px;        /* smaller text */
+  }
+
+  .diff-language,
+  .diff-classes,
+  .diff-lecture {
+    font-size: 14px;        /* smaller dropdown text */
+  }
+
+  .diff-language a,
+  .diff-classes a,
+  .diff-lecture a {
+    padding: 8px 10px;      /* smaller link padding */
+  }
+}
+
+/* Optional: even smaller screens like phones */
+@media (max-width: 480px) {
+  .dropbtn-language,
+  .dropbtn-classes,
+  .dropbtn-lecture {
+    width: 100px;           /* even narrower */
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .drop_down {
+    flex-direction: column; /* stack vertically if needed */
+    gap: 0.5rem;
+  }
 }
