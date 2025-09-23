@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Website</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../All Pages/style.css"> <!-- Global CSS -->
+  <link rel="stylesheet" href="../../All Pages/dropdown.css"> <!-- Classes-specific CSS -->
+  <link rel="stylesheet" href="../../All Pages/classPages.css"> <!-- Classes-specific CSS -->
+  <script src="../../script.js"></script>
+</head>
+<body>
+  <header>
+    <a href="../../index.html" class="logo">
+      <img src="../../img/ZernulloLogo.png" alt="Zernullo Logo">
+    </a>
+
+    <nav class="drop_down">
+      <div class="dropdown-language">
+        <button class="dropbtn-language">Language</button>
+        <div class="diff-language">
+          <a href="../../languages/html/python.html">Python</a>
+          <a href="../../languages/java.html">Java</a>
+          <a href="../../languages/html/C.html">C</a>
+          <a href="../../languages/html/C-sharp.html">C#</a>
+          <a href="../../languages/html/C++.html">C++</a>
+          <a href="../../languages/javascript.html">JavaScript</a>
+        </div>
+      </div>
+
+      <div class="dropdown-classes">
+        <button class="dropbtn-classes">Classes</button>
+        <div class="diff-classes">
+          <a href="Cyber.html">Intro to Cybersecurity</a>
+          <a href="../OS/OS.html">Object Systems</a>
+          <a href="../CN/CN.html">Computer Networks</a>
+          <a href="../AI/AI.html">Artifical Intelligence</a>
+          <a href="../EC/EC.html">Ethics in Computing</a>
+        </div>
+      </div>
+
+      <div class="dropdown-lecture">
+        <button class="dropbtn-lecture">Lectures</button>
+        <div class="diff-lecture">
+          <a href="Cyber.html">Lecture 1 & 2</a>
+          <a href="Cyber3.html">Lecture 3</a>
+          <a href="Cyber4&5.html">Lecture 4 & 5</a>
+          <a href="Cyber6.html">Lecture 6</a>
+          <a href="Cyber7.html">Lecture 7</a>
+          <a href="Cyber8.html">Lecture 8</a>
+        </div>
+      </div>
+    </nav>
+
+    <nav class="main_nav">
+      <a href="../../index.html">Home</a>
+      <a href="../../html/education.html" class="active">Education</a>
+      <a href="../../html/projects.html">Projects</a>
+      <a href="../../html/contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- PAGE CONTENT GOES HERE -->
+<section class="classes">
+  <h1>Intro To Cyber</h1>
+  <p id="Reference">
+    Date Taken: September 16, 2025 (Fall 2025)<br>
+    Status: Work in Progress
+  </p>
+
+  <!-- Summary -->
+  <h2>Summary</h2>
+  <p>
+    Cybersecurity is the practice of protecting computers, networks, and digital information from unauthorized access, attacks, or damage. 
+    It involves preventing, detecting, and responding to threats like viruses, malware, phishing, ransomware, and hacking attempts.
+    The key concepts in cybersecurity are summarized by the <strong>CIA Triad</strong>: <strong>Confidentiality, Integrity, and Availability</strong>, which provide a framework for designing and implementing security measures.
+  </p>
+
+  <h3>Confidentiality</h3>
+  <p>Confidentiality ensures that sensitive information is only accessible to authorized individuals or systems. 
+    It prevents unauthorized disclosure of data, protecting privacy and proprietary information.
+  </p>
+
+  <h3>Integrity</h3>
+  <p>Integrity ensures that data remains accurate, consistent, and trustworthy. 
+    Unauthorized modification or corruption of data is prevented, and users can rely on its authenticity.
+    Exmaples include: Hasing, Digital Signatures, Certificates, Non-repudiation.
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/CyberPic/Lecture2/DigitalSignature.png" alt="Create Digital Signatures">
+    <img src="../../img/classes/CyberPic/Lecture2/DigitalSignature2.png" alt="Verify Digital Signatures">
+  </div>
+
+
+  <h3>Availability</h3>
+  <p>Availability ensures that authorized users can access information and systems when needed. 
+    Systems must remain operational, resilient, and recoverable from failures or attacks.</p>
+  <ul class="bullets">
+    <li><strong>Redundancy:</strong> Duplicate systems or components that ensure continued operation in case of hardware or software failures.</li>
+    <li><strong>Fault Tolerance:</strong> Systems designed to operate correctly even when one or more components fail.</li>
+    <li><strong>Patching:</strong> Regular updates to software and systems to fix security vulnerabilities and maintain stable operation.</li>
+  </ul>
+
+  <!-- Lecture 1 & 2 -->
+  <h2>General Security Concepts (Lecture 1 & 2)</h2>
+
+  <h3>Security Controls</h3>
+  <p>
+    Security controls are safeguards or countermeasures designed to protect information systems, networks, and assets. 
+    They aim to reduce risks by preventing, detecting, or mitigating threats and vulnerabilities. 
+    Controls are grouped into three main categories:
+  </p>
+  <ul class="bullets">
+    <li><strong>Administrative Controls:</strong> Policies, procedures, and guidelines that define organizational security standards, such as employee training, access policies, and incident response plans.</li>
+    <li><strong>Technical Controls:</strong> Tools and technologies like firewalls, encryption, antivirus software, and intrusion detection systems that enforce security at the hardware or software level.</li>
+    <li><strong>Physical Controls:</strong> Measures that protect physical assets, such as security guards, locks, badges, fences, surveillance cameras, and environmental protections (fire or flood systems).</li>
+  </ul>
+
+  <h3>Control Categories</h3>
+  <p>Security controls are organized to provide comprehensive protection and include the following categories:</p>
+  <ol class="numbers">
+    <li><strong>Preventive Controls:</strong> Measures designed to stop security incidents before they occur. Examples include firewalls, access restrictions, and employee security awareness programs.</li>
+    <li><strong>Detective Controls:</strong> Measures to identify and detect incidents as they happen, such as intrusion detection systems, audit logs, and surveillance cameras.</li>
+    <li><strong>Corrective Controls:</strong> Steps taken to correct or restore systems after an incident, like restoring backups, patching vulnerabilities, or reconfiguring affected systems.</li>
+    <li><strong>Deterrent Controls:</strong> Mechanisms that discourage malicious actions by making attacks costly or risky, e.g., warning banners, visible cameras, and legal notices.</li>
+    <li><strong>Compensating Controls:</strong> Alternative measures used when primary controls are unavailable or insufficient, like using multi-factor authentication when biometrics are unavailable.</li>
+  </ol>
+
+  <h3>Types of Security Controls</h3>
+  <ul class="bullets">
+    <li><strong>Preventive:</strong> Administrative, technical, and physical measures to proactively stop attacks or unauthorized activity.</li>
+    <li><strong>Deterrent:</strong> Controls that create psychological or visible obstacles to discourage malicious actions.</li>
+    <li><strong>Detective:</strong> Continuous monitoring and auditing to detect anomalies or breaches promptly.</li>
+    <li><strong>Corrective:</strong> Actions and tools to recover systems and data after a security incident.</li>
+    <li><strong>Compensating:</strong> Alternative methods to maintain security when primary controls cannot be applied.</li>
+    <li><strong>Directive:</strong> Policies, guidelines, and signage that guide user behavior and ensure compliance with security practices.</li>
+  </ul>
+
+  <h3>Managing Security Controls</h3>
+  <ul class="bullets">
+    <li><strong>Risk Assessment:</strong> Identify and evaluate threats and vulnerabilities to determine appropriate controls.</li>
+    <li><strong>Control Selection:</strong> Choose the most effective safeguards based on risk, regulatory requirements, and organizational objectives.</li>
+    <li><strong>Implementation:</strong> Properly deploy and configure security measures to integrate with the organization's environment.</li>
+    <li><strong>Monitoring:</strong> Continuously observe controls for effectiveness and detect potential issues through audits and real-time monitoring.</li>
+    <li><strong>Improvement:</strong> Update and enhance controls to address emerging threats and evolving risks.</li>
+  </ul>
+
+  <h3>Physical Security</h3>
+  <p>
+    Physical security protects buildings, facilities, equipment, and personnel from unauthorized access, theft, and environmental hazards. 
+    It ensures the safety of assets and personnel, preventing damage or disruption to operations.
+  </p>
+  <h4>Key Components:</h4>
+  <ul class="bullets">
+    <li><strong>Access Control:</strong> Locks, security personnel, keycards, and biometric systems to limit entry to authorized personnel.</li>
+    <li><strong>Surveillance:</strong> Cameras, motion sensors, and alarms to monitor activity and detect potential threats.</li>
+    <li><strong>Environmental Controls:</strong> Systems protecting against fire, floods, extreme temperatures, and other environmental risks.</li>
+    <li><strong>Security Policies:</strong> Procedures for visitor management, asset protection, and emergency response.</li>
+    <li><strong>Training and Awareness:</strong> Educating staff on physical security measures and their responsibilities in maintaining a safe environment.</li>
+  </ul>
+  <h4>Examples:</h4>
+  <ul class="bullets">
+    <li><strong>Fences and Gates:</strong> Physical barriers to prevent unauthorized access to facilities.</li>
+    <li><strong>Security Guards:</strong> Personnel who monitor premises and respond to incidents.</li>
+    <li><strong>Surveillance Cameras:</strong> Monitor activity and provide evidence in case of breaches.</li>
+    <li><strong>Alarm Systems:</strong> Notify security teams immediately when unauthorized access is detected.</li>
+  </ul>
+</section>
+
+</body>
+</html>

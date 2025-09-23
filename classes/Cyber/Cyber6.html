@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Website</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../All Pages/style.css"> <!-- Global CSS -->
+  <link rel="stylesheet" href="../../All Pages/dropdown.css"> <!-- Classes-specific CSS -->
+  <link rel="stylesheet" href="../../All Pages/classPages.css"> <!-- Classes-specific CSS -->
+  <script src="../../script.js"></script>
+</head>
+<body>
+  <header>
+    <a href="../../index.html" class="logo">
+      <img src="../../img/ZernulloLogo.png" alt="Zernullo Logo">
+    </a>
+
+    <nav class="drop_down">
+      <div class="dropdown-language">
+        <button class="dropbtn-language">Language</button>
+        <div class="diff-language">
+          <a href="../../languages/html/python.html">Python</a>
+          <a href="../../languages/java.html">Java</a>
+          <a href="../../languages/html/C.html">C</a>
+          <a href="../../languages/html/C-sharp.html">C#</a>
+          <a href="../../languages/html/C++.html">C++</a>
+          <a href="../../languages/javascript.html">JavaScript</a>
+        </div>
+      </div>
+
+      <div class="dropdown-classes">
+        <button class="dropbtn-classes">Classes</button>
+        <div class="diff-classes">
+          <a href="Cyber.html">Intro to Cybersecurity</a>
+          <a href="../OS/OS.html">Object Systems</a>
+          <a href="../CN/CN.html">Computer Networks</a>
+          <a href="../AI/AI.html">Artifical Intelligence</a>
+          <a href="../EC/EC.html">Ethics in Computing</a>
+        </div>
+      </div>
+
+      <div class="dropdown-lecture">
+        <button class="dropbtn-lecture">Lectures</button>
+        <div class="diff-lecture">
+          <a href="Cyber.html">Lecture 1 & 2</a>
+          <a href="Cyber3.html">Lecture 3</a>
+          <a href="Cyber4&5.html">Lecture 4 & 5</a>
+          <a href="Cyber6.html">Lecture 6</a>
+          <a href="Cyber7.html">Lecture 7</a>
+          <a href="Cyber8.html">Lecture 8</a>
+        </div>
+      </div>
+    </nav>
+
+    <nav class="main_nav">
+      <a href="../../index.html">Home</a>
+      <a href="../../html/education.html" class="active">Education</a>
+      <a href="../../html/projects.html">Projects</a>
+      <a href="../../html/contact.html">Contact</a>
+    </nav>
+  </header>
+
+    <!-- PAGE CONTENT GOES HERE -->
+<section class="classes">
+<!--Lecture 6-->
+  <h2>Encryption Continuation (Lecture 6)</h2>
+  <h3>The Key Pair</h3>
+  <p>In asymmetric encryption, a key pair consists of a public key and a private key. 
+    Key generation, build both the public and priavate keys at the same time.
+    It is based on complex mathematical algorithms that ensure the keys are mathematically related yet distinct.
+    The security of the system relies on the mathematical relationship between the two keys, making it computationally infeasible to derive the private key from the public key.
+    Everyone can have the public key, but only the owner has the private key.
+  </p>
+  <h3>Key Escrow</h3>
+  <p>Key escrow is a security mechanism where cryptographic keys are stored by a trusted third party, known as the escrow agent. 
+    This allows authorized entities to access encrypted data under specific circumstances, such as legal requirements or organizational policies.
+    Key escrow can be used in various scenarios, including:
+  </p>
+  <ul class="bullets">
+    <li><strong>Data Recovery:</strong> In case of lost or forgotten keys, authorized personnel can retrieve the keys from the escrow agent to access encrypted data.</li>
+    <li><strong>Law Enforcement Access:</strong> Governments may require key escrow to allow law enforcement agencies to access encrypted communications during investigations, subject to legal oversight.</li>
+    <li><strong>Organizational Policies:</strong> Companies may implement key escrow to ensure that critical data can be accessed by designated personnel in case of emergencies or employee turnover.</li>
+  </ul>
+  <h3>Encrypting Stored Data</h3>
+  <p>Encrypting stored data, also known as data at rest encryption, involves using cryptographic techniques to protect data that is stored on physical media, such as hard drives, solid-state drives, or cloud storage. 
+    The goal is to ensure that even if the storage medium is compromised, the data remains unreadable without the appropriate decryption key.
+    Common methods for encrypting stored data include:
+  </p>
+  <ul class="bullets">
+    <li><strong>Full Disk Encryption (FDE):</strong> Encrypts the entire storage device, including the operating system and all files. Examples include BitLocker (Windows) and FileVault (macOS).</li>
+    <li><strong>File-Level Encryption:</strong> Encrypts individual files or folders, allowing for more granular control over which data is protected. Examples include EFS (Encrypting File System) on Windows.</li>
+    <li><strong>Database Encryption:</strong> Encrypts data within databases to protect sensitive information, such as customer records or financial data. Examples include Transparent Data Encryption (TDE) for SQL Server and Oracle databases.</li>
+    <li><strong>Cloud Storage Encryption:</strong> Encrypts data stored in cloud services, either by the cloud provider or by the user before uploading. Examples include AWS KMS and Azure Key Vault.</li>
+  </ul>
+  <h3>Database Encryption</h3>
+  <p>Database encryption involves using cryptographic techniques to protect sensitive data stored within a database. 
+    The goal is to ensure that even if the database is compromised, the data remains unreadable without the appropriate decryption key.
+    Common methods for database encryption include:
+  </p>
+  <ul class="bullets">
+    <li><strong>Transparent Data Encryption (TDE):</strong> Encrypts the entire database at the file level, ensuring that data is automatically encrypted when written to disk and decrypted when read. Examples include TDE for SQL Server and Oracle databases.</li>
+    <li><strong>Column-Level Encryption:</strong> Encrypts specific columns within a database table, allowing for more granular control over which data is protected. This method is useful for protecting sensitive information, such as credit card numbers or social security numbers.</li>
+    <li><strong>Application-Level Encryption:</strong> Encrypts data before it is stored in the database, providing end-to-end encryption. This method ensures that data remains encrypted throughout its lifecycle, even when processed by the application.</li>
+    <li><strong>Key Management:</strong> Proper key management practices are essential for database encryption, including secure key generation, storage, rotation, and access control to ensure that only authorized users can decrypt the data.</li>
+  </ul>
+  <h3>Transport Encryption</h3>
+  <p>Transport encryption, also known as data in transit encryption, involves using cryptographic techniques to protect data as it is transmitted over networks. 
+    The goal is to ensure that even if the data is intercepted during transmission, it remains unreadable without the appropriate decryption key.
+    Common methods for transport encryption include:
+  </p>
+  <ul class="bullets">
+    <li><strong>SSL/TLS (Secure Sockets Layer/Transport Layer Security):</strong> Protocols that provide secure communication over the internet by encrypting data between web browsers and servers. TLS is the successor to SSL and is widely used for securing websites (HTTPS).</li>
+    <li><strong>VPN (Virtual Private Network):</strong> Creates a secure, encrypted tunnel for data transmission over public networks, allowing remote users to access private networks securely. Examples include IPsec and OpenVPN.</li>
+    <li><strong>SSH (Secure Shell):</strong> A protocol that provides secure remote access to systems and secure file transfers by encrypting the communication between the client and server.</li>
+    <li><strong>Email Encryption:</strong> Techniques such as S/MIME (Secure/Multipurpose Internet Mail Extensions) and PGP (Pretty Good Privacy) that encrypt email messages to protect their content during transmission.</li>
+  </ul>
+  <h3>Key Lengths</h3>
+  <p>Key length refers to the size of the cryptographic key used in encryption algorithms. 
+    It is typically measured in bits and plays a crucial role in determining the security level of the encryption.
+    Longer keys provide stronger security, as they increase the number of possible key combinations, making it more difficult for attackers to perform brute-force attacks.
+  </p>
+  <h3>Key Stretching</h3>
+  <p>Key stretching is a technique used to enhance the security of weak or short cryptographic keys by increasing their effective length. 
+    This is typically done by applying a computationally intensive algorithm to the original key, making it more resistant to brute-force attacks.
+  </p>
+  <h3>Key Exchange</h3>
+  <p>Key exchange is the process of securely sharing cryptographic keys between parties to enable encrypted communication. 
+    The goal is to ensure that only the intended recipients can access the keys, preventing unauthorized access.
+    Common key exchange methods include:
+  </p>
+  <h3>Encryption Technology</h3>
+  <p>Encryption technology encompasses various methods and tools used to secure data through cryptographic techniques. 
+    It plays a crucial role in protecting sensitive information from unauthorized access and ensuring data integrity and confidentiality.
+    Encryption technologies include:
+  </p>
+  <ul class="bullets">
+    <li><strong>Trusted Platform Module (TPM)</strong> - A hardware-based security module that provides secure key storage, cryptographic operations, and platform integrity verification. TPMs are commonly used in computers and mobile devices to enhance security. Cryptography processor and secure storage for cryptographic keys. Also password protected meaning no dictioanry attacks.</li>
+    <li><strong>Hardware Security Module (HSM)</strong> - A dedicated hardware device that provides secure key management and cryptographic operations. HSMs are used in enterprise environments to protect sensitive data and ensure compliance with security regulations.</li>
+    <li><strong>Secure Enclave</strong> - A secure area within a processor that provides isolated execution and secure storage for sensitive data and cryptographic keys. Secure enclaves are commonly used in mobile devices and modern processors to enhance security. Provides extensive security features, example, has it own boot ROM, memory, and crypto engine. Isolated from the rest of the system.</li>
+  </ul>
+  <h3>Hasing and Digital Signatures</h3>
+  <ul class="bullets">
+    <li><strong>Hashes</strong> - Hashing turns data into a short code that can't be reversed. It's used to store passwords safely, check file integrity, and verify identity with digital signatures.</li>
+    <li><strong>Collision</strong> - A collision happens when two different inputs create the same hash. Hash functions turn any-size data into a fixed-size code, but they should always be unique. MD5 is known for collisions, so it's not safe for important use.</li>
+    <li><strong>Pratical Hashing</strong> - Use hashing to check downloads by comparing the file's hash with the one provided. For passwords, store a salted hash instead of the actual password, so even the system doesn't know your real password.</li>
+    <li><strong>Salting</strong> - A salt is random data added to each password before hashing. Every user gets a unique salt, which is stored with the password. This makes rainbow tables useless and slows down brute-force attacks, though it doesn't completely prevent them.</li>
+  </ul>
+  <div class="img-container">
+    <img src="../../img/classes/CyberPic/Lecture6/Salt.png" alt="Salting">
+  </div>
+  <h3>Digital Signatures</h3>
+  <p>Digital signatures are a way to prove that a message or document is authentic and hasn't been changed. 
+    They use a combination of hashing and asymmetric encryption to create a unique signature that can be verified by anyone with the sender's public key.
+    The process of creating and verifying a digital signature involves several steps:
+  </p>
+  <h4>Digital Certificates</h4>
+  <p>Digital certificates are electronic documents that prove the ownership of a public key. 
+    They are issued by trusted entities called Certificate Authorities (CAs) and contain information about the certificate holder, their public key, and the CA's digital signature.
+    Digital certificates are used to establish trust in online communications, such as secure websites (HTTPS), email encryption, and code signing.
+  </p>
+  <h3>Certificate Authorities</h3>
+  <p>Certificate Authorities (CAs) are trusted entities that issue and manage digital certificates. 
+    They play a crucial role in establishing trust in online communications by verifying the identity of certificate requesters before issuing certificates.
+  </p>
+  <h3>Third-Party Certificate Authorities</h3>
+  <p>Third-party Certificate Authorities (CAs) are independent organizations that issue digital certificates to individuals, organizations, and devices. 
+    They play a crucial role in establishing trust in online communications by verifying the identity of certificate requesters and ensuring the authenticity of their public keys.
+  </p>
+  <h3>Certificate Signing Requests</h3>
+  <p>A Certificate Signing Request (CSR) is a block of encoded text that is submitted to a Certificate Authority (CA) when applying for a digital certificate. 
+    The CSR contains information about the entity requesting the certificate, including their public key and other identifying details.
+  </p>
+  <p>To create a CSR, the requester typically uses a tool or software that generates the key pair and the CSR. 
+    The private key is kept secret and secure by the requester, while the CSR is sent to the CA for processing.
+    Once the CA verifies the information in the CSR and the requester's identity, it issues a digital certificate that includes the public key and other relevant details.
+  </p>
+  <h3>Private Certificate Authorities</h3>
+  <p>Private Certificate Authorities (CAs) are organizations or entities that operate their own CA infrastructure to issue and manage digital certificates for internal use within an organization. 
+    Private CAs are typically used in enterprise environments where there is a need for secure communication and authentication among internal systems, applications, and users.
+  </p>
+  <p>However, private CAs also come with challenges, such as the need for proper key management, ensuring the security of the CA infrastructure, and maintaining trust within the organization. 
+    It is essential to implement robust security practices and policies to mitigate risks associated with operating a private CA.
+  </p>
+  <h3>Self-SIgned Certificates</h3>
+  <p>Self-signed certificates are digital certificates that are signed by the same entity that created them, rather than being issued by a trusted Certificate Authority (CA). 
+    They are typically used for internal testing, development environments, or in situations where trust can be established without relying on an external CA.
+  </p>
+  <h3>Wildcard Certificates</h3>
+  <p>Wildcard certificates are digital certificates that can secure multiple subdomains of a primary domain using a single certificate. 
+    They are identified by an asterisk (*) in the domain name, which represents any subdomain.
+    For example, a wildcard certificate for *.example.com can secure subdomains such as www.example.com, mail.example.com, and blog.example.com.
+  </p>
+  <h3>Key Revocation</h3>
+  <p>Key revocation is the process of invalidating a cryptographic key before its scheduled expiration date. 
+    This is typically done when a key is compromised, lost, or no longer needed, to prevent unauthorized access to encrypted data or systems.
+    Key revocation can be performed for both symmetric and asymmetric keys, and it is an essential aspect of key management in cryptographic systems.
+  </p>
+  <ul class="bullets">
+    <li><strong>Certificate Revocation Lists (CRLs):</strong> A list of revoked digital certificates published by a Certificate Authority (CA). Clients can check the CRL to determine if a certificate is still valid before trusting it.</li>
+    <li><strong>Online Certificate Status Protocol (OCSP):</strong> A protocol that allows clients to query a CA in real-time to check the revocation status of a specific certificate. OCSP provides a more efficient and timely method for checking certificate validity compared to CRLs.</li>
+    <li><strong>Key Expiration:</strong> Setting an expiration date for keys and certificates ensures that they are automatically invalidated after a certain period, reducing the risk of long-term exposure if a key is compromised.</li>
+    <li><strong>Key Rotation:</strong> Regularly replacing cryptographic keys with new ones helps minimize the impact of key compromise and enhances overall security.</li>
+  </ul>
+  <h3>Online Certificate Status Protocol (OCSP)</h3>
+  <p>The Online Certificate Status Protocol (OCSP) is a protocol used to check the revocation status of digital certificates in real-time. 
+    It provides a more efficient and timely method for verifying the validity of a certificate compared to traditional methods, such as Certificate Revocation Lists (CRLs).
+    The OCSP process involves several steps:
+  </p>
+  <ul class="bullets">
+    <li><strong>Client Request:</strong> When a client (such as a web browser) encounters a digital certificate, it sends an OCSP request to the OCSP responder specified in the certificate. The request includes the serial number of the certificate being checked.</li>
+    <li><strong>OCSP Responder:</strong> The OCSP responder is a server operated by the Certificate Authority (CA) that issued the certificate. It receives the OCSP request and checks its database to determine the revocation status of the requested certificate.</li>
+    <li><strong>Response Generation:</strong> The OCSP responder generates an OCSP response, which indicates whether the certificate is "good" (valid), "revoked" (invalid), or "unknown" (not found in the database). The response is digitally signed by the OCSP responder to ensure its authenticity.</li>
+    <li><strong>Client Verification:</strong> The client receives the OCSP response and verifies the digital signature to ensure that it came from a trusted OCSP responder. Based on the revocation status provided in the response, the client decides whether to trust the certificate or not.</li>
+  </ul>
+  <div class="img-container">
+    <img src="../../img/classes/CyberPic/Lecture6/OCSP.png" alt="OCSP">
+  </div>
+</section>
+
+</body>
+</html>

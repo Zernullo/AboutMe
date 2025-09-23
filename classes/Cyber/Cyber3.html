@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Website</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../All Pages/style.css"> <!-- Global CSS -->
+  <link rel="stylesheet" href="../../All Pages/dropdown.css"> <!-- Classes-specific CSS -->
+  <link rel="stylesheet" href="../../All Pages/classPages.css"> <!-- Classes-specific CSS -->
+  <script src="../../script.js"></script>
+</head>
+<body>
+  <header>
+    <a href="../../index.html" class="logo">
+      <img src="../../img/ZernulloLogo.png" alt="Zernullo Logo">
+    </a>
+
+    <nav class="drop_down">
+      <div class="dropdown-language">
+        <button class="dropbtn-language">Language</button>
+        <div class="diff-language">
+          <a href="../../languages/html/python.html">Python</a>
+          <a href="../../languages/java.html">Java</a>
+          <a href="../../languages/html/C.html">C</a>
+          <a href="../../languages/html/C-sharp.html">C#</a>
+          <a href="../../languages/html/C++.html">C++</a>
+          <a href="../../languages/javascript.html">JavaScript</a>
+        </div>
+      </div>
+
+      <div class="dropdown-classes">
+        <button class="dropbtn-classes">Classes</button>
+        <div class="diff-classes">
+          <a href="Cyber.html">Intro to Cybersecurity</a>
+          <a href="../OS/OS.html">Object Systems</a>
+          <a href="../CN/CN.html">Computer Networks</a>
+          <a href="../AI/AI.html">Artifical Intelligence</a>
+          <a href="../EC/EC.html">Ethics in Computing</a>
+        </div>
+      </div>
+
+      <div class="dropdown-lecture">
+        <button class="dropbtn-lecture">Lectures</button>
+        <div class="diff-lecture">
+          <a href="Cyber.html">Lecture 1 & 2</a>
+          <a href="Cyber3.html">Lecture 3</a>
+          <a href="Cyber4&5.html">Lecture 4 & 5</a>
+          <a href="Cyber6.html">Lecture 6</a>
+          <a href="Cyber7.html">Lecture 7</a>
+          <a href="Cyber8.html">Lecture 8</a>
+        </div>
+      </div>
+    </nav>
+
+    <nav class="main_nav">
+      <a href="../../index.html">Home</a>
+      <a href="../../html/education.html" class="active">Education</a>
+      <a href="../../html/projects.html">Projects</a>
+      <a href="../../html/contact.html">Contact</a>
+    </nav>
+  </header>
+
+    <!-- PAGE CONTENT GOES HERE -->
+<section class="classes">
+<!-- Lecture 3 -->
+  <h2>Access Control (Lecture 3)</h2>
+  <h3>Definitions</h3>
+  <ul class="bullets">
+    <li><strong>NIST IR 7298:</strong> The process of granting or denying requests to obtain and use information and services based on access rules and authorization.</li>
+    <li><strong>RFC 4949:</strong> Regulates system resource usage according to a security policy, allowing access only to authorized users, processes, or devices.</li>
+  </ul>
+
+  <h3>AAA Framework</h3>
+  <ol class="numbers">
+    <li>
+      <strong>Authentication:</strong> Verifying identity using passwords, certificates, or tokens.
+      <ul class="circles">
+        <li>Automated devices may authenticate using digital certificates for large-scale management.</li>
+        <li>Certificates ensure secure access to services like VPNs and management software.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Authorization:</strong> Determining which resources an authenticated user or device can access.
+      <ul class="circles">
+        <li>Role-based or attribute-based authorization simplifies access management in large environments.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Accounting (Auditing):</strong> Logging resource usage, such as login time, activity, and logout, for monitoring and compliance.
+      <ul class="circles">
+        <li>Ensures that only authorized systems access sensitive information and tracks all activity for auditing purposes.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <h3>Access Control Policies</h3>
+  <ol class="numbers">
+    <li><strong>Discretionary Access Control (DAC):</strong> Access granted based on identity and rules defined by owners.</li>
+    <li><strong>Mandatory Access Control (MAC):</strong> Access based on security labels compared to user clearances.</li>
+    <li><strong>Role-Based Access Control (RBAC):</strong> Permissions assigned according to organizational roles.</li>
+    <li><strong>Attribute-Based Access Control (ABAC):</strong> Access determined by user, resource, and environment attributes.</li>
+  </ol>
+
+  <h3>Subjects, Objects, and Access Rights</h3>
+  <ol class="numbers">
+    <li><strong>Subject:</strong> Entity (user or device) capable of accessing objects.</li>
+    <li><strong>Object:</strong> Resource being accessed or controlled.</li>
+    <li><strong>Access Rights:</strong> Permissions granted to subjects (Read, Write, Execute, Delete, Create, Search).</li>
+  </ol>
+  <div class="img-container">
+    <img src="../../img/classes/CyberPic/Lecture3/AccessRight.png" alt="Access Control/Rights">
+  </div>
+
+  <h3>Unix File Access</h3>
+  <p>UNIX files are managed using <strong>inodes</strong> (Index Nodes), which store metadata and control information for files.</p>
+  <ul class="bullets">
+    <li>Inodes contain file attributes, permissions, and location information on disk.</li>
+    <li>Multiple file names can link to the same inode, allowing shared access.</li>
+    <li>Active inodes are loaded into memory for fast access by the operating system.</li>
+    <li>The inode table on disk tracks all file inodes for the file system.</li>
+  </ul>
+  <div class="img-container">
+    <img src="../../img/classes/CyberPic/Lecture3/UnixFileAccess.png" alt="Unix File Access">
+  </div>
+
+  <h3>Zero Trust</h3>
+  <p>Zero Trust means never automatically trust anything inside or outside your network. 
+    Even if someone is already inside, they must prove who they are and have permission to access resources. 
+    This approach checks every person, device, and process using things like multi-factor authentication, encryption, access controls, firewalls, and monitoring to keep the network secure.
+  </p>
+  <h4>Planes of Operation</h4>
+  <ul class="bullets">
+    <li><strong>Divide The Network Into Planes</strong> - Works for physical devices, virtual systems, and cloud setups.</li>
+    <li><strong>Data Plane</strong> - Moves and handles the actual data—sends, encrypts, and routes packets.</li>
+    <li><strong>Control Plane</strong> - Tells the data plane what to do—sets rules, policies, and routing decisions.</li>
+  </ul>
+  <div class="img-container">
+    <img src="../../img/classes/CyberPic/Lecture3/PlanesOfOperation.png" alt="Planes Of Operation">
+  </div>
+  <h4>Security Zones</h4>
+  <ul class="bullets">
+    <li><strong>Security isn't just one-to-one</strong> - Grouping systems into zones helps manage security better.</li>
+    <li><strong>Zones Show Trust Levels</strong> - hink about where traffic is coming from and going to—trusted vs. untrusted, internal vs. external networks, or different departments like Marketing, IT, Accounting, HR.</li>
+    <li><strong>Zones Control Access</strong> - Sometimes just being in the wrong zone is enough to block access. Some zones are automatically trusted.</li>
+  </ul>
+  <h4>Policy Enforcement Point (PEP)</h4>
+  <p>They acts like a gatekeeper for the network. 
+    Decides what to do with connections: allows them, monitors them, or blocks them. 
+    Can be made of serval parts working together.
+  </p>
+  <h4>Applying Trust In The Planes</h4>
+  <ul class="bullets">
+    <li><strong>Policy Decision Point (PDP)</strong> - Decides whether someone or something should be allowed access.</li>
+    <li><strong>Policy Engine</strong> - Checks the rules and other information, then decides to allow, deny, or revoke access.</li>
+    <li><strong>Policy Administrator</strong> - Talks to the gatekeeper (PEP), gives access tokens or credentials, and tells the PEP whether to allow access. Can also make authentication stronger if needed.</li>
+  </ul>
+  <div class="img-container">
+    <img src="../../img/classes/CyberPic/Lecture3/ApplyingTrustInPlanes.png" alt="Applying Trust In The Planes">
+  </div>
+</section>
+
+</body>
+</html>

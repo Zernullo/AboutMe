@@ -10,14 +10,16 @@
 
 /* Each dropdown wrapper */
 .dropdown-language,
-.dropdown-classes {
+.dropdown-classes, 
+.dropdown-lecture {
   position: relative;
   display: inline-block;    /* shrink to button width */
 }
 
 /* Buttons */
 .dropbtn-language,
-.dropbtn-classes {
+.dropbtn-classes, 
+.dropbtn-lecture {
   background-color: transparent;
   color: white;
   padding: 10px 20px;
@@ -31,14 +33,16 @@
 }
 
 .dropbtn-language:hover,
-.dropbtn-classes:hover {
+.dropbtn-classes:hover,
+.dropbtn-lecture:hover {
   background-color: var(--primary-color);
   color: #fff;
 }
 
 /* Dropdown content */
 .diff-language,
-.diff-classes {
+.diff-classes,
+.diff-lecture  {
   display: none;             /* hidden by default */
   position: absolute;
   top: 100%;                 /* right below the button */
@@ -54,7 +58,8 @@
 
 /* Links inside dropdown */
 .diff-language a,
-.diff-classes a {
+.diff-classes a,
+.diff-lecture a {
   padding: 12px 16px;
   display: block;
   color: black;
@@ -65,7 +70,8 @@
 }
 
 .diff-language a:hover,
-.diff-classes a:hover {
+.diff-classes a:hover,
+.diff-lecture a:hover {
   background-color: var(--primary-color);
   color: #fff;
   border-radius: 0.5rem;
@@ -73,6 +79,7 @@
 
 /* Show dropdown on hover */
 .dropdown-language:hover .diff-language,
-.dropdown-classes:hover .diff-classes {
+.dropdown-classes:hover .diff-classes,
+.dropdown-lecture:hover .diff-lecture {
   display: flex;
 }
