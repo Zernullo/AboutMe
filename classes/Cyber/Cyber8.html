@@ -49,6 +49,7 @@
           <a href="Cyber6.html">Lecture 6</a>
           <a href="Cyber7.html">Lecture 7</a>
           <a href="Cyber8.html">Lecture 8</a>
+          <a href="Cyber9.html">Lecture 9</a>
         </div>
       </div>
     </nav>
@@ -108,6 +109,11 @@
     Sometimes, things happen at the same time, and the program gets confused about what to do first.
     This can lead to unexpected behavior, data corruption, or security vulnerabilities if not properly managed.
     Time-of-check to time-of-use (TOCTOU) check the system state and then use that state later, but the state may have changed in the meantime.
+  </p>
+  <h4>Why attackers use it?</h4>
+  <p>
+    This is because race conditions can allow them to manipulate the timing of operations and exploit the brief window between security checks and the actual use of resources, potentially bypassing controls or gaining unauthorized access.
+    In which case the client will not receive the expected result, potentially allowing an attacker to exploit the timing gap to gain unauthorized access or manipulate data.
   </p>
   <h4>Example</h4>
   <p>
@@ -292,11 +298,20 @@
   </p>
   <h3>CVE: Common Vulnerability Enumeration</h3>
   <p>
-     Is a standardized identifier for a specific, publicly known vulnerability or exposure in software or firmware. 
-     It's how the security community consistently refers to the same bug and tracks it across bulletins, patches, and tools
-     <br><br>
-     https://www.cve.org/
+    Is a standardized identifier for a specific, publicly known vulnerability or exposure in software or firmware. 
+    A CVE (Common Vulnerabilities and Exposures) is like a unique ID number given to a specific security flaw found in software or hardware. 
+    For example, "CVE-2017-0144" refers to the Windows vulnerability used by the WannaCry ransomware. Each CVE entry includes a brief description of the vulnerability and references to related reports or patches.
+    In summary, CVEs help security professionals and organizations talk about, find, and fix vulnerabilities more efficiently.
+    It's how the security community consistently refers to the same bug and tracks it across bulletins, patches, and tools.
+    <br><br>
+    https://www.cve.org/
   </p>
+  <h4>Why is CVE important?</h4>
+  <ul class="bullets">
+      <li><strong>Consistency:</strong> Everyone uses the same name for the same vulnerability, making it easier to share information.</li>
+      <li><strong>Tracking:</strong> Security tools, advisories, and patch notes often list CVE IDs so you can quickly find details and fixes.</li>
+      <li><strong>Awareness:</strong> Organizations can check which CVEs affect their systems and prioritize updates.</li>
+  </ul>
   <h3>CWE: Common Weakness Enumeration</h3>
   <p>
     Is a curated list (a “dictionary”) of software weakness types; design or coding patterns that often lead to vulnerabilities. 

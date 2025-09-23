@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Website</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../All Pages/style.css"> <!-- Global CSS -->
+  <link rel="stylesheet" href="../../All Pages/dropdown.css"> <!-- Classes-specific CSS -->
+  <link rel="stylesheet" href="../../All Pages/classPages.css"> <!-- Classes-specific CSS -->
+  <script src="../../script.js"></script>
+</head>
+<body>
+  <header>
+    <a href="../../index.html" class="logo">
+      <img src="../../img/ZernulloLogo.png" alt="Zernullo Logo">
+    </a>
+
+    <nav class="drop_down">
+      <div class="dropdown-language">
+        <button class="dropbtn-language">Language</button>
+        <div class="diff-language">
+          <a href="../../languages/html/python.html">Python</a>
+          <a href="../../languages/java.html">Java</a>
+          <a href="../../languages/html/C.html">C</a>
+          <a href="../../languages/html/C-sharp.html">C#</a>
+          <a href="../../languages/html/C++.html">C++</a>
+          <a href="../../languages/javascript.html">JavaScript</a>
+        </div>
+      </div>
+
+      <div class="dropdown-classes">
+        <button class="dropbtn-classes">Classes</button>
+        <div class="diff-classes">
+          <a href="../Cyber/Cyber.html">Intro to Cybersecurity</a>
+          <a href="OS.html">Object Systems</a>
+          <a href="../CN/CN.html">Computer Networks</a>
+          <a href="../AI/AI.html">Artifical Intelligence</a>
+          <a href="../EC/EC.html">Ethics in Computing</a>
+        </div>
+      </div>
+
+      <div class="dropdown-lecture">
+        <button class="dropbtn-lecture">Lectures</button>
+        <div class="diff-lecture">
+          <a href="Cyber.html">Lecture 1 & 2</a>
+          <a href="Cyber3.html">Lecture 3</a>
+          <a href="Cyber4&5.html">Lecture 4 & 5</a>
+          <a href="Cyber6.html">Lecture 6</a>
+          <a href="Cyber7.html">Lecture 7</a>
+          <a href="Cyber8.html">Lecture 8</a>
+        </div>
+      </div>
+    </nav>
+
+    <nav class="main_nav">
+      <a href="../../index.html">Home</a>
+      <a href="../../html/education.html" class="active">Education</a>
+      <a href="../../html/projects.html">Projects</a>
+      <a href="../../html/contact.html">Contact</a>
+    </nav>
+  </header>
+
+    <!-- PAGE CONTENT GOES HERE -->
+<section class="classes">
+<!--Lecture 2-->
+    <h2>What's Covered? (Lecture 2)</h2>
+    <ul class="Bullets">
+      <li>Computer Architecture</li>
+      <li>Hardware</li>
+      <li>Softwares Programming</li>
+      <li>Virtualization</li>
+    </ul>
+    <h2>Computer Architecture</h2>
+    <h3>Operating System Services</h3>
+    <p>
+      Operating systems provide an environment for execution of programs and services to programs and users.
+      One set of operating-system services provides functions that are helpful to the user:
+    </p>
+    <ul class="bullets">
+      <li>User Interface - Almost all opertaing systems have a user interface (UI)</li>
+      <ul class="circles">
+        <li>Varies between Command-Line (CLI), Graphics User Interface (GUI), touch-screen, Batch</li>
+      </ul>
+      <li><strong>I/O Operations</strong> - A running program may require I/O, which may involve a file or an I/O device</li>
+      <li><strong>Program execution</strong> - The system must be able to load a program into memory and to run that program, end execution, either normally or abnormally (indicating error)</li>
+      <li><strong>File-system manipulation</strong> - The file system is a repository of information. The operating system must provide functions to create files and directories, to delete them, to read and write data, and to search for files.</li>
+      <li><strong>Communications</strong> - In many systems, processes need to exchange information. This exchange may occur between processes executing on the same computer or between processes executing on different systems connected by a network.</li>
+      <li><strong>Error detection</strong> - Both the hardware and the software need to be able to detect and correct errors. The operating system needs to be aware of possible errors. For each type of error, OS should take the appropriate action to ensure correct and consistent computing</li>
+      <li><strong>Resource allocation</strong> - When multiple users or multiple jobs running concurrently, resources must be allocated to each of them. Many types of resources - CPU cycles, main memory, file storage, I/O devices.</li>
+      <li><strong>Logging</strong> - To keep track of which users use how much and what kinds of computer resources</li>
+    </ul>
+    <h3>System Boot</h3>
+    <p>
+      When a system powers on, execution begins at a fixed memory location. 
+      The BIOS (or modern UEFI) finds a bootable device and loads a small bootstrap loader from ROM/EEPROM. 
+      The loader locates and loads the kernel into memory, starting the OS. 
+      Sometimes this uses a two-step process with a boot block on disk. 
+      GRUB is a common loader that supports multiple kernels, disks, and boot options. 
+      Boot loaders can also start the system in specific states, like single-user mode.
+    </p>
+    <div class="img-container">
+      <img src="../../img/classes/OSPic/Lecture2/AbstractView.png" alt="Abstract View of Components of Modern Computer">
+      <img src="../../img/classes/OSPic/Lecture2/AbstractView2.png" alt="Abstract View of Components of Modern Computer 2">
+      <img src="../../img/classes/OSPic/Lecture2/AbstractView3.png" alt="Abstract View of Components of Modern Computer 3">
+      <img src="../../img/classes/OSPic/Lecture2/Single-Processor.png" alt="Single Processor System">
+    </div>
+    <h3>MultiProcessor/Parallel Systems</h3>
+    <p>
+      Multiprocessor systems (also called parallel systems) have two or more processors in close communication, sharing the computer bus, the clock, and sometimes memory and peripheral devices. 
+      The main advantage of multiprocessor systems is their increased throughput and reliability.
+      Multiprocessor systems are classified into two categories: tightly coupled and loosely coupled.
+    </p>
+    <ul class="bullets">
+      <li><strong>Tightly Coupled</strong> - Multiprocessor systems that share memory and a clock. Examples: Symmetric Multiprocessing (SMP), Asymmetric Multiprocessing (AMP)</li>
+      <li><strong>Loosely Coupled</strong> - Systems with multiple independent processors, each with its own memory and OS, connected via a network. Examples: Clusters, Grids</li>
+    </ul>
+    <div class="img-container">
+      <img src="../../img/classes/OSPic/Lecture2/Multiprocessor.png" alt="Multiprocessor System">
+      <img src="../../img/classes/OSPic/Lecture2/Multiprocessor2.png" alt="Symmetric Multiprocessor System and Asymmetric Multiprocessor System">
+      <img src="../../img/classes/OSPic/Lecture2/Multiprocessor3.png" alt="Multi-Core Processor System">
+    </div>
+    <h3>Caching</h3>
+    <p>
+      Cache is a smaller, faster memory that stores copies of frequently accessed data from main memory. 
+      It reduces the time to access data and improves overall system performance. 
+      Caches are organized in levels (L1, L2, L3) based on their proximity to the CPU.
+      Caches use various strategies for data management, including write-through and write-back policies.
+    </p>
+    <div class="img-container">
+      <img src="../../img/classes/OSPic/Lecture2/Caching.png" alt="Cache Memory Hierarchy">
+      <img src="../../img/classes/OSPic/Lecture2/Caching2.png" alt="Cache Memory Structure">
+      <img src="../../img/classes/OSPic/Lecture2/Caching3.png" alt="Storage System Hierarchy">
+    </div>
+    <h3>Command Line Interpreter</h3>
+    <p>
+      The command-line interpreter (CLI), or shell, is a program that reads and executes commands from the user. 
+      It provides an interface for users to interact with the operating system by typing commands. 
+      Examples include Bash (Linux), Command Prompt (Windows), and PowerShell (Windows).
+      The shell can execute built-in commands and launch other programs.
+    </p>
+    <div class="img-container">
+      <img src="../../img/classes/OSPic/Lecture2/BourneShell.png" alt="Bourne Shell">
+    </div>
+    <h3>Graphical User Interface</h3>
+    <p>
+      A graphical user interface (GUI) allows users to interact with the operating system through graphical elements like windows, icons, and menus. 
+      GUIs are more user-friendly than command-line interfaces, especially for non-technical users. 
+      Examples include Windows Explorer (Windows), Finder (macOS), and GNOME/KDE (Linux).
+      GUIs often include features like drag-and-drop, context menus, and visual feedback.
+    </p>
+    <p>
+      Many operating systems support both CLI and GUI, allowing users to choose their preferred method of interaction.
+    </p>
+    <h3>Touchscreen Interfaces</h3>
+    <p>
+      Touchscreen interfaces are designed for devices with touch-sensitive screens, such as smartphones and tablets. 
+      They allow users to interact with the operating system using gestures like tapping, swiping, and pinching. 
+      Examples include iOS (Apple devices) and Android (various manufacturers).
+      Touchscreen interfaces often feature large icons and buttons for ease of use.
+    </p>
+    <h3>I/O Devices</h3>
+    <p>
+      Input/output (I/O) devices are hardware components that allow a computer to communicate with the external world. 
+      Common input devices include keyboards, mice, and touchscreens, while common output devices include monitors, printers, and speakers. 
+      The operating system manages I/O devices through device drivers, which are specialized programs that translate OS commands into device-specific operations.
+      Examples of I/O devices include:
+    </p>
+    <ul class="bullets">
+      <li><strong>Input Devices:</strong> Keyboard, Mouse, Touchscreen, Scanner, Microphone</li>
+      <li><strong>Output Devices:</strong> Monitor, Printer, Speakers, Headphones</li>
+      <li><strong>Storage Devices:</strong> Hard Drive, SSD, USB Flash Drive, Optical Drive</li>
+      <li><strong>Network Devices:</strong> Network Interface Card (NIC), Wi-Fi Adapter, Router</li>
+    </ul>
+    <h3>Direct Memory Access (DMA)</h3>
+    <p>
+      Direct Memory Access (DMA) is a feature that allows certain hardware subsystems to access main memory independently of the CPU. 
+      This improves performance by offloading data transfer tasks from the CPU, allowing it to focus on other processing tasks. 
+      DMA is commonly used for high-speed data transfers, such as disk I/O and network communication.
+      The DMA controller manages the data transfer process, coordinating between the device and memory.
+    </p>
+    <h3>Interrupts</h3>
+    <p>
+      An interrupt is a signal sent to the CPU by hardware or software indicating an event that needs immediate attention. 
+      When an interrupt occurs, the CPU temporarily halts its current operations, saves its state, and executes an interrupt handler to address the event. 
+      After handling the interrupt, the CPU resumes its previous tasks.
+      Interrupts are essential for efficient I/O operations and real-time processing.
+      Types of interrupts include:
+    </p>
+    <ul class="bullets">
+      <li><strong>Hardware Interrupts:</strong> Generated by hardware devices (e.g., keyboard, mouse, network card) to signal events like data availability or errors.</li>
+      <li><strong>Software Interrupts:</strong> Generated by software instructions to request system services or signal exceptions (e.g., division by zero).</li>
+      <li><strong>Maskable Interrupts:</strong> Can be ignored or delayed by the CPU using interrupt masking techniques.</li>
+      <li><strong>Non-Maskable Interrupts (NMI):</strong> Cannot be ignored and are used for critical events like hardware failures.</li>
+    </ul>
+    <div class="img-container">
+      <img src="../../img/classes/OSPic/Lecture2/Interrupts.png" alt="Interrupt Handling Process">
+      <img src="../../img/classes/OSPic/Lecture2/Interrupts2.png" alt="Interrupt Structure">
+      <img src="../../img/classes/OSPic/Lecture2/Interrupts3.png" alt="Interrupt Structure">
+    </div>
+    <h3>Security and Protection in Modern Computers</h3>
+    <p>
+      Modern computers implement various security and protection mechanisms to safeguard data and resources. 
+      These include:
+    </p>
+    <ul class="bullets">
+      <li>CPU Protection</li>
+      <ul class="circles">
+        <li>Dual-Mode operation for CPU</li>
+        <li>CPU Modes: User Mode and Kernel Mode to restrict access to critical system resources.</li>
+        <li>Goal - Protect OS from user-level software and support features like process scheduling</li>
+      </ul>
+      <li>I/O Device Protection - Gives the OS ultimate authority over I/O devices</li>
+      <li>Memory Protection: Prevents processes from accessing memory allocated to other processes.</li>
+    </ul>
+    <h3>Dual-Mode: Supervisor vs. User</h3>
+    <p>Modern CPUs support at least two privilege modes: user mode and supervisor (kernel) mode.</p>
+    <ul class="bullets">
+      <li><strong>User Mode:</strong> Regular applications run in user mode, where access to critical system resources is restricted. This prevents user programs from directly interacting with hardware or sensitive memory areas, enhancing system stability and security.</li>
+      <li><strong>Supervisor (Kernel) Mode:</strong> The operating system kernel runs in supervisor mode, which has full access to all hardware and system resources. Only trusted OS code executes in this mode, allowing it to manage processes, memory, and I/O devices.</li>
+    </ul>
+    <p>
+      The CPU switches between these modes using special instructions (such as system calls or interrupts). 
+      This separation ensures that user applications cannot compromise the integrity of the operating system or other programs.
+    </p>
+    <h3>System Calls</h3>
+    <p>Processes are generally split into two groups</p>
+    <ul class="bullets">
+      <li><strong>Kernel Processes</strong> - which have elevated privileges. Kernel processes can access the disk to make read & write request</li>
+      <li><strong>User Processes</strong> - which have limited privileges. User processes cannot access the disk to make read & write request</li>
+    </ul>
+
+
+</section>
+
+</body>
+</html>
