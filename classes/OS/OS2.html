@@ -233,6 +233,92 @@
       When a user process needs to perform actions requiring kernel level access, like file operations, it uses system calls. 
       These calls act as a controlled interface, allowing user processes to request services from the operating system securely.
     </p>
+    <h3>Simplified System Call Process</h3>
+    <p>
+      User Process code run until it needs privileges then makes a system call, this will work like a regular function from a code standpoint. 
+      Code will switch the process to temporarily run.
+      Process performs privleged actions in kernel mode.
+      Revert to User Mode
+    </p>
+    <div class="img-container">
+      <img src="../../img/classes/OSPic/Lecture2/SystemCallPipeline.png" alt="System Call Pipeline">
+    </div>
+    <h4>System Call Specifics (Linux)</h4>
+    <p>
+      Call C library wrapper. 
+      C funtion -> args are on stack normaly, kernel expects them in regusters.
+      Wrapper takes stack items and puts them into registers.
+      All System calls enter the same way, so we need an id, System call # put into RAX register.
+      Enter kernerl mode, details depend on archiecture.
+    </p>
+    <h4>System Call Specs (Cont)</h4>
+    <p>
+      Kernel invokes its system call handler.
+      Save registers to Kernel Stack.
+      Check System call # for validity.
+      Looks up # in System Call table.
+      Checks additional args
+      Complete operation and return result status to handler.
+      Restores registers and stack and place return value on user stack.
+      Return to C wrapper and user mode.
+      C wrapper checks return value, set errno, and return success value.
+    </p>
+    <div class="img-container">
+      <img src="../../img/classes/OSPic/Lecture2/DetailedSystemCall.png" alt="Detailed System Call Diagram">
+    </div>
+    <h3>I/O Protection</h3>
+    <p>
+      Make all I/O operations privileged.
+      Process has no direct access to devices but rather must ask OS for I/O. 
+      What happens if a process doesn't have the proper privilege?
+      If a process without the proper privilege attempts direct I/O, the OS blocks it, often raising an error or exception, to protect the system from crashes or malicious activity.
+    </p>
+    <h3>Transitions Between User and Kernel Modes</h3>
+    <p>
+      Many happen as result of some hardware-initiated condition (Hardware Interrupt).
+      Triggered by hardware events (e.g., Page faults, I/O completion).
+      Or via a system call Software Interrupt/Trap. 
+      System call from user mode notifies OS.
+      OS evaluates the request then performs actions in kernel mode on behalf of user-mode code.
+    </p>
+    <div class="img-container">
+      <img src="../../img/classes/OSPic/Lecture2/Transitions.png" alt="Transitions 1">
+      <img src="../../img/classes/OSPic/Lecture2/Transitions2.png" alt="Transitions 2">
+      <img src="../../img/classes/OSPic/Lecture2/Transitions3.png" alt="Transitions 3">
+    </div>
+    <h3>Memory Protection</h3>
+    <p>
+      Protect area of memory allocated to the OS
+      Protect interrupt vector and interrupt service routines
+      Restrict access to memory-mapped I/O devices
+      Protect memory address spaces of individual processes from other processes
+    </p>
+    <div class="img-container">
+      <img src="../../img/classes/OSPic/Lecture2/VirtualMemory.png" alt="Virtual Memory">
+    </div>
+    <h4>What is Virtualization?</h4>
+    <p>
+      Virtualization is creating a "virtual" layer of hardware to run another computer inside.
+      A "Computer inside of a Computer"
+      The java virtual machine is somehwhat similar.
+      JVM host java bytecide inside.
+      JVM translates the java bytecode to the native assembly on the fly for the machine running java.
+      Microsoft's .NET functions similarly.
+      Details are complex, but for now, just the basic idea
+    </p>
+    <h3>Terminology</h3>
+    <ul class="none">
+      <li><strong>Virtual Machine (VM)</strong> - The machine that is running on this abstracted hardware. ALso called a guets machine or guest OS</li>
+      <li><strong>Host Machine (Host OS)</strong> - The machine that is running the virtialization component and "hosting" the guest machines</li>
+      <li><strong>Hypervisor</strong> - Software, firmware, or hardware that enables the virtualization of machines</li>
+      <li><strong>Para-virtualization</strong> - The guest machine is modified/optimized for running in a virtualized environment</li>
+    </ul>
+    <h4>Types of Hypervisors</h4>
+    <ul class="none">
+      <li><strong>Type 0</strong> - Hardware, often seen on mainframes, servers. The "Host" is the hardware itself</li>
+      <li><strong>Type 1</strong> - OS level, Either its own operating system or an OS with virtualization capabilities. Seperate OS: Vmware ESX, Citrix XenServer. OS with virtualization: Window Server with HyperV, RedHat Linus with KVM</li>
+      <li><strong>Type 2</strong> - Software, runs inside of any regular OS. Vmware Player/Fusion, Oracle VirtualBox, Parallels(Mac)</li>
+    </ul>
 
 
 </section>
