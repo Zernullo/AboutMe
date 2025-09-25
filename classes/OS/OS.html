@@ -155,51 +155,106 @@
       <li><strong>Interfaces and Structure</strong> - The OS is like a middleman between the computer hardware and the people/programs using it. It offers different ways to interact:</li>
       <ul class="circle">
         <li><strong>Command Line (CLI)</strong> - A text-based way to talk to the OS (example: typing commands into Bash on Linux).</li>
-        <li><strong>Graphical User Interface (GUI)</strong> - A visual way to interact (example: using folders and windows in Window Explorer</li>
+        <li><strong>Graphical User Interface (GUI)</strong> - A visual way to interact (example: using folders and windows in Window Explorer)</li>
       </ul>
 
-      <li><strong>Process Management:</strong> Creates, schedules, and terminates processes using algorithms like round-robin or priority-based scheduling.</li>
-      <li><strong>Memory Management:</strong> Allocates and optimizes RAM using paging or segmentation.</li>
-      <li><strong>File System Management:</strong> Handles file creation, deletion, and permissions within a hierarchical structure.</li>
-      <li><strong>Device Management:</strong> Uses drivers to coordinate with printers, disks, and other peripherals.</li>
-      <li><strong>Security and Protection:</strong> Employs authentication, access control, and encryption to protect data.</li>
-      <li><strong>User Interface:</strong> Provides GUI or command-line tools for interaction.</li>
-      <li><strong>Multitasking & Multiprocessing:</strong> Supports simultaneous processes and multi-core utilization.</li>
-      <li><strong>Virtualization:</strong> Runs multiple virtual machines for resource efficiency and isolation.</li>
+      <li><strong>Hardware Protection and Management</strong> - Hardware like CPU, memory, and devices is powerful but dangerous if uncontrolled. The OS acts as the guard:</li>
+      <ul class="circle">
+        <li><strong>Device Drivers</strong> - small software pieces that let the OS communicate with hardware like printers, keyboards, or network cards.</li>
+        <li><strong>Interrupt Handing</strong> - When a hardware wants attention, like a keyboard press or a network message, it sends a signal called an interrupt. The OS pauses what it's doing to handle the event.</li>
+        <li><strong>Modes of Operation</strong> - User Moder, where normal programs run with limited power (can't break things). Kernel Mode, where the OS runs with full power over the system. The OS switches modes as needed, example, the prgram request help the OS jumps into kernel mode, does the task then returns control.</li>
+      </ul>
+
+      <li><strong>Process Management</strong> - A process is a prpgram in action not just code, but code and resources like memory and files. The OS:</li>
+      <ul class="circle">
+        <li>Creates and destroys processes as you open/close programs</li>
+        <li><strong>Schedules Processes</strong> - since many want the CPU at once, the OS decides who gets to run and for how long.</li>
+        <li><strong>Suspends and Resume Processes</strong> - for example, when a program is minimized, it can be paused to save resources.</li>
+        <li><strong>Process Synchronization</strong> - ensures multiple processes don't interfere with each other (ex. two apps writing to the same file at once).</li>
+        <li><strong>Interprocess Communication (IPC)</strong> - Allows processes to exchange information safely.</li>
+      </ul>
+
+      <li><strong>Memory Mangement</strong> - Program need memory (RAM) to run. The OS manages this like a hotel manager assigning rooms:</li>
+      <ul class="circle">
+        <li><strong>Kernel-level Allocation</strong> - Memory for the OS itself</li>
+        <li><strong>Prcoess-level allocation</strong> - Memory for each process</li>
+        <li><strong>Virtual Memory</strong> - Tricks programs into thinking they each have the whole memory space. In reality, the OS maps these requests to physical memory and even uses disk space when RAM is full (called swapping).</li>
+      </ul>
+
+      <li><strong>Storage Mangement</strong> - The OS organizes data on hard drives and SSDs so that users can store and retreive files easily.</li>
+      <ul class="circle">
+        <li><strong>Caching</strong> - Keeps frequently used data in faster memory to speed things up.</li>
+        <li><strong>Free Space Management</strong> Keeps track of which parts of the sidk are empty or used</li>
+        <li><strong>Filesystems</strong> -  Structures that define how files are stored and named (ex. NTFS, ext4).</li>
+        <li><strong>File Operations</strong> - Create, delete, rename, read, write, open, and close files.</li>
+        <li><strong>Directory Mangement</strong> - Handles folders so files are organized in a tree-like system.</li>
+      </ul>
+
+      <li><strong>Filesystems</strong> - The OS manages how data is stored and organized on storage devices (hard drivers, SSDs, USBs).</li>
+      <ul class="circle">
+        <li><strong>Support For Multiple Filesystems</strong> - Different operatign systems and devices use different formats (ex. NTFS for Window, ext4 for Linux, FAT32 for flash drives). The OS can handle several of these so you can plug in different devices and still access your data.</li>
+        <li><strong>File and Directory Management</strong> -  The OS lets you create, delete, and rename files and folders. Directories (folders) provide structure, keeping files organized in a tree-like layout</li>
+        <li><strong>File Operations</strong> - Programs don't directly touch storage hardware. Instead, they ask the OS to open, close, read, or write files. This ensures consistency, security, and prevents corruption.</li>
+      </ul>
+
+      <li><strong>Networking</strong> - Modern systems rely heavily on networks. The OS manges:</li>
+      <ul class="circle">
+        <li><strong>Device Drivers</strong> - for network hardware like Ethernet cards ir Wi-Fi adapters.</li>
+        <li><strong>Protocol Stacks</strong> - Like TCP/IP that handle how data is packaged, sent, and received reliably across networks.</li>
+        <li>Without the OS managing  the network stack, programs would have to deal with the messy details of data transfer themselves.</li>
+      </ul>
+
+      <li><strong>Virtualization</strong> - The OS can act like a host, allowing multiple "virtual computers" (virtual machines) to run on the same physical computer</li>
+      <ul class="none">
+        <li>Each VM behaves like it has its own OS and hardware, even though they are sharing.</li>
+        <li>This is useful for testing, running multiple OSs at once, or isolating workloads.</li>
+      </ul>
+
+      <li><strong>Security</strong> - Since the OS controls everything, it's also responsible for keeping the system safe:</li>
+      <ul class="circle">
+        <li><strong>Secure Boot</strong> Makes sure the system only starts with trusted code.</li>
+        <li><strong>System Integrity</strong> - Prevents tampering with core parts of the OS.</li>
+        <li><strong>Malware Reistance and Detection</strong> - Guards againts viruses, worms, and malicious software.</li>
+        <li><strong>Authentication</strong> - Makes sure only the right people log in (username, password, biometrics).</li>
+        <li><strong>Encyprion</strong> - Protects data from being read if it's stolen or intercepted.</li>
+      </ul>
     </ul>
 
     <h3>Structure of an OS</h3>
-    <ul>
-      <li><strong>Kernel:</strong> Core component managing hardware and resources.</li>
-      <li><strong>Application Layer:</strong> Where user programs interact with OS through system calls.</li>
-      <li><strong>Device Drivers:</strong> Translate OS commands to hardware operations.</li>
-      <li><strong>TCP/IP Stack:</strong> Protocol suite enabling network communication.</li>
-      <li><strong>File System:</strong> Organizes and manages stored data.</li>
+    <ul class="bullets">
+      <li>Ealry operating systems, like MS-DOS, had very simple designs with no clear seperation between user programs and the operating system</li>
+      <li>Everything ran at the same privilege level: There was no strict distinction between user mode (restricted) and kernel mode (full control). Any program had the same access rights as the OS itself.</li>
+      <li>Problem: If a program had a bug, it could easily crash the entire system. If a program was malicious, it could directly interfere with the OS and take over the computer.</li>
+      <li>Because of this, early OS designs were fast and simple, but also unstable and insecure compared to the modern systems that enforce privilege seperation.</li>
     </ul>
     <div class="img-container">
       <img src="../../img/classes/OSPic/Lecture1/StructureOS.png" alt="Operating System Structure">
     </div>
 
-    <h3>Kernel Architectures</h3>
-    <ul>
-      <li><strong>Monolithic Kernel:</strong> All OS services run in a single address space. Examples: Linux, Unix. High performance but less isolation between components.</li>
-      <li><strong>Hybrid Kernel:</strong> Combines monolithic and microkernel designs for balance. Examples: Windows NT, macOS, Android.</li>
-    </ul>
-
+    <h3>MS-DOS Operating System Structure</h3>
     <p>
-      MS-DOS: Early OS for IBM PCs, known for its simple command-line interface. Replaced by Windows in the 1990s.
+      MS-DOS (Microsoft Disk Operating System) was one of the earliest and most widely used operating system for IBM-compatible PCs in the 1980s and early 1990s.
+      It is considered a structure-less OS because it did not separate user programs from the operating system itself.
+      Early OS for IBM PCs, known for its simple command-line interface. 
+      Replaced by Windows in the 1990s.
     </p>
     <div class="img-container">
       <img src="../../img/classes/OSPic/Lecture1/MS-DOS.png" alt="MS-DOS Operating System Structure">
     </div>
 
     <h3>Monolithic Kernel</h3>
-    <p>Splits User space and kernel</p>
+    <p>
+      A monolithic kernel is one of the most common operating system structures. 
+      In this design, most of the operating system's core service like memory management, process scheduling, device drivers, and file systems all run together in kernel space.
+    </p>
     <ul class="Bullets">
-      <li><strong>Kernal Space</strong> -  Operating system components</li>
-      <li><strong>User Space</strong> - User applications and data</li>
+      <li><strong>Kernal Space</strong> -  The privilege area where the operating system's core components run. Has full access to the hardware and system resources. Contains process management, memory management, device drivers, file system management, and system call handling.</li>
+      <li><strong>User Space</strong> - Where user programs and applications run. Has limited privileges and cannot directly access hardware. Needs ro communicate with the kernel to perform tasks like reading a file or sending data to the network.</li>
+      <li><strong>System Calls</strong> User applications interact with the kernel through system calls. Example: when you open a file in a program, the request foes from user space -> system call -> kernel space -> hardware -> back to the program.</li>
+      <li><strong>All-In-One Kernel</strong> - In a monolithic design, almost everything the OS does runs inside the kernel (process management, file systems, networking, device drivers). This gives high performance because everything is in one place, but it also means that bugs or crashes in one part like a faulty driver can crash the entire system.</li>
+      <li>User space interacts with the kernel through System Calls. Examples: Windows, Linux</li>
     </ul>
-    <p>User space interacts with the kernel through System Calls. Examples: Windows, Linux</p>
+    <p>Advanatges: fast performance, no extra layervs between kernel compenents. Effcient communication, all kernel services run in the same memory space, so switching between them is quick. Disadvantages, less stable, a bug in a single kernel component like a driver can bring down the whole system. Harder to maintain, since everything is packed together, making changes can be complex</p>
     <div class="img-container">
       <img src="../../img/classes/OSPic/Lecture1/MK.png" alt="Monolithic Kernel - Bad Address Access">
       <img src="../../img/classes/OSPic/Lecture1/MK2.png" alt="Monolithic Kernel Structure">
@@ -207,37 +262,68 @@
     </div>
     <h3>Microkernel</h3>
     <p>
-      Pushes everything but the bare minimum into user space. Device drivers -> User Space and Memory Manager -> kernel. Allows for easier extension of OS. Examples: Minix, QNX
+      A microkernel is an operating system design that moves most of the operating system's services out of the kernel and into user space, keeping the kernel itself as small and simple as possible.
     </p>
+    <ul class="bullets">
+      <li><strong>Minimal Kernel</strong> - The kernel onlu handles the most essential tasks, such as: managing memeory, handling communication between processes, managing CPU scheduling. All other services like device drivers, file systems, and networking, run in user space</li>
+      <li><strong>User Space OS Services</strong> - Device drivers, file systems, and other OS componenets rn as normal user-space processes. This separation improves stability, because a crash in a driver won;t crash the entire system.</li>
+      <li><strong>Extensibility</strong> - It is easier to add or update OS services without chaning the kernel. Example, adding support for a new device driver does not require modifying kernel code.</li>
+      <li><strong>Overhead</strong> - Moving services to user space introduces extra communication overhead between user-space services and the kernel. This can make some operations slightly slower compared to a monolithic kernel.</li>
+      <li>Examples: Mach, Qnx</li>
+    </ul>
+    <p>Advantages, Better stability, failures in user-space services don't crash the whole system. Easier to maintain and extend, adding or updating services is simpler. Security, faults in user-space components are isolated, redicing system-wide risks. Disadvantages, performance overhead, extra communication between kernel and user-space services can slow some operations. More complex design, requires caredul design of communication mechanisms and service interactions.</p>
     <div class="img-container">
       <img src="../../img/classes/OSPic/Lecture1/MicroKernel.png" alt="Microkernel Structure"> 
       <img src="../../img/classes/OSPic/Lecture1/MicroKernel2.png" alt="Microkernel Based Operating System Structure"> 
     </div>
     <h3>Hybrid Kernel</h3>
-    <p>Combines aspects of monolithic and microkernel designs. Core services in kernel space, others in user space. Examples: Windows NT, macOS, Android</p>
+    <p>
+      A hybrid kernel is a type of operating system structure that combines elements of both monolithic kernels and microkernels. 
+      It tries to take the best parts of each approach while avoiding their weaknesses.
+      Example: MacOS and IOS, Android, Window NT
+    </p>
+    <ul class="bullets">
+      <li><strong>Mixed Design</strong> - Core functions like memory management and process schuleing run in kernel space like monolithic kernels. Other services, such as device drivers or certain subsystems, mau run in user space like microkernels</li>
+      <li><strong>Flexibility</strong> - Developers can decide which components stay in the kernel and which are pushed to user space. This balance allows for boyj performance and stability.</li>
+      <li><strong>Performance and Stability Tradeoff</strong> - By keeping critial services in the kernel, hybrid systems avoid the heavy communication overhead that mircrokernels sometimes suffer from. By isolating other services in user space, they gain stability and security similar to microkernls</li>
+    </ul>
+    <p>Advantages, balanced approach, combines performane of monolithic kernels with safety of microkernels. Adaptable, OS designers can customize what runs where, depending on system goals. Modern standard, most modern operating systems are hybrids, even if they lean heavily toward one side. Disadvantages, complexity, Hybrid kernels are harder to design and maintain because they mix two models. Hybrids still inherit some weaknesses from both approaches.</p>
     <div class="img-container">
       <img src="../../img/classes/OSPic/Lecture1/HybridKernel.png" alt="Hybrid Kernel Structure">
     </div>
     <h3>Loadable Kernel Modules</h3>
-    <p>
-      Modern OS (Windows, Mac, Linux) support some degree of loading into the kernel.
-      Called Loadable Kernel Modules (LKMs) in Linux.
-      Allow dynamic extension of kernel functionality without rebooting.
-      Examples: Device drivers, file systems, system calls, subsystems.
-    </p>
+    <p>Modern OS (Windows, Mac, Linux) support the ability to add or remove parts of the kernel dynamically. These components are called Loadable Kernel Modules (LKM).</p>
+    <ul class="bullets">
+      <li><strong>Dynamic Loading</strong> - LKMs allow certain parts of the operating system, such as device srivers or subsystems, to be loaded into the kernel only when needed. This avoids the need to include every possible component in the kernel at boot time.</li>
+      <li><strong>Flexibility</strong> - Administrators or the OS itseld can load or unload modules without rebooting the system. Makes the OS more adaptable and easier to maintain</li>
+      <li><strong>Types of Components</strong> - Device drivers, Add support for new hardware (printers, graphics cards, network cards). File systems, Enable new ways of storing and managing data. Networking modules Add protocols or features to the network stack. Other kernel services that don't need to always run.</li>
+    </ul>
+    <p>Advantages, Reduced memory usage: Only load components when needed. Improved modularity: Kernel stays smaller and easier to maintain. Ease of updates: Drivers or modules can be updated independently from the OS kernel.</p>
     <h3>Reak-Time Operating System</h3>
     <p>
-      Operating systems with deadlines for tasks. Hard -> MUST be met. Soft -> SHOULD be met but not critical.
+      A real-time operating system is designed to execute tasks within strict timing constraints. 
+      Unlike regular operating systems that focus on throughput and fairness, RTOS prioritize predictable timing and deadlines.
     </p>
     <ul class="bullets">
-      <li><strong>Hard RT</strong> - Airplanes, Cars, Robotics</li>
-      <li><strong>Soft RT</strong> - Video Streaming, Online Gaming, Multimedia</li>
+      <li><strong>Hard RT</strong> - Deadline must be strictly met. Missing a deadline can lead to serious consequences, such as system failure or physical damage (ex. Airplanes, Cars, Robotics)</li>
+      <li><strong>Soft RT</strong> - Deadlines should be met, but occasional misses are tolerated. Performance is still prioritized, but failures are not catastrophic.(ex. Video Streaming, Online Gaming, Multimedia)</li>
     </ul>
     <h3>Device Operating Systems</h3>
     <p>
-      Operating systems will vary in design based on the target device.
-      Examples: Windows (PCs), Android (Mobile), iOS (Apple Devices), Linux (Servers/Desktops).
-      Each type of device poses a different set of challenges and goals.
+      Operating systems are designed differently depending on the type of device they run on. 
+      Each device has unique challenges, performance goals, and user needs, which influence how the OS is structured and what features it prioritizes.
+    </p>
+    <ul class="bullets">
+      <li><strong>PC/Laptop</strong> - Focus on multitasking, user-friendly interfaces, and compatibility with a wide range of software and hardware. Examples: Windows, macOS, Linux</li>
+      <li><strong>Phone/Mobile Devices</strong> - Prioritize battery efficiency, touch interfaces, security, and app management. Examples: Android, iOS</li>
+      <li><strong>Embedded Devices</strong> - Optimized for specific tasks with limited resources. Often run real-time operating systems (RTOS) to meet timing constraints. Examples: Smart thermostats, printers, industrial controllers</li>
+      <li><strong>Distributed Systems</strong> - Coordinate multiple computers or nodes to work together as one system. Focus on network communication, fault tolerance, and resource sharing. Examples: Cloud servers, cluster computing systems</li>
+      <li><strong>Real-Time Systems</strong> - Guarantee tasks are executed within strict timing constraints. Focus on predictability and low-latency responses. Examples: Airplanes, robotics, automotive systems</li>
+    </ul>
+    <p>
+      OS design adapts to the hardware and use case.
+      Each device type requires the OS to balance performance, efficiency, and reliability differently.
+      Understanding the target device is crucial when designing, analyzing, or using an operating system.
     </p>
   </section>
 </body>
