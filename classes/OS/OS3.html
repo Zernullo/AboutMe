@@ -79,6 +79,54 @@
     </ol>
     
     <h2>Process scheduling</h2>
+    <h3>Executable Programs</h3>
+    <p>
+    An <strong>executable</strong> is a specially formatted file that contains all the information the operating system needs to properly load and run a program in memory. 
+    It includes the starting instruction, memory relocations, required libraries, and other metadata.
+    </p>
+    <ul class="bullets">
+      <li><strong>Starting instruction</strong> - The entry point where execution begins.</li>
+      <li><strong>Relocations</strong> - Information about how addresses should be adjusted when loading into memory.</li>
+      <li><strong>Libraries</strong> - External code modules required by the program to run.</li>
+      <li><strong>Executable formats</strong> - Different OSes use different formats:
+        <ul class="circles">
+          <li>Portable Executable (PE) - Windows (.exe)</li>
+          <li>Executable and Linkable Format (ELF) - Linux</li>
+          <li>Mach Object (MachO) - Mac</li>
+        </ul>
+      </li>
+    </ul>
+    <div class="img-container">
+      <img src="../../img/classes/OSPic/Lecture3/ProcessStates.png" alt="Process States">
+    </div>
+    <h3>Process States</h3>
+    <p>
+      When a program is loaded into memory, it becomes a <strong>process</strong> that is ready to run. 
+      Processes can exist in several different states depending on what they are currently doing:
+    </p>
+    <ul class="bullets">
+      <li><strong>New</strong> – The program has just been loaded into memory and is being initialized. It is preparing to enter the ready state.</li>
+      <li><strong>Ready</strong> – The process is prepared to execute but is waiting for the CPU to schedule it. It has all resources except the CPU.</li>
+      <li><strong>Running</strong> – The process is currently executing instructions on the CPU.</li>
+      <li><strong>Blocked</strong> – The process cannot continue until some event occurs, such as completion of an I/O operation or availability of a resource.</li>
+      <li><strong>Terminated</strong> – The process has finished execution and is removed from the system. All resources are released.</li>
+    </ul>
+    <h4>Process Needs</h4>
+    <p>
+      A process requires several resources to execute properly and interact with the system:
+    </p>
+    <ul class="bullets">
+      <li><strong>CPU</strong> – Time on the processor to execute instructions.</li>
+      <li><strong>Memory</strong> – Storage for the process's code, data, and current state.</li>
+      <li><strong>I/O Devices</strong> – Access to files, storage devices, or input/output hardware.</li>
+      <li><strong>Network Access</strong> – Ability to send and receive data over a network if needed.</li>
+      <li><strong>Interprocess Communication</strong> – Mechanisms to send messages and coordinate with other processes.</li>
+    </ul>
+    
+
+
+
+
 
   
 
