@@ -105,24 +105,109 @@
       Processes can exist in several different states depending on what they are currently doing:
     </p>
     <ul class="bullets">
-      <li><strong>New</strong> – The program has just been loaded into memory and is being initialized. It is preparing to enter the ready state.</li>
-      <li><strong>Ready</strong> – The process is prepared to execute but is waiting for the CPU to schedule it. It has all resources except the CPU.</li>
-      <li><strong>Running</strong> – The process is currently executing instructions on the CPU.</li>
-      <li><strong>Blocked</strong> – The process cannot continue until some event occurs, such as completion of an I/O operation or availability of a resource.</li>
-      <li><strong>Terminated</strong> – The process has finished execution and is removed from the system. All resources are released.</li>
+      <li><strong>New</strong> - The program has just been loaded into memory and is being initialized. It is preparing to enter the ready state.</li>
+      <li><strong>Ready</strong> - The process is prepared to execute but is waiting for the CPU to schedule it. It has all resources except the CPU.</li>
+      <li><strong>Running</strong> - The process is currently executing instructions on the CPU.</li>
+      <li><strong>Blocked</strong> - The process cannot continue until some event occurs, such as completion of an I/O operation or availability of a resource.</li>
+      <li><strong>Terminated</strong> - The process has finished execution and is removed from the system. All resources are released.</li>
     </ul>
     <h4>Process Needs</h4>
     <p>
       A process requires several resources to execute properly and interact with the system:
     </p>
     <ul class="bullets">
-      <li><strong>CPU</strong> – Time on the processor to execute instructions.</li>
-      <li><strong>Memory</strong> – Storage for the process's code, data, and current state.</li>
-      <li><strong>I/O Devices</strong> – Access to files, storage devices, or input/output hardware.</li>
-      <li><strong>Network Access</strong> – Ability to send and receive data over a network if needed.</li>
-      <li><strong>Interprocess Communication</strong> – Mechanisms to send messages and coordinate with other processes.</li>
+      <li><strong>CPU</strong> - Time on the processor to execute instructions.</li>
+      <li><strong>Memory</strong> - Storage for the process's code, data, and current state.</li>
+      <li><strong>I/O Devices</strong> - Access to files, storage devices, or input/output hardware.</li>
+      <li><strong>Network Access</strong> - Ability to send and receive data over a network if needed.</li>
+      <li><strong>Interprocess Communication</strong> - Mechanisms to send messages and coordinate with other processes.</li>
     </ul>
-    
+    <h3>Process Memory</h3>
+    <p>
+      A process's memory is divided into several regions, each with a specific purpose:
+    </p>
+    <ul class="bullets">
+      <li><strong>User Stack</strong> - Stores static data and function call information. Allocated at compile time.</li>
+      <li><strong>Heap</strong> - Dynamic memory allocations during runtime, typically via <code>malloc</code> or similar functions.</li>
+      <li><strong>Read/Write (RW) Area</strong>
+        <ul class="circles">
+          <li><code>.data</code> - Stores initialized variables.</li>
+          <li><code>.bss</code> - Stores uninitialized variables.</li>
+        </ul>
+      </li>
+      <li><strong>Read-Only (RO) Area</strong>
+        <ul class="circles">
+          <li><code>.txt</code> - Contains executable code.</li>
+          <li><code>.rodata</code> - Stores constants, strings, and jump tables.</li>
+          <li><code>.init</code> - Initialization routines.</li>
+        </ul>
+      </li>
+      <li><strong>Shared Libraries</strong> - Code shared across multiple processes to save memory and allow updates without recompiling.</li>
+    </ul>
+    <h3>Operating System Challenges</h3>
+    <p>
+      Operating systems have to manage a variety of tasks to ensure that programs run efficiently and safely. Some key challenges include:
+    </p>
+    <ul class="bullets">
+      <li><strong>Create Processes</strong> - The OS must load a program into memory, initialize its resources, and set it up to run as a process.</li>
+      <li><strong>Suspend & Resume Processes</strong> - The OS should be able to pause a running process (e.g., waiting for I/O) and later resume it without losing its state.</li>
+      <li><strong>Terminate Processes</strong> - After a process finishes execution or needs to be stopped, the OS must safely release its resources and remove it from the system.</li>
+    </ul>
+    <h3>Process Information</h3>
+    <p>
+      The operating system keeps track of each process in order to manage them effectively. 
+      This includes storing a variety of details for every process:
+    </p>
+    <ul class="bullets">
+      <li><strong>Process ID</strong> - A unique identifier, usually an integer.</li>
+      <li><strong>Command line arguments</strong> - Parameters passed to the program when it starts.</li>
+      <li><strong>Memory allocated</strong> - Memory reserved for the process to use.</li>
+      <li><strong>Open files</strong> - Files currently being used by the process.</li>
+      <li><strong>Permissions</strong> - Access rights for files, devices, and other resources.</li>
+      <li><strong>Parent & Child Process(es)</strong> - Relationships between processes.</li>
+      <li><strong>Loaded libraries</strong> - External code that the process depends on.</li>
+      <li>...and other relevant details</li>
+    </ul>
+    <p>All of this information for a single process is stored in a structure commonly called a <strong>process descriptor</strong>.</p>
+    <div class="img-container">
+      <img src="../../img/classes/OSPic/Lecture3/LinuxTask.png" alt="Linux Task Structure">
+      <img src="../../img/classes/OSPic/Lecture3/WindowEProcess.png" alt="Windows EPROCESS Structure">
+    </div>
+    <h3>Windows PCB & PEB</h3>
+    <p>
+      In Windows, the process control block (PCB) is known as the <strong>EPROCESS</strong> structure. 
+      It contains all the information the OS needs to manage a process, including its state, memory usage, and resource handles.
+      Kernel space structures like EPROCESS are not directly accessible to user-mode applications for security and stability reasons.
+      Information needed for scheduler, dispatcher, and interrupt accounting is stored in the <strong>KPROCESS</strong> structure, which is embedded within the EPROCESS structure.
+      Fields: Context Switches, Affinity, Priority, Process State, etc.
+    </p>
+    <p>
+      The <strong>PEB (Process Environment Block)</strong> is another important structure that holds information about the process's environment, such as loaded modules and environment variables.
+      User space applications can access the PEB to retrieve information about their own process.
+      Used by heap manager, image loader, and other subsystems.
+      Fields: Thread local storage, Heap pointer, Loaded modules, etc.
+    </p>
+    <h3>Tracking Processes</h3>
+    <p>
+      The operating system maintains a list of all active processes, often referred to as the <strong>process table</strong>. 
+      This table allows the OS to quickly find and manage processes as needed.
+      Each entry in the process table corresponds to a process descriptor (like EPROCESS in Windows or task_struct in Linux).
+      The OS uses this table to schedule processes, allocate resources, and handle interprocess communication.
+    </p>
+    <p>
+      Doubly linked list is commonly used to implement the process table, allowing efficient insertion and deletion of processes.
+      Each process descriptor contains pointers to the next and previous processes in the list, enabling quick traversal
+      <br><br>
+      Hash Tables can also be used for faster lookups based on process IDs or other attributes.
+      This allows the OS to quickly find a process descriptor without having to traverse the entire list.
+      Use Pid as a lookup entry to find the process descriptor in the hash table.
+      Why does this work? Because Pid is unique to each process.
+    </p>
+    <div class="img-container">
+      <img src="../../img/classes/OSPic/Lecture3/TrackingProcesses.png" alt="Tracking Processes">
+    </div>
+
+
 
 
 
