@@ -64,57 +64,94 @@
     <!-- PAGE CONTENT GOES HERE -->
 <section class="classes">
 <!--Lecture 2-->
-    <h2>What's Covered? (Lecture 2)</h2>
+    <h1>Lecture 2</h1>
+    <p id="Reference">
+      Date Taken: Fall 2025<br/>
+      Status: Completed<br>
+      Reference: LSU Professor Daniel Donze, ChatGBT
+    </p>
+    <h2>What's Covered?</h2>
     <ul class="Bullets">
       <li>Computer Architecture</li>
       <li>Hardware</li>
       <li>Softwares Programming</li>
       <li>Virtualization</li>
     </ul>
-    <h2>Computer Architecture</h2>
-    <h3>Operating System Services</h3>
+    <h2>Background</h2>
+    <h3>Operating System Services (2 & 3)</h3>
     <p>
-      Operating systems provide an environment for execution of programs and services to programs and users.
-      One set of operating-system services provides functions that are helpful to the user:
+      Operating systems also provide services that improve communication, reliability, 
+      efficiency, and security within the system:
     </p>
     <ul class="bullets">
-      <li>User Interface - Almost all opertaing systems have a user interface (UI)</li>
+      <li><strong>Communications</strong> - Processes often need to exchange information.</li>
       <ul class="circles">
-        <li>Varies between Command-Line (CLI), Graphics User Interface (GUI), touch-screen, Batch</li>
+        <li>This can happen on the same computer or across a network between different computers.</li>
+        <li>Communication methods include <em>shared memory</em> (both processes use the same memory area) 
+            and <em>message passing</em> (the OS moves packets of data between processes).</li>
       </ul>
-      <li><strong>I/O Operations</strong> - A running program may require I/O, which may involve a file or an I/O device</li>
-      <li><strong>Program execution</strong> - The system must be able to load a program into memory and to run that program, end execution, either normally or abnormally (indicating error)</li>
-      <li><strong>File-system manipulation</strong> - The file system is a repository of information. The operating system must provide functions to create files and directories, to delete them, to read and write data, and to search for files.</li>
-      <li><strong>Communications</strong> - In many systems, processes need to exchange information. This exchange may occur between processes executing on the same computer or between processes executing on different systems connected by a network.</li>
-      <li><strong>Error detection</strong> - Both the hardware and the software need to be able to detect and correct errors. The operating system needs to be aware of possible errors. For each type of error, OS should take the appropriate action to ensure correct and consistent computing</li>
-      <li><strong>Resource allocation</strong> - When multiple users or multiple jobs running concurrently, resources must be allocated to each of them. Many types of resources - CPU cycles, main memory, file storage, I/O devices.</li>
-      <li><strong>Logging</strong> - To keep track of which users use how much and what kinds of computer resources</li>
+
+      <li><strong>Error Detection</strong> - The OS must constantly watch for possible errors.</li>
+      <ul class="circles">
+        <li>Errors may occur in hardware (CPU, memory, I/O devices) or in user programs.</li>
+        <li>For each error, the OS takes appropriate action to keep the system stable and consistent.</li>
+        <li>Debugging tools provided by the OS help users and programmers identify and fix problems.</li>
+      </ul>
+
+      <li><strong>Resource Allocation</strong> - When multiple programs or users are active, 
+          resources must be shared fairly.</li>
+      <ul class="circles">
+        <li>Resources include CPU time, memory, file storage, and I/O devices.</li>
+        <li>The OS decides who gets what resources, and for how long, to maximize efficiency.</li>
+      </ul>
+
+      <li><strong>Logging</strong> - The OS keeps track of resource usage.</li>
+      <ul class="circles">
+        <li>Records how much CPU, memory, and storage each user or process consumes.</li>
+        <li>Useful for system monitoring, billing, and performance troubleshooting.</li>
+      </ul>
+
+      <li><strong>Protection and Security</strong> - Ensures safety of processes and data.</li>
+      <ul class="circles">
+        <li><em>Protection</em>: Prevents processes from interfering with one another, 
+            and controls access to resources.</li>
+        <li><em>Security</em>: Defends against external threats by requiring authentication, 
+            controlling file access, and blocking unauthorized use of devices.</li>
+      </ul>
     </ul>
+
     <h3>System Boot</h3>
     <p>
-      When a system powers on, execution begins at a fixed memory location. 
-      The BIOS (or modern UEFI) finds a bootable device and loads a small bootstrap loader from ROM/EEPROM. 
-      The loader locates and loads the kernel into memory, starting the OS. 
-      Sometimes this uses a two-step process with a boot block on disk. 
-      GRUB is a common loader that supports multiple kernels, disks, and boot options. 
-      Boot loaders can also start the system in specific states, like single-user mode.
+      The boot process is how a computer starts up its operating system. It begins the moment power is turned on and continues until the OS is fully running.
     </p>
+    <ul class="bullets">
+      <li><strong>Startup Location</strong> - When power is initialized, execution begins at a fixed memory location.</li>
+      <li><strong>OS Availability</strong> - The operating system must be accessible to the hardware so it can be started.</li>
+      <li><strong>BIOS</strong> - The Basic Input-Output System (BIOS) looks for a bootable device and loads the bootloader.</li>
+      <li><strong>Bootstrap Loader</strong> - A small piece of code stored in ROM or EEPROM that finds the kernel, loads it into memory, and starts it.</li>
+      <li><strong>Two-Step Process</strong> - Sometimes a boot block at a fixed location is loaded by ROM code, which then loads the bootstrap loader from disk.</li>
+      <li><strong>UEFI</strong> - Modern systems use the Unified Extensible Firmware Interface (UEFI) instead of BIOS, offering more advanced features.</li>
+      <li><strong>GRUB</strong> - A common bootstrap loader that allows selecting a kernel from multiple disks, versions, or kernel options.</li>
+      <li><strong>Kernel Running</strong> - Once the kernel is loaded, the system is considered up and running.</li>
+      <li><strong>Boot States</strong> - Bootloaders often support different modes, such as single-user mode for maintenance or troubleshooting.</li>
+    </ul>
     <div class="img-container">
       <img src="../../img/classes/OSPic/Lecture2/AbstractView.png" alt="Abstract View of Components of Modern Computer">
       <img src="../../img/classes/OSPic/Lecture2/AbstractView2.png" alt="Abstract View of Components of Modern Computer 2">
       <img src="../../img/classes/OSPic/Lecture2/AbstractView3.png" alt="Abstract View of Components of Modern Computer 3">
       <img src="../../img/classes/OSPic/Lecture2/Single-Processor.png" alt="Single Processor System">
     </div>
-    <h3>MultiProcessor/Parallel Systems</h3>
+    <h3>MultiProcessor / Parallel Systems</h3>
     <p>
-      Multiprocessor systems (also called parallel systems) have two or more processors in close communication, sharing the computer bus, the clock, and sometimes memory and peripheral devices. 
-      The main advantage of multiprocessor systems is their increased throughput and reliability.
-      Multiprocessor systems are classified into two categories: tightly coupled and loosely coupled.
+      Multiprocessor systems use more than one CPU to increase performance, reliability, and efficiency. These systems can be designed in different ways depending on how processors communicate and share resources.
     </p>
     <ul class="bullets">
-      <li><strong>Tightly Coupled</strong> - Multiprocessor systems that share memory and a clock. Examples: Symmetric Multiprocessing (SMP), Asymmetric Multiprocessing (AMP)</li>
-      <li><strong>Loosely Coupled</strong> - Systems with multiple independent processors, each with its own memory and OS, connected via a network. Examples: Clusters, Grids</li>
+      <li><strong>Multiprocessor Systems</strong> - A computer with more than one CPU working together.</li>
+      <li><strong>Tightly-Coupled Multiprocessors</strong> - Processors share the same memory and clock. Communication happens through shared memory.</li>
+      <li><strong>Loosely-Coupled Multiprocessors</strong> - Processors do not share memory or a common clock. Communication happens through message-passing.</li>
+      <li><strong>Examples</strong> - Cluster systems are a common form of loosely-coupled multiprocessors.</li>
     </ul>
+
     <div class="img-container">
       <img src="../../img/classes/OSPic/Lecture2/Multiprocessors.png" alt="Multiprocessor System">
       <img src="../../img/classes/OSPic/Lecture2/Multiprocessors2.png" alt="Symmetric Multiprocessor System and Asymmetric Multiprocessor System">
@@ -245,24 +282,38 @@
     </div>
     <h4>System Call Specifics (Linux)</h4>
     <p>
-      Call C library wrapper. 
-      C funtion -> args are on stack normaly, kernel expects them in regusters.
-      Wrapper takes stack items and puts them into registers.
-      All System calls enter the same way, so we need an id, System call # put into RAX register.
-      Enter kernerl mode, details depend on archiecture.
+      In Linux, system calls follow a specific sequence to transition from user mode to kernel mode. The process involves the use of C library wrappers, registers, and system call identifiers.
     </p>
-    <h4>System Call Specs (Cont)</h4>
+    <ul class="bullets">
+      <li><strong>Call C Library Wrapper</strong> - Applications typically call a C library wrapper function instead of directly invoking the system call.</li>
+      <li><strong>Argument Handling</strong> - C functions normally place arguments on the stack, but the kernel expects them in registers.</li>
+      <li><strong>Wrapper Role</strong> - The wrapper takes stack-based arguments and moves them into the appropriate registers.</li>
+      <li><strong>System Call Identification</strong> - Since all system calls enter the kernel the same way, each call is assigned a unique ID placed in the <code>RAX</code> register.</li>
+      <li><strong>Kernel Mode Entry</strong> - Execution switches into kernel mode, with details depending on the CPU architecture.</li>
+    </ul>
+    <h4>System Call Specifics (Linux - Continued)</h4>
     <p>
-      Kernel invokes its system call handler.
-      Save registers to Kernel Stack.
-      Check System call # for validity.
-      Looks up # in System Call table.
-      Checks additional args
-      Complete operation and return result status to handler.
-      Restores registers and stack and place return value on user stack.
-      Return to C wrapper and user mode.
-      C wrapper checks return value, set errno, and return success value.
+      Once the system call enters the kernel, the kernel handles the request, validates it, and eventually returns control back to the user program through the C library wrapper.
     </p>
+    <ul class="bullets">
+      <li><strong>Kernel System Call Handler</strong> - The kernel invokes its system call handler after the transition.</li>
+      <ul class="circles">
+        <li>Saves registers to the kernel stack</li>
+        <li>Checks the system call number for validity</li>
+        <li>Looks up the number in the system call table</li>
+        <li>Validates any additional arguments</li>
+        <li>Performs the requested operation</li>
+        <li>Returns result status to the handler</li>
+        <li>Restores registers and stack, places return value on user stack</li>
+        <li>Returns execution to the C wrapper in user mode</li>
+      </ul>
+      <li><strong>C Wrapper Post-Processing</strong> - After control returns to the C wrapper:</li>
+      <ul class="circles">
+        <li>Checks the return value</li>
+        <li>Sets <code>errno</code> if there was an error</li>
+        <li>Returns the success or error value to the calling program</li>
+      </ul>
+    </ul>
     <div class="img-container">
       <img src="../../img/classes/OSPic/Lecture2/DetailedSystemCall.png" alt="Detailed System Call Diagram">
     </div>
@@ -296,29 +347,139 @@
     <div class="img-container">
       <img src="../../img/classes/OSPic/Lecture2/VirtualMemory.png" alt="Virtual Memory">
     </div>
-    <h4>What is Virtualization?</h4>
+    <h4>Virtualization</h4>
     <p>
-      Virtualization is creating a "virtual" layer of hardware to run another computer inside.
-      A "Computer inside of a Computer"
-      The java virtual machine is somehwhat similar.
-      JVM host java bytecide inside.
-      JVM translates the java bytecode to the native assembly on the fly for the machine running java.
-      Microsoft's .NET functions similarly.
-      Details are complex, but for now, just the basic idea
+      Virtualization is the process of creating a “virtual” layer of hardware, allowing one computer to run another computer inside it. Essentially, it is like running a “computer inside a computer.”
     </p>
-    <h3>Terminology</h3>
-    <ul class="none">
-      <li><strong>Virtual Machine (VM)</strong> - The machine that is running on this abstracted hardware. ALso called a guets machine or guest OS</li>
-      <li><strong>Host Machine (Host OS)</strong> - The machine that is running the virtialization component and "hosting" the guest machines</li>
-      <li><strong>Hypervisor</strong> - Software, firmware, or hardware that enables the virtualization of machines</li>
-      <li><strong>Para-virtualization</strong> - The guest machine is modified/optimized for running in a virtualized environment</li>
+    <ul class="bullets">
+      <li><strong>Concept:</strong> Creates a virtual hardware environment to run additional systems.</li>
+      <li><strong>Java Virtual Machine (JVM):</strong> Hosts Java bytecode inside a virtual environment and translates it to native assembly code on-the-fly for the host machine.</li>
+      <li><strong>Microsoft .NET:</strong> Functions similarly by providing a virtual layer to execute managed code.</li>
+      <li><strong>Complexity:</strong> The underlying implementation is detailed and sophisticated, but the core idea is providing a virtual computing environment for running programs safely and independently of the host hardware.</li>
+    </ul>
+    <h3>Virtualization Terminology</h3>
+    <ul class="bullets">
+      <li><strong>Virtual Machine (VM)</strong>
+        <ul class="circles">
+          <li>The “computer” that runs inside another computer using virtualization.</li>
+          <li>Also called a <em>guest machine</em> or <em>guest OS</em>.</li>
+        </ul>
+      </li>
+      <li><strong>Host Machine (Host OS)</strong>
+        <ul class="circles">
+          <li>The physical computer that is running the virtualization software.</li>
+          <li>This machine “hosts” the guest virtual machines and provides them access to hardware resources.</li>
+        </ul>
+      </li>
+      <li><strong>Hypervisor</strong>
+        <ul class="circles">
+          <li>Software, firmware, or hardware that enables virtualization.</li>
+          <li>It creates and manages virtual machines, controlling how they share the physical hardware.</li>
+        </ul>
+      </li>
+      <li><strong>Para-virtualization</strong>
+        <ul class="circles">
+          <li>A method where the guest VM is modified or optimized to work efficiently in a virtualized environment.</li>
+          <li>Helps improve performance by reducing some overhead compared to fully standard virtual machines.</li>
+        </ul>
+      </li>
     </ul>
     <h4>Types of Hypervisors</h4>
-    <ul class="none">
-      <li><strong>Type 0</strong> - Hardware, often seen on mainframes, servers. The "Host" is the hardware itself</li>
-      <li><strong>Type 1</strong> - OS level, Either its own operating system or an OS with virtualization capabilities. Seperate OS: Vmware ESX, Citrix XenServer. OS with virtualization: Window Server with HyperV, RedHat Linus with KVM</li>
-      <li><strong>Type 2</strong> - Software, runs inside of any regular OS. Vmware Player/Fusion, Oracle VirtualBox, Parallels(Mac)</li>
+    <ul class="bullets">
+      <li><strong>Type 0 - Hardware Hypervisors:</strong> 
+        <ul class="circles">
+          <li>Runs directly on the physical hardware without needing an operating system first.</li>
+          <li>Commonly used in big servers and mainframes where performance and reliability are critical.</li>
+          <li>Since it works directly on the hardware, it is very fast and efficient.</li>
+        </ul>
+      </li>
+      <li><strong>Type 1 - OS-Level Hypervisors:</strong>
+        <ul class="circles">
+          <li>Runs either as a dedicated operating system or as an operating system with built-in virtualization features.</li>
+          <li>Examples of dedicated OS: VMware ESX, Citrix XenServer - the hypervisor itself manages hardware and guest machines.</li>
+          <li>Examples of OS with virtualization: Windows Server with Hyper-V, Red Hat Linux with KVM - the OS handles regular tasks but also manages virtual machines.</li>
+          <li>Provides good performance because it still has direct access to hardware, but with more flexibility than Type 0.</li>
+        </ul>
+      </li>
+      <li><strong>Type 2 - Software Hypervisors:</strong>
+        <ul class="circles">
+          <li>Runs on top of a normal operating system like any other application.</li>
+          <li>Examples: VMware Player/Fusion, Oracle VirtualBox, Parallels (Mac).</li>
+          <li>Easy to install and use, great for testing or running virtual machines on personal computers.</li>
+          <li>Performance is slightly slower than Type 0 or 1 because it goes through the host OS to access hardware.</li>
+        </ul>
+      </li>
     </ul>
+
+    <h3>Virtualization Capabilities</h3>
+    <ul class="bullets">
+      <li><strong>Suspension</strong>
+        <ul class="circles">
+          <li>Allows you to “pause” a virtual machine while keeping its exact state in memory.</li>
+          <li>When resumed, the VM continues exactly where it left off.</li>
+          <li>Useful for tasks like memory analysis, forensic investigation, or system testing.</li>
+        </ul>
+      </li>
+      <li><strong>Snapshots</strong>
+        <ul class="circles">
+          <li>Allows you to take a snapshot, which is like a saved copy of the VM’s current state.</li>
+          <li>You can revert the VM back to this snapshot later.</li>
+          <li>Extremely useful for malware testing, debugging the OS kernel, or trying out system changes safely.</li>
+        </ul>
+      </li>
+      <li><strong>VM Hardware Management</strong>
+        <ul class="circles">
+          <li>You can assign resources to each VM, such as CPU cores, RAM, and disk space.</li>
+          <li>Helps balance system performance when running multiple virtual machines at the same time.</li>
+        </ul>
+      </li>
+    </ul>
+    <h3>Popular Software Virtualization Tools</h3>
+    <ul class="bullets">
+      <li><strong>VMware</strong>
+        <ul class="circles">
+          <li><strong>Player:</strong> Free version (discontinued) for running virtual machines with basic features.</li>
+          <li><strong>Fusion / Pro:</strong> Paid version with advanced features for professional and development use.</li>
+        </ul>
+      </li>
+      <li><strong>Oracle VirtualBox</strong>
+        <ul class="circles">
+          <li>Completely free virtualization software.</li>
+          <li>Allows you to run multiple operating systems on a single computer for testing, development, or learning.</li>
+        </ul>
+      </li>
+      <li><strong>Windows Subsystem for Linux (WSL)</strong>
+        <ul class="circles">
+          <li>Allows Linux to run natively inside Windows.</li>
+          <li>Useful for developers and those learning Linux without leaving Windows.</li>
+        </ul>
+      </li>
+      <li><strong>Mac Parallels</strong>
+        <ul class="circles">
+          <li>Allows Windows to run in a separate window on macOS.</li>
+          <li>Useful for running Windows-specific software without rebooting the Mac.</li>
+        </ul>
+      </li>
+    </ul>
+    <h3>Containerization Software</h3>
+    <ul class="bullets">
+      <li><strong>Docker</strong>
+        <ul class="circles">
+          <li>Software that allows you to package applications and all their dependencies into containers.</li>
+          <li>Containers are lightweight, isolated environments that can run on any system with Docker installed.</li>
+          <li>Useful for consistent development, testing, and deployment across different machines.</li>
+        </ul>
+      </li>
+      <li><strong>Kubernetes</strong>
+        <ul class="circles">
+          <li>Software used to manage and orchestrate containers at scale.</li>
+          <li>Automates deployment, scaling, and operations of multiple containers across multiple machines.</li>
+          <li>Useful for large applications that need high availability and easy management of resources.</li>
+        </ul>
+      </li>
+    </ul>
+
+
 
 
 </section>
