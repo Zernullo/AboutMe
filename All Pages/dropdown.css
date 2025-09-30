@@ -148,6 +148,6 @@
   .diff-language,
   .diff-classes,
   .diff-lecture {
-    font-size: clamp(10px, 3vw, 12px); /* smaller dropdown text */
+    font-size: clamp(0.8rem, 4vw, 1.2rem); /* smaller dropdown text */
   }
 }
