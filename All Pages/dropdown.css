@@ -144,9 +144,4 @@
     font-size: 12px;
     padding: 6px 10px;
   }
-
-  .drop_down {
-    flex-direction: column; /* stack vertically if needed */
-    gap: 0.5rem;
-  }
 }
