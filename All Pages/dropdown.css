@@ -48,7 +48,9 @@
   position: absolute;
   top: 100%;                 /* right below the button */
   left: 0;                   /* align left edges */
-  width: 100%;               /* match the button width */
+  min-width: 100%;               /* match button width */
+  width: auto;               /* auto width based on content */
+  white-space: nowrap;     /* prevent text wrapping */
   font-size: 16px;
   background-color: var(--text-color);
   box-shadow: 0 8px 16px rgba(0,0,0,0.2);
