@@ -142,7 +142,12 @@
   .dropbtn-classes,
   .dropbtn-lecture {
     width: 70px;           /* even narrower */
-    font-size: clamp(10px, 3vw, 12px); /* smaller text */
+    font-size: 12px;        /* smaller text */
     padding: 6px 10px;
+  }
+  .diff-language,
+  .diff-classes,
+  .diff-lecture {
+    font-size: clamp(10px, 3vw, 12px); /* smaller dropdown text */
   }
 }
