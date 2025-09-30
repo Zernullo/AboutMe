@@ -1,27 +1,33 @@
 document.addEventListener('DOMContentLoaded', function () {
-  document.querySelectorAll('.dropdown-language, .dropdown-classes, .dropdown-lecture')
-    .forEach(dropdown => {
-      const button = dropdown.querySelector('button');
+  const dropdowns = document.querySelectorAll('.dropdown-language, .dropdown-classes, .dropdown-lecture');
 
-      button.addEventListener('click', function (e) {
-        e.stopPropagation();
+  dropdowns.forEach(dropdown => {
+    const button = dropdown.querySelector('button');
 
-        // Close all other dropdowns first
-        document.querySelectorAll('.dropdown-language, .dropdown-classes, .dropdown-lecture')
-          .forEach(d => {
-            if (d !== dropdown) d.classList.remove('active');
-          });
+    button.addEventListener('click', function (e) {
+      e.stopPropagation();
 
-        // Toggle current dropdown
-        dropdown.classList.toggle('active');
+      // Close all others
+      dropdowns.forEach(d => {
+        if (d !== dropdown) {
+          d.classList.remove('active');
+          d.querySelector('button').setAttribute('aria-expanded', 'false');
+        }
       });
-    });
 
-  // Close when clicking anywhere else
+      // Toggle current
+      const isActive = dropdown.classList.toggle('active');
+      button.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+    });
+  });
+
+  // Close when clicking outside
   document.addEventListener('click', function (e) {
     if (!e.target.closest('.dropdown-language, .dropdown-classes, .dropdown-lecture')) {
-      document.querySelectorAll('.dropdown-language, .dropdown-classes, .dropdown-lecture')
-        .forEach(d => d.classList.remove('active'));
+      dropdowns.forEach(d => {
+        d.classList.remove('active');
+        d.querySelector('button').setAttribute('aria-expanded', 'false');
+      });
     }
   });
 });
