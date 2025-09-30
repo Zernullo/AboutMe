@@ -1,9 +1,11 @@
 document.querySelectorAll('.dropdown-language, .dropdown-classes, .dropdown-lecture')
   .forEach(dropdown => {
-    const button = dropdown.querySelector('.dropbtn-language, .dropbtn-classes, .dropbtn-lecture');
+    const button = dropdown.querySelector('button');
     
     button.addEventListener('click', function (e) {
-      e.stopPropagation(); // don’t close immediately
+      e.preventDefault();   // stops form-submit behavior
+      e.stopPropagation();  // don’t close immediately
+      
       // Close all others first
       document.querySelectorAll('.dropdown-language, .dropdown-classes, .dropdown-lecture')
         .forEach(d => d.classList.remove('active'));
