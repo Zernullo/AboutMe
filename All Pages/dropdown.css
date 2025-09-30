@@ -89,12 +89,23 @@
   border-radius: 0.5rem;
 }
 
-/* Show dropdown on hover */
-.dropdown-language:hover .diff-language,
-.dropdown-classes:hover .diff-classes,
-.dropdown-lecture:hover .diff-lecture {
+/* Show dropdown when on mobile */
+.dropdown-language.active .diff-language,
+.dropdown-classes.active .diff-classes,
+.dropdown-lecture.active .diff-lecture {
   display: flex;
 }
+
+
+/* Only apply hover dropdowns when a real hover device is present */
+@media (hover: hover) and (pointer: fine) {
+  .dropdown-language:hover .diff-language,
+  .dropdown-classes:hover .diff-classes,
+  .dropdown-lecture:hover .diff-lecture {
+    display: flex;
+  }
+}
+
 
 /* Adjust dropdowns for smaller screens */
 @media (max-width: 768px) {
