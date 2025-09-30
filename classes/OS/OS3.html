@@ -397,7 +397,8 @@
     <p>
       There are alos "Hybrid Threads" implementations that combine aspects of both user-level and kernel-level threads.
       These map one or more user threads to a single kernel thread, allowing for efficient context switching while still taking advantage of multi-core processors.
-      Example - The Java Virtual Machine (JVM) uses a hybrid threading model, where Java
+      Example - The Java Virtual Machine (JVM) uses a hybrid threading model, where Java threads are mapped to native OS threads.
+      This allows Java applications to benefit from the performance of user-level threads while still being able to utilize multiple CPU cores.
     </p>
     <div class="img-container">
       <img src="../../img/classes/OSPic/Lecture3/UserKernelThreads.png" alt="User vs Kernel Threads">
