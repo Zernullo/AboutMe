@@ -48,9 +48,7 @@
   position: absolute;
   top: 100%;                 /* right below the button */
   left: 0;                   /* align left edges */
-  min-width: 100%;               /* match button width */
-  width: auto;               /* auto width based on content */
-  white-space: nowrap;     /* prevent text wrapping */
+  min-width: 100%;               /* match the button width */
   font-size: 16px;
   background-color: var(--text-color);
   box-shadow: 0 8px 16px rgba(0,0,0,0.2);
@@ -128,7 +126,7 @@
   .diff-language,
   .diff-classes,
   .diff-lecture {
-    font-size: 14px;        /* smaller dropdown text */
+    font-size: clamp(12px, 2vw, 14px);        /* smaller dropdown text */
   }
 
   .diff-language a,
@@ -144,7 +142,7 @@
   .dropbtn-classes,
   .dropbtn-lecture {
     width: 70px;           /* even narrower */
-    font-size: 12px;
+    font-size: clamp(10px, 3vw, 12px); /* smaller text */
     padding: 6px 10px;
   }
 }
