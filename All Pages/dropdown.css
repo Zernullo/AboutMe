@@ -129,7 +129,7 @@
   .dropbtn-language,
   .dropbtn-classes,
   .dropbtn-lecture {
-    width: 100px;           /* even narrower */
+    width: 70px;           /* even narrower */
     font-size: 12px;
     padding: 6px 10px;
   }

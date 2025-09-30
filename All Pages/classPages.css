@@ -102,3 +102,69 @@
   margin-bottom: 2rem;
 }
 
+/* Adjust dropdowns for smaller screens */
+@media (max-width: 768px) {
+  .classes {
+    padding: 8rem 5% 2rem; /* Less padding on smaller screens */
+  }
+
+  .classes h1 {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+  }
+
+  .classes h2 {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+  }
+
+  .classes h3 {
+    font-size: 1.5rem;
+  }
+
+  .classes p,
+  .classes ul,
+  .classes ol,
+  .bullets,
+  .numbers,
+  .circles,
+  .squares,
+  .none {
+    font-size: clamp(0.9rem, 3vw, 1.5rem);
+  }
+
+  .img-container img {
+    width: clamp(150px, 90%, 350px); /* Smaller images */
+  }
+}
+
+@media (max-width: 480px) {
+  .classes {
+    padding: 6rem 3% 1.5rem; /* Further reduced padding */
+  }
+
+  .classes h1 {
+    font-size: clamp(1.5rem, 7vw, 2.5rem);
+  }
+
+  .classes h2 {
+    font-size: clamp(1.2rem, 6vw, 1.5rem);
+  }
+
+  .classes h3 {
+    font-size: 1.2rem;
+  }
+
+  .classes p,
+  .classes ul,
+  .classes ol,
+  .bullets,
+  .numbers,
+  .circles,
+  .squares,
+  .none {
+    font-size: clamp(0.8rem, 4vw, 1.2rem);
+  }
+
+  .img-container img {
+    width: clamp(120px, 95%, 250px); /* Even smaller images */
+  }
+}
