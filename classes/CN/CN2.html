@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Website</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../All Pages/style.css"> <!-- Global CSS -->
+  <link rel="stylesheet" href="../../All Pages/dropdown.css"> <!-- Classes-specific CSS -->
+  <link rel="stylesheet" href="../../All Pages/classPages.css"> <!-- Classes-specific CSS -->
+  <script src="../../script.js"></script>
+  <script src="../../All Pages/dropdown.js"></script>
+</head>
+<body>
+  <header>
+    <a href="../../index.html" class="logo">
+      <img src="../../img/ZernulloLogo.png" alt="Zernullo Logo">
+    </a>
+
+    <nav class="drop_down">
+      <div class="dropdown-language">
+        <button type="button" class="dropbtn-language">Language</button>
+        <div class="diff-language">
+          <a href="../../languages/html/python.html">Python</a>
+          <a href="../../languages/java.html">Java</a>
+          <a href="../../languages/html/C.html">C</a>
+          <a href="../../languages/html/C-sharp.html">C#</a>
+          <a href="../../languages/html/C++.html">C++</a>
+          <a href="../../languages/javascript.html">JavaScript</a>
+        </div>
+      </div>
+
+      <div class="dropdown-classes">
+        <button type="button" class="dropbtn-classes">Classes</button>
+        <div class="diff-classes">
+          <a href="../Cyber/Cyber.html">Intro to Cybersecurity</a>
+          <a href="../OS/OS.html">Object Systems</a>
+          <a href="../CN/CN.html">Computer Networks</a>
+          <a href="../AI/AI.html">Artifical Intelligence</a>
+          <a href="../EC/EC.html">Ethics in Computing</a>
+        </div>
+      </div>
+
+      <div class="dropdown-lecture">
+        <button type="button" class="dropbtn-lecture">Lectures</button>
+        <div class="diff-lecture">
+          <a href="CN.html">Lecture 1</a>
+          <a href="CN2.html">Lecture 2</a>
+          <a href=".html">Lecture 3</a>
+          <a href=".html">Lecture 4</a>
+          <a href=".html">Lecture 5</a>
+          <a href=".html">Lecture 6</a>
+        </div>
+      </div>
+    </nav>
+
+    <nav class="main_nav">
+      <a href="../../index.html">Home</a>
+      <a href="../../html/education.html" class="active">Education</a>
+      <a href="../../html/projects.html">Projects</a>
+      <a href="../../html/contact.html">Contact</a>
+    </nav>
+  </header>
+
+    <!-- PAGE CONTENT GOES HERE -->
+<section class="classes">
+    <h1>Computer Networks</h1>
+    <h2>Lecture 2</h2>
+    <p id="Reference">
+        Date Taken: Fall 2025<br/>
+        Status: Work in Progress<br>
+        Reference: LSU Professor Tasnuva Farheen, ChatGBT
+    </p>
+    <h2>Overview</h2>
+    <ul class="bullets">
+        <li>Principles of Network</li>
+        <li>Web and HTTP</li>
+        <li>Email, SMTP, IMAP</li>
+        <li>The Domain Name System (DNS)</li>
+        <li>Video Streaming and Content Distribution Networks</li>
+        <li>Socket Programming With UDP and TCP</li>
+    </ul>
+
+    <h3>Our Goals</h3>
+    <ul class="bullets">
+        <li>Conceptual and implementation aspects of application layer protocols</li>
+        <li>Transport layer service models</li>
+        <li>Client server paradigm</li>
+        <li>Peer to peer paradigm</li>
+        <li>Learn about protocols by examining popular application level protocols and infrastructure</li>
+        <ul class="circle">
+            <li>HTTP</li>
+            <li>DNS</li>
+            <li>SMTP, IMAP</li>
+            <li>Video Streaming, CDNs</li>
+        </ul>
+        <li>Programming network applications: socket API</li>
+    </ul>
+
+    <h2>Creating a Network App</h2>
+    <p>
+        Write a program that runs on different end systems.
+        The program communicates with another program over a network using sockets.
+        The program can be a client or a server. The program can use either TCP or UDP.
+        The program can be written in any programming language that supports sockets.
+    </p>
+    <p>
+        No need to write software for network core devices (routers, switches).
+        Network core devices do not run user applications.
+        Application on end systems allows for rapid app development, propagation.
+    </p>
+    <div class="img-container">
+        <img src="../../img/classes/CNPic/Chap2/CreatingNetworkApp.png" alt="Creating a Network App">
+    </div>
+
+    <h2>Client Server Paradigm</h2>
+    <p>
+        Server: always-on host, permanent IP address, often in data center for scaling.
+    </p>
+    <p>
+        Client: communicates with server, may have dynamic IP address, can be mobile.
+        May be intermittently connected and do not communicate directly with each other.
+        Examples: HTTP, IMAP, FTP.
+    </p>
+    <div class="img-container">
+        <img src="../../img/classes/CNPic/Chap2/ClientParadigm.png" alt="Client Server Paradigm">
+    </div>
+
+</section>
+
+</body>
+</html>
