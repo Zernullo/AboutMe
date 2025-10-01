@@ -481,7 +481,7 @@
     </p>
     <p>
       Examples of preemptive scheduling algorithms include Round Robin, Shortest Remaining Time First, and Priority Scheduling.
-      Examples of non-preemptive scheduling algorithms include First-Come, First-Served (FCFS) and Shortest Job Next (SJN).
+      Examples of non-preemptive scheduling algorithms include First-Come, First-Served (FCFS) and Shortest Job Next (SJF).
     </p>
     <div class="img-container">
       <img src="../../img/classes/OSPic/Lecture3/PreemptiveVSNon.png" alt="Preemptive vs Non-Preemptive">
@@ -525,7 +525,7 @@
     <ul class="bullets">
       <li><strong>First-Come, First-Served (FCFS):</strong> Processes are scheduled in the order they arrive. Simple to implement but can lead to long waiting times for short processes.</li>
       <li><strong>Shortest Job First (SJF):</strong> The process with the shortest estimated run time is scheduled next. Can minimize average waiting time but requires accurate estimates of process lengths.</li>
-      <li><strong>Shortest Remaining Time (SRT):</strong> A preemptive version of SJF where the process with the shortest remaining time is scheduled next. Can improve response times for shorter processes.</li>
+      <li><strong>Shortest Remaining Time First (SRTF):</strong> A preemptive version of SJF where the process with the shortest remaining time is scheduled next. Can improve response times for shorter processes.</li>
       <li><strong>Round Robin (RR):</strong> Each process is assigned a fixed time slice (quantum) and is cycled through the ready queue. Good for time-sharing systems but can lead to high context switch overhead.</li>
       <li><strong>Preemptive Priority Scheduling:</strong> Similar to priority scheduling but allows for preemption if a higher-priority process becomes ready. Helps ensure that high-priority processes receive timely attention.</li>
       <li><strong>Multilevel Queue Scheduling (MLQS):</strong> Processes are divided into multiple queues based on their priority or type (e.g., system processes, interactive processes, batch processes). Each queue can have its own scheduling algorithm. Helps manage different types of workloads effectively.</li>
@@ -548,17 +548,17 @@
       <img src="../../img/classes/OSPic/Lecture3/FCFS3.png" alt="First Come First Served">
     </div>
     <p>Practice Problem in Moodle.</p>
-    <h4>Shortest Job Next (SJN)</h4>
+    <h4>Shortest Job First (SJF)</h4>
     <p>
-      SJN is a non-preemptive scheduling algorithm that selects the process with the shortest estimated run time from the ready queue. The idea is to minimize the average waiting time for all processes.
-      Preemptive replace current process if a new process arrives with a shorter burst comes along.
+      SJF is a scheduling algorithm that selects the process with the shortest estimated run time to execute next. This approach aims to minimize the average waiting time for processes in the ready queue.
+      SJF can be implemented in both preemptive and non-preemptive forms. In the preemptive version, known as Shortest Remaining Time (SRT), a running process can be interrupted if a new process arrives with a shorter estimated run time.
     </p>
     <p>
-      While SJN can be effective in reducing average waiting time, it has some drawbacks:
+      While SJF can significantly improve average waiting times, it also has some challenges:
     </p>
     <ul class="bullets">
-      <li><strong>Starvation:</strong> Long processes may starve if short processes keep arriving.</li>
-      <li><strong>Estimation Difficulty:</strong> Requires accurate estimates of process run times, which may not always be available.</li>
+      <li><strong>Estimation of Process Lengths:</strong> SJF requires accurate estimates of process run times, which can be difficult to obtain.</li>
+      <li><strong>Starvation:</strong> Long processes may be perpetually delayed if short processes continue to arrive, leading to starvation.</li>
     </ul>
     <div class="img-container">
       <img src="../../img/classes/OSPic/Lecture3/SJF.png" alt="Shortest Job First">
