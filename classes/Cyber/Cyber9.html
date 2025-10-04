@@ -103,6 +103,103 @@
   <h3>Legacy Platforms</h3>
   <p>Some devices and system stick around longer then intended. Although they can still work they often pose to security challenges.</p>
   <p>Some older devices, operating system, applications, or middleware that are still in use. They may be running on EOL software, meaning no new security patches or vendor support</p>
+  <p>May be running end-of-life (EOL) software, meaning no new security patches or vendor support</p>
+  <p>May require additional security measures to protect them from vulnerabilities</p>
+
+  <h3>Virtualization Security</h3>
+  <p>
+    Virtualization technology allows multiple virtual machines (VMs) to run on a single physical machine. 
+    While this offers benefits like resource efficiency and isolation, it also introduces unique security challenges.
+    Quantity of resources varies between VMs and the host machine can lead to vulnerabilities if not properly managed.
+  </p>
+  <ul class="bullets">
+    <li><strong>Hypervisor Vulnerabilities</strong> - The hypervisor, which manages VMs, can be a target for attacks. If compromised, an attacker could gain access to all VMs running on that host.</li>
+    <li><strong>VM Escape</strong> - This is a type of attack where malware in a VM escapes its confines to affect the host system or other VMs.</li>
+    <li><strong>Misconfiguration Risks</strong> - Virtual environments can be complex, and misconfigurations can lead to security gaps. Properly securing each VM and the hypervisor is crucial.</li>
+    <li><strong>Local Privilege Escalation</strong> - If an attacker gains access to a VM, they may attempt to escalate their privileges to access the host system or other VMs.</li>
+    <li><strong>Command Injection</strong> - Attackers may try to inject malicious commands into a VM, potentially affecting the host or other VMs.</li>
+    <li><strong>Information Disclosure</strong> - Sensitive information from the host or other VMs may be exposed if a VM is compromised.</li>
+  </ul>
+
+  <h3>VM Escape Protection</h3>
+  <p>
+    Virtual Machine (VM) escape is a security vulnerability that allows an attacker to break out of a virtual machine and gain access to the host system or other VMs running on the same host.
+    This can lead to unauthorized access, data breaches, and other security issues.
+    Once an attacker escapes a VM, they can potentially control the host system and all other VMs on it.
+    This would be a huge security risk, especially in environments where multiple VMs are used for different purposes.
+    To protect against VM escape attacks, consider the following strategies:
+  </p>
+  <ul class="bullets">
+    <li><strong>Isolation</strong> - Ensure strong isolation between VMs. This can include using separate physical hosts for critical VMs and employing network segmentation.</li>
+    <li><strong>Regular Patching</strong> - Keep the hypervisor and all VMs up to date with the latest security patches to mitigate known vulnerabilities.</li>
+    <li><strong>Monitoring</strong> - Implement monitoring solutions to detect unusual behavior within VMs and the hypervisor.</li>
+    <li><strong>Access Controls</strong> - Enforce strict access controls to limit who can interact with the hypervisor and VMs.</li>
+  </ul>
+
+  <h4>Escaping The VM</h4>
+  <p>
+    VM escape attacks exploit vulnerabilities in the hypervisor or the VM software itself. 
+    Attackers may use techniques such as buffer overflows, code injection, or exploiting misconfigurations to break out of the VM.
+    Once they have escaped, they can potentially access the host system and other VMs, leading to a wide range of security issues.
+  </p>
+
+  <h3>Resource Reuse</h3>
+  <p>
+    The hypervisor manages the relationship between physical and virtual resources. Available RAM, storage space, CPU availability, etc.
+    These resources can be reused between VMs to optimize performance and efficiency.
+    Data can inadvertently be shared between VMs, and timely updates to the memory management features and security patches can mitigate these risks.
+    Resource reuse in virtualized environments can lead to security risks if not properly managed. 
+    Attackers may attempt to exploit shared resources between VMs to gain unauthorized access or escalate privileges.
+  </p>
+  <ul class="bullets">
+    <li><strong>Shared Memory</strong> - If VMs share memory resources, an attacker may be able to access sensitive information from other VMs.</li>
+    <li><strong>Resource Contention</strong> - VMs competing for limited resources may inadvertently expose vulnerabilities that can be exploited.</li>
+    <li><strong>Improper Cleanup</strong> - Failing to properly clean up resources after a VM is terminated can leave residual data that may be accessed by other VMs.</li>
+  </ul>
+
+  <h3>Supply Chain Risks</h3>
+  <p>
+    Supply chain risks refer to the potential vulnerabilities and threats that can arise from the various components and services involved in the production, distribution, and maintenance of hardware and software.
+    These risks can originate from third-party vendors, manufacturers, or even internal processes within an organization.
+    Supply chain attacks can lead to the introduction of malicious code, backdoors, or other vulnerabilities into products before they reach the end user.
+    To mitigate supply chain risks, organizations should implement robust security measures throughout their supply chain, including:
+  </p>
+  <ul class="bullets">
+    <li><strong>Vendor Assessment</strong> - Evaluate the security practices of third-party vendors and suppliers to ensure they meet your organization's security standards.</li>
+    <li><strong>Code Reviews</strong> - Conduct thorough code reviews and security assessments of third-party software and components before integrating them into your systems.</li>
+    <li><strong>Monitoring</strong> - Continuously monitor for signs of compromise or unusual activity within your supply chain.</li>
+    <li><strong>Incident Response</strong> - Develop and implement an incident response plan specifically for supply chain attacks.</li>
+  </ul>
+  <p>
+    By proactively addressing supply chain risks, organizations can reduce the likelihood of successful attacks and enhance their overall security posture.
+  </p>
+
+  <h3>SolarWinds Supply Chain Attack</h3>
+  <p>
+    The SolarWinds supply chain attack, discovered in December 2020, is one of the most significant cyber espionage incidents in recent history.
+    Attackers compromised the SolarWinds Orion software platform, which is widely used for IT management and monitoring.
+    By injecting malicious code into a software update, the attackers were able to gain access to the networks of numerous organizations, including government agencies and Fortune 500 companies.
+    This attack highlighted the vulnerabilities present in supply chains and the potential impact of third-party software on organizational security.
+  </p>
+  <p>
+    The SolarWinds attack demonstrated the importance of supply chain security and the need for organizations to implement robust security measures throughout their supply chains.
+    It also underscored the challenges of detecting and responding to sophisticated cyber threats that can exploit trusted relationships between organizations and their vendors.
+  </p>
+  <p>
+    In response to the SolarWinds attack, many organizations have reevaluated their supply chain security practices and implemented additional measures to protect against similar threats in the future.
+    This includes increased scrutiny of third-party vendors, enhanced monitoring for unusual activity, and improved incident response capabilities.
+  </p>
+
+  <h3>Misconfiguration Vulnerabilities: Open Permissions</h3>
+  <p>
+    Misconfiguration vulnerabilities occur when security settings are not properly configured, leading to potential security risks.
+    One common example is open permissions on cloud resources, which can expose sensitive data and services to unauthorized access.
+    Organizations must implement strict access controls and regularly audit their configurations to mitigate these risks.
+  </p>
+  <p>
+    Very easy to exploit, attackers can easily scan for misconfigured resources and gain access to sensitive data or services.
+    Regularly review and update security configurations to ensure they align with best practices and organizational policies.
+  </p>
 
 </section>
 
