@@ -201,6 +201,113 @@
     Regularly review and update security configurations to ensure they align with best practices and organizational policies.
   </p>
 
+  <h3>Unsecured Admin Accounts</h3>
+  <p>
+    Unsecured admin accounts pose a significant security risk, as they often have elevated privileges that can be exploited by attackers.
+    Common issues include weak passwords, lack of multi-factor authentication (MFA), and failure to regularly review and update access permissions.
+    To mitigate these risks, organizations should enforce strong password policies, implement MFA, and conduct regular audits of admin accounts to ensure they are secure.
+  </p>
+  <p>
+    Admin accounts should be closely monitored for unusual activity, and any suspicious behavior should be investigated promptly.
+    By securing admin accounts, organizations can reduce the risk of unauthorized access and protect their systems and data from potential threats.
+  </p>
+  <p>
+    Disable direct login to root or admin accounts, and use the su or sudo command to perform administrative tasks.
+    What su and sudo do is that they allow a permitted user to execute a command as the superuser or another user, as specified by the security policy.
+    This adds an extra layer of security by requiring users to authenticate themselves before performing actions that require
+  </p>
+
+  <h3>Insecure Protocols</h3>
+  <p>
+    Insecure protocols are communication protocols that lack adequate security measures, making them vulnerable to interception, eavesdropping, and other attacks.
+    Examples of insecure protocols include FTP, Telnet, and HTTP, which transmit data in plain text without encryption.
+    To enhance security, organizations should replace insecure protocols with secure alternatives, such as SFTP, SSH, and HTTPS, which provide encryption and authentication mechanisms to protect data in transit.
+  </p>
+
+  <h3>Open Ports and Services</h3>
+  <p>
+    Open ports and services can expose organizations to security risks, as they may provide attackers with potential entry points into the network.
+    Organizations should regularly scan their networks for open ports and services, and implement strict access controls to limit exposure.
+    Additionally, unnecessary services should be disabled, and only essential ports should be left open to minimize the attack surface.
+  </p>
+  <p>
+    Use firewalls and intrusion detection/prevention systems to monitor and control network traffic, and ensure that only authorized users and devices can access critical resources.
+    Firewalls rulesets should be regularly reviewed and updated to reflect changes in the network environment and security policies.
+    Always test firewall rules to ensure they are functioning as intended and effectively blocking unauthorized access.
+  </p>
+
+  <h3>Default Settings</h3>
+  <p>
+    Default settings on devices and software can pose significant security risks, as they are often well-known and can be easily exploited by attackers.
+    It is crucial to change default usernames, passwords, and configurations to enhance security.
+    Organizations should implement a process for reviewing and updating default settings during the initial setup and configuration of devices and software.
+  </p>
+
+  <h3>Mobile Device Security</h3>
+  <p>
+    Mobile devices are often targeted by attackers due to their portability and the sensitive data they contain.
+    Organizations should implement security measures to protect mobile devices, including:
+  </p>
+  <ul class="bullets">
+    <li>Enforcing strong password policies and biometric authentication.</li>
+    <li>Implementing mobile device management (MDM) solutions to enforce security policies and remotely wipe lost or stolen devices.</li>
+    <li>Regularly updating mobile operating systems and applications to patch vulnerabilities.</li>
+    <li>Educating users about the risks of using public Wi-Fi and the importance of using VPNs.</li>
+  </ul>
+
+  <h3>Jailbreaking/rooting</h3>
+  <p>
+    Jailbreaking (iOS) and rooting (Android) are processes that allow users to gain elevated privileges on their mobile devices.
+    While these processes can provide users with greater control over their devices, they also introduce significant security risks.
+    Organizations should implement policies to prevent jailbreaking and rooting, and educate users about the potential risks, including:
+  </p>
+  <ul class="bullets">
+    <li>Increased vulnerability to malware and attacks.</li>
+    <li>Bypassing of security controls and restrictions.</li>
+    <li>Potential data loss or corruption.</li>
+  </ul>
+  <p>
+    Regularly monitor mobile devices for signs of jailbreaking or rooting, and take appropriate action if such activity is detected.
+  </p>
+
+  <h3>Sideloading</h3>
+  <p>
+    Sideloading refers to the process of installing applications on a mobile device from sources other than the official app store.
+    While sideloading can provide users with access to a wider range of applications, it also introduces significant security risks.
+    Organizations should implement policies to restrict sideloading and educate users about the potential risks, including:
+  </p>
+  <ul class="bullets">
+    <li>Increased exposure to malware and malicious applications.</li>
+    <li>Bypassing of security controls and app vetting processes.</li>
+    <li>Potential data loss or corruption.</li>
+  </ul>
+  <p>
+    Organizations should regularly monitor mobile devices for signs of sideloading and take appropriate action if such activity is detected.
+  </p>
+
+  <h3>Zero-Day Vulnerabilities</h3>
+  <p>
+    Zero-day vulnerabilities are security flaws that are unknown to the software vendor and have not yet been patched.
+    These vulnerabilities can be exploited by attackers to gain unauthorized access to systems and data.
+    Organizations should implement a robust vulnerability management program to identify and remediate zero-day vulnerabilities, including:
+  </p>
+  <ul class="bullets">
+    <li>Regularly updating and patching software and systems.</li>
+    <li>Implementing intrusion detection and prevention systems to monitor for suspicious activity.</li>
+    <li>Conducting regular security assessments and penetration testing.</li>
+  </ul>
+  <p>
+    Stay informed about emerging threats and vulnerabilities through threat intelligence feeds and security advisories. 
+    By proactively addressing zero-day vulnerabilities, organizations can reduce the risk of successful attacks and enhance their overall security posture.
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/CyberPic/Lecture9/ZeroDay.png" alt="Zero Day Vulnerability">
+  </div>
+  <ul class="bullets">
+    <li><a href="https://www.zero-day.cz/database/">Zero-Day Vulnerability Database</a></li>
+    <li><a href=" https://www.rapid7.com/blog/tag/zero-day/">Rapid7 Zero-Day Blog</a></li>
+    <li><a href=" https://www.vulncheck.com/blog/state-of-exploitation-1h-2025">VulnCheck Blog</a></li>
+  </ul>
 </section>
 
 </body>
