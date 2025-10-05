@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Website</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../All Pages/style.css"> <!-- Global CSS -->
+  <link rel="stylesheet" href="../../All Pages/dropdown.css"> <!-- Classes-specific CSS -->
+  <link rel="stylesheet" href="../../All Pages/classPages.css"> <!-- Classes-specific CSS -->
+  <script src="../../script.js"></script>
+  <script src="../../All Pages/dropdown.js"></script>
+</head>
+<body>
+  <header>
+    <a href="../../index.html" class="logo">
+      <img src="../../img/ZernulloLogo.png" alt="Zernullo Logo">
+    </a>
+
+    <nav class="drop_down">
+      <div class="dropdown-language">
+        <button type="button" class="dropbtn-language">Language</button>
+        <div class="diff-language">
+          <a href="../../languages/html/python.html">Python</a>
+          <a href="../../languages/java.html">Java</a>
+          <a href="../../languages/html/C.html">C</a>
+          <a href="../../languages/html/C-sharp.html">C#</a>
+          <a href="../../languages/html/C++.html">C++</a>
+          <a href="../../languages/javascript.html">JavaScript</a>
+        </div>
+      </div>
+
+      <div class="dropdown-classes">
+        <button type="button" class="dropbtn-classes">Classes</button>
+        <div class="diff-classes">
+          <a href="../Cyber/Cyber.html">Intro to Cybersecurity</a>
+          <a href="../OS/OS.html">Object Systems</a>
+          <a href="../CN/CN.html">Computer Networks</a>
+          <a href="../AI/AI.html">Artifical Intelligence</a>
+          <a href="../EC/EC.html">Ethics in Computing</a>
+        </div>
+      </div>
+
+      <div class="dropdown-lecture">
+        <button type="button" class="dropbtn-lecture">Lectures</button>
+        <div class="diff-lecture">
+            <a href="Cyber.html">Lecture 1 & 2</a>
+            <a href="Cyber3.html">Lecture 3</a>
+            <a href="Cyber4&5.html">Lecture 4 & 5</a>
+            <a href="Cyber6.html">Lecture 6</a>
+            <a href="Cyber7.html">Lecture 7</a>
+            <a href="Cyber8.html">Lecture 8</a>
+            <a href="Cyber9&10.html">Lecture 9 & 10</a>
+            <a href="Cyber11.html">Lecture 11</a>
+        </div>
+      </div>
+    </nav>
+
+    <nav class="main_nav">
+      <a href="../../index.html">Home</a>
+      <a href="../../html/education.html" class="active">Education</a>
+      <a href="../../html/projects.html">Projects</a>
+      <a href="../../html/contact.html">Contact</a>
+    </nav>
+  </header>
+
+    <!-- PAGE CONTENT GOES HERE -->
+<section class="classes">
+    <h1>Intro To Cyber</h1>
+    <h2>Lecture 11</h2>
+    <p id="Reference">
+        Date Taken: Fall 2025<br/>
+        Status: Work in Progress<br>
+        Reference: LSU Professor Joseph Khoury, ChatGBT
+    </p>
+
+    <h2>Malware</h2>
+    <p>
+        Malware, short for malicious software, refers to any software intentionally designed to cause damage to a computer, server, client, or computer network. 
+        Malware can take many forms, including viruses, worms, Trojans, ransomware, spyware, adware, and more. 
+        It can disrupt system operations, steal sensitive information, or gain unauthorized access to networks.
+    </p>
+    <h3>Types of Malware</h3>
+    <ol class="numbers">
+        <li><strong>Flooders (DoS client):</strong> A type of malware designed to overwhelm a target system with traffic, rendering it unavailable to users.</li>
+        <li><strong>Keyloggers:</strong> Software that records keystrokes made by a user, often used to capture sensitive information like passwords and credit card numbers.</li>
+        <li><strong>Logic Bombs:</strong> Malicious code that is triggered by a specific event or condition, often used to cause damage or steal data.</li>
+        <br><br>
+        <li><strong>Macro Viruses:</strong> A type of malware that is embedded in macro programs, often used in applications like Microsoft Word or Excel.</li>
+        <li><strong>Mobile Code:</strong> Software that is transferred from one computer to another and executed on the receiving computer without the user's knowledge or consent.</li>
+        <li><strong>Rootkits:</strong> Malicious software designed to gain unauthorized root or administrative access to a computer system while hiding its presence.</li>
+        <br><br>
+        <li><strong>Spammer Programs:</strong> Software designed to send unsolicited messages, often for advertising purposes.</li>
+        <li><strong>Spyware:</strong> Software that secretly monitors and collects user information without their knowledge.</li>
+        <li><strong>Trojan Horse:</strong> Malicious software disguised as legitimate software, tricking users into installing it.</li>
+        <br><br>
+        <li><strong>Viruses:</strong> Malicious code that attaches itself to clean files and spreads throughout a computer system, infecting files and programs.</li>
+        <li><strong>Worms:</strong> Standalone malware that replicates itself to spread to other computers, often exploiting vulnerabilities in network security.</li>
+        <li><strong>Zombie, Bot:</strong> Infected computers that are controlled remotely by an attacker, often used in botnets for distributed denial-of-service (DDoS) attacks.</li>
+        <br><br>
+        <li><strong>Ransomware:</strong> Malware that encrypts a victim's files and demands payment for the decryption key.</li>
+        <li><strong>Adware:</strong> Software that automatically displays or downloads advertising material, often unwanted.</li>
+    </ol>
+
+    <h3>Classification of Malware</h3>
+    <p>Malware is classifies into two broad categories:</p>
+    <p>
+        Base first on how it spreads or propogates to reach desired targets, and second on the actions or payloads it performs once it reaches a target system. Also classified by how it infects files:
+    </p>
+    <ol class="numbers">
+        <li><strong>File Infector:</strong> Malware that attaches itself to executable files and spreads when the infected file is run.</li>
+        <li><strong>Macro Virus:</strong> Malware that is embedded in macro programs, often used in applications like Microsoft Word or Excel.</li>
+        <li><strong>Polymorphic Virus:</strong> Malware that can change its code or signature to avoid detection by antivirus software.</li>
+        <li><strong>Metamorphic Virus:</strong> Similar to polymorphic viruses, but can completely rewrite its own code while retaining its original functionality.</li>
+        <li><strong>Network Virus:</strong> Malware that spreads across networks by exploiting vulnerabilities in network protocols.</li>
+    </ol>
+
+    <h3>Malware Methods</h3>
+    <p>
+        Propagation Mechanisms include: Infection of existing content by viruses that is subsequently spread to other systems,
+        use of worms to exploit vulnerabilities in network protocols to spread themselves, and Trojans that trick users into installing them.
+    </p>
+    <p>
+        Payload actions performed by malware once it reaches a target systm can include: Corruption or destruction of data, theft of sensitive information, installation of backdoors for future access,
+        and use of the infected system to launch attacks on other systems.
+    </p>
+
+    <h3>Viruses and Worms</h3>
+    <p>
+        Viruses and worms are two common types of malware that can cause significant damage to computer systems and networks.
+    </p>
+    <p>
+        <strong>A Virus</strong> is a type of malware that attaches itself to a legitimate program or file and spreads when the infected program or file is executed.
+        Viruses can be spread through email attachments, infected software downloads, and other means. Once a virus infects a system, it can cause a range of problems, including data corruption, system crashes, and unauthorized access to sensitive information.
+        <br><strong>Virus Types include:</strong> Program viruses, Boot sector viruses, Script viruses, Macro viruses.
+        <br><strong>File less Virus</strong>: A type of virus that is good at hiding from traditional antivirus software by operating in memory rather than writing itself to disk. They operate in memory, making them harder to detect and remove. They also never installed in files, making them more difficult to identify using traditional file-based scanning methods.
+    </p>
+    <div class="img-container">
+        <img src="../../img/classes/CyberPic/Lecture11/FileLessVirus.png" alt="File Less Virus"> 
+    </div>
+    <p>
+        <strong>A Worm</strong> is a standalone malware that can replicate itself and spread to other systems without the need for a host program or file.
+        Worms typically exploit vulnerabilities in network protocols to spread themselves, and can quickly infect large numbers of systems.
+        Once a worm infects a system, it can cause similar problems as viruses, including data corruption, system crashes, and unauthorized access to sensitive information.
+        <br><strong>Worm Types include:</strong> Email worms, Internet worms, Instant messaging worms, File-sharing worms.
+        <br>Firewalls and IDS/IPS can mitigate many worm infestations by blocking malicious traffic and detecting suspicious activity. But it won't help much once the worm has already infected a system.
+    </p>
+    <div class="img-container">
+        <img src="../../img/classes/CyberPic/Lecture11/WormInfection.png" alt="Worm">
+    </div>
+
+    <h3>Spyware</h3>
+    <p>
+        Spyware is a type of malware that is designed to secretly monitor and collect information about a user's online activities without their knowledge or consent.
+        Spyware can be installed on a user's computer through various means, such as email attachments, infected software downloads, or by exploiting vulnerabilities in web browsers or operating systems.
+        Once installed, spyware can track a user's browsing history, keystrokes, and other sensitive information, such as login credentials and credit card numbers.
+        Spyware can also slow down a user's computer and cause other performance issues.
+        <br><strong>Types of Spyware include:</strong> Adware, System Monitors, Trojans, Tracking Cookies, Browser Hijackers.
+    </p>
+    <h4>Protecting Against Spyware</h4>
+    <ul class="bullets">
+        <li>Use reputable antivirus and anti-spyware software</li>
+        <li>Keep all software, including the operating system and applications, up to date</li>
+        <li>Be cautious when clicking on links or downloading attachments from unknown sources</li>
+        <li>Regularly review and manage installed programs and browser extensions</li>
+        <li>Have backups of important data</li>
+        <li>Run some scans with anti-spyware tools - Malwarebytes is a popular option</li>
+    </ul>
+
+    <h3>Bloatware</h3>
+    <p>
+        Bloatware, also known as crapware or junkware, refers to software that comes pre-installed on a new computer or device that is often unnecessary and takes up valuable storage space and system resources.
+        Bloatware can include trial versions of software, games, toolbars, and other applications that the user may not want or need.
+        Bloatware can slow down a computer's performance, cause system crashes, and create security vulnerabilities.
+        Some bloatware may also collect user data without their knowledge or consent.
+        <br><strong>Examples of Bloatware include:</strong> Trial versions of antivirus software, pre-installed games, toolbars, and other applications that the user may not want or need.
+    </p>
+    <h4>Removing Bloatware</h4>
+    <ul class="bullets">
+        <li>Use the built-in uninstaller to remove unwanted programs</li>
+        <li>Use third-party software designed to remove bloatware</li>
+        <li>Perform a clean installation of the operating system to start fresh without any pre-installed software</li>
+        <li>Be cautious when downloading and installing new software to avoid adding more bloatware to the system</li>
+    </ul>
+
+    <h3>Keyloggers</h3>
+    <p>
+        A keylogger is a type of surveillance software that records every keystroke made on a computer or mobile device. 
+        Keyloggers can be used for legitimate purposes, such as monitoring employee activity or parental control, but they are often used maliciously to steal sensitive information, such as passwords and credit card numbers.
+        Keyloggers can be installed on a device through various means, such as email attachments, infected software downloads, or by exploiting vulnerabilities in web browsers or operating systems.
+        Once installed, keyloggers can run in the background without the user's knowledge, making them difficult to detect.
+        <br><strong>Types of Keyloggers include:</strong> Software keyloggers, Hardware keyloggers, Wireless keyloggers, Kernel-level keyloggers.
+    </p>
+    <h4>Protecting Against Keyloggers</h4>
+    <ul class="bullets">
+        <li>Use reputable antivirus and anti-malware software</li>
+        <li>Keep all software, including the operating system and applications, up to date</li>
+        <li>Be cautious when clicking on links or downloading attachments from unknown sources</li>
+        <li>Regularly review and manage installed programs and browser extensions</li>
+        <li>Have backups of important data</li>
+        <li>Run some scans with anti-spyware tools - Malwarebytes is a popular option</li>
+    </ul>
+
+    <h3>Logic Bombs</h3>
+    <p>
+        A logic bomb is a piece of malicious code that is triggered by a specific event or condition, such as a certain date or the presence of a particular file.
+        Logic bombs can be used to delete files, corrupt data, or perform other harmful actions on a computer or network.
+        They are often hidden within legitimate software or scripts, making them difficult to detect.
+        <br><strong>Examples of Logic Bombs include:</strong> A script that deletes files if a certain user logs in, or a program that corrupts data if it is not run on a specific date.
+    </p>
+    <h4>Protecting Against Logic Bombs</h4>
+    <ul class="bullets">
+        <li>Use reputable antivirus and anti-malware software</li>
+        <li>Keep all software, including the operating system and applications, up to date</li>
+        <li>Be cautious when downloading and installing new software</li>
+        <li>Regularly back up important data</li>
+        <li>Monitor system activity for unusual behavior</li>
+    </ul>
+
+    <h3>Rootkits</h3>
+    <p>
+        A rootkit is a type of malicious software that is designed to gain unauthorized access to a computer or network while hiding its presence.
+        Rootkits can be used to steal sensitive information, install additional malware, or create backdoors for future access.
+        They can be difficult to detect and remove because they often operate at a low level within the operating system.
+        <br><strong>Types of Rootkits include:</strong> User-mode rootkits, Kernel-mode rootkits, Firmware rootkits, Virtualized rootkits.
+    </p>
+    <h4>Protecting Against Rootkits</h4>
+    <ul class="bullets">
+        <li>Use reputable antivirus and anti-malware software</li>
+        <li>Keep all software, including the operating system and applications, up to date</li>
+        <li>Be cautious when downloading and installing new software</li>
+        <li>Regularly back up important data</li>
+        <li>Monitor system activity for unusual behavior</li>
+    </ul>
+    <p>
+        Finding and removing rootkits can be challenging, as they are designed to evade detection by traditional security measures.
+        Looking for unusual system behavior, such as unexpected network activity or changes to system files, can help identify the presence of a rootkit.
+        Specialized rootkit detection and removal tools may also be necessary to fully eliminate the threat.
+        In some cases, a complete system reinstall may be the only way to ensure that a rootkit has been fully removed.
+        Secure boot with UEFI (Unified Extensible Firmware Interface) can help prevent rootkits from being installed by ensuring that only trusted software is allowed to run during the boot process. 
+        Security in the BIOS (Basic Input/Output System) can also help protect against rootkits by preventing unauthorized changes to system settings.
+    </p>
+</section>
+
+</body>
+</html>
