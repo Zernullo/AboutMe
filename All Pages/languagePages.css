@@ -1,4 +1,4 @@
-/* CSS for Page */
+/* CSS for OS Page */
 .classes {
   padding: 12rem 9% 2rem;
   display: flex;
@@ -8,7 +8,6 @@
   margin: 0 auto;
   text-align: left;
 }
-
 
 .classes h1 {              /* Page Title */
   font-size: clamp(2.5rem, 5vw, 4.5rem);
@@ -25,18 +24,17 @@
 }
 
 .classes h3 {              /* Subsection Titles */
-  font-size: 2rem;
+  font-size: clamp(1.2rem, 4vw, 1.5rem);
   font-weight: bold;
   color: white;
 }
 
 .classes h4 {
   font-size: clamp(1rem, 2vw, 1.7rem);
-  font-weight: 600;            /* Semi-bold */
-  margin-top: 1rem;            /* Space above */
-  color: rgba(245,245,245,0.7); /* Matches your headings */
+  font-weight: 600;
+  margin-top: 1rem;
+  color: rgba(245,245,245,0.7);
 }
-
 
 #Reference {               /* Reference Titles */
   font-size: 1rem;
@@ -77,44 +75,57 @@
   margin-bottom: 0.7rem;
 }
 
-/* == Code Blocks == */
 pre {
-  background-color: #1a1a1a;  /* Same as card-bg*/
-  color: #f5f5f5;             /* Default text color */
-  padding: 1rem; /* Padding inside the code block*/
-  margin-bottom: 2rem; /* Space below the code block */
+  background-color: #1a1a1a;
+  color: #f5f5f5;
+  padding: 1rem;
+  margin-bottom: 2rem;
   border-radius: 8px;
-  overflow-x: auto;
-  font-family: 'Fira Code', monospace; /* coding font */
-  border-left: 4px solid #ff4d4d; /* accent border to match primary color */
+  overflow-x: auto;          /* allows horizontal scroll */
+  overflow-y: hidden;        /* optional: hides vertical scrollbar */
+  font-family: 'Fira Code', monospace;
+  border-left: 4px solid #ff4d4d;
+  white-space: pre;          /* keeps code formatting (no wrapping) */
+  max-width: 100%;           /* prevents overflowing container */
+  box-sizing: border-box;    /* keeps padding within width */
 }
 
+pre::-webkit-scrollbar { /* This allows for custom scrollbar styling */
+  height: 8px;
+}
+
+pre::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+pre::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+
+
 code {
-  color: #ff4d4d;   /* Primary accent for keywords or inline code */
-  background-color: #2a2a2a; /* Slightly lighter than pre background for inline code */
+  color: #ff4d4d;
+  background-color: #2a2a2a;
   padding: 0.1rem 0.3rem;
   border-radius: 4px;
   font-family: 'Fira Code', monospace;
   font-size: clamp(1rem, 2vw, 1.5rem);
+  white-space: pre;     /* keeps code formatting (no wrapping) */
 }
 
 /* == IMG == */
 .img-container {
   margin: 2rem 0;
   display: flex;
-  flex-wrap: wrap;          /* ➡ Images wrap to a new line */
-  align-self: center;       /* ➡ Center the container itself */
-  justify-content: center;  /* ➡ Center them */
-  gap: 1rem;                /* ➡ Space between images */
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .img-container img {
-  /* Responsive width clamp(min, preferred, max)
-  *The browser looks at the preferred value:
-  *If it’s smaller than min, it uses min.
-  *If it’s bigger than max, it uses max.
-  *Otherwise, it uses the preferred value as-is. 
-  */
   width: clamp(200px, 80%, 450px);
   height: auto;
   border-radius: 1.5rem;
@@ -122,4 +133,97 @@ code {
   margin-bottom: 2rem;
 }
 
+/* == MEDIA QUERIES == */
+@media (max-width: 768px) {
+  .classes {
+    padding: 10rem 5% 2rem;
+  }
 
+  .classes h1 {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+  }
+
+  .classes h2 {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+  }
+
+  .classes h3 {
+    font-size: clamp(1.3rem, 4vw, 1.7rem);
+  }
+
+  .classes h4 {
+    font-size: clamp(1rem, 3vw, 1.5rem);
+  }
+
+  .classes p,
+  .classes ul,
+  .classes ol,
+  .bullets,
+  .numbers,
+  .circles,
+  .squares,
+  .none {
+    font-size: clamp(0.9rem, 3vw, 1.5rem);
+  }
+
+  pre {
+    font-size: clamp(0.9rem, 3vw, 1.3rem);
+    padding: 0.8rem;
+  }
+
+  code {
+    font-size: clamp(0.9rem, 3vw, 1.3rem);
+    padding: 0.1rem 0.25rem;
+  }
+
+  .img-container img {
+    width: clamp(150px, 90%, 350px);
+  }
+}
+
+@media (max-width: 480px) {
+  .classes {
+    padding: 8rem 3% 1.5rem;
+  }
+
+  .classes h1 {
+    font-size: clamp(1.5rem, 7vw, 2.5rem);
+  }
+
+  .classes h2 {
+    font-size: clamp(1.2rem, 6vw, 1.5rem);
+  }
+
+  .classes h3 {
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+  }
+
+  .classes h4 {
+    font-size: clamp(0.9rem, 3vw, 1.2rem);
+  }
+
+  .classes p,
+  .classes ul,
+  .classes ol,
+  .bullets,
+  .numbers,
+  .circles,
+  .squares,
+  .none {
+    font-size: clamp(0.8rem, 4vw, 1.2rem);
+  }
+
+  pre {
+    font-size: clamp(0.8rem, 4vw, 1.1rem);
+    padding: 0.6rem;
+  }
+
+  code {
+    font-size: clamp(0.6rem, 4vw, 1.1rem);
+    padding: 0.1rem 0.2rem;
+  }
+
+  .img-container img {
+    width: clamp(120px, 95%, 250px);
+  }
+}

@@ -25,7 +25,7 @@
 }
 
 .classes h3 {              /* Subsection Titles */
-  font-size: 2rem;
+  font-size: clamp(1.2rem, 4vw, 1.5rem);
   font-weight: bold;
   color: white;
 }
@@ -117,7 +117,11 @@
   }
 
   .classes h3 {
-    font-size: 1.5rem;
+    font-size: clamp(1.3rem, 4vw, 1.7rem);
+  }
+
+  .classes h4 {
+    font-size: clamp(1rem, 3vw, 1.5rem);
   }
 
   .classes p,
@@ -150,7 +154,11 @@
   }
 
   .classes h3 {
-    font-size: 1.2rem;
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+  }
+
+  .classes h4 {
+    font-size: clamp(0.9rem, 3vw, 1.2rem);
   }
 
   .classes p,
