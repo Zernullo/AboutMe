@@ -105,7 +105,13 @@
   </p>
   <ul class="bullets">
     <li><strong>Brute Force Attack:</strong> Trying all possible key combinations until the correct one is found. The longer the key, the more secure it is against brute force attacks.</li>
-    <li><strong>Cryptanalysis:</strong> Analyzing the encryption algorithm and its weaknesses to find patterns or vulnerabilities that can be exploited to break the encryption.</li>
+    <li><strong>Cryptanalysis:</strong> Analyzing the encryption algorithm and its weaknesses to find patterns or vulnerabilities that can be exploited to break the encryption. Cryptanalytic Attacks, rely on:</li>
+    <ul class="circles">
+      <li><strong>Known-Plaintext Attack:</strong> The attacker has access to both the plaintext and its corresponding ciphertext, allowing them to analyze the relationship between the two to deduce the key.</li>
+      <li><strong>Ciphertext-Only Attack:</strong> The attacker only has access to the ciphertext and attempts to deduce the plaintext or key through statistical analysis or other methods.</li>
+      <li><strong>Chosen-Plaintext Attack:</strong> The attacker can choose arbitrary plaintexts to be encrypted and obtain their corresponding ciphertexts, which can help in analyzing the encryption algorithm.</li>
+      <li><strong>Side-Channel Attacks:</strong> Exploiting information leaked during the encryption process, such as timing information, power consumption, or electromagnetic emissions, to deduce the key.</li>
+    </ul>
     <li><strong>Key Management Attacks:</strong> Targeting the processes of key generation, distribution, and storage to gain access to the symmetric key.</li>
   </ul>
   <div class="img-container">
