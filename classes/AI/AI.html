@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="../../All Pages/classPages.css"> <!-- Classes-specific CSS -->
   <script src="../../script.js"></script>
   <script src="../../All Pages/dropdown.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script> <!-- MathJax -->
 </head>
 <body>
   <header>
@@ -87,11 +88,87 @@
   <h4>Probability Space</h4>
   <p>A probability space is a mathematical construct that provides a formal model for randomness and uncertainty. It consists of three main components:</p>
   <ul>
-    <li><strong>Ω - Sample Space (S):</strong> The set of all possible outcomes of a random experiment. (ALL POSSIBLE OUTCOMES)</li>
-    <li><strong>F - Events (E):</strong> Subsets of the sample space, representing specific outcomes or groups of outcomes.</li>
-    <li><strong>P - Probability Measure (P):</strong> A function that assigns a probability to each event, satisfying certain axioms (e.g., non-negativity, normalization).</li>
+    <li><strong>Ω - Sample Space (S):</strong> The set of all possible outcomes of a random experiment. (ALL POSSIBLE OUTCOMES). <br>Ex. What is all possible outcomes when flipping two coins? <br>(Ω = {HH, HT, TH, TT}). One coin flip (Ω = {H, T})</li>
+    <li><strong>F - Events (E):</strong> Subsets of the sample space, representing specific outcomes or groups of outcomes. We may interpret as sets in the sample space so that we can define Union (or), Intersection (and), Complement (not). Think of it as group results. <br>Ex. event where at least one coin shows heads when flipping two coins ( F = {HH, HT, TH} ).</li>
+    <li><strong>P - Probability Measure (P):</strong> A function that assigns a probability to each event in the event space, satisfying certain axioms (e.g., non-negativity, normalization). A rule that tells you how likely each event is. <br>Ex. The probabilities of all events in Ω must sum to 1.</li>
+  </ul>
+  <p>A probability space can describe either discrete or continuous random variables. P(Ω) = 1 -> The total probability of all possible outcomes is 1 (something must happen).</p>
+  <ul class="bullets">
+    <li><strong>Discrete Case:</strong> In the discrete case, the sample space consists of a finite or countably infinite set of outcomes. Each outcome has a specific probability, and the sum of all probabilities is 1. 
+      <br>Ex. Flipping a coin: (Ω = {H, T}) &rarr;&nbsp;&nbsp;&nbsp; P(H) = \( \frac{1}{2} \) = 0.5 &nbsp;&nbsp;&nbsp; P(T) = \( \frac{1}{2} \) = 0.5.
+      <br>Flipping two coins: (Ω = {HH, HT, TH, TT}) &rarr; P(HH) = 0.25 &nbsp; P(HT) = 0.25 &nbsp; P(TH) = 0.25 &nbsp; P(TT) = 0.25.
+    </li>
+    <li><strong>Continuous Case:</strong> Outcome are not countable, they can take any value within a range. 
+      <br>Ex. Waiting time for a bus \( (\Omega = [0, \infty)) \). Meaning we can measure the time in continuous units (seconds, minutes, etc.) and the outcome can be any non-negative real number (infinitely many options).
+      You can't count individual outcomes. Instead you talk about ranges, example: P(5 ≤ X ≤ 10) = 0.3 means there's a 30% chance the bus will arrive between 5 and 10 minutes.
+    </li>
   </ul>
 
+  <h3>Distribution</h3>
+  <p>A probability distribution is a function that gives the probabilities of occurrence of possible events. A probability distribution tells us how different outcomes are. It is like a map that shows where the probability mass or weight is placed among the possible outcomes.</p>
+  <ul class="bullets">
+    <li><strong>Discrete Distribution:</strong> Deals with discrete random variables, which can take on a countable number of distinct values. Examples include the binomial distribution (e.g., number of heads in coin flips) and the Poisson distribution (e.g., number of events in a fixed interval).</li>
+    <li><strong>Continuous Distribution:</strong> Deals with continuous random variables, which can take on an infinite number of values within a given range. Examples include the normal distribution (bell curve), uniform distribution, and exponential distribution.</li>
+  </ul>
+  <p>A distribution is a function that gives probability of each event occurring. <br>Ex. Roll a 6 sided die (Ω = {1, 2, 3, 4, 5, 6}). Each outcome has a probability of 1/6. This distribution is uniform because all outcomes are equally likely.</p>
+
+  <h3>Probability Density Function (PDF)</h3>
+  <p>A Probability Density Function (PDF) is a function that describes the likelihood of a continuous random variable taking on a specific value. The PDF provides a way to understand how the probability is distributed over the range of possible values for the random variable.</p>
+  <p>Suppose the waiting time for a bus follows a uniform distribution over the next 10 minutes. The PDF for this uniform distribution is constant over the interval [0, 10], meaning the bus is likely going to arrive any moment within that time frame. The waiting time is a Random Variable.</p>
+  <p>What is the probability that the waiting time is between 2 and 3 minutes? That will be 0.1 because the total length of the interval [2, 3] is 1 minute, and the PDF is constant at 0.1 over the interval [0, 10]. What is the probability that the waiting time is exactly t minutes? (e.g. t = 1.5). This will be 0 because the probability of a continuous random variable taking on any specific value is always 0.</p>
+  <p>PDF equation:</p>
+  <div class="img-container">
+    <img src="../../img/classes/AIPic/Lecture1/PDF.png" alt="PDF Equation">
+  </div>
+
+  <h3>Normal Distribution (a.k.a Gaussian Distribution)</h3>
+  <p>The normal distribution is a continuous probability distribution (infinitely many possible values) characterized by its bell-shaped curve. It is defined by two parameters: the mean (μ) and the standard deviation (σ). The mean determines the center of the distribution, while the standard deviation controls the spread.</p>
+  <p>In a normal distribution:</p>
+  <ul>
+    <li>About 68% of the data falls within one standard deviation of the mean (μ ± σ).</li>
+    <li>About 95% falls within two standard deviations (μ ± 2σ).</li>
+    <li>About 99.7% falls within three standard deviations (μ ± 3σ).</li>
+  </ul>
+  <p>The normal distribution is important in statistics because of the Central Limit Theorem, which states that the sum of a large number of independent random variables tends toward a normal distribution, regardless of the original distribution of the variables.</p>
+  <div class="img-container">
+    <img src="../../img/classes/AIPic/Lecture1/NormalDistribution.png" alt="Normal Distribution">
+  </div>
+  <p>Central Limit Theorem: If you add up lots of small, independent effects, the result tends to be normally distributed. Example, your height is affected by genes, nutrition, environment, random factors. Each factor is small, random, and independent. Add them together &rarr; heights roughly follow a normal distribution.</p>
+  <p>Why AI/ML cares? When data is roughly normal, many statistical methods and machine learning algorithms perform better. They rely on the assumption of normality for inference, making it easier to model and predict outcomes.</p>
+
+  <h3>Marginal Probability</h3>
+  <p>Marginal probability refers to the probability of an event occurring, irrespective of the outcomes of other variables. In the context of joint distributions, it is obtained by summing or integrating the joint probability distribution over the other variables.</p>
+  <p>For example, consider a joint distribution of two random variables X and Y. The marginal probability of X is found by summing (or integrating) the joint probabilities over all possible values of Y:</p>
+  <p>P(X) = Σ P(X, Y) for all Y</p>
+  <p>Marginal probabilities are useful for understanding the behavior of individual variables within a larger system.</p>
+  <p>Example: Temperature and weather &rarr; T and W are the random variables representing temperature and weather conditions, respectively.</p>
+  <div class="img-container">
+    <img src="../../img/classes/AIPic/Lecture1/MP.png" alt="Marginal Probability">
+  </div>
+
+  <h3>Joint Probability</h3>
+  <p>Joint probability refers to the probability of two (or more) events occurring simultaneously. For two random variables X and Y, the joint probability is denoted as P(X, Y) and can be visualized using a joint probability distribution.</p>
+  <p>Joint probabilities are useful for understanding the relationships between variables and for making predictions based on the values of multiple variables.</p>
+  <p>Example: What is the chance that it is both hot and sunny? 0.4 &rarr; P(A,B) = P(B,A)</p>
+  <div class="img-container">
+    <img src="../../img/classes/AIPic/Lecture1/JP.png" alt="Joint Probability">
+  </div>
+
+  <h3>Conditional Probability</h3>
+  <p>Conditional probability refers to the probability of an event occurring given that another event has already occurred. It is denoted as P(A | B), which reads "the probability of A given B."</p>
+  <p>For example, consider the random variables T (temperature) and W (weather condition). The conditional probability P(W | T) represents the likelihood of a specific weather condition occurring given a specific temperature.</p>
+  <p>Conditional probabilities are useful for updating our beliefs about the world based on new evidence.</p>
+
+  <h3>Joint v.s. Conditional Probability</h3>
+  <p>Joint probability considers the likelihood of two events happening together, while conditional probability focuses on the likelihood of one event given the occurrence of another. P(A,B) = P(A | B) * P(B) &rarr; The chance that A happens when B happens, times the chance that B happens.</p>
+  <p>Chain rule of joint probability: P(A,B,C,...) = P(A|B,C,...) * P(B|C,...) = P(A|B,C,...) * P(B|C,...) * P(C,...)</p>
+
+  <h3>Independence</h3>
+  <p>P(A, B) = P(A) * P(B) &rarr; The chance that A happens and B happens together is the chance that A happens times the chance that B happens.</p>
+  <p>Two events A and B are independent if the occurrence of one does not affect the probability of the other. Mathematically, this is expressed as P(A | B) = P(A) and P(B | A) = P(B).</p>
+  <p>Independence is a key assumption in many statistical models and simplifies the analysis of complex systems.</p>
+ 
+  <!--Continue in future-->
 </section>
 
 </body>
