@@ -45,13 +45,13 @@
       <div class="dropdown-lecture">
         <button type="button" class="dropbtn-lecture">Lectures</button>
         <div class="diff-lecture">
-          <a href="AI.html">Lecture 1</a>
-          <a href="#.html">Lecture 2</a>
+          <a href="AI.html">Lecture 2 & 3</a>
+          <a href="AI4.html">Lecture 4</a>
           <a href="#.html">Lecture 3</a>
           <a href="#.html">Lecture 4</a>
           <a href="#.html">Lecture 5</a>
-          <a href="#.html">Lecture 6</a>
-        </div>
+          <a href="AIMidTerm.html">Mid Term Review</a>
+        </div> 
       </div>
     </nav>
 
@@ -71,7 +71,7 @@
       Status: Work in Progress<br>
       Reference: LSU Professor Dong Lao, ChatGBT
   </p>
-  <h2>Lecture 1 Probability</h2>
+  <h2>Lecture 2 & 3 Probability</h2>
   <h3>Probabilities and Statistics</h3>
   <ul class="bullets">
     <li><strong>Probabilities:</strong> Assume we know how the system works, we want to predict how unknown samples (data points) look like. It is about predicting the chance of something happening before it happens.</li>
@@ -118,7 +118,7 @@
   <p>What is the probability that the waiting time is between 2 and 3 minutes? That will be 0.1 because the total length of the interval [2, 3] is 1 minute, and the PDF is constant at 0.1 over the interval [0, 10]. What is the probability that the waiting time is exactly t minutes? (e.g. t = 1.5). This will be 0 because the probability of a continuous random variable taking on any specific value is always 0.</p>
   <p>PDF equation:</p>
   <div class="img-container">
-    <img src="../../img/classes/AIPic/Lecture1/PDF.png" alt="PDF Equation">
+    <img src="../../img/classes/AIPic/Lecture2&3/PDF.png" alt="PDF Equation">
   </div>
 
   <h3>Normal Distribution (a.k.a Gaussian Distribution)</h3>
@@ -131,7 +131,7 @@
   </ul>
   <p>The normal distribution is important in statistics because of the Central Limit Theorem, which states that the sum of a large number of independent random variables tends toward a normal distribution, regardless of the original distribution of the variables.</p>
   <div class="img-container">
-    <img src="../../img/classes/AIPic/Lecture1/NormalDistribution.png" alt="Normal Distribution">
+    <img src="../../img/classes/AIPic/Lecture2&3/NormalDistribution.png" alt="Normal Distribution">
   </div>
   <p>Central Limit Theorem: If you add up lots of small, independent effects, the result tends to be normally distributed. Example, your height is affected by genes, nutrition, environment, random factors. Each factor is small, random, and independent. Add them together &rarr; heights roughly follow a normal distribution.</p>
   <p>Why AI/ML cares? When data is roughly normal, many statistical methods and machine learning algorithms perform better. They rely on the assumption of normality for inference, making it easier to model and predict outcomes.</p>
@@ -143,7 +143,7 @@
   <p>Marginal probabilities are useful for understanding the behavior of individual variables within a larger system.</p>
   <p>Example: Temperature and weather &rarr; T and W are the random variables representing temperature and weather conditions, respectively.</p>
   <div class="img-container">
-    <img src="../../img/classes/AIPic/Lecture1/MP.png" alt="Marginal Probability">
+    <img src="../../img/classes/AIPic/Lecture2&3/MP.png" alt="Marginal Probability">
   </div>
 
   <h3>Joint Probability</h3>
@@ -151,7 +151,7 @@
   <p>Joint probabilities are useful for understanding the relationships between variables and for making predictions based on the values of multiple variables.</p>
   <p>Example: What is the chance that it is both hot and sunny? 0.4 &rarr; P(A,B) = P(B,A)</p>
   <div class="img-container">
-    <img src="../../img/classes/AIPic/Lecture1/JP.png" alt="Joint Probability">
+    <img src="../../img/classes/AIPic/Lecture2&3/JP.png" alt="Joint Probability">
   </div>
 
   <h3>Conditional Probability</h3>
@@ -167,8 +167,37 @@
   <p>P(A, B) = P(A) * P(B) &rarr; The chance that A happens and B happens together is the chance that A happens times the chance that B happens.</p>
   <p>Two events A and B are independent if the occurrence of one does not affect the probability of the other. Mathematically, this is expressed as P(A | B) = P(A) and P(B | A) = P(B).</p>
   <p>Independence is a key assumption in many statistical models and simplifies the analysis of complex systems.</p>
- 
-  <!--Continue in future-->
+  
+  <h3>Correlation</h3>
+  <p>Correlation measures the strength and direction of a linear relationship between two variables. It is quantified by the correlation coefficient, which ranges from -1 to 1. A correlation coefficient of 1 indicates a perfect positive linear relationship, -1 indicates a perfect negative linear relationship, and 0 indicates no linear relationship.</p>
+  <p>Correlation is useful for identifying relationships between variables and for making predictions based on those relationships. However, it is important to note that correlation does not imply causation (causation means that one event is the result of the occurrence of another event).</p>
+  <p>Example: Ice cream sales and drowning incidents are correlated because both increase during the summer. However, buying ice cream does not cause drowning; the underlying factor is the hot weather.
+    <br>Example: Car insurance and zip code are correlated because certain areas may have higher rates of accidents or theft. However, living in a particular zip code does not cause someone to need car insurance; the underlying factor is the risk associated with that area.
+    <br>Example: Heart risk and age are correlated because the risk of heart disease tends to increase with age. However, being older does not directly cause heart disease; other factors such as lifestyle and genetics play a role.
+  </p>
+  <p>Correlation is a statistical measure that describes the extent to which two variables change together. It is important to note that correlation does not imply causation; just because two variables are correlated does not mean that one causes the other.</p>
+  <p>\[
+  \mathrm{Cov}(X,Y) = \frac{\mathbb{E} \big[ (X - \mathbb{E}[X]) (Y - \mathbb{E}[Y]) \big]}{\sigma_X \, \sigma_Y}
+  \]</p>
+
+  <h3>Law of Total Probability</h3>
+  <p>The law of total probability states that if you have a set of mutually exclusive events that cover all possible outcomes, the total probability of any event can be found by considering all the different ways that event can occur.</p>
+  <p>\[
+  \mathbb{E}_n \big[ P(A, B_n) \big] = \mathbb{E}_n \big[ P(A \mid B_n) \, P(B_n) \big]
+  \]</p>
+  <p>The probabilities that A happens under all possible circumstances of B</p>
+  
+  <h3>Bayes' Theorem</h3>
+  <p>Bayes' theorem describes the probability of an event, based on prior knowledge of conditions that might be related to the event. It is expressed mathematically as:</p>
+  <p>\[
+  P(A \mid B) = \frac{P(B \mid A) \, P(A)}{P(B)}
+  \]</p>
+  <p>P(A|B) is the probability of A given B, P(B|A) is the probability of B given A, P(A) is the prior probability of A, and P(B) is the prior probability of B.</p>
+  <p>Bayes' theorem is widely used in various fields, including statistics, machine learning, and artificial intelligence, for updating probabilities based on new evidence.</p>
+  <p>Example: Medical diagnosis. Let A be the event that a patient has a disease, and B be the event that the patient tests positive for the disease. We want to find P(A|B), the probability that the patient has the disease given a positive test result. Using Bayes' theorem, we can calculate this probability based on the sensitivity and specificity of the test, as well as the prevalence of the disease in the population.</p>
+  <p>Example: Spam filtering. Let A be the event that an email is spam, and B be the event that the email contains certain keywords. We want to find P(A|B), the probability that an email is spam given that it contains those keywords. Using Bayes' theorem, we can update our belief about whether an email is spam based on the presence of specific keywords and the overall frequency of spam emails.</p>
+  <p>Example: Assume in general there is 50% chance of rain, when it rains there is always cloud cover. In general there is 80% chance we see cloud. We want to find P(rain|cloud) using Bayes' theorem which in this cause P(rain|cloud) = \( \frac{P(cloud|rain) \, P(rain)}{P(cloud)} = \frac{(1) \cdot (0.5)}{0.8} = 0.625 \), this is because P(cloud|rain) = 1, P(cloud) = 0.8, and P(rain) = 0.5. We know there is an initial 50% chance of rain, and an initial 80% chance of cloud. P(cloud|rain) is 1 because when it rains, we always see cloud.</p>
+  <!--Continue in future and lecture 3(some topic)-->
 </section>
 
 </body>
