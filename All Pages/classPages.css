@@ -34,7 +34,7 @@
   font-size: clamp(1rem, 2vw, 1.7rem);
   font-weight: 600;            /* Semi-bold */
   margin-top: 1rem;            /* Space above */
-  color: rgba(245,245,245,0.7); /* Matches your headings */
+  color: rgba(245, 245, 245, 0.896); /* Matches your headings */
 }
 
 
@@ -59,7 +59,8 @@
 .numbers,
 .circles,
 .squares,
-.none {
+.none,
+.letters {
   padding-left: 2rem;
   margin-top: 1rem;
   margin-bottom: 2rem;
@@ -72,6 +73,7 @@
 .squares { list-style-type: square; }
 .none { list-style-type: none; }
 .numbers { list-style-type: decimal; }
+.letters { list-style-type: lower-alpha; }
 
 .classes li {
   margin-bottom: 0.7rem;

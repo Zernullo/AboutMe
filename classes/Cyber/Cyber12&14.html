@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Website</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../All Pages/style.css"> <!-- Global CSS -->
+  <link rel="stylesheet" href="../../All Pages/dropdown.css"> <!-- Classes-specific CSS -->
+  <link rel="stylesheet" href="../../All Pages/classPages.css"> <!-- Classes-specific CSS -->
+  <script src="../../script.js"></script>
+  <script src="../../All Pages/dropdown.js"></script>
+</head>
+<body>
+  <header>
+    <a href="../../index.html" class="logo">
+      <img src="../../img/ZernulloLogo.png" alt="Zernullo Logo">
+    </a>
+
+    <nav class="drop_down">
+      <div class="dropdown-language">
+        <button type="button" class="dropbtn-language">Language</button>
+        <div class="diff-language">
+          <a href="../../languages/html/python.html">Python</a>
+          <a href="../../languages/java.html">Java</a>
+          <a href="../../languages/html/C.html">C</a>
+          <a href="../../languages/html/C-sharp.html">C#</a>
+          <a href="../../languages/html/C++.html">C++</a>
+          <a href="../../languages/javascript.html">JavaScript</a>
+        </div>
+      </div>
+
+      <div class="dropdown-classes">
+        <button type="button" class="dropbtn-classes">Classes</button>
+        <div class="diff-classes">
+          <a href="../Cyber/Cyber.html">Intro to Cybersecurity</a>
+          <a href="../OS/OS.html">Object Systems</a>
+          <a href="../CN/CN.html">Computer Networks</a>
+          <a href="../AI/AI.html">Artifical Intelligence</a>
+          <a href="../EC/EC.html">Ethics in Computing</a>
+        </div>
+      </div>
+
+      <div class="dropdown-lecture">
+        <button type="button" class="dropbtn-lecture">Lectures</button>
+        <div class="diff-lecture">
+          <a href="Cyber.html">Lecture 1 & 2</a>
+            <a href="Cyber3.html">Lecture 3</a>
+            <a href="Cyber4&5.html">Lecture 4 & 5</a>
+            <a href="Cyber6.html">Lecture 6</a>
+            <a href="Cyber7.html">Lecture 7</a>
+            <a href="Cyber8.html">Lecture 8</a>
+            <a href="Cyber9&10.html">Lecture 9 & 10</a>
+            <a href="Cyber11.html">Lecture 11</a>
+            <a href="Cyber12&14.html">Lecture 12 & 14</a>
+        </div>
+      </div>
+    </nav>
+
+    <nav class="main_nav">
+      <a href="../../index.html">Home</a>
+      <a href="../../html/education.html" class="active">Education</a>
+      <a href="../../html/projects.html">Projects</a>
+      <a href="../../html/contact.html">Contact</a>
+    </nav>
+  </header>
+
+    <!-- PAGE CONTENT GOES HERE -->
+<section class="classes">
+    <h1>Intro To Cyber</h1>
+    <h2>Lecture 12 & 14</h2>
+    <p id="Reference">
+        Date Taken: Fall 2025<br/>
+        Status: Work in Progress<br>
+        Reference: LSU Professor (Name), ChatGBT
+    </p>
+
+    <h3>DNS (Domain Name System)</h3>
+    <p>
+        The Domain Name System (DNS) is a hierarchical and decentralized naming system used to translate human-readable domain names (like www.example.com) into IP addresses that computers use to identify each other on the network.
+    </p>
+
+    <h4>DNS Attack</h4>
+    <p>
+        DNS attacks are malicious activities that target the Domain Name System (DNS) infrastructure to disrupt, manipulate, or exploit the resolution of domain names into IP addresses. These attacks can lead to various security issues, including unauthorized access, data theft, and service disruption.
+    </p>
+    <ul class="bullets">
+        <li>The attacker identifies a target, this could be a public website, internal domain, or DNS provider account. The attacker looks for weak points in the DNS infrastructure or admin access.</li>
+        <li>The attacker gains access. They might steal credentials, exploit vulnerabilities, or use social engineering to compromise DNS servers, registrar accounts, or local routers.</li>
+        <li>The attacker modifies DNS settings. They change DNS records or inject forged responses to redirect traffic from the legitimate IP address to a malicious one.</li>
+        <li>The user submits a DNS query. The user tries to visit a domain as usual; by typing the address in a brower or using an app that initiates a connection.</li>
+        <li>The query resolves to the attacker's IP. Instead of reaching the real server, the DNS response points to a server controlled by the attacker.</li>
+        <li>The user reaches a fake or malicious destination. That could be a phishing site, malware host, or an impersonation of the original service. Everything appears normal unless the user checks the certificate or inspects the site closely.</li>
+    </ul>
+    <div class="img-container">
+        <img src="../../img/classes/CyberPic/Lecture12&14/DNS.png" alt="DNS Attack Diagram">
+    </div>
+
+    <h4>Types of DNS Hijacking Attacks</h4>
+    <ul class="bullets">
+        <li><strong>Local DNS hijack</strong> - This attack involves compromising the local DNS resolver on a user's device, redirecting DNS queries to malicious servers.</li>
+        <li><strong>Router DNS hijack</strong> - Attackers gain access to a router and change its DNS settings to redirect traffic for all devices on the network.</li>
+        <li><strong>Meddler-in-the-Middle Attack</strong> - The attacker intercepts and alters DNS queries and responses between the user and the DNS server.</li>
+        <li><strong>Rogue DNS server</strong> - A malicious DNS server is set up to provide false DNS responses, redirecting users to harmful sites.</li>
+    </ul>
+    <div class="img-container">
+        <img src="../../img/classes/CyberPic/Lecture12&14/local.png" alt="Local DNS Hijack Diagram">
+        <img src="../../img/classes/CyberPic/Lecture12&14/router.png" alt="Router DNS Hijack Diagram">
+        <img src="../../img/classes/CyberPic/Lecture12&14/meddler.png" alt="Meddler-in-the-Middle Attack Diagram">
+        <img src="../../img/classes/CyberPic/Lecture12&14/rogue.png" alt="Rogue DNS Server Diagram">
+    </div>
+
+    <h4>DNS Resolution</h4>
+    <p>
+        DNS resolution is the process of converting a human-readable domain name (like www.example.com) into its corresponding IP address (like 192.0.2.1). This process involves multiple steps and components working together to ensure that users can access websites and services using easy-to-remember domain names instead of numerical IP addresses.
+    </p>
+    <div class="img-container">
+        <img src="../../img/classes/CyberPic/Lecture12&14/resolution.png" alt="DNS Resolution Process Diagram">
+    </div>
+
+    <h4>UDP (User Datagram Protocol)-Based Amplification Attacks</h4>
+    <p>
+        UDP-based amplification attacks are a type of Distributed Denial of Service (DDoS) attack that exploits the stateless nature of the User Datagram Protocol (UDP) to overwhelm a target system with a flood of traffic. These attacks leverage the ability to send small requests that elicit much larger responses from vulnerable servers, amplifying the amount of data directed at the target.
+    </p>
+    <div class="img-container">
+        <img src="../../img/classes/CyberPic/Lecture12&14/UDP.png" alt="UDP-Based Amplification Attack Diagram">
+    </div>
+
+    <h3>Questions:</h3>
+    <h4>
+        A server administrator at a bank has noticed a decrease in the number of vistors to the bank's website.
+        Additional research shows that users are being directed to a different IP address than the bank's web server.
+        Which of the following would MOST likely describe this attack?
+    </h4>
+    <ul class="letters">
+        <li>Deauthentication</li>
+        <li>DDOS</li>
+        <li>Buffer Overflow</li>
+        <li>DNS Poisoning</li>
+    </ul>
+    <p>The answer is DNS Poisoning. This is because the users are being redirected to a malicious IP address instead of the legitimate bank's web server, which is a classic symptom of DNS poisoning attacks where the DNS cache is manipulated to redirect traffic.</p>
+    <p>DNS Poisoning (or DNS Spoofing) involves corrupting the DNS cache to redirect traffic to malicious sites. As a result, users may unknowingly visit harmful websites.</p>
+    <p>Why not the others?</p>
+    <ul class="circles">
+        <li>Deauthentication: This attack targets wireless networks and disconnects users, not redirects them.</li>
+        <li>DDOS: While it can disrupt service, it does not redirect users to a different IP address.</li>
+        <li>Buffer Overflow: This is a type of exploit that targets software vulnerabilities, not DNS redirection.</li>
+    </ul>
+
+    <h4>
+        A security administrator needs to block users from visiting websites hosting malicious software. 
+        Which of the following would be the BEST way to control this access?
+    </h4>
+    <ul class="letters">
+        <li>Honeynet</li>
+        <li>Data Masking</li>
+        <li>DNS filtering</li>
+        <li>Data Loss Prevention</li>
+    </ul>
+    <p>The answer is DNS filtering. This method allows the administrator to block access to malicious websites by filtering DNS requests, preventing users from reaching harmful domains.</p>
+    <p>DNS filtering is a security measure that restricts access to certain websites based on their domain names. It helps prevent users from visiting malicious sites by blocking DNS requests to those domains.</p>
+    <p>Why not the others?</p>
+    <ul class="circles">
+        <li>Honeynet: A honeynet is a network set up to attract and analyze cyber attacks, not for blocking access.</li>
+        <li>Data Masking: This technique is used to protect sensitive data, not for controlling website access.</li>
+        <li>Data Loss Prevention: DLP focuses on preventing data breaches and leaks, not on filtering web access.</li>
+    </ul>
+
+    <h4>
+        While working from home, users are attending a project meeting over a web conference. 
+        When typing in the meeting link, the browser is unexpectedly directed to a different website than the web conference.
+        Users in the office do not have any issues accessing the conference site. 
+        Which of the following would be the MOST likely reason for this issue?
+    </h4>
+    <ul class="letters">
+        <li>Local DNS Hijack</li>
+        <li>Router DNS Hijack</li>
+        <li>Meddler-in-the-Middle DNS Hijack</li>
+        <li>Rogue DNS Server</li>
+        <li>All of the Above</li>
+    </ul>
+    <p>The answer is Router DNS Hijack. This is because the issue is specific to users working from home, indicating that the router they are using may have been compromised to redirect DNS queries to malicious sites.</p>
+    <p>Router DNS hijack occurs when an attacker gains access to a router and changes its DNS settings, redirecting traffic for all devices on the network to malicious sites. This explains why only home users are affected while office users are not.</p>
+    <p>Why not the others?</p>
+    <ul class="circles">
+        <li>Local DNS Hijack: Would affect only one device, not all at home.</li>
+        <li>Meddler-in-the-Middle DNS Hijack: Would likely affect both home and office users if the attacker is intercepting traffic.</li>
+        <li>Rogue DNS Server: Would affect anyone using that server, not just home users.</li>
+        <li>All of the Above: Too broad to be the MOST likely reason.</li>
+    </ul>
+
+    <h3>Password Attacks</h3>
+    <p>
+        Password attacks are attempts by malicious actors to gain unauthorized access to systems, accounts, or data by cracking or guessing passwords. These attacks can take various forms, each exploiting different vulnerabilities in password security.
+    </p>
+    <ul class="bullets">
+        <li><strong>Brute Force Attack</strong> - This method involves systematically trying all possible combinations of characters until the correct password is found. Attackers may use automated tools to speed up the process.</li>
+        <li><strong>Dictionary Attack</strong> - In this approach, attackers use a precompiled list of common passwords or words (a "dictionary") to guess the password. This method is faster than brute force since it focuses on likely options.</li>
+        <li><strong>Phishing</strong> - Phishing attacks involve tricking users into revealing their passwords through deceptive emails, websites, or messages that appear legitimate.</li>
+        <li><strong>Keylogging</strong> - Keyloggers are malicious software or hardware devices that record keystrokes made by a user, capturing passwords as they are typed.</li>
+        <li><strong>Credential Stuffing</strong> - This technique involves using lists of previously compromised usernames and passwords to gain access to other accounts, exploiting the tendency of users to reuse passwords across multiple sites.</li>
+    </ul>
+
+    <h3>Indicators of Compromise (IoC)</h3>
+    <p>
+        Indicators of Compromise (IoC) are pieces of evidence that suggest a security breach or malicious activity has occurred within a computer system or network. IoCs help cybersecurity professionals identify and respond to potential threats by providing clues about the nature and extent of an attack.
+    </p>
+    <ul class="bullets">
+        <li><strong>Unusual Network Traffic</strong> - A sudden spike in outbound traffic or connections to unfamiliar IP addresses can indicate data exfiltration or communication with command-and-control servers.</li>
+        <li><strong>Unexpected System Changes</strong> - Unauthorized modifications to system files, configurations, or registry settings may suggest that malware has been installed or that an attacker has gained access.</li>
+        <li><strong>Presence of Malware Signatures</strong> - Detection of known malware signatures by antivirus or endpoint detection and response (EDR) tools is a clear indicator of compromise.</li>
+        <li><strong>Suspicious User Activity</strong> - Unusual login times, multiple failed login attempts, or access from unfamiliar locations can signal compromised user accounts.</li>
+        <li><strong>New or Unknown Processes</strong> - The appearance of unfamiliar processes running on a system may indicate the presence of malware or unauthorized software.</li>
+    </ul>
+    <p>Other Indicators?</p>
+    <ul class="bullets">
+        <li><strong>Account Lockout</strong> - Multiple failed login attempts can lead to account lockouts, which may indicate a brute force attack or unauthorized access attempts.</li>
+        <li><strong>Concurrent Session Usage</strong> - Simultaneous logins from different locations or devices can suggest compromised credentials or unauthorized access.</li>
+        <li><strong>Resource Consumption Anomalies</strong> - Unexpected spikes in CPU, memory, or disk usage may indicate malicious activity or malware presence. Ex. Unusual spike of activity at 3am</li>
+        <li><strong>Missing/Altered Files or Logs</strong> - The absence or modification of critical system files or logs can be a sign of an attacker attempting to cover their tracks.</li>
+    </ul>
+</section>
+
+</body>
+</html>
