@@ -98,10 +98,10 @@
 
     <h4>Types of DNS Hijacking Attacks</h4>
     <ul class="bullets">
-        <li><strong>Local DNS hijack</strong> - This attack involves compromising the local DNS resolver on a user's device, redirecting DNS queries to malicious servers.</li>
-        <li><strong>Router DNS hijack</strong> - Attackers gain access to a router and change its DNS settings to redirect traffic for all devices on the network.</li>
-        <li><strong>Meddler-in-the-Middle Attack</strong> - The attacker intercepts and alters DNS queries and responses between the user and the DNS server.</li>
-        <li><strong>Rogue DNS server</strong> - A malicious DNS server is set up to provide false DNS responses, redirecting users to harmful sites.</li>
+        <li><strong>Local DNS hijack</strong> - This attack involves compromising the local DNS resolver on a user's device, redirecting DNS queries to malicious servers. In more direct terms, it manipulates the DNS settings on the user's device to redirect traffic. (Ex) The attacker changes the DNS settings on the victim's device so when they try to visit a website, the DNS query is redirected to a malicious server. (Usually affects individual devices.)</li>
+        <li><strong>Router DNS hijack</strong> - Attackers gain access to a router and change its DNS settings to redirect traffic for all devices on the network. In more direct terms, it manipulates the router's DNS settings to redirect traffic. (Ex) Changing the DNS settings on a home or office router to point to a malicious DNS server. (Usually affects all devices on the network.)</li>
+        <li><strong>Meddler-in-the-Middle Attack</strong> - The attacker intercepts and alters DNS queries and responses between the user and the DNS server. In more direct terms, it intercepts and modifies DNS communications to redirect traffic. (Ex) Intercepting DNS requests on a same public Wi-Fi network and provides forged responses that maps the real domain name to a malicious IP address. (Usually affects users on the same network.)</li>
+        <li><strong>Rogue DNS server</strong> - A malicious DNS server is set up to provide false DNS responses, redirecting users to harmful sites. In more direct terms, it provides false DNS information to redirect traffic. (Ex) The domain name will be the same but the IP address is different; www.example.com - same domain name but different IP address, real IP 10.0.0.1, fake IP 10.0.0.2. (Usually affects anyone using that server. Global)</li>
     </ul>
     <div class="img-container">
         <img src="../../img/classes/CyberPic/Lecture12&14/local.png" alt="Local DNS Hijack Diagram">
