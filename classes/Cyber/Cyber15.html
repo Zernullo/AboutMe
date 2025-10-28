@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Website</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../All Pages/style.css"> <!-- Global CSS -->
+  <link rel="stylesheet" href="../../All Pages/dropdown.css"> <!-- Classes-specific CSS -->
+  <link rel="stylesheet" href="../../All Pages/classPages.css"> <!-- Classes-specific CSS -->
+  <script src="../../script.js"></script>
+  <script src="../../All Pages/dropdown.js"></script>
+</head>
+<body>
+  <header>
+    <a href="../../index.html" class="logo">
+      <img src="../../img/ZernulloLogo.png" alt="Zernullo Logo">
+    </a>
+
+    <nav class="drop_down">
+      <div class="dropdown-language">
+        <button type="button" class="dropbtn-language">Language</button>
+        <div class="diff-language">
+          <a href="../../languages/html/python.html">Python</a>
+          <a href="../../languages/java.html">Java</a>
+          <a href="../../languages/html/C.html">C</a>
+          <a href="../../languages/html/C-sharp.html">C#</a>
+          <a href="../../languages/html/C++.html">C++</a>
+          <a href="../../languages/javascript.html">JavaScript</a>
+        </div>
+      </div>
+
+      <div class="dropdown-classes">
+        <button type="button" class="dropbtn-classes">Classes</button>
+        <div class="diff-classes">
+          <a href="../Cyber/Cyber.html">Intro to Cybersecurity</a>
+          <a href="../OS/OS.html">Object Systems</a>
+          <a href="../CN/CN.html">Computer Networks</a>
+          <a href="../AI/AI.html">Artifical Intelligence</a>
+          <a href="../EC/EC.html">Ethics in Computing</a>
+        </div>
+      </div>
+
+      <div class="dropdown-lecture">
+        <button type="button" class="dropbtn-lecture">Lectures</button>
+        <div class="diff-lecture">
+            <a href="Cyber.html">Lecture 1 & 2</a>
+            <a href="Cyber3.html">Lecture 3</a>
+            <a href="Cyber4&5.html">Lecture 4 & 5</a>
+            <a href="Cyber6.html">Lecture 6</a>
+            <a href="Cyber7.html">Lecture 7</a>
+            <a href="Cyber8.html">Lecture 8</a>
+            <a href="Cyber9&10.html">Lecture 9 & 10</a>
+            <a href="Cyber11.html">Lecture 11</a>
+            <a href="Cyber12&14.html">Lecture 12 & 14</a>
+            <a href="Cyber15.html">Lecture 15</a>
+        </div>
+      </div>
+    </nav>
+
+    <nav class="main_nav">
+      <a href="../../index.html">Home</a>
+      <a href="../../html/education.html" class="active">Education</a>
+      <a href="../../html/projects.html">Projects</a>
+      <a href="../../html/contact.html">Contact</a>
+    </nav>
+  </header>
+
+    <!-- PAGE CONTENT GOES HERE -->
+<section class="classes">
+    <h1>Intro To Cyber</h1>
+    <h2>Lecture 15</h2>
+    <p id="Reference">
+        Date Taken: Fall 2025<br/>
+        Status: Work in Progress<br>
+        Reference: LSU Professor Joseph Khoury, ChatGBT
+    </p>
+
+    <h3>Security Operations Center (SOC)</h3>
+    <p>A Security Operations Center (SOC) is a centralized unit that deals with security issues on an organizational and technical level. The SOC is responsible for monitoring, detecting, responding to, and mitigating cybersecurity threats in real-time.</p>
+
+    <h3>Segmentation and Access Control</h3>
+    <p>Segmentation involves dividing a network into smaller, isolated segments to limit the spread of threats and improve security. Access control ensures that only authorized users can access specific resources within these segments.</p>
+    <div class="img-container">
+        <img src="../../img/classes/CyberPic/Lecture15/NS.png" alt="Network Segmentation Diagram">
+    </div>
+
+    <h3>Access Control Lists (ACLs)</h3>
+    <p>
+        Access Control Lists (ACLs) are a set of rules used to control network traffic and reduce network attacks. 
+        ACLs can permit or deny traffic based on IP addresses, protocols, ports, and other criteria.
+        Be careful when configuring ACLs to avoid locking yourself out of the network.
+    </p>
+    <p>Examples of Allow Lists and Deny Lists:</p>
+    <ul class="bullets">
+        <li><strong>Allow List Example:</strong> Permit traffic from trusted IP addresses (e.g., 192.168.1.1)</li>
+        <li><strong>Allow List Example:</strong> Permit traffic on specific ports (e.g., HTTP on port 80)</li>
+        <li><strong>Allow List Example:</strong> Permit traffic with (Hash) unique identifiers (e.g., MAC addresses)</li>
+        <br>
+        <li><strong>Deny List Example:</strong> Block traffic on vulnerable ports (e.g., Telnet on port 23)</li>
+        <li><strong>Deny List Example:</strong> Block traffic from known malicious IP addresses (e.g., 10.0.0.1)</li>
+        <li><strong>Deny List Example:</strong> Block traffic from unauthorized devices</li>
+    </ul>
+
+    <h3>Mitigation techniques</h3>
+    <p>Mitigation techniques are strategies and methods used to reduce the impact of security threats and vulnerabilities.</p>
+
+    <h4>Mitigation techniques (Patching)</h4>
+    <p>Patching is the process of updating software to fix vulnerabilities and improve security. Regularly applying patches helps protect systems from known threats and exploits.</p>
+    <ul class="bullets">
+        <li><strong>Incredibly important for maintaining system security</strong></li>
+        <li><strong>Monthly Updates</strong></li>
+        <li><strong>Third-Party Updates</strong></li>
+        <li><strong>Auto-Updates</strong> - not always the best option</li>
+        <li><strong>Emergency out-of-band Updates</strong> - critical for zero-day vulnerabilities</li>
+    </ul>
+
+    <h4>Mitigation techniques (Encryption)</h4>
+    <p>Encryption is the process of converting data into a coded format to prevent unauthorized access. It is a critical mitigation technique for protecting sensitive information both in transit and at rest.</p>
+    <ul class="bullets">
+        <li><strong>File System Encryption</strong> - prevent access to application data files</li>
+        <li><strong>Full Disk Encryption</strong> - encrypts the entire storage device. BitLocker, FileVault, etc.</li>
+        <li><strong>File Level Encryption</strong> - encrypts individual files or folders. Windows EFS, etc.</li>
+        <li><strong>Application Data Encryption</strong> - protects data within applications. Managed by the app, stored data is protected.</li>
+    </ul>
+
+    <h4>Mitigation techniques (Monitoring)</h4>
+    <p>Monitoring involves continuously observing systems and networks to detect and respond to security threats. Effective monitoring helps identify suspicious activities and potential breaches.</p>
+    <ul class="bullets">
+        <li><strong>Log Management</strong> - Collecting and analyzing logs from various sources to identify security events.</li>
+        <li><strong>Intrusion Detection Systems (IDS)</strong> - Monitoring network traffic for signs of malicious activity.</li>
+        <li><strong>Security Information and Event Management (SIEM)</strong> - Aggregating and analyzing security data from multiple sources for real-time threat detection.</li>
+    </ul>
+
+    <h4>Mitigation techniques (Least Privilege)</h4>
+    <p>The principle of least privilege involves granting users and systems the minimum level of access necessary to perform their tasks. This reduces the risk of unauthorized access and limits the potential damage from security breaches.</p>
+    <ul class="bullets">
+        <li>Reduces attack surface by limiting access to sensitive resources.</li>
+        <li>Minimizes the potential impact of compromised accounts.</li>
+        <li>Enhances overall security posture by enforcing strict access controls.</li>
+    </ul>
+
+    <h4>Mitigation techniques (Configuration Enforcement)</h4>
+    <p>Configuration enforcement involves ensuring that systems and applications are configured securely and consistently. This helps prevent misconfigurations that could lead to vulnerabilities. Extensive checks and balances are necessary to maintain a secure environment.</p>
+    <ul class="bullets">
+        <li>Implementing security baselines and standards.</li>
+        <li>Using automated tools to enforce configurations.</li>
+        <li>Regularly auditing and reviewing configurations.</li>
+    </ul>
+
+    <h4>Mitigation techniques (Decommissioning)</h4>
+    <p>Decommissioning involves securely retiring and disposing of hardware, software, and data that are no longer needed. Proper decommissioning helps prevent data leaks and unauthorized access to retired assets.</p>
+    <ul class="bullets">
+        <li>Data wiping and destruction.</li>
+        <li>Hardware disposal and recycling.</li>
+        <li>Revoking access and credentials.</li>
+    </ul>
+
+    <h3>Hardening Techniques</h3>
+    <p>Hardening techniques involve strengthening the security of systems by reducing vulnerabilities and limiting potential attack vectors. This includes applying patches, disabling unnecessary services, and enforcing strict access controls.</p>
+
+    <h4>Hardening Techniques (System Hardening)</h4>
+    <p>System hardening involves reducing the attack surface of a system by disabling unnecessary services, removing unused software, and applying security patches promptly. It also includes configuring system settings to enhance security.</p>
+    <ul class="bullets">
+        <li>Disable unnecessary services and features.</li>
+        <li>Remove unused software and applications.</li>
+        <li>Apply security patches and updates promptly.</li>
+        <li>Configure system settings for enhanced security.</li>
+    </ul>
+
+    <h4>Hardening Techniques (Encryption)</h4>
+    <p>Encryption hardening involves implementing strong encryption protocols and managing cryptographic keys securely to protect data confidentiality and integrity.</p>
+    <ul class="bullets">
+        <li>Prevent access to application data files.</li>
+        <li>Use strong, industry-standard encryption algorithms.</li>
+        <li>Full disk encryption.</li>
+        <li>Encrypt all network communications.</li>
+        <li>Regularly update and patch encryption software.</li>
+    </ul>
+
+    <h4>Hardening Techniques (Endpoint Detection and Response)</h4>
+    <p>Endpoint Detection and Response (EDR) involves monitoring and analyzing endpoint activities to detect and respond to security threats. EDR solutions provide real-time visibility into endpoint behavior and enable rapid incident response.</p>
+    <ul class="bullets">
+        <li>Continuous monitoring of endpoint activities.</li>
+        <li>Behavioral analysis to detect anomalies.</li>
+        <li>Automated response capabilities to contain threats.</li>
+        <li>Integration with other security tools for comprehensive protection.</li>
+    </ul>
+
+    <h4>Hardening Techniques (Host-based Firewall)</h4>
+    <p>Host-based firewalls provide an additional layer of security by controlling incoming and outgoing network traffic on individual hosts. They help prevent unauthorized access and can be configured to enforce security policies.</p>
+    <ul class="bullets">
+        <li>Configure firewall rules to allow only necessary traffic.</li>
+        <li>Regularly update firewall software and rules.</li>
+        <li>Monitor firewall logs for suspicious activity.</li>
+        <li>Integrate with intrusion detection and prevention systems.</li>
+    </ul>
+
+    <h4>Hardening Techniques (Finding Intrusions)</h4>
+    <p>Finding intrusions involves using various techniques and tools to detect unauthorized access or malicious activities within a system or network. This includes monitoring logs, analyzing network traffic, and employing intrusion detection systems.</p>
+    <ul class="bullets">
+        <li>Host-based intrusion detection systems (HIDS).</li>
+        <li>Monitor system and network logs for unusual activities.</li>
+        <li>Use intrusion detection systems (IDS) to identify potential threats.</li>
+        <li>Conduct regular security audits and vulnerability assessments.</li>
+        <li>Implement behavioral analysis to detect anomalies.</li>
+    </ul>
+
+    <h4>Hardening Techniques (Open ports and services)</h4>
+    <p>Managing open ports and services is crucial for system hardening. Unnecessary open ports and services can be exploited by attackers to gain unauthorized access. Regularly reviewing and closing unused ports and disabling unnecessary services helps reduce the attack surface.</p>
+    <ul class="bullets">
+        <li>Regularly scan for open ports and services.</li>
+        <li>Close unused ports and disable unnecessary services.</li>
+        <li>Implement firewall rules to restrict access to open ports.</li>
+        <li>Monitor network traffic for suspicious activities on open ports.</li>
+    </ul>
+
+    <h4>Hardening Techniques (Default Passwords Changes)</h4>
+    <p>Changing default passwords is a fundamental step in system hardening. Default passwords are often well-known and can be easily exploited by attackers. Ensuring that all default passwords are changed to strong, unique passwords helps protect systems from unauthorized access.</p>
+    <ul class="bullets">
+        <li>Identify all devices and applications with default passwords.</li>
+        <li>Change default passwords to strong, unique passwords.</li>
+        <li>Implement password policies to enforce complexity and expiration.</li>
+        <li>Regularly audit systems to ensure compliance with password policies.</li>
+    </ul>
+
+    <h4>Hardening Techniques (Removal of Unnecessary Software)</h4>
+    <p>Removing unnecessary software helps reduce the attack surface of a system. Unused applications and services can contain vulnerabilities that attackers may exploit. Regularly reviewing and uninstalling unnecessary software enhances overall system security.</p>
+    <ul class="bullets">
+        <li>Conduct regular software audits to identify unused applications.</li>
+        <li>Uninstall unnecessary software and services.</li>
+        <li>Keep remaining software up to date with security patches.</li>
+        <li>Implement application whitelisting to control software installations.</li>
+    </ul>
+
+    <h3>Deception and Disruption</h3>
+    <p>Deception and disruption techniques are used to mislead attackers and disrupt their activities. These techniques can include honeypots, decoy systems, and other methods to divert attackers away from valuable assets and gather intelligence on their tactics.</p>
+
+    <h4>Deception and Disruption (Honeypots)</h4>
+    <p>Honeypots are decoy systems designed to attract and deceive attackers. They mimic real systems and services, allowing security teams to monitor attacker behavior and gather intelligence without risking actual assets.</p>
+    <ul class="bullets">
+        <li>Deploy honeypots that mimic real systems and services.</li>
+        <li>Monitor honeypot activity to gather intelligence on attacker tactics.</li>
+        <li>Use honeypots to divert attackers away from valuable assets.</li>
+        <li>Analyze honeypot data to improve overall security posture.</li>
+    </ul>
+    <p>In direct terms, honeypots attract attackers and trap them.</p>
+
+    <h4>Deception and Disruption (Honeynets)</h4>
+    <p>Honeynets are networks of honeypots that provide a more comprehensive deception environment. They allow for the simulation of complex network architectures, enabling security teams to study attacker behavior in a controlled setting.</p>
+    <ul class="bullets">
+        <li>Deploy honeynets that simulate complex network architectures.</li>
+        <li>Monitor honeynet activity to gather intelligence on attacker tactics.</li>
+        <li>Use honeynets to study attacker behavior in a controlled setting.</li>
+        <li>Analyze honeynet data to improve overall security posture.</li>
+    </ul>
+    <p>In direct terms, honeynets build a larger network of traps, with one or more honeypots.</p>
+
+    <h4>Deception and Disruption (Honeyflies)</h4>
+    <p>Honeyflies are lightweight honeypots that can be easily deployed across a network. They provide a cost-effective way to implement deception techniques and gather intelligence on attacker activities.</p>
+    <ul class="bullets">
+        <li>Deploy honeyflies across the network for widespread deception.</li>
+        <li>Monitor honeyfly activity to gather intelligence on attacker tactics.</li>
+        <li>Use honeyflies to increase the chances of detecting attackers.</li>
+        <li>Analyze honeyfly data to improve overall security posture.</li>
+    </ul>
+    <p>In direct terms, honeyflies are small, easy-to-deploy honeypots that increase the chances of catching (baits) attackers.</p>
+
+    <h4>Deception and Disruption (Honeytokens)</h4>
+    <p>Honeytokens are digital or physical entities designed to detect unauthorized access or use. They can be files, database entries, or other resources that alert security teams when accessed or manipulated.</p>
+    <ul class="bullets">
+        <li>Deploy honeytokens within systems and data repositories.</li>
+        <li>Monitor honeytoken access to detect unauthorized activities.</li>
+        <li>Use honeytokens to identify insider threats and data breaches.</li>
+        <li>Analyze honeytoken alerts to improve incident response.</li>
+    </ul>
+    <p>In direct terms, honeytokens are fake data or resources that alert security teams when accessed by unauthorized users.</p>
+</section>
+
+</body>
+</html>
