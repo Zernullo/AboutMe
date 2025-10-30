@@ -47,7 +47,7 @@
           <a href="OS.html">Lecture 1</a>
           <a href="OS2.html">Lecture 2</a>
           <a href="OS3.html">Lecture 3</a>
-          <a href=".html">Lecture 4</a>
+          <a href="OS4.html">Lecture 4</a>
           <a href=".html">Lecture 5</a>
           <a href=".html">Lecture 6</a>
         </div>
@@ -64,720 +64,815 @@
 
     <!-- PAGE CONTENT GOES HERE -->
 <section class="classes">
-    <h1>Object Systems</h1>
-    <h2>Lecture 3</h2>
-    <p id="Reference">
-      Date Taken: Fall 2025<br/>
-      Status: Work in Progress<br>
-      Reference: LSU Professor Daniel Donze, ChatGBT
-    </p>
-    <h2>What's Covered?</h2>
-    <ol class="number">
-        <li>Processes</li>
-        <li>Threads</li>
-        <li>CPU Scheduling</li>
-        <li>Scheduling Algorithms</li>
-        <li>Case Studies</li>
-    </ol>
-    
-    <h2>Process scheduling</h2>
-    <h3>Executable Programs</h3>
-    <p>
-    An <strong>executable</strong> is a specially formatted file that contains all the information the operating system needs to properly load and run a program in memory. 
-    It includes the starting instruction, memory relocations, required libraries, and other metadata.
-    </p>
-    <ul class="bullets">
-      <li><strong>Starting instruction</strong> - The entry point where execution begins.</li>
-      <li><strong>Relocations</strong> - Information about how addresses should be adjusted when loading into memory.</li>
-      <li><strong>Libraries</strong> - External code modules required by the program to run.</li>
-      <li><strong>Executable formats</strong> - Different OSes use different formats:
-        <ul class="circles">
-          <li>Portable Executable (PE) - Windows (.exe)</li>
-          <li>Executable and Linkable Format (ELF) - Linux</li>
-          <li>Mach Object (MachO) - Mac</li>
-        </ul>
-      </li>
-    </ul>
-    <div class="img-container">
-      <img src="../../img/classes/OSPic/Lecture3/ProcessStates.png" alt="Process States">
-    </div>
-    <h3>Process States</h3>
-    <p>
-      When a program is loaded into memory, it becomes a <strong>process</strong> that is ready to run. 
-      Processes can exist in several different states depending on what they are currently doing:
-    </p>
-    <ul class="bullets">
-      <li><strong>New</strong> - The program has just been loaded into memory and is being initialized. It is preparing to enter the ready state.</li>
-      <li><strong>Ready</strong> - The process is prepared to execute but is waiting for the CPU to schedule it. It has all resources except the CPU.</li>
-      <li><strong>Running</strong> - The process is currently executing instructions on the CPU.</li>
-      <li><strong>Blocked</strong> - The process cannot continue until some event occurs, such as completion of an I/O operation or availability of a resource.</li>
-      <li><strong>Terminated</strong> - The process has finished execution and is removed from the system. All resources are released.</li>
-    </ul>
-    <h4>Process Needs</h4>
-    <p>
-      A process requires several resources to execute properly and interact with the system:
-    </p>
-    <ul class="bullets">
-      <li><strong>CPU</strong> - Time on the processor to execute instructions.</li>
-      <li><strong>Memory</strong> - Storage for the process's code, data, and current state.</li>
-      <li><strong>I/O Devices</strong> - Access to files, storage devices, or input/output hardware.</li>
-      <li><strong>Network Access</strong> - Ability to send and receive data over a network if needed.</li>
-      <li><strong>Interprocess Communication</strong> - Mechanisms to send messages and coordinate with other processes.</li>
-    </ul>
-    <h3>Process Memory</h3>
-    <p>
-      A process's memory is divided into several regions, each with a specific purpose:
-    </p>
-    <ul class="bullets">
-      <li><strong>User Stack</strong> - Stores static data and function call information. Allocated at compile time.</li>
-      <li><strong>Heap</strong> - Dynamic memory allocations during runtime, typically via <code>malloc</code> or similar functions.</li>
-      <li><strong>Read/Write (RW) Area</strong>
-        <ul class="circles">
-          <li><code>.data</code> - Stores initialized variables.</li>
-          <li><code>.bss</code> - Stores uninitialized variables.</li>
-        </ul>
-      </li>
-      <li><strong>Read-Only (RO) Area</strong>
-        <ul class="circles">
-          <li><code>.txt</code> - Contains executable code.</li>
-          <li><code>.rodata</code> - Stores constants, strings, and jump tables.</li>
-          <li><code>.init</code> - Initialization routines.</li>
-        </ul>
-      </li>
-      <li><strong>Shared Libraries</strong> - Code shared across multiple processes to save memory and allow updates without recompiling.</li>
-    </ul>
-    <h3>Operating System Challenges</h3>
-    <p>
-      Operating systems have to manage a variety of tasks to ensure that programs run efficiently and safely. Some key challenges include:
-    </p>
-    <ul class="bullets">
-      <li><strong>Create Processes</strong> - The OS must load a program into memory, initialize its resources, and set it up to run as a process.</li>
-      <li><strong>Suspend & Resume Processes</strong> - The OS should be able to pause a running process (e.g., waiting for I/O) and later resume it without losing its state.</li>
-      <li><strong>Terminate Processes</strong> - After a process finishes execution or needs to be stopped, the OS must safely release its resources and remove it from the system.</li>
-    </ul>
-    <h3>Process Information</h3>
-    <p>
-      The operating system keeps track of each process in order to manage them effectively. 
-      This includes storing a variety of details for every process:
-    </p>
-    <ul class="bullets">
-      <li><strong>Process ID</strong> - A unique identifier, usually an integer.</li>
-      <li><strong>Command line arguments</strong> - Parameters passed to the program when it starts.</li>
-      <li><strong>Memory allocated</strong> - Memory reserved for the process to use.</li>
-      <li><strong>Open files</strong> - Files currently being used by the process.</li>
-      <li><strong>Permissions</strong> - Access rights for files, devices, and other resources.</li>
-      <li><strong>Parent & Child Process(es)</strong> - Relationships between processes.</li>
-      <li><strong>Loaded libraries</strong> - External code that the process depends on.</li>
-      <li>...and other relevant details</li>
-    </ul>
-    <p>All of this information for a single process is stored in a structure commonly called a <strong>process descriptor</strong>.</p>
-    <div class="img-container">
-      <img src="../../img/classes/OSPic/Lecture3/LinuxTask.png" alt="Linux Task Structure">
-      <img src="../../img/classes/OSPic/Lecture3/WindowEProcess.png" alt="Windows EPROCESS Structure">
-    </div>
-    <h3>Windows PCB & PEB</h3>
-    <p>
-      In Windows, the process control block (PCB) is known as the <strong>EPROCESS</strong> structure. 
-      It contains all the information the OS needs to manage a process, including its state, memory usage, and resource handles.
-      Kernel space structures like EPROCESS are not directly accessible to user-mode applications for security and stability reasons.
-      Information needed for scheduler, dispatcher, and interrupt accounting is stored in the <strong>KPROCESS</strong> structure, which is embedded within the EPROCESS structure.
-      Fields: Context Switches, Affinity, Priority, Process State, etc.
-    </p>
-    <p>
-      The <strong>PEB (Process Environment Block)</strong> is another important structure that holds information about the process's environment, such as loaded modules and environment variables.
-      User space applications can access the PEB to retrieve information about their own process.
-      Used by heap manager, image loader, and other subsystems.
-      Fields: Thread local storage, Heap pointer, Loaded modules, etc.
-    </p>
-    <h3>Tracking Processes</h3>
-    <p>
-      The operating system maintains a list of all active processes, often referred to as the <strong>process table</strong>. 
-      This table allows the OS to quickly find and manage processes as needed.
-      Each entry in the process table corresponds to a process descriptor (like EPROCESS in Windows or task_struct in Linux).
-      The OS uses this table to schedule processes, allocate resources, and handle interprocess communication.
-    </p>
-    <p>
-      Doubly linked list is commonly used to implement the process table, allowing efficient insertion and deletion of processes.
-      Each process descriptor contains pointers to the next and previous processes in the list, enabling quick traversal
-      <br><br>
-      Hash Tables can also be used for faster lookups based on process IDs or other attributes.
-      This allows the OS to quickly find a process descriptor without having to traverse the entire list.
-      Use Pid as a lookup entry to find the process descriptor in the hash table.
-      Why does this work? Because Pid is unique to each process.
-    </p>
-    <div class="img-container">
-      <img src="../../img/classes/OSPic/Lecture3/TrackingProcesses.png" alt="Tracking Processes Window">
-      <img src="../../img/classes/OSPic/Lecture3/TrackingProcesses2.png" alt="Tracking Processes Linux">
-    </div>
-    <h2>Process Creation</h2>
-    <p>
-      Process creation is a fundamental operation in an operating system, allowing new processes to be spawned from existing ones.
-      This is typically done using system calls like <code>fork()</code> in Unix/Linux or <code>CreateProcess()</code> in Windows.
-    </p>
-    <p>
-      When a process is created, the OS must allocate resources for it, including memory, file handles, and CPU time.
-      The new process is usually a copy of the parent process, inheriting its attributes and resources.
-      Generally, operating systems closely track the relationships among processes, maintaining a parent-child hierarchy.
-    </p>
-    <p>
-      After creation, the new process can be scheduled to run independently of the parent process.
-      This allows for multitasking and the execution of multiple processes concurrently.
-    </p>
-    <p>
-      Process creation can be resource-intensive, so operating systems often implement optimizations like copy-on-write to minimize the overhead of duplicating resources.
-      Process may create a clone of themselves (traditional multi-processing) or a new process with a different program loaded (exec).
-    </p>
-    <div class="img-container">
-      <img src="../../img/classes/OSPic/Lecture3/ProcessTree.png" alt="Process Tree">
-    </div>
-    <h3>Parent-Child Relationships</h3>
-    <p>
-      When a process creates another process, the creating process is referred to as the <strong>parent</strong>, and the newly created process is the <strong>child</strong>.
-      This relationship is important for resource management and process control.
-    </p>
-    <p>
-      The parent process can monitor and control its child processes, including waiting for them to finish and retrieving their exit status.
-      Child processes typically inherit certain attributes from their parent, such as environment variables, open file descriptors, and user permissions.
-      However, they may also have their own unique attributes, such as a different process ID and memory space.
-    </p>
-    <p>
-      The OS maintains a hierarchy of processes based on these parent-child relationships, which can be visualized as a tree structure.
-      This hierarchy helps the OS manage resources and enforce security policies among related processes.
-    </p>
-    <ul class="bullets">
-      <li>Resources</li>
-      <ul class="circle">
-        <li>Share all resources except Pid and memory space.</li>
-        <li>Share Selected resources (e.g., open files, sockets)</li>
-        <li>Share No resources (e.g., separate memory space)</li>
-      </ul>
-      <li>Execution</li>
-      <ul class="circle">
-        <li>Concurrent execution, this means both processes can run at the same time.</li>
-        <li>Parent waits for child to finish because it needs the child's exit status or resources.</li>
-      </ul>
-    </ul>
-    <h3>Process Creation: fork()</h3>
-    <p>
-      Unix uses the fork() system call to create a new process by duplicating the calling process.
-      The new process, called the child, is an exact copy of the parent process except for the returned value.
-    </p>
-    <p>
-      exec() is often used after fork() to replace the child's memory space with a new program.
-      This allows the child process to run a different program than the parent.
-    </p>
-    <p>
-      Parent and child share data and handles resources, but have separate memory spaces.
-      fork() returns the child PID to the parent and 0 to the child.
-      This allows both processes to determine their roles after the fork.
-      Note that changes to variables in the child process do not affect the parent process, and vice versa, due to separate memory spaces.
-    </p>
-    <h3>Copy on Write (COW)</h3>
-    <p>
-      Note how wasteful it would be to duplicate all of a process's memory when creating a new process with fork().
-      Just to replace it with exec() shortly after.
-      To optimize this, many operating systems implement a technique called <strong>Copy on Write (COW)</strong>.
-      With COW, the OS does not immediately duplicate the parent's memory for the child process.
-    </p>
-    <p>
-      Instead, both processes share the same memory pages until one of them attempts to modify a page.
-      At that point, the OS creates a copy of the page for the modifying process, allowing it to make changes without affecting the other process.
-    </p>
-    <p>
-      This approach reduces memory usage and improves performance, especially when creating multiple processes that initially share the same data.
-    </p>
-    <div class="img-container">
-      <img src="../../img/classes/OSPic/Lecture3/CopyOnWrite.png" alt="Copy on Write">
-    </div>
-    <h3>Process Creation: Linux</h3>
-    <p>
-      In Linux, the <code>clone()</code> system call is used to create a new process or thread.
-      It provides more control over what resources are shared between the parent and child processes compared to <code>fork()</code>.
-      The <code>clone()</code> function takes several flags that determine which resources are shared, such as memory space, file descriptors, and signal handlers.
-    </p>
-    <p>
-      pid_t fork(void);
-      <br>
-      Returns 0 in child process, child's PID in parent process, -1 on error.
-    </p>
-    <h3>Process Creation: Windows</h3>
-    <p>
-      In Windows, the <code>CreateProcess()</code> function is used to create a new process.
-      It provides a wide range of options for configuring the new process, including setting security attributes, specifying the command line, and controlling input/output redirection.
-    </p>
-    <div class="img-container">
-      <img src="../../img/classes/OSPic/Lecture3/ProcessWindow.png" alt="Create Process Windows">
-    </div>
-    <h2>Threads</h2>
-    <p>
-      A thread is the smallest unit of execution within a process. 
-      It represents a single sequence of instructions that can be scheduled and executed independently by the operating system.
-      Threads within the same process share the same memory space and resources, allowing for efficient communication and data sharing.
-      This makes threads more lightweight than processes, which have separate memory spaces.
-    </p>
-    <h3>Thread Basics</h3>
-    <p>
-      Single Execution Context within a process - Each thread has its own execution context, including a program counter, stack, and registers. Sometimes called a lightweight process.
-      Older generation processes had a single thread. Single core processors meant only 1 program could run at a time.
-    </p>
-    <p>
-      Each thread has its own stack, registers, and program counters.
-      Threads within the same process share memory and resources, making context switching between threads faster than between processes.
-      Data may be shared across threads or may be exclusive to one thread (Thread Local Storage).
-      All threads reside within a single process and share the same memory space.
-    </p>
-    <div class="img-container">
-      <img src="../../img/classes/OSPic/Lecture3/TSD.png" alt="Thread Storage Diagram">
-      <img src="../../img/classes/OSPic/Lecture3/TSD2.png" alt="Thread Storage Diagram 2">
-    </div>
-
-    <p>
-      Each thread may be scheduled and run independently of other threads.
-      Example - A web browser may have multiple threads: one for rendering the UI, another for handling user input, and others for loading web pages in the background.
-    </p>
-    <p>
-      If one thread is blocked (e.g., waiting for I/O), other threads in the same process can continue executing.
-      This improves the overall responsiveness and efficiency of the application. Also allows for more background computation in a responsive application.
-      Example - A word processor may have a background thread that periodically autosaves the document while the main thread remains responsive to user input.
-    </p>
-    <div class="img-container">
-      <img src="../../img/classes/OSPic/Lecture3/ServerProcessing.png" alt="Server Processing">
-      <img src="../../img/classes/OSPic/Lecture3/ServerLogic.png" alt="Server Logic">
-    </div>
-
-    <p>
-      <strong>Question:</strong> How would the server run if it had to use fork() or CreateProcess() instead of threads?
-      The server would be much slower and less efficient.
-      Each request would require creating a new process, which is resource-intensive and time-consuming.
-    </p>
-    <p>
-      <strong>Question:</strong> How would the server run if it could not use threads OR make a new process?
-      The server would be unable to handle multiple requests concurrently.
-      It would have to process each request sequentially, leading to increased latency and reduced throughput.
-    </p>
-    <p>
-      <strong>Considerations:</strong> Consider time, responsiveness, resources, potential issues
-      <br>
-      Threads are more efficient than processes because they share the same memory space and resources.
-      Creating and switching between threads is faster than creating and switching between processes.
-      However, threads can also introduce complexity, such as synchronization issues and potential data corruption if not managed properly.
-    </p>
-    <h3>Thread Implementations</h3>
-    <p>
-      Two ways of implementing threads: User-level threads and Kernel-level threads.
-      User-level threads are managed by a user-level library, while kernel-level threads are managed directly by the operating system.
-      User-level threads are faster to create and switch between, but they cannot take advantage of multiple CPU cores.
-      Kernel-level threads can be scheduled on different CPU cores, but they are slower to create and switch between.
-      OS can only be aware of kernel-level threads Implementations.
-      Most modern operating systems provide kernel thread implementations.
-    </p>
-    <h3>User Threads</h3>
-    <p>
-      User threads are created and managed by user-level libraries, allowing for faster context switching and lower overhead.
-      However, they rely on the kernel to schedule them, which can limit their performance on multi-core systems.
-    </p>  
-    <p>
-      Each process implemnts the concept of threads, up to the process to decide how to allocate time to each thread.
-      Operating system is not aware of threads, only aware of processes.
-      Therefore, if one thread makes a blocking system call, the entire process is blocked. As well as the scheduling time is allocated to the process, not the individual threads.
-      Example - A web server using user-level threads may have multiple threads handling different client requests.
-      If one thread blocks on a network operation, the entire process is blocked, preventing other threads from executing.
-    </p>
-    <h3>Kernel Threads</h3>
-    <p>
-      Kernel threads are managed by the operating system kernel, allowing for better utilization of multi-core processors.
-      The kernel is aware of all threads and can schedule them independently on different CPU cores.
-    </p>
-    <p>
-      Each process can have multiple kernel threads, and the operating system can allocate CPU time to each thread individually.
-      This allows for true parallelism, as multiple threads can be executed simultaneously on different cores.
-      However, kernel threads also have higher overhead compared to user threads, as the kernel must manage their creation, scheduling, and synchronization.
-      Example - A web server using kernel threads can handle multiple client requests concurrently, even if one thread is blocked on a network operation.
-      Other threads can continue executing, improving overall responsiveness and throughput.
-    </p>
-    <p>
-      There are alos "Hybrid Threads" implementations that combine aspects of both user-level and kernel-level threads.
-      These map one or more user threads to a single kernel thread, allowing for efficient context switching while still taking advantage of multi-core processors.
-      Example - The Java Virtual Machine (JVM) uses a hybrid threading model, where Java threads are mapped to native OS threads.
-      This allows Java applications to benefit from the performance of user-level threads while still being able to utilize multiple CPU cores.
-    </p>
-    <div class="img-container">
-      <img src="../../img/classes/OSPic/Lecture3/UserKernelThreads.png" alt="User vs Kernel Threads">
-      <img src="../../img/classes/OSPic/Lecture3/UKThreads.png" alt="Hybrid Threads">
-      <img src="../../img/classes/OSPic/Lecture3/UKThreads2.png" alt="Hybrid Threads">
-      <img src="../../img/classes/OSPic/Lecture3/UKThreads3.png" alt="Hybrid Threads">
-    </div>
-    <h2>CPU Scheduling</h2>
-    <p>
-      CPU scheduling is the process by which the operating system decides which process or thread should be given access to the CPU at any given time.
-      The goal of CPU scheduling is to maximize CPU utilization, minimize response time, and ensure fairness among processes.
-      The OS uses a variety of algorithms to determine the order in which processes are scheduled to run on the CPU.
-    </p>
-    <h3>Scheduling Basics</h3>
-    <p>
-      A typical computer system has one or more CPUs, each with one or more cores.
-      Each core can execute one thread at a time.
-      Systems have multiple processes to schedule on the CPU. May have multiple threads per process.
-      Goal: Determine how to share execution time among all threads wishing to run on the CPU.
-      The OS must decide which thread to run next, how long to run it, and when to switch to another thread.
-    </p>
-    <p>
-      Think: When deciding what process / thread to run, what would you consider?
-      I would consider factors such as priority, resource requirements, and fairness.
-      <br><br>
-      I.E. how would you decide one thread "deserves" to run over another?
-      I would consider factors such as the thread's priority, how long it has been waiting, and its resource requirements.
-    </p>
-    <p>
-      Schedulers must decide which processes to run and how long a processes should run.
-      Schedulers also have a set of goals to try and achieve.
-      Some common goals include:
-    </p>
-    <ul>
-      <li>Simple implementation/Operation</li>
-      <li>Responsiveness for UI, graphics, etc</li>
-      <li>Maximum CPU utilization/throughput</li>
-      <li>Deadlines, priority processes</li>
-      <li>Note that some of these goals may conflict with each other, requiring trade-offs to be made.</li>
-    </ul>
-    <h3>Processor Consumption</h3>
-    <p>
-      CPU scheduling decisions can impact overall system performance and resource utilization.
-      Inefficient scheduling can lead to high CPU consumption, increased power usage, and reduced system responsiveness.
-      It is essential for operating systems to implement effective scheduling algorithms that balance competing goals and optimize resource usage.
-    </p>
-    <p>
-      Processes have two phases: CPU burst and I/O burst.
-      During a CPU burst, the process is actively using the CPU to execute instructions.
-      During an I/O burst, the process is waiting for I/O operations to complete (e.g., reading from disk, waiting for user input).
-      The CPU scheduler must decide which process to run during CPU bursts and manage transitions between CPU and I/O bursts.
-    </p>
-    <p>
-      CPU bound process which requires a lot of CPU time, with long CPU bursts and short I/O bursts.
-      I/O bound process which requires a lot of I/O operations, with short CPU bursts and long I/O bursts.
-      A balanced process which has a mix of CPU and I/O bursts.
-    </p>
-    <p>
-      Whenever a different process / thread takes the CPU, this is called a context switch.
-      Context switches can be expensive, as they require saving the state of the current process and loading the state of the new process.
-      Changes process descriptor, memory mappings, cache state, etc.
-    </p>
-    <h3>Preemptive Vs Non-Preemptive Scheduling</h3>
-    <p>
-      Preemptive scheduling allows the operating system to interrupt a currently running process in order to start or resume another process.
-      Process is allowed to run for a quantum time period and after quantum expires, the process is removed from the CPU.
-      This is useful for ensuring that high-priority processes receive timely access to the CPU.
-    </p>
-    <p>
-      Non-preemptive scheduling, on the other hand, requires a process to voluntarily yield control of the CPU before another process can be scheduled.
-      This allows a process to run until it terminates, makes an I/O request, or explicitly yields the CPU.
-      This can lead to issues such as starvation, where low-priority processes may never get a chance to run.
-    </p>
-    <p>
-      Majority of modern operating systems use preemptive scheduling to ensure responsiveness and fairness among processes.
-      Preemptive schedulers are needed for interactive systems where responsiveness is critical.
-      Non-preemptive schedulers are simpler to implement and can be more efficient in certain scenarios.
-      However, they may not provide the same level of responsiveness and fairness as preemptive schedulers.
-    </p>
-    <p>
-      Examples of preemptive scheduling algorithms include Round Robin, Shortest Remaining Time First, and Priority Scheduling.
-      Examples of non-preemptive scheduling algorithms include First-Come, First-Served (FCFS) and Shortest Job Next (SJF).
-    </p>
-    <div class="img-container">
-      <img src="../../img/classes/OSPic/Lecture3/PreemptiveVSNon.png" alt="Preemptive vs Non-Preemptive">
-    </div>
-
-    <h2>Scheduler Queues</h2>
-    <p>
-      Processes that are ready to execute are stored in a ready queue (often called a ready list).
-      This list is a linked list of pointers to process or thread descriptors. LINUX: task_struct. Windows: EPROCESS.
-      The scheduler selects the next process to run from this queue based on the scheduling algorithm in use.
-      When a process is running, it is removed from the ready queue. When it is blocked (e.g., waiting for I/O), it is moved to a wait queue.
-      Ordering, structure, and selection process are determined by the scheduling algorithm.
-    </p>
-    <h3>Ready List to CPU</h3>
-    <p>
-      When a CPU core is available, the scheduler removes a process from the ready queue and assigns it to the CPU (moves it to execute).
-      The process run until it removed and replaced by another process.
-      Some reasons for switching processes include:
-    </p>
-    <ul class="bullets">
-      <li>The process has used up its allocated time slice (quantum).</li>
-      <li>A higher-priority process becomes ready to run.</li>
-      <li>The process makes an I/O request and becomes blocked.</li>
-      <li>The process terminates.</li>
-    </ul>
-    <h3>Scheduler Evaluation Metrics</h3>
-    <p>
-      There are several key metrics used to evaluate the performance of a CPU scheduler:
-    </p>
-    <ul class="bullets">
-      <li><strong>Throughput:</strong> The number of processes completed per time unit. Higher throughput is generally better.</li>
-      <li><strong>Turnaround Time:</strong> The total time taken from submission to completion for a process. Lower turnaround time is better.</li>
-      <li><strong>Response Time:</strong> The time from submission to the first response for a process. Lower response time is better.</li>
-      <li><strong>Waiting Time:</strong> The total time a process spends waiting in the ready queue. Lower waiting time is better.</li>
-      <li><strong>CPU Utilization:</strong> The percentage of time the CPU is actively executing processes. Higher CPU utilization is generally better.</li>
-    </ul>
-    <h3>Scheduling Algorithms Preview</h3>
-    <p>
-      There are several scheduling algorithms used by operating systems to manage process execution. Each algorithm has its own strengths and weaknesses, and the choice of algorithm can significantly impact system performance.
-    </p>
-    <ul class="bullets">
-      <li><strong>First-Come, First-Served (FCFS):</strong> Processes are scheduled in the order they arrive. Simple to implement but can lead to long waiting times for short processes.</li>
-      <li><strong>Shortest Job First (SJF):</strong> The process with the shortest estimated run time is scheduled next. Can minimize average waiting time but requires accurate estimates of process lengths.</li>
-      <li><strong>Shortest Remaining Time First (SRTF):</strong> A preemptive version of SJF where the process with the shortest remaining time is scheduled next. Can improve response times for shorter processes.</li>
-      <li><strong>Round Robin (RR):</strong> Each process is assigned a fixed time slice (quantum) and is cycled through the ready queue. Good for time-sharing systems but can lead to high context switch overhead.</li>
-      <li><strong>Preemptive Priority Scheduling:</strong> Similar to priority scheduling but allows for preemption if a higher-priority process becomes ready. Helps ensure that high-priority processes receive timely attention.</li>
-      <li><strong>Multilevel Queue Scheduling (MLQS):</strong> Processes are divided into multiple queues based on their priority or type (e.g., system processes, interactive processes, batch processes). Each queue can have its own scheduling algorithm. Helps manage different types of workloads effectively.</li>
-      <li><strong>Multilevel Feedback Queue Scheduling (MFQS):</strong> Similar to multilevel queue scheduling but allows processes to move between queues based on their behavior and requirements. Helps prevent starvation and improves responsiveness.</li>
-    </ul>
-    <h4>First Come, First Served (FCFS)</h4>
-    <p>
-      FCFS is the simplest scheduling algorithm. In this approach, processes are executed in the order they arrive in the ready queue. The first process to arrive is the first to be executed, and so on.
-    </p>
-    <p>
-      While FCFS is easy to implement and understand, it has some significant drawbacks:
-    </p>
-    <ul class="bullets">
-      <li><strong>Convoy Effect:</strong> Short processes can be stuck waiting behind long processes, leading to poor overall system performance.</li>
-      <li><strong>Non-preemptive:</strong> Once a process starts executing, it cannot be interrupted until it finishes, which can lead to high turnaround times.</li>
-    </ul>
-    <div class="img-container">
-      <img src="../../img/classes/OSPic/Lecture3/FCFS.png" alt="First Come First Served">
-      <img src="../../img/classes/OSPic/Lecture3/FCFS2.png" alt="First Come First Served">
-      <img src="../../img/classes/OSPic/Lecture3/FCFS3.png" alt="First Come First Served">
-    </div>
-    <p>Practice Problem in Moodle.</p>
-    <h4>Shortest Job First (SJF)</h4>
-    <p>
-      SJF is a scheduling algorithm that selects the process with the shortest estimated run time to execute next. This approach aims to minimize the average waiting time for processes in the ready queue.
-      SJF can be implemented in both preemptive and non-preemptive forms. In the preemptive version, known as Shortest Remaining Time (SRT), a running process can be interrupted if a new process arrives with a shorter estimated run time.
-    </p>
-    <p>
-      While SJF can significantly improve average waiting times, it also has some challenges:
-    </p>
-    <ul class="bullets">
-      <li><strong>Estimation of Process Lengths:</strong> SJF requires accurate estimates of process run times, which can be difficult to obtain.</li>
-      <li><strong>Starvation:</strong> Long processes may be perpetually delayed if short processes continue to arrive, leading to starvation.</li>
-    </ul>
-    <div class="img-container">
-      <img src="../../img/classes/OSPic/Lecture3/SJF.png" alt="Shortest Job First">
-      <img src="../../img/classes/OSPic/Lecture3/SJF2.png" alt="Shortest Job First">
-    </div>
-    <p>Practice Problem in Moodle.</p>
-    <h4>Calculating CPU Burst</h4>
-    <p>
-      Our examples used a known burst duration for a given process.
-      Unrealistic, won't know exatc CPU burst needed.
-      Bursts may vary over time.
-      Burst may change based on conditions of a system.
-      Instead of an exact value, could we estimate CPU burst time?
-      Yes, we can use an exponential average to predict the next CPU burst based on previous bursts.
-    </p>
-    <h4>Estimating CPU Burst Time</h4>
-    <p>
-      We can use the following formula to calculate the predicted burst time:
-    </p>
-    <p>
-      <code>Predicted Burst Time = α * Actual Burst Time + (1 - α) * Previous Predicted Burst Time</code>
-    </p>
-    <ul class="bullets">
-      <li><code>α</code> (alpha) is a weighting factor between 0 and 1.</li>
-      <li><code>Actual Burst Time</code> is the time taken by the process in the last execution.</li>
-      <li><code>Previous Predicted Burst Time</code> is the predicted time from the last execution.</li>
-    </ul>
-    <p>
-      By adjusting the value of <code>α</code>, we can control the sensitivity of the prediction:
-    </p>
-    <ul class="bullets">
-      <li>A higher <code>α</code> gives more weight to the most recent burst time.</li>
-      <li>A lower <code>α</code> smooths out the predictions over time.</li>
-    </ul>
-    <p>
-      This approach allows us to adapt to changing conditions and improve the accuracy of our burst time predictions.
-    </p>
-    <div class="img-container">
-      <img src="../../img/classes/OSPic/Lecture3/BurstTimeEquation.png" alt="Estimating CPU Burst Time">
-      <img src="../../img/classes/OSPic/Lecture3/BurstTimeEquation2.png" alt="Exponential Average Notes">
-      <img src="../../img/classes/OSPic/Lecture3/BurstExample.png" alt="Exponential Average Example">
-    </div>
-    <h2>Priority Scheduling | P</h2>
-    <p>
-      Priority scheduling is a method of scheduling processes based on their priority levels. Each process is assigned a priority, and the scheduler selects the process with the highest priority to run next.
-      Priorities can be assigned based on various factors, such as the importance of the task, resource requirements, or user-defined settings.
-      Can be preemptive or non-preemptive.
-      In preemptive priority scheduling, if a higher-priority process becomes ready to run, it can preempt the currently running process.
-      In non-preemptive priority scheduling, the currently running process continues until it finishes or voluntarily yields the CPU.
-    </p>
-    <div class="img-container">
-      <img src="../../img/classes/OSPic/Lecture3/PriorityExample.png" alt="Priority Scheduling">
-    </div>
-    <h3>Round Robin Scheduling | RR</h3>
-    <p>
-      Round Robin (RR) scheduling is a preemptive scheduling algorithm that assigns a fixed time slice (quantum) to each process in the ready queue. 
-      The scheduler cycles through the processes, allowing each one to run for its allocated time slice before moving on to the next process.
-      This approach ensures that all processes receive a fair share of CPU time and helps prevent starvation.
-      The choice of quantum size is crucial for the performance of the RR algorithm. 
-      A very small quantum can lead to excessive context switching, while a very large quantum can result in poor responsiveness for interactive processes.
-      A common approach is to set the quantum to a value that balances responsiveness and context switch overhead.
-    </p>
-    <div class="img-container">
-      <img src="../../img/classes/OSPic/Lecture3/RRExample.png" alt="Round Robin Scheduling">
-    </div>
-    <p>Practice Problem in Moodle.</p>
-    <h3>Multilevel Queue Scheduling | MLQ</h3>
-    <p>
-      Multilevel queue scheduling is a method that divides the ready queue into several separate queues, each with its own scheduling algorithm.
-      Processes are assigned to a specific queue based on their characteristics, such as priority or resource requirements.
-      The scheduler then selects processes from each queue according to its own rules.
-    </p>
-    <p>
-      For example, a system might have separate queues for interactive processes, batch processes, and system processes.
-      Each queue could use a different scheduling algorithm, such as Round Robin for interactive processes and First-Come, First-Served for batch processes.
-      This approach allows the operating system to tailor the scheduling strategy to the specific needs of different types of processes.
-    </p>
-    <ul class="bullets">
-      <li>Real Time Queue (RR)</li>
-      <li>Interactive Queue (RR)</li>
-      <li>Regular Processes (RR)</li>
-      <li>Batch Processes (FCFS)</li>
-    </ul>
-    <h3>Multilevel Feedback Queue Scheduling | MLFQ</h3>
-    <p>
-      Multilevel feedback queue scheduling is an extension of multilevel queue scheduling that allows processes to move between queues.
-      This approach aims to provide a more flexible and responsive scheduling strategy by adapting to the behavior and requirements of individual processes.
-    </p>
-    <p>
-      In MLFQ, processes start in the highest-priority queue and are given a time slice to execute. If they do not finish within their time slice, they are moved to a lower-priority queue.
-      Conversely, if a process in a lower-priority queue is able to complete its work quickly, it can be promoted back to a higher-priority queue.
-    </p>
-    <p>
-      This dynamic adjustment of process priorities helps ensure that interactive processes receive the CPU time they need while still allowing batch processes to make progress. Goals include:
-    </p>
-    <ul class="bullets">
-      <li>Prioritize processes with smaller CPU needs</li>
-      <li>Prioritize I/O processes</li>
-      <li>Separate CPU hungry processes from I/O bound processes</li>
-    </ul>
-    <h4>MLFQS Designs</h4>
-    <p>
-      Number of Queues: More queues allow for finer granularity in scheduling but increase complexity.
-      Scheduling poicy for each queue: Different queues can use different scheduling algorithms (e.g., RR for high-priority, FCFS for low-priority).
-      Scheduling policy between queues: Common approaches include strict priority (always select from the highest-priority non-empty queue) or time-sharing (allocate CPU time among queues).
-      Promotion / Demotion criteria: Processes can be promoted or demoted based on their CPU usage, I/O behavior, or other factors.
-      Starting queue: New processes can start in the highest-priority queue or a lower-priority queue based on their expected behavior.
-    </p>
-    <h4>Example Design</h4>
-    <p>
-      Four queues (High, Medium, Low, Batch priority)
-      <br>
-      High through low use RR, Batch FCFS - High priority queue has the smallest quantum, Batch has the largest.
-      <br>
-      Select from High queue first, if none, select from Medium, etc.
-      <br>
-      Promotion / Demotion Criteria - If a process uses up its entire quantum, it is demoted to the next lower queue. If a process waits too long in a lower queue, it is promoted to the next higher queue.
-    </p>
-    <div class="img-container">
-      <img src="../../img/classes/OSPic/Lecture3/MLFQS.png" alt="Multilevel Feedback Queue Scheduling Diagram">
-    </div>
-    <h2>Linux Scheduling</h2>
-    <p>Both real-time and normal scheduling</p>
-    <p>
-      Soft real-time scheduling is also supported, allowing for prioritization of time-sensitive tasks.
-      Take priority over regularly scheduled processes, has real-time priority value of 0 to 99. (higher > lower).
-      Three Algorithms: SCHED_FIFO, SCHED_RR, SCHED_OTHER
-    </p>
-    <ul class="bullets">
-      <li>SCHED_FIFO: First-Come, First-Served scheduling for real-time tasks</li>
-      <li>SCHED_RR: Round Robin scheduling for real-time tasks</li>
-      <li>SCHED_DEADLINE: Earliest Deadline First scheduling for real-time tasks</li>
-    </ul>
-    <h3>Normal Processes</h3>
-    <ul class="bullets">
-      <li><strong>User processes (non-real-time):</strong>
+  <h1>Object Systems</h1>
+  <h2>Lecture 3</h2>
+  <p id="Reference">
+    Date Taken: Fall 2025<br/>
+    Status: Work in Progress<br>
+    Reference: LSU Professor Daniel Donze, ChatGBT
+  </p>
+  <h2>What's Covered?</h2>
+  <ol class="number">
+      <li>Processes</li>
+      <li>Threads</li>
+      <li>CPU Scheduling</li>
+      <li>Scheduling Algorithms</li>
+      <li>Case Studies</li>
+  </ol>
+  
+  <h2>Process scheduling</h2>
+  <h3>Executable Programs</h3>
+  <p>
+  An <strong>executable</strong> is a specially formatted file that contains all the information the operating system needs to properly load and run a program in memory. 
+  It includes the starting instruction, memory relocations, required libraries, and other metadata.
+  </p>
+  <ul class="bullets">
+    <li><strong>Starting instruction</strong> - The entry point where execution begins.</li>
+    <li><strong>Relocations</strong> - Information about how addresses should be adjusted when loading into memory.</li>
+    <li><strong>Libraries</strong> - External code modules required by the program to run.</li>
+    <li><strong>Executable formats</strong> - Different OSes use different formats:
       <ul class="circles">
-        <li><strong>SCHED_NORMAL / SCHED_OTHER</strong> - Default scheduling policy for normal user processes (called "normal" in code, "other" in documentation).</li>
-        <li><strong>SCHED_BATCH</strong> - For CPU-intensive batch jobs; scheduler assumes process is always CPU intensive.</li>
-        <li><strong>SCHED_IDLE</strong> - For very low-priority background tasks; lowest possible priority.</li>
+        <li>Portable Executable (PE) - Windows (.exe)</li>
+        <li>Executable and Linkable Format (ELF) - Linux</li>
+        <li>Mach Object (MachO) - Mac</li>
       </ul>
-      </li>
-    </ul>
-    <h3>Linux Completely Fair Scheduler (CFS)</h3>
-    <p>
-      The Completely Fair Scheduler (CFS) is the default scheduler for normal processes in Linux.
-      It aims to provide a fair distribution of CPU time among all runnable processes.
-    </p>
-    <p>
-      CFS uses a red-black tree to maintain the list of runnable processes, allowing for efficient selection of the next process to run.
-      Each process is assigned a "virtual runtime" (vruntime) value, which represents the amount of CPU time it has received.
-      The scheduler always selects the process with the smallest vruntime to run next.
-    </p>
-    <p>
-      Key features of CFS include:
-    </p>
-    <ul class="bullets">
-      <li>Fairness: CFS aims to allocate CPU time fairly among all processes, preventing starvation.</li>
-      <li>Low latency: CFS is designed to provide low-latency response for interactive tasks.</li>
-      <li>Scalability: CFS can efficiently handle a large number of processes.</li>
-    </ul>
-    <h3>Task Storage (Red-Black Tree)</h3>
-    <p>
-      CFS uses a red-black tree to store all runnable processes.
-      This allows for efficient insertion, deletion, and selection of processes based on their vruntime.
-    </p>
-    <div class="img-container">
-      <img src="../../img/classes/OSPic/Lecture3/CFS.png" alt="Completely Fair Scheduler">
-    </div>
-    <h3>CFS Scheduling Basics</h3>
-    <p>
-      Each process has a weight based on its priority (nice value).
-      The scheduler calculates the time slice for each process based on its weight.
-      Processes with higher priority (lower nice value) receive a larger share of CPU time.
-      The vruntime is updated based on the actual CPU time used by the process, adjusted by its weight.
-      This ensures that processes with different priorities are treated fairly.
-    <ul class="bullets">
-      <li>Remove process from tree (ready queue)</li>
-      <li>Run for time slice (see later)</li>
-      <li>Update <code>vruntime</code></li>
-      <li>VR_{new} += Physical_{runtime} * 1.25^{nice}</li>
-      <li>Re-insert process into tree based on <code>VR_{new}</code> as key</li>
-    </ul>
-    <h3>Calculation of Time Slice</h3>
-    <p>
-      The time slice for each process is calculated based on its weight and the total weight of all runnable processes.
-      This ensures that each process receives a fair share of CPU time relative to its priority.
-      The base timeslice is defined by the <strong>sched_latency</strong> parameter,
-    </p>
-    <ul class="bullets">
-      <li>Base Timeslice: sched_latency. Usually set to <strong>48ms</strong>.</li>
-      <li>Each process receives a weighted, even portion of the latency period.</li>
-      <li>
-        <strong>Examples:</strong>
-        <ul class="circles">
-          <li>4 processes, all same priority: each gets 48/4 = 12ms.</li>
-          <li>2 processes, A’s weight = 3x B’s weight: A gets 3/4 of latency (36ms), B gets 1/4 (12ms).</li>
-          <li>If there are many processes (e.g., 50), the <strong>min_granularity</strong> parameter sets the minimum timeslice to prevent slices from becoming too small.</li>
-        </ul>
-      </li>
-    </ul>
-    <h3>Earliest Eligible Virtual Deadline First (EEVDF)</h3>
-    <p>
-      EEVDF is a scheduling algorithm that aims to provide fair CPU time allocation while also considering process deadlines.
-      It is designed to work alongside CFS to improve the responsiveness of time-sensitive tasks.
-    </p>
-    <ul class="bullets">
-      <li>Even with a good CFS implementation, processes still may not get their fair share of CPU time.</li>
-      <li>EEVDF calculates:
+    </li>
+  </ul>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture3/ProcessStates.png" alt="Process States">
+  </div>
+  <h3>Process States</h3>
+  <p>
+    When a program is loaded into memory, it becomes a <strong>process</strong> that is ready to run. 
+    Processes can exist in several different states depending on what they are currently doing:
+  </p>
+  <ul class="bullets">
+    <li><strong>New</strong> - The program has just been loaded into memory and is being initialized. It is preparing to enter the ready state.</li>
+    <li><strong>Ready</strong> - The process is prepared to execute but is waiting for the CPU to schedule it. It has all resources except the CPU.</li>
+    <li><strong>Running</strong> - The process is currently executing instructions on the CPU.</li>
+    <li><strong>Blocked</strong> - The process cannot continue until some event occurs, such as completion of an I/O operation or availability of a resource.</li>
+    <li><strong>Terminated</strong> - The process has finished execution and is removed from the system. All resources are released.</li>
+  </ul>
+  <h4>Process Needs</h4>
+  <p>
+    A process requires several resources to execute properly and interact with the system:
+  </p>
+  <ul class="bullets">
+    <li><strong>CPU</strong> - Time on the processor to execute instructions.</li>
+    <li><strong>Memory</strong> - Storage for the process's code, data, and current state.</li>
+    <li><strong>I/O Devices</strong> - Access to files, storage devices, or input/output hardware.</li>
+    <li><strong>Network Access</strong> - Ability to send and receive data over a network if needed.</li>
+    <li><strong>Interprocess Communication</strong> - Mechanisms to send messages and coordinate with other processes.</li>
+  </ul>
+  <h3>Process Memory</h3>
+  <p>
+    A process's memory is divided into several regions, each with a specific purpose:
+  </p>
+  <ul class="bullets">
+    <li><strong>User Stack</strong> - Stores static data and function call information. Allocated at compile time.</li>
+    <li><strong>Heap</strong> - Dynamic memory allocations during runtime, typically via <code>malloc</code> or similar functions.</li>
+    <li><strong>Read/Write (RW) Area</strong>
       <ul class="circles">
-        <li><strong>Lag</strong> = TimeSlice – TimeRan</li>
-        <li>Processes with negative lag will not be scheduled (they got more than their fair share).</li>
-        <li><strong>EligibleTime</strong> is how far in the future a process could be run again.</li>
-        <li><strong>Virtual_Deadline</strong> = TimeSlice + EligibleTime</li>
-        <li>Schedule the process with the earliest virtual deadline.</li>
+        <li><code>.data</code> - Stores initialized variables.</li>
+        <li><code>.bss</code> - Stores uninitialized variables.</li>
       </ul>
-      </li>
+    </li>
+    <li><strong>Read-Only (RO) Area</strong>
+      <ul class="circles">
+        <li><code>.txt</code> - Contains executable code.</li>
+        <li><code>.rodata</code> - Stores constants, strings, and jump tables.</li>
+        <li><code>.init</code> - Initialization routines.</li>
+      </ul>
+    </li>
+    <li><strong>Shared Libraries</strong> - Code shared across multiple processes to save memory and allow updates without recompiling.</li>
+  </ul>
+  <h3>Operating System Challenges</h3>
+  <p>
+    Operating systems have to manage a variety of tasks to ensure that programs run efficiently and safely. Some key challenges include:
+  </p>
+  <ul class="bullets">
+    <li><strong>Create Processes</strong> - The OS must load a program into memory, initialize its resources, and set it up to run as a process.</li>
+    <li><strong>Suspend & Resume Processes</strong> - The OS should be able to pause a running process (e.g., waiting for I/O) and later resume it without losing its state.</li>
+    <li><strong>Terminate Processes</strong> - After a process finishes execution or needs to be stopped, the OS must safely release its resources and remove it from the system.</li>
+  </ul>
+  <h3>Process Information</h3>
+  <p>
+    The operating system keeps track of each process in order to manage them effectively. 
+    This includes storing a variety of details for every process:
+  </p>
+  <ul class="bullets">
+    <li><strong>Process ID</strong> - A unique identifier, usually an integer.</li>
+    <li><strong>Command line arguments</strong> - Parameters passed to the program when it starts.</li>
+    <li><strong>Memory allocated</strong> - Memory reserved for the process to use.</li>
+    <li><strong>Open files</strong> - Files currently being used by the process.</li>
+    <li><strong>Permissions</strong> - Access rights for files, devices, and other resources.</li>
+    <li><strong>Parent & Child Process(es)</strong> - Relationships between processes.</li>
+    <li><strong>Loaded libraries</strong> - External code that the process depends on.</li>
+    <li>...and other relevant details</li>
+  </ul>
+  <p>All of this information for a single process is stored in a structure commonly called a <strong>process descriptor</strong>.</p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture3/LinuxTask.png" alt="Linux Task Structure">
+    <img src="../../img/classes/OSPic/Lecture3/WindowEProcess.png" alt="Windows EPROCESS Structure">
+  </div>
+  <h3>Windows PCB & PEB</h3>
+  <p>
+    In Windows, the process control block (PCB) is known as the <strong>EPROCESS</strong> structure. 
+    It contains all the information the OS needs to manage a process, including its state, memory usage, and resource handles.
+    Kernel space structures like EPROCESS are not directly accessible to user-mode applications for security and stability reasons.
+    Information needed for scheduler, dispatcher, and interrupt accounting is stored in the <strong>KPROCESS</strong> structure, which is embedded within the EPROCESS structure.
+    Fields: Context Switches, Affinity, Priority, Process State, etc.
+  </p>
+  <p>
+    The <strong>PEB (Process Environment Block)</strong> is another important structure that holds information about the process's environment, such as loaded modules and environment variables.
+    User space applications can access the PEB to retrieve information about their own process.
+    Used by heap manager, image loader, and other subsystems.
+    Fields: Thread local storage, Heap pointer, Loaded modules, etc.
+  </p>
+  <h3>Tracking Processes</h3>
+  <p>
+    The operating system maintains a list of all active processes, often referred to as the <strong>process table</strong>. 
+    This table allows the OS to quickly find and manage processes as needed.
+    Each entry in the process table corresponds to a process descriptor (like EPROCESS in Windows or task_struct in Linux).
+    The OS uses this table to schedule processes, allocate resources, and handle interprocess communication.
+  </p>
+  <p>
+    Doubly linked list is commonly used to implement the process table, allowing efficient insertion and deletion of processes.
+    Each process descriptor contains pointers to the next and previous processes in the list, enabling quick traversal
+    <br><br>
+    Hash Tables can also be used for faster lookups based on process IDs or other attributes.
+    This allows the OS to quickly find a process descriptor without having to traverse the entire list.
+    Use Pid as a lookup entry to find the process descriptor in the hash table.
+    Why does this work? Because Pid is unique to each process.
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture3/TrackingProcesses.png" alt="Tracking Processes Window">
+    <img src="../../img/classes/OSPic/Lecture3/TrackingProcesses2.png" alt="Tracking Processes Linux">
+  </div>
+  <h2>Process Creation</h2>
+  <p>
+    Process creation is a fundamental operation in an operating system, allowing new processes to be spawned from existing ones.
+    This is typically done using system calls like <code>fork()</code> in Unix/Linux or <code>CreateProcess()</code> in Windows.
+  </p>
+  <p>
+    When a process is created, the OS must allocate resources for it, including memory, file handles, and CPU time.
+    The new process is usually a copy of the parent process, inheriting its attributes and resources.
+    Generally, operating systems closely track the relationships among processes, maintaining a parent-child hierarchy.
+  </p>
+  <p>
+    After creation, the new process can be scheduled to run independently of the parent process.
+    This allows for multitasking and the execution of multiple processes concurrently.
+  </p>
+  <p>
+    Process creation can be resource-intensive, so operating systems often implement optimizations like copy-on-write to minimize the overhead of duplicating resources.
+    Process may create a clone of themselves (traditional multi-processing) or a new process with a different program loaded (exec).
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture3/ProcessTree.png" alt="Process Tree">
+  </div>
+  <h3>Parent-Child Relationships</h3>
+  <p>
+    When a process creates another process, the creating process is referred to as the <strong>parent</strong>, and the newly created process is the <strong>child</strong>.
+    This relationship is important for resource management and process control.
+  </p>
+  <p>
+    The parent process can monitor and control its child processes, including waiting for them to finish and retrieving their exit status.
+    Child processes typically inherit certain attributes from their parent, such as environment variables, open file descriptors, and user permissions.
+    However, they may also have their own unique attributes, such as a different process ID and memory space.
+  </p>
+  <p>
+    The OS maintains a hierarchy of processes based on these parent-child relationships, which can be visualized as a tree structure.
+    This hierarchy helps the OS manage resources and enforce security policies among related processes.
+  </p>
+  <ul class="bullets">
+    <li>Resources</li>
+    <ul class="circle">
+      <li>Share all resources except Pid and memory space.</li>
+      <li>Share Selected resources (e.g., open files, sockets)</li>
+      <li>Share No resources (e.g., separate memory space)</li>
     </ul>
-  </section>
+    <li>Execution</li>
+    <ul class="circle">
+      <li>Concurrent execution, this means both processes can run at the same time.</li>
+      <li>Parent waits for child to finish because it needs the child's exit status or resources.</li>
+    </ul>
+  </ul>
+  <h3>Process Creation: fork()</h3>
+  <p>
+    Unix uses the fork() system call to create a new process by duplicating the calling process.
+    The new process, called the child, is an exact copy of the parent process except for the returned value.
+  </p>
+  <p>
+    exec() is often used after fork() to replace the child's memory space with a new program.
+    This allows the child process to run a different program than the parent.
+  </p>
+  <p>
+    Parent and child share data and handles resources, but have separate memory spaces.
+    fork() returns the child PID to the parent and 0 to the child.
+    This allows both processes to determine their roles after the fork.
+    Note that changes to variables in the child process do not affect the parent process, and vice versa, due to separate memory spaces.
+  </p>
+  <h3>Copy on Write (COW)</h3>
+  <p>
+    Note how wasteful it would be to duplicate all of a process's memory when creating a new process with fork().
+    Just to replace it with exec() shortly after.
+    To optimize this, many operating systems implement a technique called <strong>Copy on Write (COW)</strong>.
+    With COW, the OS does not immediately duplicate the parent's memory for the child process.
+  </p>
+  <p>
+    Instead, both processes share the same memory pages until one of them attempts to modify a page.
+    At that point, the OS creates a copy of the page for the modifying process, allowing it to make changes without affecting the other process.
+  </p>
+  <p>
+    This approach reduces memory usage and improves performance, especially when creating multiple processes that initially share the same data.
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture3/CopyOnWrite.png" alt="Copy on Write">
+  </div>
+  <h3>Process Creation: Linux</h3>
+  <p>
+    In Linux, the <code>clone()</code> system call is used to create a new process or thread.
+    It provides more control over what resources are shared between the parent and child processes compared to <code>fork()</code>.
+    The <code>clone()</code> function takes several flags that determine which resources are shared, such as memory space, file descriptors, and signal handlers.
+  </p>
+  <p>
+    pid_t fork(void);
+    <br>
+    Returns 0 in child process, child's PID in parent process, -1 on error.
+  </p>
+  <h3>Process Creation: Windows</h3>
+  <p>
+    In Windows, the <code>CreateProcess()</code> function is used to create a new process.
+    It provides a wide range of options for configuring the new process, including setting security attributes, specifying the command line, and controlling input/output redirection.
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture3/ProcessWindow.png" alt="Create Process Windows">
+  </div>
+  <h2>Threads</h2>
+  <p>
+    A thread is the smallest unit of execution within a process. 
+    It represents a single sequence of instructions that can be scheduled and executed independently by the operating system.
+    Threads within the same process share the same memory space and resources, allowing for efficient communication and data sharing.
+    This makes threads more lightweight than processes, which have separate memory spaces.
+  </p>
+  <h3>Thread Basics</h3>
+  <p>
+    Single Execution Context within a process - Each thread has its own execution context, including a program counter, stack, and registers. Sometimes called a lightweight process.
+    Older generation processes had a single thread. Single core processors meant only 1 program could run at a time.
+  </p>
+  <p>
+    Each thread has its own stack, registers, and program counters.
+    Threads within the same process share memory and resources, making context switching between threads faster than between processes.
+    Data may be shared across threads or may be exclusive to one thread (Thread Local Storage).
+    All threads reside within a single process and share the same memory space.
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture3/TSD.png" alt="Thread Storage Diagram">
+    <img src="../../img/classes/OSPic/Lecture3/TSD2.png" alt="Thread Storage Diagram 2">
+  </div>
+
+  <p>
+    Each thread may be scheduled and run independently of other threads.
+    Example - A web browser may have multiple threads: one for rendering the UI, another for handling user input, and others for loading web pages in the background.
+  </p>
+  <p>
+    If one thread is blocked (e.g., waiting for I/O), other threads in the same process can continue executing.
+    This improves the overall responsiveness and efficiency of the application. Also allows for more background computation in a responsive application.
+    Example - A word processor may have a background thread that periodically autosaves the document while the main thread remains responsive to user input.
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture3/ServerProcessing.png" alt="Server Processing">
+    <img src="../../img/classes/OSPic/Lecture3/ServerLogic.png" alt="Server Logic">
+  </div>
+
+  <p>
+    <strong>Question:</strong> How would the server run if it had to use fork() or CreateProcess() instead of threads?
+    The server would be much slower and less efficient.
+    Each request would require creating a new process, which is resource-intensive and time-consuming.
+  </p>
+  <p>
+    <strong>Question:</strong> How would the server run if it could not use threads OR make a new process?
+    The server would be unable to handle multiple requests concurrently.
+    It would have to process each request sequentially, leading to increased latency and reduced throughput.
+  </p>
+  <p>
+    <strong>Considerations:</strong> Consider time, responsiveness, resources, potential issues
+    <br>
+    Threads are more efficient than processes because they share the same memory space and resources.
+    Creating and switching between threads is faster than creating and switching between processes.
+    However, threads can also introduce complexity, such as synchronization issues and potential data corruption if not managed properly.
+  </p>
+  <h3>Thread Implementations</h3>
+  <p>
+    Two ways of implementing threads: User-level threads and Kernel-level threads.
+    User-level threads are managed by a user-level library, while kernel-level threads are managed directly by the operating system.
+    User-level threads are faster to create and switch between, but they cannot take advantage of multiple CPU cores.
+    Kernel-level threads can be scheduled on different CPU cores, but they are slower to create and switch between.
+    OS can only be aware of kernel-level threads Implementations.
+    Most modern operating systems provide kernel thread implementations.
+  </p>
+  <h3>User Threads</h3>
+  <p>
+    User threads are created and managed by user-level libraries, allowing for faster context switching and lower overhead.
+    However, they rely on the kernel to schedule them, which can limit their performance on multi-core systems.
+  </p>  
+  <p>
+    Each process implemnts the concept of threads, up to the process to decide how to allocate time to each thread.
+    Operating system is not aware of threads, only aware of processes.
+    Therefore, if one thread makes a blocking system call, the entire process is blocked. As well as the scheduling time is allocated to the process, not the individual threads.
+    Example - A web server using user-level threads may have multiple threads handling different client requests.
+    If one thread blocks on a network operation, the entire process is blocked, preventing other threads from executing.
+  </p>
+  <h3>Kernel Threads</h3>
+  <p>
+    Kernel threads are managed by the operating system kernel, allowing for better utilization of multi-core processors.
+    The kernel is aware of all threads and can schedule them independently on different CPU cores.
+  </p>
+  <p>
+    Each process can have multiple kernel threads, and the operating system can allocate CPU time to each thread individually.
+    This allows for true parallelism, as multiple threads can be executed simultaneously on different cores.
+    However, kernel threads also have higher overhead compared to user threads, as the kernel must manage their creation, scheduling, and synchronization.
+    Example - A web server using kernel threads can handle multiple client requests concurrently, even if one thread is blocked on a network operation.
+    Other threads can continue executing, improving overall responsiveness and throughput.
+  </p>
+  <p>
+    There are alos "Hybrid Threads" implementations that combine aspects of both user-level and kernel-level threads.
+    These map one or more user threads to a single kernel thread, allowing for efficient context switching while still taking advantage of multi-core processors.
+    Example - The Java Virtual Machine (JVM) uses a hybrid threading model, where Java threads are mapped to native OS threads.
+    This allows Java applications to benefit from the performance of user-level threads while still being able to utilize multiple CPU cores.
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture3/UserKernelThreads.png" alt="User vs Kernel Threads">
+    <img src="../../img/classes/OSPic/Lecture3/UKThreads.png" alt="Hybrid Threads">
+    <img src="../../img/classes/OSPic/Lecture3/UKThreads2.png" alt="Hybrid Threads">
+    <img src="../../img/classes/OSPic/Lecture3/UKThreads3.png" alt="Hybrid Threads">
+  </div>
+  <h2>CPU Scheduling</h2>
+  <p>
+    CPU scheduling is the process by which the operating system decides which process or thread should be given access to the CPU at any given time.
+    The goal of CPU scheduling is to maximize CPU utilization, minimize response time, and ensure fairness among processes.
+    The OS uses a variety of algorithms to determine the order in which processes are scheduled to run on the CPU.
+  </p>
+  <h3>Scheduling Basics</h3>
+  <p>
+    A typical computer system has one or more CPUs, each with one or more cores.
+    Each core can execute one thread at a time.
+    Systems have multiple processes to schedule on the CPU. May have multiple threads per process.
+    Goal: Determine how to share execution time among all threads wishing to run on the CPU.
+    The OS must decide which thread to run next, how long to run it, and when to switch to another thread.
+  </p>
+  <p>
+    Think: When deciding what process / thread to run, what would you consider?
+    I would consider factors such as priority, resource requirements, and fairness.
+    <br><br>
+    I.E. how would you decide one thread "deserves" to run over another?
+    I would consider factors such as the thread's priority, how long it has been waiting, and its resource requirements.
+  </p>
+  <p>
+    Schedulers must decide which processes to run and how long a processes should run.
+    Schedulers also have a set of goals to try and achieve.
+    Some common goals include:
+  </p>
+  <ul>
+    <li>Simple implementation/Operation</li>
+    <li>Responsiveness for UI, graphics, etc</li>
+    <li>Maximum CPU utilization/throughput</li>
+    <li>Deadlines, priority processes</li>
+    <li>Note that some of these goals may conflict with each other, requiring trade-offs to be made.</li>
+  </ul>
+  <h3>Processor Consumption</h3>
+  <p>
+    CPU scheduling decisions can impact overall system performance and resource utilization.
+    Inefficient scheduling can lead to high CPU consumption, increased power usage, and reduced system responsiveness.
+    It is essential for operating systems to implement effective scheduling algorithms that balance competing goals and optimize resource usage.
+  </p>
+  <p>
+    Processes have two phases: CPU burst and I/O burst.
+    During a CPU burst, the process is actively using the CPU to execute instructions.
+    During an I/O burst, the process is waiting for I/O operations to complete (e.g., reading from disk, waiting for user input).
+    The CPU scheduler must decide which process to run during CPU bursts and manage transitions between CPU and I/O bursts.
+  </p>
+  <p>
+    CPU bound process which requires a lot of CPU time, with long CPU bursts and short I/O bursts.
+    I/O bound process which requires a lot of I/O operations, with short CPU bursts and long I/O bursts.
+    A balanced process which has a mix of CPU and I/O bursts.
+  </p>
+  <p>
+    Whenever a different process / thread takes the CPU, this is called a context switch.
+    Context switches can be expensive, as they require saving the state of the current process and loading the state of the new process.
+    Changes process descriptor, memory mappings, cache state, etc.
+  </p>
+  <h3>Preemptive Vs Non-Preemptive Scheduling</h3>
+  <p>
+    Preemptive scheduling allows the operating system to interrupt a currently running process in order to start or resume another process.
+    Process is allowed to run for a quantum time period and after quantum expires, the process is removed from the CPU.
+    This is useful for ensuring that high-priority processes receive timely access to the CPU.
+  </p>
+  <p>
+    Non-preemptive scheduling, on the other hand, requires a process to voluntarily yield control of the CPU before another process can be scheduled.
+    This allows a process to run until it terminates, makes an I/O request, or explicitly yields the CPU.
+    This can lead to issues such as starvation, where low-priority processes may never get a chance to run.
+  </p>
+  <p>
+    Majority of modern operating systems use preemptive scheduling to ensure responsiveness and fairness among processes.
+    Preemptive schedulers are needed for interactive systems where responsiveness is critical.
+    Non-preemptive schedulers are simpler to implement and can be more efficient in certain scenarios.
+    However, they may not provide the same level of responsiveness and fairness as preemptive schedulers.
+  </p>
+  <p>
+    Examples of preemptive scheduling algorithms include Round Robin, Shortest Remaining Time First, and Priority Scheduling.
+    Examples of non-preemptive scheduling algorithms include First-Come, First-Served (FCFS) and Shortest Job Next (SJF).
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture3/PreemptiveVSNon.png" alt="Preemptive vs Non-Preemptive">
+  </div>
+
+  <h2>Scheduler Queues</h2>
+  <p>
+    Processes that are ready to execute are stored in a ready queue (often called a ready list).
+    This list is a linked list of pointers to process or thread descriptors. LINUX: task_struct. Windows: EPROCESS.
+    The scheduler selects the next process to run from this queue based on the scheduling algorithm in use.
+    When a process is running, it is removed from the ready queue. When it is blocked (e.g., waiting for I/O), it is moved to a wait queue.
+    Ordering, structure, and selection process are determined by the scheduling algorithm.
+  </p>
+  <h3>Ready List to CPU</h3>
+  <p>
+    When a CPU core is available, the scheduler removes a process from the ready queue and assigns it to the CPU (moves it to execute).
+    The process run until it removed and replaced by another process.
+    Some reasons for switching processes include:
+  </p>
+  <ul class="bullets">
+    <li>The process has used up its allocated time slice (quantum).</li>
+    <li>A higher-priority process becomes ready to run.</li>
+    <li>The process makes an I/O request and becomes blocked.</li>
+    <li>The process terminates.</li>
+  </ul>
+  <h3>Scheduler Evaluation Metrics</h3>
+  <p>
+    There are several key metrics used to evaluate the performance of a CPU scheduler:
+  </p>
+  <ul class="bullets">
+    <li><strong>Throughput:</strong> The number of processes completed per time unit. Higher throughput is generally better.</li>
+    <li><strong>Turnaround Time:</strong> The total time taken from submission to completion for a process. Lower turnaround time is better.</li>
+    <li><strong>Response Time:</strong> The time from submission to the first response for a process. Lower response time is better.</li>
+    <li><strong>Waiting Time:</strong> The total time a process spends waiting in the ready queue. Lower waiting time is better.</li>
+    <li><strong>CPU Utilization:</strong> The percentage of time the CPU is actively executing processes. Higher CPU utilization is generally better.</li>
+  </ul>
+  <h3>Scheduling Algorithms Preview</h3>
+  <p>
+    There are several scheduling algorithms used by operating systems to manage process execution. Each algorithm has its own strengths and weaknesses, and the choice of algorithm can significantly impact system performance.
+  </p>
+  <ul class="bullets">
+    <li><strong>First-Come, First-Served (FCFS):</strong> Processes are scheduled in the order they arrive. Simple to implement but can lead to long waiting times for short processes.</li>
+    <li><strong>Shortest Job First (SJF):</strong> The process with the shortest estimated run time is scheduled next. Can minimize average waiting time but requires accurate estimates of process lengths.</li>
+    <li><strong>Shortest Remaining Time First (SRTF):</strong> A preemptive version of SJF where the process with the shortest remaining time is scheduled next. Can improve response times for shorter processes.</li>
+    <li><strong>Round Robin (RR):</strong> Each process is assigned a fixed time slice (quantum) and is cycled through the ready queue. Good for time-sharing systems but can lead to high context switch overhead.</li>
+    <li><strong>Preemptive Priority Scheduling:</strong> Similar to priority scheduling but allows for preemption if a higher-priority process becomes ready. Helps ensure that high-priority processes receive timely attention.</li>
+    <li><strong>Multilevel Queue Scheduling (MLQS):</strong> Processes are divided into multiple queues based on their priority or type (e.g., system processes, interactive processes, batch processes). Each queue can have its own scheduling algorithm. Helps manage different types of workloads effectively.</li>
+    <li><strong>Multilevel Feedback Queue Scheduling (MFQS):</strong> Similar to multilevel queue scheduling but allows processes to move between queues based on their behavior and requirements. Helps prevent starvation and improves responsiveness.</li>
+  </ul>
+  <h4>First Come, First Served (FCFS)</h4>
+  <p>
+    FCFS is the simplest scheduling algorithm. In this approach, processes are executed in the order they arrive in the ready queue. The first process to arrive is the first to be executed, and so on.
+  </p>
+  <p>
+    While FCFS is easy to implement and understand, it has some significant drawbacks:
+  </p>
+  <ul class="bullets">
+    <li><strong>Convoy Effect:</strong> Short processes can be stuck waiting behind long processes, leading to poor overall system performance.</li>
+    <li><strong>Non-preemptive:</strong> Once a process starts executing, it cannot be interrupted until it finishes, which can lead to high turnaround times.</li>
+  </ul>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture3/FCFS.png" alt="First Come First Served">
+    <img src="../../img/classes/OSPic/Lecture3/FCFS2.png" alt="First Come First Served">
+    <img src="../../img/classes/OSPic/Lecture3/FCFS3.png" alt="First Come First Served">
+  </div>
+  <p>Practice Problem in Moodle.</p>
+  <h4>Shortest Job First (SJF)</h4>
+  <p>
+    SJF is a scheduling algorithm that selects the process with the shortest estimated run time to execute next. This approach aims to minimize the average waiting time for processes in the ready queue.
+    SJF can be implemented in both preemptive and non-preemptive forms. In the preemptive version, known as Shortest Remaining Time (SRT), a running process can be interrupted if a new process arrives with a shorter estimated run time.
+  </p>
+  <p>
+    While SJF can significantly improve average waiting times, it also has some challenges:
+  </p>
+  <ul class="bullets">
+    <li><strong>Estimation of Process Lengths:</strong> SJF requires accurate estimates of process run times, which can be difficult to obtain.</li>
+    <li><strong>Starvation:</strong> Long processes may be perpetually delayed if short processes continue to arrive, leading to starvation.</li>
+  </ul>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture3/SJF.png" alt="Shortest Job First">
+    <img src="../../img/classes/OSPic/Lecture3/SJF2.png" alt="Shortest Job First">
+  </div>
+  <p>Practice Problem in Moodle.</p>
+  <h4>Calculating CPU Burst</h4>
+  <p>
+    Our examples used a known burst duration for a given process.
+    Unrealistic, won't know exatc CPU burst needed.
+    Bursts may vary over time.
+    Burst may change based on conditions of a system.
+    Instead of an exact value, could we estimate CPU burst time?
+    Yes, we can use an exponential average to predict the next CPU burst based on previous bursts.
+  </p>
+  <h4>Estimating CPU Burst Time</h4>
+  <p>
+    We can use the following formula to calculate the predicted burst time:
+  </p>
+  <p>
+    <code>Predicted Burst Time = α * Actual Burst Time + (1 - α) * Previous Predicted Burst Time</code>
+  </p>
+  <ul class="bullets">
+    <li><code>α</code> (alpha) is a weighting factor between 0 and 1.</li>
+    <li><code>Actual Burst Time</code> is the time taken by the process in the last execution.</li>
+    <li><code>Previous Predicted Burst Time</code> is the predicted time from the last execution.</li>
+  </ul>
+  <p>
+    By adjusting the value of <code>α</code>, we can control the sensitivity of the prediction:
+  </p>
+  <ul class="bullets">
+    <li>A higher <code>α</code> gives more weight to the most recent burst time.</li>
+    <li>A lower <code>α</code> smooths out the predictions over time.</li>
+  </ul>
+  <p>
+    This approach allows us to adapt to changing conditions and improve the accuracy of our burst time predictions.
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture3/BurstTimeEquation.png" alt="Estimating CPU Burst Time">
+    <img src="../../img/classes/OSPic/Lecture3/BurstTimeEquation2.png" alt="Exponential Average Notes">
+    <img src="../../img/classes/OSPic/Lecture3/BurstExample.png" alt="Exponential Average Example">
+  </div>
+  <h2>Priority Scheduling | P</h2>
+  <p>
+    Priority scheduling is a method of scheduling processes based on their priority levels. Each process is assigned a priority, and the scheduler selects the process with the highest priority to run next.
+    Priorities can be assigned based on various factors, such as the importance of the task, resource requirements, or user-defined settings.
+    Can be preemptive or non-preemptive.
+    In preemptive priority scheduling, if a higher-priority process becomes ready to run, it can preempt the currently running process.
+    In non-preemptive priority scheduling, the currently running process continues until it finishes or voluntarily yields the CPU.
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture3/PriorityExample.png" alt="Priority Scheduling">
+  </div>
+  <h3>Round Robin Scheduling | RR</h3>
+  <p>
+    Round Robin (RR) scheduling is a preemptive scheduling algorithm that assigns a fixed time slice (quantum) to each process in the ready queue. 
+    The scheduler cycles through the processes, allowing each one to run for its allocated time slice before moving on to the next process.
+    This approach ensures that all processes receive a fair share of CPU time and helps prevent starvation.
+    The choice of quantum size is crucial for the performance of the RR algorithm. 
+    A very small quantum can lead to excessive context switching, while a very large quantum can result in poor responsiveness for interactive processes.
+    A common approach is to set the quantum to a value that balances responsiveness and context switch overhead.
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture3/RRExample.png" alt="Round Robin Scheduling">
+  </div>
+  <p>Practice Problem in Moodle.</p>
+  <h3>Multilevel Queue Scheduling | MLQ</h3>
+  <p>
+    Multilevel queue scheduling is a method that divides the ready queue into several separate queues, each with its own scheduling algorithm.
+    Processes are assigned to a specific queue based on their characteristics, such as priority or resource requirements.
+    The scheduler then selects processes from each queue according to its own rules.
+  </p>
+  <p>
+    For example, a system might have separate queues for interactive processes, batch processes, and system processes.
+    Each queue could use a different scheduling algorithm, such as Round Robin for interactive processes and First-Come, First-Served for batch processes.
+    This approach allows the operating system to tailor the scheduling strategy to the specific needs of different types of processes.
+  </p>
+  <ul class="bullets">
+    <li>Real Time Queue (RR)</li>
+    <li>Interactive Queue (RR)</li>
+    <li>Regular Processes (RR)</li>
+    <li>Batch Processes (FCFS)</li>
+  </ul>
+  <h3>Multilevel Feedback Queue Scheduling | MLFQ</h3>
+  <p>
+    Multilevel feedback queue scheduling is an extension of multilevel queue scheduling that allows processes to move between queues.
+    This approach aims to provide a more flexible and responsive scheduling strategy by adapting to the behavior and requirements of individual processes.
+  </p>
+  <p>
+    In MLFQ, processes start in the highest-priority queue and are given a time slice to execute. If they do not finish within their time slice, they are moved to a lower-priority queue.
+    Conversely, if a process in a lower-priority queue is able to complete its work quickly, it can be promoted back to a higher-priority queue.
+  </p>
+  <p>
+    This dynamic adjustment of process priorities helps ensure that interactive processes receive the CPU time they need while still allowing batch processes to make progress. Goals include:
+  </p>
+  <ul class="bullets">
+    <li>Prioritize processes with smaller CPU needs</li>
+    <li>Prioritize I/O processes</li>
+    <li>Separate CPU hungry processes from I/O bound processes</li>
+  </ul>
+  <h4>MLFQS Designs</h4>
+  <p>
+    Number of Queues: More queues allow for finer granularity in scheduling but increase complexity.
+    Scheduling poicy for each queue: Different queues can use different scheduling algorithms (e.g., RR for high-priority, FCFS for low-priority).
+    Scheduling policy between queues: Common approaches include strict priority (always select from the highest-priority non-empty queue) or time-sharing (allocate CPU time among queues).
+    Promotion / Demotion criteria: Processes can be promoted or demoted based on their CPU usage, I/O behavior, or other factors.
+    Starting queue: New processes can start in the highest-priority queue or a lower-priority queue based on their expected behavior.
+  </p>
+  <h4>Example Design</h4>
+  <p>
+    Four queues (High, Medium, Low, Batch priority)
+    <br>
+    High through low use RR, Batch FCFS - High priority queue has the smallest quantum, Batch has the largest.
+    <br>
+    Select from High queue first, if none, select from Medium, etc.
+    <br>
+    Promotion / Demotion Criteria - If a process uses up its entire quantum, it is demoted to the next lower queue. If a process waits too long in a lower queue, it is promoted to the next higher queue.
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture3/MLFQS.png" alt="Multilevel Feedback Queue Scheduling Diagram">
+  </div>
+  <h2>Linux Scheduling</h2>
+  <p>Both real-time and normal scheduling</p>
+  <p>
+    Soft real-time scheduling is also supported, allowing for prioritization of time-sensitive tasks.
+    Take priority over regularly scheduled processes, has real-time priority value of 0 to 99. (higher > lower).
+    Three Algorithms: SCHED_FIFO, SCHED_RR, SCHED_OTHER
+  </p>
+  <ul class="bullets">
+    <li>SCHED_FIFO: First-Come, First-Served scheduling for real-time tasks</li>
+    <li>SCHED_RR: Round Robin scheduling for real-time tasks</li>
+    <li>SCHED_DEADLINE: Earliest Deadline First scheduling for real-time tasks</li>
+  </ul>
+  <h3>Normal Processes</h3>
+  <ul class="bullets">
+    <li><strong>User processes (non-real-time):</strong>
+    <ul class="circles">
+      <li><strong>SCHED_NORMAL / SCHED_OTHER</strong> - Default scheduling policy for normal user processes (called "normal" in code, "other" in documentation).</li>
+      <li><strong>SCHED_BATCH</strong> - For CPU-intensive batch jobs; scheduler assumes process is always CPU intensive.</li>
+      <li><strong>SCHED_IDLE</strong> - For very low-priority background tasks; lowest possible priority.</li>
+    </ul>
+    </li>
+  </ul>
+  <h3>Linux Completely Fair Scheduler (CFS)</h3>
+  <p>
+    The Completely Fair Scheduler (CFS) is the default scheduler for normal processes in Linux.
+    It aims to provide a fair distribution of CPU time among all runnable processes.
+  </p>
+  <p>
+    CFS uses a red-black tree to maintain the list of runnable processes, allowing for efficient selection of the next process to run.
+    Each process is assigned a "virtual runtime" (vruntime) value, which represents the amount of CPU time it has received.
+    The scheduler always selects the process with the smallest vruntime to run next.
+  </p>
+  <p>
+    Key features of CFS include:
+  </p>
+  <ul class="bullets">
+    <li>Fairness: CFS aims to allocate CPU time fairly among all processes, preventing starvation.</li>
+    <li>Low latency: CFS is designed to provide low-latency response for interactive tasks.</li>
+    <li>Scalability: CFS can efficiently handle a large number of processes.</li>
+  </ul>
+  <h3>Task Storage (Red-Black Tree)</h3>
+  <p>
+    CFS uses a red-black tree to store all runnable processes.
+    This allows for efficient insertion, deletion, and selection of processes based on their vruntime.
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture3/CFS.png" alt="Completely Fair Scheduler">
+  </div>
+  <h3>CFS Scheduling Basics</h3>
+  <p>
+    Each process has a weight based on its priority (nice value).
+    The scheduler calculates the time slice for each process based on its weight.
+    Processes with higher priority (lower nice value) receive a larger share of CPU time.
+    The vruntime is updated based on the actual CPU time used by the process, adjusted by its weight.
+    This ensures that processes with different priorities are treated fairly.
+  <ul class="bullets">
+    <li>Remove process from tree (ready queue)</li>
+    <li>Run for time slice (see later)</li>
+    <li>Update <code>vruntime</code></li>
+    <li>VR_{new} += Physical_{runtime} * 1.25^{nice}</li>
+    <li>Re-insert process into tree based on <code>VR_{new}</code> as key</li>
+  </ul>
+  <h3>Calculation of Time Slice</h3>
+  <p>
+    The time slice for each process is calculated based on its weight and the total weight of all runnable processes.
+    This ensures that each process receives a fair share of CPU time relative to its priority.
+    The base timeslice is defined by the <strong>sched_latency</strong> parameter,
+  </p>
+  <ul class="bullets">
+    <li>Base Timeslice: sched_latency. Usually set to <strong>48ms</strong>.</li>
+    <li>Each process receives a weighted, even portion of the latency period.</li>
+    <li>
+      <strong>Examples:</strong>
+      <ul class="circles">
+        <li>4 processes, all same priority: each gets 48/4 = 12ms.</li>
+        <li>2 processes, A's weight = 3x B's weight: A gets 3/4 of latency (36ms), B gets 1/4 (12ms).</li>
+        <li>If there are many processes (e.g., 50), the <strong>min_granularity</strong> parameter sets the minimum timeslice to prevent slices from becoming too small.</li>
+      </ul>
+    </li>
+  </ul>
+  <h3>Earliest Eligible Virtual Deadline First (EEVDF)</h3>
+  <p>
+    EEVDF is a scheduling algorithm that aims to provide fair CPU time allocation while also considering process deadlines.
+    It is designed to work alongside CFS to improve the responsiveness of time-sensitive tasks.
+  </p>
+  <ul class="bullets">
+    <li>Even with a good CFS implementation, processes still may not get their fair share of CPU time.</li>
+    <li>EEVDF calculates:
+    <ul class="circles">
+      <li><strong>Lag</strong> = TimeSlice - TimeRan</li>
+      <li>Processes with negative lag will not be scheduled (they got more than their fair share).</li>
+      <li><strong>EligibleTime</strong> is how far in the future a process could be run again.</li>
+      <li><strong>Virtual_Deadline</strong> = TimeSlice + EligibleTime</li>
+      <li>Schedule the process with the earliest virtual deadline.</li>
+    </ul>
+    </li>
+  </ul>
+
+  <h3>Evaluation - Deterministic Modeling</h3>
+  <p>
+    Deterministic modeling involves using mathematical models and simulations to evaluate the performance of scheduling algorithms.
+    By analyzing various scenarios and workloads, we can predict how different scheduling strategies will perform under specific conditions.
+    This approach allows us to identify potential bottlenecks, optimize resource allocation, and improve overall system performance.
+  </p>
+  <p>The advantages of deterministic modeling is it is simple and it use real numbers for calculations, making it easier to understand and analyze.</p>
+  <p>The disavantages is it require real numbers and need many examples to be effective.</p>
+
+  <h3>Evaluation - Queuing Models</h3>
+  <p>
+    Queuing models are mathematical representations of systems that involve waiting lines or queues.
+    They are used to analyze the performance of scheduling algorithms by modeling the arrival and service processes of tasks.
+    By studying the behavior of queues, we can gain insights into system performance metrics such as average waiting time, throughput, and resource utilization.
+  </p>
+  <p>The advantages of queuing models is it can model complex systems and provide insights into system performance.</p>
+  <p>The disadvantages is it can be complex and require assumptions about arrival and service processes. Math can get very complicated.</p>
+
+  <h3>Evaluation - Simulation</h3>
+  <p>
+    Simulation involves creating a virtual model of a system and running experiments to evaluate the performance of scheduling algorithms.
+    By simulating different workloads and scenarios, we can observe how various scheduling strategies perform in practice.
+    This approach allows us to test the effectiveness of algorithms under realistic conditions and identify potential issues that may not be apparent through theoretical analysis alone.
+  </p>
+  <p>The advantages of simulation is it can model complex systems and provide insights into system performance under realistic conditions.</p>
+  <p>The disadvantages is it can be time-consuming and require significant computational resources.</p>
+
+  <h3>Evaluation - Implementation</h3>
+  <p>
+    Implementation involves integrating scheduling algorithms into real operating systems and measuring their performance in live environments.
+    By deploying algorithms in production systems, we can gather empirical data on their effectiveness and impact on system performance.
+    This approach provides valuable insights into the practical challenges of implementing scheduling strategies and allows for real-world validation of theoretical models.
+  </p>
+  <p>The advantages of implementation is it provides real-world validation and insights into practical challenges.</p>
+  <p>The disadvantages is it can be risky and may impact system stability and performance.</p>
+
+  <h3>Multi-Core Scheduling Concepts</h3>
+  <p>
+    Multi-core scheduling involves distributing tasks across multiple CPU cores to improve performance and resource utilization.
+    This approach requires new scheduling strategies that can effectively manage parallel workloads and minimize contention between processes.
+  </p>
+  <p>Key concepts in multi-core scheduling include:</p>
+  <ul class="bullets">
+    <li><strong>Load Balancing:</strong> Distributing workloads evenly across all available cores to prevent bottlenecks and ensure optimal resource utilization.</li>
+    <li><strong>Affinity Scheduling:</strong> Assigning processes to specific cores based on their resource requirements and execution characteristics.</li>
+    <li><strong>Task Granularity:</strong> Determining the optimal size and duration of tasks to maximize parallelism and minimize overhead.</li>
+  </ul>
+
+  <h4>Asymmetric vs Symmetric Multiprocessing</h4>
+  <p>
+    In asymmetric multiprocessing (AMP), each core is assigned specific tasks or functions, and the operating system manages the distribution of workloads.
+    This approach can lead to improved performance for specialized tasks but may result in underutilization of certain cores.
+    In symmetric multiprocessing (SMP), all cores are treated equally, and the operating system dynamically schedules tasks across all available cores.
+    This approach allows for better load balancing and resource utilization but may introduce additional overhead due to increased contention between processes.
+  </p>
+  <p>Asymmetric is simple but can lead to bottlenecks meaning that certain cores may become overloaded while others are underutilized. While symmetric is more complex and no single core bottleneck can occur meaning all cores can be utilized effectively.</p>
+
+  <h3>SMP Ready Queues</h3>
+  <p>
+    In symmetric multiprocessing (SMP) systems, each CPU core typically maintains its own ready queue to manage the processes that are ready to execute.
+    This approach allows for efficient scheduling and load balancing across multiple cores.
+    When a core becomes idle, it selects the next process from its own ready queue to execute.
+    If a core's ready queue is empty, it may attempt to steal processes from other cores' queues to maintain high CPU utilization.
+  </p>
+  <p>Single ready queue - all processes stored in a single queue shared by all cores. This approach simplifies scheduling but can lead to contention and bottlenecks as all cores compete for access to the same queue. Locking bottlenecks may occur if multiple cores try to access the queue simultaneously.</p>
+  <p>Per-core ready queues - each core has its own dedicated ready queue. This approach reduces contention and allows for more efficient scheduling, as each core can manage its own queue independently. However, it may lead to load imbalances if certain cores become overloaded while others remain underutilized.</p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture3/Smp.png" alt="SMP Ready Queues">
+  </div>
+
+  <h3>SMP Challenge - Memory Stalls</h3>
+  <p>
+    Memory stalls occur when a CPU core is forced to wait for data to be fetched from memory, leading to idle cycles and reduced performance.
+    In SMP systems, memory stalls can be exacerbated by contention for shared memory resources, as multiple cores may attempt to access the same memory locations simultaneously.
+    To mitigate memory stalls, operating systems can implement techniques such as cache coherence protocols, which ensure that each core has a consistent view of memory.
+    Additionally, scheduling algorithms can be designed to minimize contention by distributing workloads in a way that reduces simultaneous access to shared memory.
+  </p>
+  <p>While stalled, no more instructions can be executed until the required data is available, leading to potential performance degradation. The solution is Chip Multi Threading (CMT), which allows multiple threads to be executed on a single core by altering their execution. This approach can help hide memory latency and improve overall system throughput.</p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture3/SmpStalling.png" alt="SMP Memory Stalls">
+    <img src="../../img/classes/OSPic/Lecture3/CMTStalling.png" alt="CMT Memory Stalls">
+  </div>
+
+  <h3>Load Balancing Vs Processor Affinity</h3>
+  <p>
+    Load balancing and processor affinity are two important concepts in multi-core scheduling that aim to optimize CPU utilization and performance.
+    Load balancing involves distributing workloads evenly across all available CPU cores to prevent bottlenecks and ensure optimal resource utilization.
+    This approach helps to maximize overall system throughput and responsiveness by ensuring that no single core becomes overloaded while others remain underutilized.
+    <br><br>
+    Processor affinity, on the other hand, involves assigning processes to specific CPU cores based on their resource requirements and execution characteristics.
+    By maintaining affinity, the operating system can take advantage of cache locality and reduce context switch overhead
+    This can lead to improved performance for processes that frequently access the same data or require specific hardware resources.
+  </p>
+  <p>Load balancing focuses on distributing workloads evenly across all cores to maximize CPU utilization, while processor affinity aims to optimize performance by keeping processes on specific cores to take advantage of cache locality and reduce context switch overhead.</p>
+</section>
 
 </body>
 </html>
