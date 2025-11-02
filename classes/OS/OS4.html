@@ -64,26 +64,208 @@
 
     <!-- PAGE CONTENT GOES HERE -->
 <section class="classes">
-    <h1>Object Systems</h1>
-    <h2>Lecture 4</h2>
-    <p id="Reference">
-        Date Taken: Fall 2025<br/>
-        Status: Work in Progress<br>
-        Reference: LSU Professor Daniel Donze, ChatGBT
-    </p>
-    <h2>What is Covered?</h2> 
-    <ol class="numbers">
-        <li>Synchronization Problems</li>
-        <li>Synchronization Primitives</li>
-        <li>Deadlocks</li>
-    </ol>
+  <h1>Object Systems</h1>
+  <h2>Lecture 4</h2>
+  <p id="Reference">
+      Date Taken: Fall 2025<br/>
+      Status: Work in Progress<br>
+      Reference: LSU Professor Daniel Donze, ChatGBT
+  </p>
+  <h2>What is Covered?</h2> 
+  <ol class="numbers">
+      <li>Synchronization Problems</li>
+      <li>Synchronization Primitives</li>
+      <li>Deadlocks</li>
+  </ol>
 
-    <h2>Synchronization & Deadlocks</h2>
-    
-   
+  <h3>Recap</h3>
+  <h4>What is a Critical Section?</h4>
+  <p>A critical section is a part of a multi-threaded program that accesses shared resources (like variables or data structures) and must not be executed by more than one thread at a time. This is crucial for preventing race conditions and ensuring data integrity.</p>
+  <h4>What is a difference between a hardware-based synchronization solution and a software based one?</h4>
+  <p>A hardware-based synchronization solution uses hardware mechanisms (like atomic instructions or special CPU instructions) to achieve synchronization, while a software-based solution relies on algorithms and data structures (like locks, semaphores, or monitors) implemented in software. Hardware solutions are generally faster but less flexible, whereas software solutions are more versatile but can introduce overhead.</p>
+  <h4>How does Lamport's Bakery Algorithm work?</h4>
+  <p>Lamport's Bakery Algorithm is a software-based solution for ensuring mutual exclusion in a distributed system. It assigns a "ticket" to each process that wants to enter its critical section. The process with the lowest ticket number is allowed to enter the critical section. If two processes receive the same ticket number, they are prioritized based on their process IDs. This algorithm ensures that all processes get a fair chance to access the critical section without the need for hardware support.</p>
+  <h4>How did Monitors help solve the Dining Philosophers Problem? What issue did it help fix?</h4>
+  <p>Monitors help solve the Dining Philosophers Problem by encapsulating the shared resources (the forks) and the synchronization logic within a monitor. This ensures that only one philosopher can access the forks at a time, preventing deadlock and starvation. The monitor provides methods for philosophers to pick up and put down forks, ensuring that the necessary conditions for safe access are met.</p>
+  <h4>What do resource allocation graphs (RAGs) model? What do nodes represent? What do edges represent?</h4>
+  <p>Resource allocation graphs (RAGs) model the allocation of resources to processes in a system. In a RAG, nodes represent processes and resources, while edges represent the relationships between them. Specifically, a request edge from a process to a resource indicates that the process is requesting the resource, and an assignment edge from a resource to a process indicates that the resource has been allocated to the process.</p>
+  <h4>What graph structures must be present in an RAG for deadlock to be possible?</h4>
+  <p>For deadlock to be possible in a resource allocation graph (RAG), the following graph structures must be present:</p>
+  <ul>
+      <li><strong>Cycle:</strong> There must be a cycle in the graph, which indicates that a set of processes are waiting for resources held by each other.</li>
+      <li><strong>Request Edges:</strong> There must be request edges from processes to resources, indicating that the processes are requesting those resources.</li>
+      <li><strong>Assignment Edges:</strong> There must be assignment edges from resources to processes, indicating that the resources are currently allocated to those processes.</li>
+  </ul>
 
-  
+  <h2>Synchronization & Deadlocks</h2>
+  <h3>Synchronization Problems</h3>
+  <p>
+    When multiple processes try to update shared data at the same time, the final result may become incorrect due to concurrent access. 
+    For example, consider a variable <b>X</b> and the operation <code>X = X + 1;</code>. 
+    In assembly, this simple statement breaks down into three steps: <br>
+    (1) Load the value of X from memory, <br>
+    (2) Add 1 to the value, and <br>
+    (3) Store the result back to X. <br>
+    If these operations are executed sequentially by two processes (P1 and P2), the result will be correct. 
+    P1 loads X as 5, adds 1, and stores 6; then P2 loads 6, adds 1, and stores 7, giving a final value of 7. 
+    However, if the processes run concurrently and their steps interleave, both might load the old value (5) before either writes the new one. 
+    As a result, both will store 6, and one increment is lost. 
+    This situation is called a <b>race condition</b> because the final result depends on which process finishes first. 
+    To prevent this, synchronization mechanisms such as locks, semaphores, or atomic operations are used to ensure only one process updates the shared variable at a time.
+  </p>
+  <p>
+    To explain in more simple terms, imagine you and a friend are trying to add stickers to a shared album. 
+    If you both try to add a sticker at the same time, you might accidentally place your stickers on top of each other, and some stickers could get lost. 
+    To avoid this, you take turns adding your stickers, ensuring that each sticker is placed correctly without any overlap.
+  </p>
+  <p>Multiple processes accessing shared data concurrently may lead to incorrect results if not properly coordinated. Thus, we need mechanisms for processes to coordinate data reads and writes. Proper solutions cannot make any timing assumptions, scheduler behavior, or other external factors.</p>
+   <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture4/producer.png" alt="Producer-Consumer Problem">
+    <img src="../../img/classes/OSPic/Lecture4/producer1.png" alt="Producer-Consumer Problem">
+    <img src="../../img/classes/OSPic/Lecture4/producer2.png" alt="Producer-Consumer Problem">
+    <img src="../../img/classes/OSPic/Lecture4/producer3.png" alt="Producer-Consumer Problem">
+   </div>
 
+  <h3>Critical Section</h3>
+  <p>
+    A critical section is a part of a multi-threaded program that accesses shared resources (like variables or data structures) and must not be executed by more than one thread at a time. 
+    This is crucial for preventing race conditions and ensuring data integrity.
+  </p>
+  <p>
+    Critical section are the portions of code where a shared resource is accessed or modified.
+    If multiple threads access the critical section at the same time, unexpected behavior or data corruption may occur.
+    Multiple threads, possible multiple critical sections.
+    Synchronization primitives allow processes/threads to limit access to critical sections so that the bad effects are prevented.
+  </p>
+  <h4>Solution to Critical Section</h4>
+  <p>Synchronized section are called critical sections. Only one process/thread at a time can access critical section, other must wait. Guarded by atomic operations</p>
+
+  <h3>Atomicity (Atomic Operations)</h3>
+  <p>
+    Atomic operations are indivisible operations that complete in a single step relative to other threads. 
+    This means that once an atomic operation begins, it runs to completion without any possibility of interruption.
+  </p>
+  <p>
+    Atomicity is crucial for maintaining consistency in shared data. 
+    If an operation is atomic, it guarantees that no other thread can see an intermediate state of the data being modified.
+  </p>
+  <p>Atomic operations allow for data consistency and prevent race conditions in concurrent (multi-threaded) programming.</p>
+
+  <h3>Critical Section Solution Properties</h3>
+  <p>
+    Proper solutions to the critical section (CS) problem must satisfy three key properties:
+  </p>
+  <ul class="bullets">
+    <li><strong>Safety/Mutual Exclusion:</strong> Only one process can be in its critical section at any given time.</li>
+    <li><strong>Liveness (Progress):</strong> If no process is in its critical section and some processes wish to enter, one of them must be allowed to enter.</li>
+    <li><strong>Bounded Waiting (lack of starvation):</strong> There must be a limit on the number of times other processes can enter their critical sections before a waiting process is allowed to enter.</li>
+  </ul>
+
+  <h3>Critical Section Assumptions</h3>
+  <p>
+    Each process must execute at a non-zero speed. Otherwise it would be hard to guarantee a process gives up CS.
+    Make NO assumptions about relative execution times/speeds. 
+    Cannot use sleep() as a solution.
+    Synchronization methods must also not contain race conditions. Process A executes code before any other process could, therefore correct &larr; WRONG
+  </p>
+
+  <h3>Interrupt-Based Solution</h3>
+  <p>
+    Disable interrupts when entering critical section, enable when leaving.
+    Only works in uniprocessor systems.
+    If a process is preempted in its critical section, no other process can run until interrupts are re-enabled.
+    Not suitable for multiprocessor systems as disabling interrupts on one CPU does not affect others.
+  </p>
+  <p>
+    Entry section: disable interrupts (and preemption). Exit section: enable interrupts.
+    <br>Will this solve the problem? What if the critical section is code that runs for an hour? Can some processes starve - never enter their critical section? What if there are two CPUs?  
+  </p>
+  <p>
+    Short Answer: Disabling interrupts in the entry section and enabling them in the exit section can solve the race condition problem only on a single CPU system, because it prevents other processes from interrupting during the critical section. 
+    However, if the critical section runs for a long time (for example, an hour), other processes will have to wait the entire time and may starve, meaning they never get a chance to run. 
+    Also, if there are two or more CPUs, this solution will not work, because disabling interrupts on one CPU does not stop the other CPUs from accessing the shared variable.
+  </p>
+
+  <h2>Software Solutions for Synchronization</h2>
+  <p>
+    Software solutions for synchronization aim to manage access to shared resources without relying on hardware mechanisms like disabling interrupts. Some common software solutions include:
+  </p>
+  <ul class="bullets">
+    <li><strong>Locks:</strong> Mechanisms that allow only one thread to access a resource at a time. Other threads must wait until the lock is released.</li>
+    <li><strong>Semaphores:</strong> Signaling mechanisms that can be used to control access to a resource by multiple threads. They maintain a count of available resources.</li>
+    <li><strong>Monitors:</strong> High-level synchronization constructs that combine locking and condition variables to manage access to shared resources.</li>
+  </ul>
+  <!-- Moodle slides example slides 23-31 -->
+
+  <h3>Dekker's Algorithm</h3>
+  <p>
+    Dekker's Algorithm is a classic software solution for the critical section problem, designed for two processes. It uses busy waiting and flags to ensure mutual exclusion, progress, and bounded waiting.
+  </p>
+  <p>
+    The algorithm works as follows:
+  </p>
+  <ol>
+    <li>Each process has a flag indicating its desire to enter the critical section.</li>
+    <li>Before entering the critical section, a process sets its flag and checks the other process's flag.</li>
+    <li>If the other process is also interested in entering, the current process waits until the other process exits its critical section.</li>
+    <li>Once a process is in its critical section, it resets its flag upon exiting.</li>
+  </ol>
+  <p>
+    Dekker's Algorithm ensures that only one process can be in its critical section at a time, and it guarantees that both processes will eventually get a chance to enter their critical sections without starvation.
+  </p>
+  <!-- Slide 33-35 -->
+
+  <h3>Peterson's Algorithm</h3>
+  <p>
+    Peterson's Algorithm is another software solution for the critical section problem, also designed for two processes. It uses two shared variables: an array of flags and a turn variable to ensure mutual exclusion, progress, and bounded waiting.
+  </p>
+  <p>
+    The algorithm works as follows:
+  </p>
+  <ol>
+    <li>Each process sets its flag to indicate its desire to enter the critical section.</li>
+    <li>Each process then checks the other process's flag and the turn variable.</li>
+    <li>If the other process is interested in entering and it is the other process's turn, the current process waits.</li>
+    <li>Once a process is in its critical section, it resets its flag upon exiting.</li>
+  </ol>
+  <p>
+    Peterson's Algorithm ensures that only one process can be in its critical section at a time, and it guarantees that both processes will eventually get a chance to enter their critical sections without starvation.
+  </p>
+  <!-- Slide 36-39 -->
+
+  <h3>Lamport's Bakery Algorithm</h3>
+  <p>
+    Lamport's Bakery Algorithm is a software solution for the critical section problem that is designed for multiple processes. It is based on the idea of a bakery, where each process takes a number when it wants to enter the critical section, and the process with the lowest number gets to enter.
+  </p>
+  <p>
+    The algorithm works as follows:
+  </p>
+  <ol>
+    <li>When a process wants to enter the critical section, it takes a number that is greater than the numbers of all other processes.</li>
+    <li>Before entering the critical section, a process checks the numbers of all other processes.</li>
+    <li>If another process has a lower number, the current process waits.</li>
+    <li>Once a process is in its critical section, it resets its number upon exiting.</li>
+  </ol>
+  <p>
+    Lamport's Bakery Algorithm ensures that only one process can be in its critical section at a time, and it guarantees that all processes will eventually get a chance to enter their critical sections without starvation.
+  </p>
+  <!-- Slide 41-47 -->
+
+  <h3>Drawbacks of Software Solutions</h3>
+  <p>
+    While software solutions for synchronization are effective, they also have some drawbacks:
+  </p>
+  <ul class="bullets">
+    <li><strong>Performance Overhead:</strong> Software solutions often introduce additional overhead, such as busy waiting or context switching, which can impact performance.</li>
+    <li><strong>Complexity:</strong> Implementing software solutions can be complex, especially for large systems with many processes.</li>
+    <li><strong>Scalability:</strong> Some software solutions may not scale well with an increasing number of processes, leading to contention and reduced performance.</li>
+  </ul>
+  <p>
+    Don't want to directly code complex solutions (Bakery algorithm) for every application.
+    Generally can assume atomicity for expressions or assignments to variables of more complex types.
+    <br>Ex: X = 5; //atomic <br>X = X + 1; //not atomic
+  </p>
+  <!--Slides 49-->
 </section>
 
 </body>
