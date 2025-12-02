@@ -49,7 +49,6 @@
           <a href="OS3.html">Lecture 3</a>
           <a href="OS4.html">Lecture 4</a>
           <a href="OS5.html">Lecture 5</a>
-          <a href="OS6.html">Lecture 6</a>
         </div>
       </div>
     </nav>
@@ -78,17 +77,22 @@
       <li>Deadlocks</li>
   </ol>
 
-  <h3>Recap</h3>
+  <h2>Recap</h2>
   <h4>What is a Critical Section?</h4>
   <p>A critical section is a part of a multi-threaded program that accesses shared resources (like variables or data structures) and must not be executed by more than one thread at a time. This is crucial for preventing race conditions and ensuring data integrity.</p>
+  
   <h4>What is a difference between a hardware-based synchronization solution and a software based one?</h4>
   <p>A hardware-based synchronization solution uses hardware mechanisms (like atomic instructions or special CPU instructions) to achieve synchronization, while a software-based solution relies on algorithms and data structures (like locks, semaphores, or monitors) implemented in software. Hardware solutions are generally faster but less flexible, whereas software solutions are more versatile but can introduce overhead.</p>
+  
   <h4>How does Lamport's Bakery Algorithm work?</h4>
   <p>Lamport's Bakery Algorithm is a software-based solution for ensuring mutual exclusion in a distributed system. It assigns a "ticket" to each process that wants to enter its critical section. The process with the lowest ticket number is allowed to enter the critical section. If two processes receive the same ticket number, they are prioritized based on their process IDs. This algorithm ensures that all processes get a fair chance to access the critical section without the need for hardware support.</p>
+  
   <h4>How did Monitors help solve the Dining Philosophers Problem? What issue did it help fix?</h4>
   <p>Monitors help solve the Dining Philosophers Problem by encapsulating the shared resources (the forks) and the synchronization logic within a monitor. This ensures that only one philosopher can access the forks at a time, preventing deadlock and starvation. The monitor provides methods for philosophers to pick up and put down forks, ensuring that the necessary conditions for safe access are met.</p>
+  
   <h4>What do resource allocation graphs (RAGs) model? What do nodes represent? What do edges represent?</h4>
   <p>Resource allocation graphs (RAGs) model the allocation of resources to processes in a system. In a RAG, nodes represent processes and resources, while edges represent the relationships between them. Specifically, a request edge from a process to a resource indicates that the process is requesting the resource, and an assignment edge from a resource to a process indicates that the resource has been allocated to the process.</p>
+  
   <h4>What graph structures must be present in an RAG for deadlock to be possible?</h4>
   <p>For deadlock to be possible in a resource allocation graph (RAG), the following graph structures must be present:</p>
   <ul>
@@ -98,33 +102,47 @@
   </ul>
 
   <h2>Synchronization & Deadlocks</h2>
-  <h3>Synchronization Problems</h3>
+  <h3>Problem scenarios</h3>
   <p>
-    When multiple processes try to update shared data at the same time, the final result may become incorrect due to concurrent access. 
-    For example, consider a variable <b>X</b> and the operation <code>X = X + 1;</code>. 
-    In assembly, this simple statement breaks down into three steps: <br>
+    When multiple processes try to update shared data at the same time, the final result may become incorrect due to concurrent (simultaneous) access. 
+    For example, consider a <b>int X</b> and the operation X = X + 1; 
+    In assembly, this simple statement breaks down into three steps:
+  </p>
+  <p>
     (1) Load the value of X from memory, <br>
     (2) Add 1 to the value, and <br>
-    (3) Store the result back to X. <br>
-    If these operations are executed sequentially by two processes (P1 and P2), the result will be correct. 
+    (3) Store the result back to X.
+  </p>
+  <p>
+    If these operations are executed sequentially (means one after the other) by two processes (P1 and P2), the result will be correct. 
     P1 loads X as 5, adds 1, and stores 6; then P2 loads 6, adds 1, and stores 7, giving a final value of 7. 
-    However, if the processes run concurrently and their steps interleave, both might load the old value (5) before either writes the new one. 
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture4/Sequential.png" alt="Sequential Execution">
+  </div>
+  <p>
+    However, if the processes run concurrently (simultaneous) and their steps interleave (overlap in time), both might load the old value (5) before either writes the new one. 
     As a result, both will store 6, and one increment is lost. 
     This situation is called a <b>race condition</b> because the final result depends on which process finishes first. 
     To prevent this, synchronization mechanisms such as locks, semaphores, or atomic operations are used to ensure only one process updates the shared variable at a time.
   </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture4/Concurrent.png" alt="Concurrent Execution">
+  </div>
   <p>
-    To explain in more simple terms, imagine you and a friend are trying to add stickers to a shared album. 
-    If you both try to add a sticker at the same time, you might accidentally place your stickers on top of each other, and some stickers could get lost. 
-    To avoid this, you take turns adding your stickers, ensuring that each sticker is placed correctly without any overlap.
+    In this interleaved execution, both processes read the initial value of X (5) before either has written back the incremented value. 
+    As a result, both processes compute the new value as 6 and write it back to X, leading to a lost update. 
+    The final value of X should have been 7, but due to the race condition, it ends up being 6.
   </p>
+  <h4>Synchronization Problems</h4>
   <p>Multiple processes accessing shared data concurrently may lead to incorrect results if not properly coordinated. Thus, we need mechanisms for processes to coordinate data reads and writes. Proper solutions cannot make any timing assumptions, scheduler behavior, or other external factors.</p>
-   <div class="img-container">
+  <p>Producer Consumer Problem is a classic example of synchronization issues where producers generate data and place it into a buffer, and consumers take data from the buffer. Proper synchronization ensures that producers do not overwrite data that has not been consumed and consumers do not read data that has not been produced.</p>
+  <div class="img-container">
     <img src="../../img/classes/OSPic/Lecture4/producer.png" alt="Producer-Consumer Problem">
     <img src="../../img/classes/OSPic/Lecture4/producer1.png" alt="Producer-Consumer Problem">
     <img src="../../img/classes/OSPic/Lecture4/producer2.png" alt="Producer-Consumer Problem">
     <img src="../../img/classes/OSPic/Lecture4/producer3.png" alt="Producer-Consumer Problem">
-   </div>
+  </div>
 
   <h3>Critical Section</h3>
   <p>
@@ -135,7 +153,7 @@
     Critical section are the portions of code where a shared resource is accessed or modified.
     If multiple threads access the critical section at the same time, unexpected behavior or data corruption may occur.
     Multiple threads, possible multiple critical sections.
-    Synchronization primitives allow processes/threads to limit access to critical sections so that the bad effects are prevented.
+    <mark>Synchronization primitives allow processes/threads to limit access to critical sections so that the bad effects are prevented.</mark>
   </p>
   <h4>Solution to Critical Section</h4>
   <p>Synchronized section are called critical sections. Only one process/thread at a time can access critical section, other must wait. Guarded by atomic operations</p>
@@ -144,30 +162,38 @@
   <p>
     Atomic operations are indivisible operations that complete in a single step relative to other threads. 
     This means that once an atomic operation begins, it runs to completion without any possibility of interruption.
+    <mark>In short, atomic operations cannot be modified by other threads until the thread performing the operation has completed it.</mark>
   </p>
   <p>
     Atomicity is crucial for maintaining consistency in shared data. 
-    If an operation is atomic, it guarantees that no other thread can see an intermediate state of the data being modified.
+    If an operation is atomic, it guarantees that no other thread can modify the data being operated on until the operation is complete.
   </p>
   <p>Atomic operations allow for data consistency and prevent race conditions in concurrent (multi-threaded) programming.</p>
 
-  <h3>Critical Section Solution Properties</h3>
+  <h4><mark>Critical Section Solution Properties</mark></h4>
   <p>
     Proper solutions to the critical section (CS) problem must satisfy three key properties:
   </p>
   <ul class="bullets">
-    <li><strong>Safety/Mutual Exclusion:</strong> Only one process can be in its critical section at any given time.</li>
-    <li><strong>Liveness (Progress):</strong> If no process is in its critical section and some processes wish to enter, one of them must be allowed to enter.</li>
-    <li><strong>Bounded Waiting (lack of starvation):</strong> There must be a limit on the number of times other processes can enter their critical sections before a waiting process is allowed to enter.</li>
+    <li><strong>Safety/Mutual Exclusion:</strong> Only one process can be in its critical section at any given time. This prevents race conditions and ensures data integrity.</li>
+    <li><strong>Liveness (Progress):</strong> If no process is in its critical section and some processes wish to enter, one of them must be allowed to enter. This ensures that the system makes progress and does not get stuck.</li>
+    <li><strong>Bounded Waiting (lack of starvation):</strong> If a process is waiting to enter its critical section, there must be a limit on the number of times other processes can enter their critical sections before the waiting process is allowed to enter. This ensures fairness and prevents starvation.</li>
   </ul>
 
   <h3>Critical Section Assumptions</h3>
   <p>
-    Each process must execute at a non-zero speed. Otherwise it would be hard to guarantee a process gives up CS.
-    Make NO assumptions about relative execution times/speeds. 
-    Cannot use sleep() as a solution.
-    Synchronization methods must also not contain race conditions. Process A executes code before any other process could, therefore correct &larr; WRONG
+    A process must eventually make progress (no infinite loops or blocking calls). No process is allowed to freeze forever.
   </p>
+  <p>
+    We cannot assume one process is faster or solwer than another nor assume a process will run before or after another.
+   </p>
+  <p>
+    We cannot use timing 'sleep()' functions to solve the problem. Waiting based on time does NOT guarantee (one process in CS at a time) multual exclusion.
+  </p>
+  <p>
+    The algorithm for entering/existing the critical section cannot itself cause race conditions. The lock mechanism must work even if two processes read/write at the same time.
+  </p>
+  <p>'Process A executes code before any other process could, therefore correct' &larr; This is wrong because we are NOT allowed to assume any ordering because a process might be preempted (interrupted) at any time. CPU scheduling is unpredictable. No ordering guarantees exist in OS theory. We cannot assume anything about which process runs first or runs more.</p>
 
   <h3>Interrupt-Based Solution</h3>
   <p>
@@ -195,7 +221,71 @@
     <li><strong>Semaphores:</strong> Signaling mechanisms that can be used to control access to a resource by multiple threads. They maintain a count of available resources.</li>
     <li><strong>Monitors:</strong> High-level synchronization constructs that combine locking and condition variables to manage access to shared resources.</li>
   </ul>
-  <!-- Moodle slides example slides 23-31 -->
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture4/Approach1.png" alt="Approach #1">
+  </div>
+  <pre class="tab">
+    Process 0
+          5 runs in the CS
+    Process 1
+          2 runs in the CS
+    Order
+          P0 → turn = 1
+          P1 → turn = 0
+          P0 → turn = 1
+          P1 → turn = 0 (P1 is now done)
+          P0 → turn = 1
+          P0 languishes in purgatory
+  </pre>
+  <p>
+    Criticism of Approach #1:
+  </p>
+  <ul class="numbers">
+    <li>Processes will take turns so long as the other one enters the critical section.</li>
+    <li>If a process does not want to enter the CS, then the other process has no way of accessing the CS again</li>
+    <li>This violates the Liveness/Progress criteria we want</li>
+  </ul>
+
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture4/Approach2.png" alt="Approach #2">
+  </div>
+  <pre class="tab">
+    Where #2 falls apart
+    P0                                P1
+    While(turn[1]) //false    off
+    off                                While(turn[0]) //false
+    turn[0] = 1                    off
+    CS                               off
+    off                                turn[1] = 1
+    off                                CS
+    off                                CS
+  </pre>
+  <p>Criticism of Approach #2:</p>
+  <ul class="numbers">
+    <li>Both processes can get into the critical section simultaneusly while flag[0] == flag[1] == false!</li>
+    <li>violates the safety rule</li>
+  </ul>
+
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture4/Approach3.png" alt="Approach #3">
+  </div>
+  <pre class="tab">
+    Where #3 falls apart
+    P0                                P1
+    flag[0] = true;               off
+    off                                flag[1] = true;
+    off                                while(flag[0]); //true
+    off                                Nothing
+    whie(flag[1]); //true      off
+    Nothing                       off
+    off                               while(flag[0]); //true
+  </pre>
+  <p>Criticism of Approach #3:</p>
+  <ul class="numbers">
+    <li>Violates the progress rule in another way</li>
+    <li>Both processes can set their flag element to true, the no one gets to execute the critical section ever</li>
+    <li>DEADLOCK!</li>
+  </ul>
 
   <h3>Dekker's Algorithm</h3>
   <p>
@@ -213,7 +303,6 @@
   <p>
     Dekker's Algorithm ensures that only one process can be in its critical section at a time, and it guarantees that both processes will eventually get a chance to enter their critical sections without starvation.
   </p>
-  <!-- Slide 33-35 -->
 
   <h3>Peterson's Algorithm</h3>
   <p>
@@ -231,7 +320,6 @@
   <p>
     Peterson's Algorithm ensures that only one process can be in its critical section at a time, and it guarantees that both processes will eventually get a chance to enter their critical sections without starvation.
   </p>
-  <!-- Slide 36-39 -->
 
   <h3>Lamport's Bakery Algorithm</h3>
   <p>
@@ -249,7 +337,10 @@
   <p>
     Lamport's Bakery Algorithm ensures that only one process can be in its critical section at a time, and it guarantees that all processes will eventually get a chance to enter their critical sections without starvation.
   </p>
-  <!-- Slide 41-47 -->
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture4/Bakery.png" alt="Lamport's Bakery Algorithm">
+    <img src="../../img/classes/OSPic/Lecture4/Bakery2.png" alt="Lamport's Bakery Algorithm">
+  </div>
 
   <h3>Drawbacks of Software Solutions</h3>
   <p>
@@ -263,9 +354,79 @@
   <p>
     Don't want to directly code complex solutions (Bakery algorithm) for every application.
     Generally can assume atomicity for expressions or assignments to variables of more complex types.
-    <br>Ex: X = 5; //atomic <br>X = X + 1; //not atomic
   </p>
-  <!--Slides 49-->
+  <pre class="tab">
+    Ex: X = 5; //atomic 
+    X = X + 1; //not atomic
+  </pre>
+  <p>Algorithms such as Peterson's solution is not guaranteed to work on modern architectures.
+    To imporve performance, processors and/or compilers may reorder operations that have no dependencies.
+  </p>
+  <h4>Modern Architecture</h4>
+  <p>
+    Modern computer architectures often employ techniques like out-of-order execution, speculative execution, and various levels of caching to enhance performance. 
+    These optimizations can lead to situations where the order of operations as perceived by one thread may differ from that perceived by another thread, potentially violating the assumptions made by synchronization algorithms like Peterson's solution.
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture4/Modern.png" alt="Modern Architecture">
+    <img src="../../img/classes/OSPic/Lecture4/Modern2.png" alt="Modern Architecture">
+  </div>
+
+  <h4>Memory Models</h4>
+  <p>Processors (hardware) may have different memory models. Guarantees it provides to applications.</p>
+  <p>Strongly Ordered. Changes to memory in one processor are <strong>immediately</strong> visable in other processors.</p>
+  <p>Weakly Ordered. Changes to memory in one processor may not be immediately visable in other processors.</p>
+
+  <h4>Memory Fences</h4>
+  <p>
+    Memory fences (also known as memory barriers) are special instructions used in concurrent programming to enforce ordering constraints on memory operations. 
+    They ensure that certain memory operations are completed before others are initiated, preventing the compiler or CPU from reordering them in a way that could lead to inconsistencies in multi-threaded environments.
+  </p>
+  <p>Due to variances in hardware, operating sustems cannot make any assumptions about the memory model used by a systems hardware.</p>
+  <p>Solution: Memory Fences (Memory Barriers). Hardware instruction ensires all previous load/stores are complete before proceeding. Prevents instruction re-ordering that would interfere with correct results.</p>
+  <pre class="tab">
+    Thread 2 now performs
+          x = 100;
+          memory_fence();
+          flag = true;
+    Now x = 100 must finish before flag = true will start
+  </pre>
+
+  <h3>Hardware Support for Synchronization</h3>
+  <p>Need hardware support for synchronization to make things easier. No need to guess what's atomic when programming. Two atomic instructions provided by hardware:</p>
+  <ul class="bullets">
+    <li><strong>Test-and-Set:</strong> This instruction reads a memory location and sets it to a new value in a single atomic operation. It returns the old value, allowing a process to determine if it can enter its critical section.</li>
+    <li><strong>Compare-and-Swap (CAS):</strong> This instruction compares the contents of a memory location to a given value and, if they are equal, swaps it with a new value. This operation is atomic and is often used in lock-free data structures and algorithms.</li>
+  </ul>
+
+  <h4>Atomic Instruction: Test and Set</h4>
+  <p>
+    Test-and-Set is an atomic instruction that reads a memory location and sets it to a new value in a single operation. 
+    It returns the old value, allowing a process to determine if it can enter its critical section.
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture4/Testandset.png" alt="Test and Set">
+  </div>
+  <pre class="tab">
+    Shared variables/ Initialization:
+          int lock = 0; //0 = unlocked, 1 = locked
+          int waiting[n] = {0}; //all n is 0
+    Local variables / Initialization:
+          int key, j;
+  </pre>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture4/Testandset2.png" alt="Test and Set">
+  </div>
+  <p>
+    Issue with previous implementation: A particular S process could (theoretically) get beaten to acquiring the lock forever. Thus, it would never get to run. This ciolates the bounded wait principle. Can cause resource starvation.
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture4/Testandset3.png" alt="Test and Set">
+  </div>
+ 
+  <h4>Compare and Swap (CAS)</h4>
+  <!--Slide 62-->
+
 </section>
 
 </body>

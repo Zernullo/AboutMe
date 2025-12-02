@@ -20,14 +20,13 @@
   font-size: clamp(2rem, 4vw, 2.5rem);
   font-weight: 600;
   margin-bottom: 1rem;
-  text-decoration: underline;
   color: var(--primary-color);
 }
 
 .classes h3 {              /* Subsection Titles */
-  font-size: clamp(1.2rem, 4vw, 1.5rem);
+  font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: bold;
-  color: white;
+  color: rgb(239, 133, 133);
 }
 
 .classes h4 {
@@ -37,6 +36,21 @@
   color: rgba(245, 245, 245, 0.896); /* Matches your headings */
 }
 
+mark {
+  background-color: rgba(239, 136, 136, 0.975);
+  padding: 0 0.2rem;                       /* Slight padding for readability */
+  border-radius: 0.5rem;                   /* Rounded corners */
+}
+
+.tab {
+  font-size: clamp(1rem, 2vw, 1.7rem);
+  line-height: 1.9;
+  margin-bottom: 2rem;
+  color: rgba(245,245,245,0.7);
+  tab-size: 8;
+  align-self: center;       /* ➡ Center the container itself */
+  justify-content: center;  /* ➡ Center them */
+}
 
 #Reference {               /* Reference Titles */
   font-size: 1rem;
@@ -119,7 +133,7 @@
   }
 
   .classes h3 {
-    font-size: clamp(1.3rem, 4vw, 1.7rem);
+    font-size: clamp(1.2rem, 4vw, 1.7rem);
   }
 
   .classes h4 {
@@ -127,6 +141,7 @@
   }
 
   .classes p,
+  .tabs,
   .classes ul,
   .classes ol,
   .bullets,
@@ -152,15 +167,15 @@
   }
 
   .classes h2 {
-    font-size: clamp(1.2rem, 6vw, 1.5rem);
+    font-size: clamp(1.2rem, 6vw, 1.8rem);
   }
 
   .classes h3 {
-    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    font-size: clamp(1rem, 5vw, 1.5rem);
   }
 
   .classes h4 {
-    font-size: clamp(0.9rem, 3vw, 1.2rem);
+    font-size: clamp(0.9rem, 4vw, 1.2rem);
   }
 
   .classes p,

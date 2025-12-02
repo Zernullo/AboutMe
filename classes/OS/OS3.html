@@ -48,8 +48,7 @@
           <a href="OS2.html">Lecture 2</a>
           <a href="OS3.html">Lecture 3</a>
           <a href="OS4.html">Lecture 4</a>
-          <a href=".html">Lecture 5</a>
-          <a href=".html">Lecture 6</a>
+          <a href="OS5.html">Lecture 5</a>
         </div>
       </div>
     </nav>
@@ -62,13 +61,13 @@
     </nav>
   </header>
 
-    <!-- PAGE CONTENT GOES HERE -->
+<!-- PAGE CONTENT GOES HERE -->
 <section class="classes">
   <h1>Object Systems</h1>
   <h2>Lecture 3</h2>
   <p id="Reference">
     Date Taken: Fall 2025<br/>
-    Status: Work in Progress<br>
+    Status: Completed<br>
     Reference: LSU Professor Daniel Donze, ChatGBT
   </p>
   <h2>What's Covered?</h2>
@@ -98,17 +97,25 @@
       </ul>
     </li>
   </ul>
+  <h3>Process Basics</h3>
+  <p>
+    A process is a program that is executing on a system.
+  </p>
+  <ul class="bullets">
+    <li><strong>Program</strong> - Set of instructions (executable). A program is a static set of instruction stored on disk that is not run directly. A program becomes a process when it is loaded into memory and executed.</li>
+    <li><strong>Process</strong> - Loaded program executing on a system. A process is a running instance of a program loaded into memory and scheduled by the CPU.</li>
+  </ul>
   <div class="img-container">
     <img src="../../img/classes/OSPic/Lecture3/ProcessStates.png" alt="Process States">
   </div>
-  <h3>Process States</h3>
+  <h4>Process States</h4>
   <p>
     When a program is loaded into memory, it becomes a <strong>process</strong> that is ready to run. 
     Processes can exist in several different states depending on what they are currently doing:
   </p>
   <ul class="bullets">
-    <li><strong>New</strong> - The program has just been loaded into memory and is being initialized. It is preparing to enter the ready state.</li>
-    <li><strong>Ready</strong> - The process is prepared to execute but is waiting for the CPU to schedule it. It has all resources except the CPU.</li>
+    <li><strong>New</strong> - The program has just been loaded into memory and is being initialized. It is preparing to enter the ready state (ready to run).</li>
+    <li><strong>Ready</strong> - The process is prepared to execute but is waiting for the CPU to schedule it. (Wants to run but not scheduled yet)</li>
     <li><strong>Running</strong> - The process is currently executing instructions on the CPU.</li>
     <li><strong>Blocked</strong> - The process cannot continue until some event occurs, such as completion of an I/O operation or availability of a resource.</li>
     <li><strong>Terminated</strong> - The process has finished execution and is removed from the system. All resources are released.</li>
@@ -119,34 +126,34 @@
   </p>
   <ul class="bullets">
     <li><strong>CPU</strong> - Time on the processor to execute instructions.</li>
-    <li><strong>Memory</strong> - Storage for the process's code, data, and current state.</li>
-    <li><strong>I/O Devices</strong> - Access to files, storage devices, or input/output hardware.</li>
-    <li><strong>Network Access</strong> - Ability to send and receive data over a network if needed.</li>
-    <li><strong>Interprocess Communication</strong> - Mechanisms to send messages and coordinate with other processes.</li>
+    <li><strong>Memory</strong> - Storage for data and instructions.</li>
+    <li><strong>Resources Access</strong></li>
+    <ul class="circles">
+      <li><strong>I/O Devices</strong> - Access to files, storage devices, or input/output hardware.</li>
+      <li><strong>Network Access</strong> - Ability to send and receive data over a network if needed.</li>
+      <li><strong>Interprocess Communication</strong> - Mechanisms to send messages and coordinate with other processes.</li>
+    </ul>
   </ul>
-  <h3>Process Memory</h3>
+  <h4>Process Memory</h4>
   <p>
     A process's memory is divided into several regions, each with a specific purpose:
   </p>
   <ul class="bullets">
-    <li><strong>User Stack</strong> - Stores static data and function call information. Allocated at compile time.</li>
-    <li><strong>Heap</strong> - Dynamic memory allocations during runtime, typically via <code>malloc</code> or similar functions.</li>
-    <li><strong>Read/Write (RW) Area</strong>
+    <li><strong>User Stack</strong> - Stores function call information and local variables. Grows and shrinks at runtime (runtime means while the program is running).</li>
+    <li><strong>Heap</strong> - Dynamic memory allocations during runtime, typically via malloc or similar functions. Dynamic = allocated manually when your program runs.</li>
+    <li><strong>Read/Write (RW) Area</strong> - Contains global or static variables that can be modified.</li>
       <ul class="circles">
-        <li><code>.data</code> - Stores initialized variables.</li>
-        <li><code>.bss</code> - Stores uninitialized variables.</li>
+        <li><code>.data</code> - Stores initialized global/static variables. Ex. int x = 5;</li>
+        <li><code>.bss</code> - Stores uninitialized global/static variables. Ex. int y;</li>
       </ul>
-    </li>
-    <li><strong>Read-Only (RO) Area</strong>
+    <li><strong>Read-Only (RO) Area</strong> - Contains code and constants that should not be modified. Read-only means it cannot be changed during execution.</li>
       <ul class="circles">
         <li><code>.txt</code> - Contains executable code.</li>
         <li><code>.rodata</code> - Stores constants, strings, and jump tables.</li>
-        <li><code>.init</code> - Initialization routines.</li>
       </ul>
-    </li>
     <li><strong>Shared Libraries</strong> - Code shared across multiple processes to save memory and allow updates without recompiling.</li>
   </ul>
-  <h3>Operating System Challenges</h3>
+  <h4>Operating System Challenges</h4>
   <p>
     Operating systems have to manage a variety of tasks to ensure that programs run efficiently and safely. Some key challenges include:
   </p>
@@ -155,7 +162,8 @@
     <li><strong>Suspend & Resume Processes</strong> - The OS should be able to pause a running process (e.g., waiting for I/O) and later resume it without losing its state.</li>
     <li><strong>Terminate Processes</strong> - After a process finishes execution or needs to be stopped, the OS must safely release its resources and remove it from the system.</li>
   </ul>
-  <h3>Process Information</h3>
+  <!-- Final Study edit -->
+  <h4>Process Information</h4>
   <p>
     The operating system keeps track of each process in order to manage them effectively. 
     This includes storing a variety of details for every process:
