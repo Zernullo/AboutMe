@@ -624,12 +624,32 @@
           semaphore x_sem = 0;
           int x_count = 0;
   </pre>
-  <!--Slide 102-->
   <div class="img-container">
     <img src="../../img/classes/OSPic/Lecture4/Monitor1.png" alt="Monitors">
     <img src="../../img/classes/OSPic/Lecture4/Monitor2.png" alt="Monitors">
     <img src="../../img/classes/OSPic/Lecture4/Monitor3.png" alt="Monitors">
   </div>
+  <h4>Monitor Manners</h4>
+  <p>
+    For monitors to be effective, programs must access shared data via the monitor. Shared data means data that can be accessed by multiple processes/threads.
+    If the resource itself is encapsulated by the monitor, this isn't a problem.
+    Otherwise, requires programming discipline.
+  </p>
+
+  <h3>Dining Philosophers Using Monitors</h3>
+  <p>
+    Using monitors to solve the Dining Philosophers Problem involves creating a monitor that manages the state of each philosopher and the availability of chopsticks. 
+    The monitor ensures that only one philosopher can pick up chopsticks at a time, preventing deadlock and starvation. Solution must satisfy the three properties of synchronization: mutual exclusion, deadlock prevention, and starvation avoidance.
+  </p>
+  <ul class="bullets">
+    <li><strong>Mutual Exclusion</strong> → A philosopher can only pick up chopsticks if no one else is using them</li>
+    <li><strong>Deadlock Prevention</strong> → Avoid situations where all philosophers hold one chopstick and wait indefinitely</li>
+    <li><strong>Starvation Avoidance</strong> → Ensure all philosophers get a chance to eat</li>
+  </ul>
+  <p>
+    Key process for Monitor implementation: Check if neighbors are eating, if so then wait. If neighbors are NOT eating
+  </p>
+
   
 
 </section>
