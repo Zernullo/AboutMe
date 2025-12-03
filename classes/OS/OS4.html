@@ -424,8 +424,213 @@
     <img src="../../img/classes/OSPic/Lecture4/Testandset3.png" alt="Test and Set">
   </div>
  
-  <h4>Compare and Swap (CAS)</h4>
-  <!--Slide 62-->
+  <h4>Atomic Instruction: Compare and Swap</h4>
+  <p>
+    Compare-and-Swap (CAS) is an atomic instruction that compares the contents of a memory location to a given expected value and, if they are equal, swaps it with a new value. 
+    This operation is atomic and is often used in lock-free data structures and algorithms.
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture4/Compareandswap.png" alt="Compare and Swap">
+  </div>
+  <p>
+    Execute automatically by hardware. Compares the value at the memory location to the expected value. If they are the same, it updates the memory location to the new value. Otherwise, it does nothing. Returns the original value at the memory location.
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture4/Compareandswap2.png" alt="Compare and Swap">
+  </div>
+  <p>Drawback of Hardware Solution. Still very complicated and inaccessible to application programmers. Alternative - OS and programming language support for synchronization: Mutex and Semaphores → software solution</p>
+
+  <h4>Mutex (Locks)</h4>
+  <p>
+    A mutex (short for "mutual exclusion") is a synchronization primitive used to protect shared resources from concurrent access by multiple threads. 
+    It ensures that only one thread can access a resource at a time, preventing
+  </p>
+  <p>
+    Simplest is mutex lock. Boolean variable indicating if lock is available or not.
+    Protect a critical section by: <br>First acquire() a lock → perform work in the critical section → then release() the lock
+    <br>
+    Calls to acquire() and release() must be atomic. Usually implmented via hardware atomic instructions such as compare and swap.
+  </p>
+
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture4/Mutex.png" alt="Mutex">
+  </div>
+
+  <h4>Semaphores (Dijkstra)</h4>
+  <p>
+    A semaphore is a synchronization primitive that is used to control access to a shared resource by multiple threads. 
+    It maintains a count of available resources and allows threads to acquire or release resources in a controlled manner. 
+    <mark>In short, semaphores allow concurrent processes to run without interfering with each other by only allowing a certain number of processes to access the critical section at the same time and if limit is reached in the critical section, other threads must wait.</mark>
+  </p>
+  <ul class="bullets">
+    <li>A higher level way of doing synchronization between threads/processes</li>
+    <li>A semaphore S is an integer variable associated with shared resource that may bbe accessed using only two operation - wait and signal</li>
+    <li>The inital value for a semaphore S indicated "how many shall pass"</li>
+    <li>wait(S): if there is available resource, give it to me; otherwise out me in the queue and make me wait until one is available</li>
+    <li>signal(S): I'm done. Retrieve the waiting process if there are any waiting</li>
+  </ul>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture4/Semaphore.png" alt="Semaphores">
+  </div>
+  <p>
+    The code for the smaphore operations wait() and signal() must be executed atomically.
+    How to do this?
+  </p>
+  <ul class="bullets">
+    <li>Use test and set or another hardware solution (preferred)</li>
+    <li>Disable interrupts</li>
+    <li>Use a software solution to the critical section problem (Bakery Algorithm, etc)</li>
+  </ul>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture4/Semaphore2.png" alt="Semaphores">
+  </div>
+  <p>Semaphores are a general purpose synchronization tool. More than just Critical Section. Initialize smaphore sem to 0, then:</p>
+  <pre class="tab">
+    P0                         P1
+    -                            'Doing Stuff'
+    -                            wait(&sem)
+    P0_func()              wait
+    signal(&sem)         wait
+    -                            P1_func()
+  </pre>
+  <p>Imagine a live performance at the Ren Fest with a limited number of abailable seats.
+    Multiple spectator (threads) want to purchase tickets, but onlu a 5 seats are open at a time. 
+    How can we use semaphores to control access to the available seats?
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture4/Semaphore3.png" alt="Semaphores">
+  </div>
+
+  <h2>Classical Synchronization Problems</h2>
+  <p>Chosen because they illustrate the use if synchronization primitives to solve real problems.</p>
+  <ul class="bullets">
+    <li>Bounded Buffer (producer/consumer) problem</li>
+    <li>Reader/Writers problem</li>
+    <li>Dining Philosophers problem</li>
+  </ul>
+  <h3>Bounded Buffer Problem</h3>
+  <p>
+    The Bounded Buffer Problem, also known as the Producer-Consumer Problem, is a classic synchronization problem in computer science. 
+    It involves two types of processes: producers and consumers, which share a fixed-size buffer (the bounded buffer).
+  </p>
+  <ul class="bullets">
+    <li>Producer and consumer processes share a fixed length buffer</li>
+    <li><mark>Producers don't add items to a full buffer</mark></li>
+    <li><mark>Consumers don't remove items from an empty buffer</mark></li>
+    <li>Goal - avoid race conditions and achieve efficient and deadlock-free synchronization</li>
+  </ul>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture4/BoundedBuffer1.png" alt="Bounded Buffer 1">
+    <img src="../../img/classes/OSPic/Lecture4/BoundedBuffer2.png" alt="Bounded Buffer 2">
+    <img src="../../img/classes/OSPic/Lecture4/BoundedBuffer3.png" alt="Bounded Buffer 3">
+  </div>
+
+  <h3>Readers/Writers Problem</h3>
+  <p>
+    The Readers-Writers Problem is a classic synchronization problem in computer science that involves managing access to a shared resource (like a database) by multiple processes. 
+    The challenge is to allow multiple readers to access the resource simultaneously while ensuring that writers have exclusive access when they need to modify the resource.
+  </p>
+  <ul class="bullets">
+    <li>Several concurrent processes want to read/write a shared data item or file</li>
+    <li><mark>Multiple readers are no problem</mark></li>
+    <li><mark>Only a single writer is allowed at one time</mark></li>
+    <li><mark>Readers or a writer, but not both concurrently:</mark></li>
+    <ul class="circles">
+      <li>If a reader is present and a writer is waiting, allow additional readers to enter (reader preference)</li>
+      <li>If a reader is present and a writer is waiting, ban additional readers until a writer gets a chance (writer preference)</li>
+    </ul>
+  </ul>
+  <pre class="tab">
+    Shared variables/ Initialization:
+          semaphore mutex = 1; //for protecting readcount
+          semaphore write = 1; //for writers
+          int readcount = 0; //number of active readers
+  </pre>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture4/RW1.png" alt="Write()">
+    <img src="../../img/classes/OSPic/Lecture4/RW2.png" alt="Read()">
+    <img src="../../img/classes/OSPic/Lecture4/RW3.png" alt="Changed Read()">
+    <img src="../../img/classes/OSPic/Lecture4/RW4.png" alt="Deadlock">
+  </div>
+
+  <h3>Dining Philosophers Problem</h3>
+  <p>
+    The Dining Philosophers Problem is a classic synchronization problem in computer science that illustrates the challenges of resource sharing among multiple processes. 
+    <mark>It involves a scenario where a certain number of philosophers are sitting around a table, and each philosopher alternates between thinking and eating.</mark>
+    To eat, a philosopher needs two chopsticks, one on their left and one on their right. However, there are only as many forks as there are philosophers, leading to potential deadlock and resource contention.
+  </p>
+  <ul class="bullets">
+    <li>Problem: 5 philosophers are sitting arround a table, alternating between eating and thinking</li>
+    <li>When a philosopher is hungry, they pick up two chopsticks and eats</li>
+    <li>When they're finsihed eating, they puts the chopsticks down</li>
+    <li>Problem: There aren't enough chopsticks for all philosophers to eat simultaneously</li>
+  </ul>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture4/Dine.png" alt="Dining Philosophers 1">
+    <img src="../../img/classes/OSPic/Lecture4/Dine2.png" alt="Dining Philosophers 2">
+  </div>
+  <h4>Dining Philosophers Synchronization Challenges</h4>
+  <ul class="bullets">
+    <li><strong>Mutual Exclusion</strong> → A philosopher can only pick up chopsticks if no one else is using them</li>
+    <li><strong>Deadlock Prevention</strong> → Avoid situations where all philosophers hold one chopstick and wait indefinitely</li>
+    <li><strong>Starvation Avoidance</strong> → Ensure all philosophers get a chance to eat</li>
+  </ul>
+  <p>The best solution to the Dining Philosophers Problem is <mark>Monitors</mark></p>
+
+  <h3>Monitors</h3>
+  <p>
+    A monitor is a high-level synchronization construct that provides a way to safely manage access to shared resources in concurrent programming. 
+    It encapsulates shared data and the procedures that operate on that data, ensuring that only one thread can execute a procedure within the monitor at any given time.
+  </p>
+  <ul class="bullets">
+    <li>Flexible high level abstraction and synchronization primitive. Provides an easier way to prevent race conditions and ensure thread safetly compared to muxtes and semaphores</li>
+    <li>Analogous to a class object with a set of protected data items and mutually exclusive procedures to access the data items</li>
+    <li>Core idea - Only one thread can be executing inside the monitor at a time</li>
+    <li>Java's thread synchronization is monitor-based</li>
+    <li>Invented by Brinch Hansen and C.A.R (Tony) Hoare</li>
+  </ul>
+  <p><mark>Only one entry procedure is allowed to execute at a time. Means only one thread is active in the monitor at once. This enforced by the implementation automatically</mark></p>
+  <p>Need to be able to suspend execution temporarily to allow other threads into the monitor using condition variables. Allow threads to wait ot signal each other when certain conditions are met</p>
+  <pre class="tab">
+    Condition variables:
+          x.wait() - put the calling thread to sleep until another thread signals the condition variable
+          x.signal() - wake up 1 waiting thread (if any)
+  </pre>
+  <h4>Mutual Exclusion in Monitor</h4>
+  <pre class="tab">
+    Variables
+          semaphore mutex
+          muxtex = 1
+    Each procedure P is replaced by
+          wait(mutex);
+          ... body of P ...
+          signal(mutex);
+    Mutual exclusion within a monitor is guaranteed
+  </pre>
+  <h4>Signal and Wait in Monitors</h4>
+  <ul class="bullets">
+    <li>When a process signals another process to wake up, who continues execution - the signaler or the signaled process? Signal and Wait → The signaled process (Q) runs immediately. Signal and Continue → The signaler (P) continues, Q waits to re-enter</li>
+    <li>x.Signal is called from Process P, with process Q waiting on x.</li>
+    <ul class="circle">
+      <li>P could suspend and Q would run in the monitor until it leaves or waits() again</li>
+      <li>P would continue and Q would wait until P leaves the monitor or waits() again</li>
+    </ul>
+    <li>First approach is Signal and Wait</li>
+    <li>Second is Signal and Continue</li>
+    <li>How does this affect mutual exclusion inside the monitor? Regardless of which semantics is used, mutual exclusion inside the monitor is preserved because only one process may hold the monitor lock at any time</li>
+  </ul>
+  <pre class="tab">
+    Implementation Initialization: Then every condition variable x needs:
+          semaphore x_sem = 0;
+          int x_count = 0;
+  </pre>
+  <!--Slide 102-->
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture4/Monitor1.png" alt="Monitors">
+    <img src="../../img/classes/OSPic/Lecture4/Monitor2.png" alt="Monitors">
+    <img src="../../img/classes/OSPic/Lecture4/Monitor3.png" alt="Monitors">
+  </div>
+  
 
 </section>
 
