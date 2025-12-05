@@ -649,9 +649,182 @@
   <p>
     Key process for Monitor implementation: Check if neighbors are eating, if so then wait. If neighbors are NOT eating
   </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture4/DM.png" alt="Dining Philosophers Using Monitors">
+    <img src="../../img/classes/OSPic/Lecture4/DM2.png" alt="Dining Philosophers Using Monitors">
+    <img src="../../img/classes/OSPic/Lecture4/DM3.png" alt="Dining Philosophers Using Monitors">
+    <img src="../../img/classes/OSPic/Lecture4/DM4.png" alt="Dining Philosophers Using Monitors">
+    <img src="../../img/classes/OSPic/Lecture4/DM5.png" alt="Dining Philosophers Using Monitors">
+    <img src="../../img/classes/OSPic/Lecture4/DM6.png" alt="Dining Philosophers Using Monitors">
+    <img src="../../img/classes/OSPic/Lecture4/DM7.png" alt="Dining Philosophers Using Monitors">
+  </div>
+  <h3>Case Study: Linux Synchronization API</h3>
+  <p>
+    The Linux Synchronization API provides a set of tools and mechanisms for managing concurrency and synchronization in the Linux kernel. 
+    It includes various synchronization primitives such as mutexes, semaphores, spinlocks, and read-write locks, which are used to protect shared resources and ensure thread safety.
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture4/Linux.png" alt="Linux Synchronization API">
+    <img src="../../img/classes/OSPic/Lecture4/Linux2.png" alt="Linux Synchronization API">
+    <img src="../../img/classes/OSPic/Lecture4/Linux3.png" alt="Linux Synchronization API">
+    <img src="../../img/classes/OSPic/Lecture4/Linux4.png" alt="Linux Synchronization API">
+    <img src="../../img/classes/OSPic/Lecture4/Linux5.png" alt="Linux Synchronization API">
+    <img src="../../img/classes/OSPic/Lecture4/Linux6.png" alt="Linux Synchronization API">
+    <img src="../../img/classes/OSPic/Lecture4/Linux7.png" alt="Linux Synchronization API">
+  </div>
+  <h4>Synchronization in the Linux Kernel</h4>
+  <p>
+    The Linux kernel employs various synchronization mechanisms to manage access to shared resources and ensure the integrity of data structures in a multi-threaded environment. 
+    These mechanisms include mutexes, semaphores, spinlocks, and read-write locks, each serving different purposes based on the context of use.
+  </p>
+  <pre class="tab">
+    Linux spinlocks:
+          spin_lock(&lock);
+          // critical section
+          spin_unlock(&lock);
+  </pre>
 
-  
+  <h2>Deadlock</h2>
+  <h3>Deadlock System Model</h3>
+  <p>
+    A deadlock is a situation in computer science where two or more processes are unable to proceed because each is waiting for the other to release a resource. 
+    This results in a standstill where none of the processes can continue their execution.
+  </p>
+  <p>Resource types R1, R2, R3, ... <br>Resource are memory, I/O devices, CPUs, etc. Each resource R_i has W_i instances. Total number of "units" of the resource. Processes use resource as follows: Request resource, Use resource for a finite amount of time, Release resource.</p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture4/DL.png" alt="Deadlock">
+  </div>
 
+  <h4><mark>What Does Deadlock Require?</mark></h4>
+  <ul class="bullets">
+    <li><strong>Mutual Exclusion</strong> - only one process at a time can use a particular "unit" of a resource</li>
+    <li><strong>Hold and Wait</strong> - A process acquiring resources holds resources as it acquires more. Process holds onto R1 as it tries to get R2 & R3</li>
+    <li><strong>No Preemption</strong> - Can't take resources away from a process as needed</li>
+    <li><strong>Circular Wait</strong> - Can assign id's P1, P2, ... to processes and establish that P1 is waiting for a resource held by P2, P2 is waiting for a resource held by P3, .. etc.</li>
+  </ul>
+  <h4>Modeling Deadlock</h4>
+  <p>We'll model systems using a resource-allocation graph (RAG), which shows: How many units of each resource are available. Which resources have been granted to which processes. Which processes are requesting which resources</p>
+  <h3>RAGs</h3>
+  <p>
+    A Resource Allocation Graph (RAG) is a directed graph used to represent the allocation of resources to processes in a computer system. 
+    It helps visualize the relationships between processes and resources, making it easier to analyze potential deadlocks and resource contention.
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture4/Rag.png" alt="Resource Allocation Graphs">
+    <img src="../../img/classes//OSPic/Lecture4/Rag2.png" alt="Resource Allocation Graphs">
+  </div>
+  <h3>Circular Wait Basic Facts</h3>
+  <p>
+    Intuitive deadlock definition: two or more processes are permanently involved in a circular wait for resources (circulary dependent on resources)
+  </p>
+  <p>
+    If graph contains no cycles → no deadlock
+    <br>If graph contains a cycle → deadlock may exist. If only one instance per resource type, then deadlock. If several instances per resource type, possibility of deadlock.
+    <br>Existence of a circular wait is a necessary but not sufficient condition for deadlock.
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture4/Rag3.png" alt="Circular Wait">
+    <img src="../../img/classes/OSPic/Lecture4/Rag4.png" alt="Circular Wait">
+  </div>
+  <h4>Aside: Graph Knots</h4>
+  <p>A strongly connected subgraph of a directed graph, such that starting from any node in the subgragh it is impossible to leave the subgraph by following the edges of the graph</p> 
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture4/Rag5.png" alt="Graph Knots">
+  </div>
+
+  <h2>Strategies for Handling Deadlock</h2>
+  <ul class="bullets">
+    <li>Ignorance</li>
+    <li>Prevention</li>
+    <li>Avoidance</li>
+    <li>Detection and Recovery</li>
+  </ul>
+  <h3>Ignorance</h3>
+  <p>
+    Simplest method for handling deadlock: Don't. Pretend deadlock will never happen. Or assume that if it does happen the system will exhibit "strange" behavior. At which time it can be rebooted.
+  </p>
+  <ul class="bullets">
+    <li><strong>Pros</strong> - Simple</li>
+    <li><strong>Cons</strong> - Requires intelligent human intervention. Uncertainly as to whether deadlock exist. May not be applicable in life-critical systems.</li>
+  </ul>
+
+  <h3>Prevention</h3>
+  <p>Prevent at least one of the four necessary conditions to occur, thus making deadlock impossible. To prevent deadlock:</p>
+  <ul class="bullets">
+    <li>Mutual exclusion - can only relax for sharable resources; can't relax for excluive resources such as a printer, for example.</li>
+    <li>Hold and wait - Don't let a process hold resources as it waits to obtain other resources. Process must obtain all resources need at once. Dosadvantage is poor utilization and possibility of starvation.</li>
+    <li>No preemption - Allow the OS to take away resources from processes which hold resources but are waiting for others. Resources taken away are added to the list of resources the "victim" process needs to run (as though the process never recived them)</li>
+    <li>Circular wait - Impose an ordering on resources. Processes must request resources in a pre-defined order, which eliminated possibility of circular wait.</li>
+  </ul>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture4/prevent.png" alt="Deadlock Prevention">
+  </div>
+  <h3>Avoidance</h3>
+  <p>
+    Deadlock avoidance requires that the OS have additional information about how resources are to be requested. 
+    With this information, the OS can decide whether a particular resource request can be granted immediately or must be delayed to avoid a possible deadlock situation.
+  </p>
+  <ul class="bullets">
+    <li><strong>Prevention</strong> - Eliminated one of the four necessary conditions to make deadlock impossible.</li>
+    <li><strong>Avoidance</strong> - Examines request and make appropriate decisions to prevent the systen from deadlocking</li>
+    <li><strong>State</strong> - Number of available and allocated resources and max demands of Processes</li>
+    <li><strong>Safe State</strong> -  Resources can be allocated to each process in some order and no deadlock occurs</li>
+  </ul>
+  <p>"Unsafe" means possibility of deadlock, not necessarily deadlock. Banker's Algorithm used to keep system in a safe state. Named because in a banking situation the algoritm might be used to ensure that the bank never e=overextended itself financially (with $$ as resource). Used by OS's in the 1960's for deadlock aviodance.</p>
+  <h4>Banker's Algorithm</h4>
+  <p>
+    The Banker's Algorithm is a deadlock avoidance algorithm that ensures a system remains in a safe state by carefully allocating resources to processes. 
+    It simulates the allocation of resources and checks if the system can still satisfy the maximum resource demands of all processes without leading to a deadlock.
+  </p>
+  <p>
+    Processes must declare their maximal resource needs. When a process makes a request, the Banker's algorithm determines whether satisfying the request would cause the system to enter an unsafe state. If so, request denied. If not, request granted.
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture4/Banker.png" alt="Banker's Algorithm">
+    <img src="../../img/classes/OSPic/Lecture4/Banker2.png" alt="Banker's Algorithm">
+    <img src="../../img/classes/OSPic/Lecture4/Banker3.png" alt="Banker's Algorithm">
+  </div>
+  <p>Idea: know the max # of resource units that a particular process may request. Know current allocation for each process and current "need", max - current allocation.
+    When a request is issued,"pretend" to honor the request.
+    Then, assume that process will not relinquish resource until done.
+    Try to fulfill the :needs" (max - current allocation) of all processes in some order.
+    If impossible, deny request
+  </p>
+
+  <h4>Example of Banker's Algorithm</h4>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture4/Banker4.png" alt="Banker's Algorithm Example">
+    <img src="../../img/classes/OSPic/Lecture4/Banker5.png" alt="Banker's Algorithm Example">
+    <img src="../../img/classes/OSPic/Lecture4/Banker6.png" alt="Banker's Algorithm Example">
+    <img src="../../img/classes/OSPic/Lecture4/Banker7.png" alt="Banker's Algorithm Example">
+  </div>
+
+  <h3>Detection and Recovery</h3>
+  <p>
+    Deadlock detection and recovery involves periodically checking the system for deadlocks and taking action to resolve them when they are detected. 
+    This approach allows the system to operate normally most of the time, only intervening when a deadlock situation arises.
+  </p>
+  <p>For deadlock detection, must provide: Deadlock detection algorithm and Mechanism for getting rid of deadlock.
+    <br>Easier for single resouce unit case, cycke → sufficient for deadlock.
+    <br>To detect deadlock in the single unit case, collapse resource allocation graph into a wait-for graph and search for cycle.
+    <br>An algorithm to detect a cycle in a graph requires an O(N^2) - order of N^2 operations. where N is the number of bertices in the graph.
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture4/Wait.png" alt="Deadlock Detection and Recovery">
+    <img src="../../img/classes/OSPic/Lecture4/Deadlock.png" alt="Deadlock Detection and Recovery">
+  </div>
+  <h4>Deadlock Detection - Cycles</h4>
+  <p>
+    Cycle detection is not applicable to systems with multiple-unit resources. Why? Deadlock needs a cycle, and cycle leads to deadlock if all resources single unit. Recall - circular wait is a necessary but not sufficient for deadlock.
+  </p>
+  <h4>Detection with Multiple-Unit Resources</h4>
+  <p>Detection algorithm may need to brute force, attempting to reduce the RAG by checking all possible ways of allocating resources. O(n^2m) algorithm → n = number of processes, m = number of resources. If there is no way to allocate units to allow each porcess to finsih, them deadlock occurs.</p>
+  <h4>Deadlock Detection Frequency</h4>
+  <p>
+    How often should the deadlock detection algorithm be executed? Depends: How often is deadlock likely to occur? How many processes will be affected? Will anything terrible happen before a huamn being notices something strange? How much overhead can be afforded?
+  </p>
+
+  <h4>Recovery from Deadlock - If deadlock has been detected, how can the system recover? Abort all processes. Abort one process at a time until deadlock disappears. What effect on application inegrity? Select a process and take some resources back, possibility of starvaion, necessity of rollback</h4>
 </section>
 
 </body>
