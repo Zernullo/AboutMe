@@ -44,12 +44,21 @@
       <div class="dropdown-lecture">
         <button type="button" class="dropbtn-lecture">Lectures</button>
         <div class="diff-lecture">
-          <a href="#.html">Lecture 1</a>
-          <a href="#.html">Lecture 2</a>
-          <a href="#.html">Lecture 3</a>
-          <a href="#.html">Lecture 4</a>
-          <a href="#.html">Lecture 5</a>
-          <a href="#.html">Lecture 6</a>
+          <a href="Cyber.html">Lecture 1 & 2</a>
+          <a href="Cyber3.html">Lecture 3</a>
+          <a href="Cyber4&5.html">Lecture 4 & 5</a>
+          <a href="Cyber6.html">Lecture 6</a>
+          <a href="Cyber7.html">Lecture 7</a>
+          <a href="Cyber8.html">Lecture 8</a>
+          <a href="Cyber9&10.html">Lecture 9 & 10</a>
+          <a href="Cyber11.html">Lecture 11</a>
+          <a href="Cyber12&14.html">Lecture 12 & 14</a>
+          <a href="Cyber15.html">Lecture 15</a>
+          <a href="Cyber16.html">Lecture 16</a>
+          <a href="Cyber17.html">Lecture 17</a>
+          <a href="Cyber18.html">Lecture 18</a>
+          <a href="Cyber19.html">Lecture 19</a>
+          <a href="Cyber20.html">Lecture 20</a>
         </div>
       </div>
     </nav>
@@ -68,16 +77,97 @@
     <h2>Lecture 16</h2>
     <p id="Reference">
         Date Taken: Fall 2025<br/>
-        Status: Work in Progress<br>
+        Status: Completed<br>
         Reference: LSU Professor Joseph Khoury, ChatGPT
     </p>
-    <h3>Topic: Cloud Infrastructures</h3>
+
+    <h3>Matrix of Responsibilities</h3>
+    <p>
+        A matrix of responsibilities is a document that outlines the specific security responsibilities and obligations of both the cloud service provider and the customer. 
+        It helps clarify who is responsible for various aspects of security in a cloud computing environment, ensuring that both parties understand their roles and duties in maintaining a secure infrastructure.
+    </p>
+    <p>
+        Examples of responsibilities of cloud providers include physical security of data centers, network security, and infrastructure maintenance.
+        Examples of responsibilities of customers include data encryption, access management, and compliance with regulations.
+        (Customer remembering there passwords while cloud provider secures the servers)
+    </p>
+
+    <h3>Cloud Infrastructures</h3>
     <p>
         Cloud infrastructures refer to the virtualized resources and services provided over the internet, allowing users to access computing power, storage, and applications without owning physical hardware. 
         In more simpler terms, cloud infrastructures enable individuals and organizations to use remote servers hosted on the internet to store, manage, and process data, rather than relying on local servers or personal computers. 
-        This approach offers scalability, flexibility, and cost-efficiency, as users can easily adjust their
-        Key components include:
+        This approach offers scalability, flexibility, and cost-efficiency, as users can easily adjust their resource usage based on demand and pay only for what they use.
     </p>
+    <ul class="bullets">
+        <li><strong>Cloud Service Models</strong> - describes what layer of computing you are renting from a cloud provider. The purpose of this is to understand the level of control and responsibility you have over the infrastructure. The three main models are:</li>
+        <ul class="circles">
+            <li><strong>IaaS (Infrastructure as a Service)</strong> - Provides virtualized computing resources over the internet. Users rent virtual machines, storage, and networks, and have control over the operating systems and applications. Example: Amazon EC2, Microsoft Azure VMs.</li>
+            <li><strong>PaaS (Platform as a Service)</strong> - Provides a platform allowing customers to develop, run, and manage applications without dealing with the underlying infrastructure. Example: Google App Engine, Microsoft Azure App Service.</li>
+            <li><strong>SaaS (Software as a Service)</strong> - Delivers software applications over the internet, on a subscription basis. Users access software via a web browser without managing the infrastructure. Example: Google Workspace, Microsoft Office 365.</li>
+        </ul>
+        <li>Security should be well documented. Most cloud providers provide a matrix of responsibilities outlining what security aspects are managed by the provider and what the customer is responsible for.</li>
+        <li>These responsibilities can vary. Different cloud providers may have different approaches and policies regarding security responsibilities. Contractual Agreements define these responsibilities clearly. Responsibility matrix example.</li>
+    </ul>
+    <div class="img-container">
+        <img src="../../img/classes/CyberPic/Lecture16/CloudInfrastructure.png" alt="Cloud Infrastructure Diagram">
+    </div>
+
+    <h3>Hybrid Considerations</h3>
+    <p>
+        Hybrid cloud refers to a computing environment that combines both on-premises infrastructure and cloud services, allowing data and applications to be shared between them. 
+        This approach provides greater flexibility and scalability, as organizations can leverage the benefits of both environments while optimizing their existing infrastructure.
+    </p>
+    <ul class="bullets">
+        <li><strong>Hybrid Cloud</strong> - Combines on-premises infrastructure with public and private clouds, allowing data and applications to be shared between them. The purpose is to provide greater flexibility and optimize existing infrastructure, security, and compliance. This also adds additional complexity in managing security across different environments.</li>
+        <li><strong>Network Protection Mismatches</strong> - Authentication across platforms, firewall configurations, server settings, and other security measures may not align perfectly between on-premises and cloud environments, leading to potential vulnerabilities.</li>
+        <li><strong>Different Security Monitoring</strong> - Logs are diverse and cloud specific, making it challenging to have a unified view of security events across hybrid environments.</li>
+        <li><strong>Data Leakage</strong> - Data is shared across the public internet. This increases the risk of unauthorized access and data breaches if not properly secured.</li>
+    </ul>
+    <h3>Third Party Vendors In The Cloud</h3>
+    <p>
+        When using third-party vendors in the cloud, it is crucial to assess their security practices and ensure they align with your organization's security requirements. 
+        This includes evaluating their data protection measures, compliance with regulations, and incident response capabilities. 
+        Additionally, it is important to establish clear contractual agreements that outline the responsibilities and expectations regarding data security and privacy.
+    </p>
+    <ul class="bullets">
+        <li>You, the cloud provider, and third parties. Infrastructure technologies, Cloud base applicances. This means understanding the shared responsibility model is crucial.</li>
+        <li>Ongoing vendor risk assessments. Part of an overall vendor risk management policy This means regularly evaluating the security posture of third-party vendors to mitigate risks.</li>
+        <li>Inclide third party impact for incident response. Everyone is part of the process. This means coordinating with third parties during security incidents to ensure a comprehensive response.</li>
+        <li>Constant Monitoring. Watch for changes and unusual activities that could indicate a security threat or breach involving third-party vendors.</li>
+    </ul>
+
+    <h3>Infrastructure as Code</h3>
+    <p>
+        Infrastructure as Code (IaC) is a practice that involves managing and provisioning computing infrastructure through machine-readable configuration files, rather than manual processes. 
+        This approach allows for automation, consistency, and scalability in deploying and managing infrastructure resources. 
+        By treating infrastructure as code, organizations can version control their infrastructure configurations, enabling easier collaboration, testing, and deployment.
+    </p>
+    <ul class="bullets">
+        <li>Describe an infrastructure. Define servers, network, and applications as code. This allows for consistent and repeatable deployments.</li>
+        <li>Modify the infrastructure and create versions. The same way you version application code. This enables tracking changes and rolling back if needed.</li>
+        <li>Use the description (code) to build other application instances. Build it the same way every time base on the code. This ensures consistency across environments.</li>
+        <li>An important concept for cloud computing. Build a perfect version every time. This reduces errors and improves reliability.</li>
+    </ul>
+
+    <h3>Server Less Architectures</h3>
+    <p>
+        Serverless architectures allow developers to build and run applications without managing the underlying infrastructure. 
+        In a serverless model, cloud providers automatically handle the provisioning, scaling, and management of servers, allowing developers to focus solely on writing code. 
+        This approach offers benefits such as reduced operational complexity, cost efficiency (pay-as-you-go pricing), and automatic scaling based on demand.
+    </p>
+    <ul class="bullets">
+        <li>Function as a Service (FaaS) - Apps are seprated into individual, autonomous functions. Remove the operating system from the equation</li>
+        <li>Developer still creates the server-side logic. Runs in a stateless compute container.</li>
+        <li>May be event triggered and ephemeral (ephemeral means they exist only for a short duration). May only run for one event.</li>
+        <li>Managed by a third party. All OS security concerns are at the third party.</li>
+    </ul>
+    <div class="img-container">
+        <img src="../../img/classes/CyberPic/Lecture16/Matrix.png" alt="Responsibilities Matrix">
+        <img src="../../img/classes/CyberPic/Lecture16/Architecture.png" alt="Architecture">
+        <img src="../../img/classes/CyberPic/Lecture16/Architecture2.png" alt="Architectures">
+    </div>
+
+    
 
   
 
