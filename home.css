@@ -144,20 +144,6 @@
   box-shadow: 0 0 20px rgba(255,77,77,0.5);
 }
 
-/* External link indicator (arrow) */
-.social-icons a[target="_blank"]::after {
-  content: "↗";
-  position: absolute;
-  font-size: 0.8em;
-  margin-left: 3px;
-  opacity: 0;
-  transition: var(--transition);
-}
-
-/* Show arrow on hover for external links */
-.social-icons a[target="_blank"]:hover::after {
-  opacity: 1;
-}
 
 /* ===== PROJECT BUTTON (matches <a class="btn">) ===== */
 /* Primary button styling: padding, color, shadow, hover effect */
