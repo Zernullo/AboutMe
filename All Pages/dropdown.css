@@ -15,6 +15,7 @@
 .dropdown-lecture {
   position: relative;
   display: inline-block;    /* shrink to button width */
+  width: 150px;
 }
 
 /* Buttons */
@@ -28,7 +29,7 @@
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
-  width: 150px;             /* fixed width for both buttons */
+  width: 100%;             /* fixed width for uniformity */
   text-align: center;
   transition: var(--transition);
 }
@@ -48,7 +49,7 @@
   position: absolute;
   top: 100%;                 /* right below the button */
   left: 0;                   /* align left edges */
-  min-width: 100%;               /* match the button width */
+  width: 100%;               /* match the button width */
   font-size: 16px;
   background-color: var(--text-color);
   box-shadow: 0 8px 16px rgba(0,0,0,0.2);
@@ -115,10 +116,16 @@
     padding: 0 0 0 10px;    /* smaller left padding */
   }
 
+  .dropdown-language,
+  .dropdown-classes,
+  .dropdown-lecture {
+    width: 120px;           /* narrower dropdown wrappers */
+  }
+
   .dropbtn-language,
   .dropbtn-classes,
   .dropbtn-lecture {
-    width: 120px;           /* narrower buttons */
+    width: 100%;           /* narrower buttons */
     padding: 8px 12px;      /* reduce padding */
     font-size: 14px;        /* smaller text */
   }
@@ -138,10 +145,17 @@
 
 /* Optional: even smaller screens like phones */
 @media (max-width: 480px) {
+
+  .dropdown-language,
+  .dropdown-classes,
+  .dropdown-lecture {
+    width: 70px;           /* narrower dropdown wrappers */
+  }
+
   .dropbtn-language,
   .dropbtn-classes,
   .dropbtn-lecture {
-    width: 70px;           /* even narrower */
+    width: 100%;           /* even narrower */
     font-size: 12px;        /* smaller text */
     padding: 6px 10px;
   }
