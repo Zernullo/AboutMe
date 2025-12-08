@@ -187,19 +187,446 @@
 
     <h3>SCADA/ICS (Supervisory Control and Data Acquisition/Industrial Control Systems)</h3>
     <p>
-        SCADA and ICS are systems used to monitor and control industrial processes, such as manufacturing, energy production, and water treatment. These systems often operate in critical infrastructure environments and require robust security measures to protect against cyber threats. Securing SCADA/ICS involves implementing network segmentation, strong access controls, regular software updates, and continuous monitoring to detect and respond to potential security incidents.
+        SCADA and ICS are systems used to monitor and control industrial processes, such as manufacturing, energy production, and water treatment. These systems often operate in critical infrastructure environments and require robust security measures to protect against cyber threats. Securing SCADA/ICS involves implementing network segmentation, strong access controls, and continuous monitoring to detect and respond to potential security incidents.
     </p>
     <ul class="bullets">
       <li>Supervisory Control and Data Acquisition System - Large scale, multi site Industrial Control Systems (ICS)</li>
       <li>PC manages equipment - power generation, refining, manufacturing equipment. Facilities, industrial, energy, logistics.</li>
-      <li></li>
-      <li></li>
+      <li>Distributed Control System - Smaller scale, localized control systems within an ICS. Real time information. System control</li>
+      <li>Requires extensive segmentation and security measures to protect critical infrastructure from cyber threats. No access from the outside.</li>
     </ul>
 
+    <h3>Real Time Operating System (RTOS)</h3>
+    <p>
+      A Real-Time Operating System (RTOS) is an operating system designed to handle real-time applications that require precise timing and predictable response times. RTOSs are commonly used in embedded systems, industrial control systems, and other applications where timely processing of data is critical. Securing RTOS-based systems involves implementing robust access controls, regular software updates, and monitoring to ensure the integrity and availability of the system.
+    </p>
+    <ul class="bullets">
+      <li>An operating system with a derterministic processing scheudle. No timt to wait for other processes. Industrial equipment, sutomobiles. Miliarty environments</li>
+      <li>Extremely sensitive to security issues. Non trival systems. Need to always be available. Diffcult to know what type of security is in place</li>
+    </ul>
 
+    <h3>Embedded Systems</h3>
+    <p>
+      Embedded systems are specialized computing systems that are designed to perform specific functions within larger systems. These systems are often found in devices such as medical equipment, automotive systems, and consumer electronics. Securing embedded systems requires a comprehensive approach that includes strong authentication, regular software updates, and network segmentation to protect against potential threats.
+    </p>
+    <ul class="bullets">
+      <li>Hardware and software designed for a specific function. Or to operate as part of a larger system</li>
+      <li>Is built with only this task in mind. Can be optimized for size and/or cost</li>
+      <li>Common examples: Traffic light controllers, digital watches, and medical imaging systems</li>
+    </ul>
 
+    <h3>High Availability</h3>
+    <p>
+      High availability refers to the design and implementation of systems that are resilient and can maintain continuous operation with minimal downtime. This is achieved through redundancy, failover mechanisms, and robust infrastructure. High availability is critical for mission-critical applications and services that require uninterrupted access, such as financial systems, healthcare applications, and communication networks.
+    </p>
+    <ul class="bullets">
+      <li>Redundacny doesn't always mean always available. May need to be powered on manually</li>
+      <li>HA stands for High Availability. Always on, always available</li>
+      <li>May include many different components working together to ensure continuous operation. Active can provide scalability advantages</li>
+      <li>Higher availability almost always means higher costs. There's always another contingency you could add. Upgraded power, high quality server coponenets, etc.</li>
+    </ul>
 
+    <h3>Availability</h3>
+    <p>
+      Availability is a key aspect of information security that ensures systems and data are accessible to authorized users when needed. This involves implementing measures such as redundancy, failover mechanisms, and regular maintenance to minimize downtime and ensure continuous operation. High availability is particularly important for critical applications and services that require uninterrupted access.
+    </p>
+    <ul class="bullets">
+      <li>System uptime - the system is operational and accessible. Access data, complete transactions. A foundation of IT security</li>
+      <li>A balancing act with security. Available, but only to the right people</li>
+      <li>We spend a lot of time and money on availability. Monitoring, redundant systems</li>
+      <li>An important metric to measure and maintain. We are often evaluated on total available time</li>
+    </ul>
 
+    <h3>Resilience</h3>
+    <p>
+      Resilience in information security refers to the ability of systems and networks to withstand and recover from cyberattacks, failures, or other disruptions. This involves implementing robust security measures, redundancy, and disaster recovery plans to ensure that critical systems can continue to operate and recover quickly in the event of an incident. Resilience is essential for maintaining the integrity, availability, and confidentiality of data and systems.
+    </p>
+    <ul class="bullets">
+      <li>Eventually, something will happen that disrupts normal operations. Can you maintain availability? Can you recover? How quickly?</li>
+      <li>These are based on many different variables: The root cause, replacement hardware installation, software patch availability, redundant systems, and more.</li>
+      <li>Commonly referenced as MTTR (Mean Time to Recovery/Repair)</li>
+    </ul>
+
+    <h3>Cost</h3>
+    <p>
+      Cost is a significant factor in information security, as organizations must balance the need for robust security measures with budget constraints. Implementing effective security solutions often requires investments in technology, personnel, and training. Organizations must carefully evaluate the cost-benefit of various security measures to ensure that they provide adequate protection without exceeding budgetary limits.
+    </p>
+    <ul class="bullets">
+      <li>How much money is required? Everything ultimately comes down to cost. Initial installation. Very different across platforms</li>
+      <li>Ongoing maintenance and operational expenses must also be considered. Annual ongoing cost.</li>
+      <li>Replacement or repair costs must be factored in as well. You might need more than one</li>
+      <li>Tax implications and potential financial risks should also be evaluated. Operating or capital expenses, potential fines, and liability costs.</li>
+    </ul>
+
+    <h3>Responsiveness</h3>
+    <p>
+      Responsiveness in information security refers to the ability of an organization to quickly and effectively respond to security incidents and threats. This involves having well-defined incident response plans, trained personnel, and the necessary tools and technologies to detect, analyze, and mitigate security incidents. A responsive security posture is essential for minimizing the impact of cyberattacks and ensuring the continued protection of systems and data.
+    </p>
+    <ul class="bullets">
+      <li>Request information promptly to address security incidents effectively. Get a response plan in place. How quickly did that happen?</li>
+      <li>Especially important for interactive applications. Humans are senstive to delays</li>
+      <li>Speed is an important metric. All parts of the application contribute. There's always a weakest link</li>
+    </ul>
+
+    <h3>Scalability</h3>
+    <p>
+      Scalability in information security refers to the ability of security measures and systems to adapt and grow in response to changing organizational needs and threats. As organizations expand their operations, add new technologies, or face evolving cyber threats, their security infrastructure must be able to scale accordingly. This involves implementing flexible and modular security solutions that can accommodate increased workloads, new applications, and emerging risks without compromising overall security posture.
+    </p>
+    <ul class="bullets">
+      <li>How quickly and easily can we increase or decrease capacity? This might happen many times a day. Elasticity is key, meaning the ability to scale resources up or down as needed.</li>
+      <li>There's always resource challenge. What's preventing scalability?</li>
+      <li>Needs to include security monitoring. Increases and decreases as the system scales</li>
+    </ul>
+
+    <h3>Ease of Deployment</h3>
+    <p>
+      Ease of deployment in information security refers to the simplicity and efficiency with which security measures and systems can be implemented within an organization's IT infrastructure. A security solution that is easy to deploy minimizes the time, effort, and resources required for installation and configuration, allowing organizations to quickly enhance their security posture. This is particularly important in dynamic environments where rapid deployment of security measures is necessary to address emerging threats and vulnerabilities.
+    </p>
+    <ul class="bullets">
+      <li>An application has many moving parts. Web server, database, caching server, firewall, etc.</li>
+      <li>This might be an involved process. Hardware resources, cloud budgets, change control</li>
+      <li>This might be very simple or very complex depending on the environment and requirements. Orchestration / automation tools can help streamline deployment.</li>
+      <li>Important to consider during the product engineering phase. One missed detail can cause deployment issues.</li>
+    </ul>
+
+    <h3>Risk Transference</h3>
+    <p>
+      Risk transference in information security refers to the practice of shifting the responsibility for managing certain risks to a third party, such as an insurance provider or a cloud service provider. This approach allows organizations to mitigate potential financial losses and operational disruptions associated with security incidents by transferring the risk to an entity better equipped to handle it. Risk transference is often used in conjunction with other risk management strategies, such as risk avoidance and risk mitigation, to create a comprehensive security posture.
+    </p>
+    <ul class="bullets">
+      <li>Many methods to minimize risk include insurance policies, outsourcing, and contractual agreements. Transfer the risk to a third party to reduce potential impact.</li>
+      <li>Cybersecurity insurance can help cover financial losses resulting from cyber incidents. Attacks and downtime can be covered. Popular with the rise in ransomware</li>
+      <li>Recover internal losses through risk transference strategies. Outages and business downtime can be mitigated.</li>
+      <li>Protect against legal issues from customers. Limit the costs associated with legal proceedings.</li>
+    </ul>
+
+    <h3>Ease of Recovery</h3>
+    <p>
+      Ease of recovery in information security refers to the ability of an organization to quickly and effectively restore systems and data following a security incident or disruption. This involves having well-defined disaster recovery plans, backup strategies, and recovery procedures in place to minimize downtime and data loss. An organization with a high ease of recovery can rapidly return to normal operations, reducing the impact of security incidents on business continuity and overall security posture.
+    </p>
+    <ul class="bullets">
+      <li>Something will eventually go wrong. Having a plan in place ensures quick recovery. Time is money. How easily can you recover?</li>
+      <li>Malware infection recovery strategies should be well-defined to minimize damage and downtime. Reload operating system from original media - 1 hour. Reload from corporate image - 10 minutes.</li>
+      <li>Another important design criteria. This may be critical to the final product</li>
+    </ul>
+
+    <h3>Patch Availability</h3>
+    <p>
+      Patch availability in information security refers to the accessibility and timely release of software updates and patches that address vulnerabilities and security issues in applications and systems. Regularly applying patches is essential for maintaining the security and integrity of IT infrastructure, as unpatched vulnerabilities can be exploited by attackers to gain unauthorized access or disrupt operations. Organizations must establish effective patch management processes to ensure that patches are promptly evaluated, tested, and deployed across their systems.
+    </p>
+    <ul class="bullets">
+      <li>Software isn't usually static. Bug fixes, security updates, etc are regularly released to address vulnerabilities and improve functionality.</li>
+      <li>This is often the first task after installation. Make sure you're running the latest patches and updates to protect against known vulnerabilities.</li>
+      <li>Most companies have regular updates to ensure security and performance. Microsoft's monthly Patch Tuesday is a well-known example.</li>
+      <li>Some companies rarely patch, which can leave them vulnerable to attacks exploiting known issues. This might be a significant concern.</li>
+    </ul>
+
+    <h3>Inability to Patch</h3>
+    <p>
+      Inability to patch refers to situations where organizations are unable to apply necessary software updates and patches to their systems and applications. This can occur due to various reasons, such as compatibility issues, lack of resources, or operational constraints. The inability to patch can leave systems vulnerable to cyber threats, as unpatched vulnerabilities can be exploited by attackers. Organizations must develop strategies to address patching challenges, such as implementing compensating controls or prioritizing critical systems for patching.
+    </p>
+    <ul class="bullets">
+      <li>What if pacthing wasn't an option? This happens mroe often than you think</li>
+      <li>Embedded systems often have limited ability to patch due to hardware constraints or certification requirements.</li>
+      <li>Not designed for end user updates. This is a bit short sighted, especially these days because of the increasing importance of timely security updates.</li>
+      <li>May need additional security controls. A firewall for your time clock</li>
+    </ul>
+
+    <h3>Power</h3>
+    <p>
+      Power is a critical consideration in information security, as it directly impacts the availability and reliability of IT systems and infrastructure. Ensuring a stable and uninterrupted power supply is essential for maintaining system uptime and preventing data loss or corruption. Organizations must implement robust power management strategies, including uninterruptible power supplies (UPS), backup generators, and redundant power sources, to mitigate the risks associated with power outages and fluctuations.
+    </p>
+    <ul class="bullets">
+      <li>A foundational element for ensuring system availability and reliability. This can require extensive engineering</li>
+      <li>Overall power requirements. Data center vs office building</li>
+      <li>Primary power. One or more providers</li>
+      <li>Backup power. UPS, generators, etc.</li>
+    </ul>
+
+    <h3>Compute</h3>
+    <p>
+      Compute refers to the processing power and resources required to run applications and services within an organization's IT infrastructure. Adequate compute capacity is essential for ensuring optimal performance, scalability, and responsiveness of systems. Organizations must carefully evaluate their compute needs based on factors such as workload demands, user requirements, and future growth projections to ensure that they have sufficient resources to support their operations effectively.
+    </p>
+    <ul class="bullets">
+      <li>An application's heavy lifting. More than just a single CPU</li>
+      <li>The compute engine. More options availble in the cloud</li>
+      <li>May be limited to a single processor. Easier to develop and manage</li>
+      <li>Use multiple CPUs across multiple clouds. Additional complexity, enhanced scalability.</li>
+    </ul>
+
+    <h3>Device Placement</h3>
+    <p>
+      Device placement refers to the strategic positioning of IT devices and infrastructure components within an organization's physical and network environments. Proper device placement is essential for optimizing performance, security, and manageability of systems. Organizations must consider factors such as network topology, physical security, environmental conditions, and accessibility when determining the optimal placement of devices to ensure efficient operation and protection against potential threats.
+    </p>
+    <ul class="bullets">
+      <li>Every network is different. There are often similarities</li>
+      <li>Firewalls: Separate trusted from untrusted and Provide additional security checks</li>
+      <li>Other services may require their own security technologies - Honeypots, jump server, load balancers, sensors</li>
+    </ul>
+
+    <h3>Security Zones</h3>
+    <p>
+      Security zones are logical or physical segments within a network that are designed to enforce specific security policies and controls. By dividing a network into distinct zones, organizations can better manage access, monitor traffic, and contain potential threats. Common security zones include the internal network, demilitarized zone (DMZ), and external network. Each zone has its own security requirements and measures to protect against unauthorized access and cyber threats.
+    </p>
+    <ul class="bullets">
+      <li>Zone-based security technologies - More flexible (and secure) than IP address ranges</li>
+      <li>Each area of the network is associated with a zone. Trusted, untrusted - Internal, external - Inside, Internet, Servers, Databases, Screened </li>
+      <li> This simplifies security policies. Trusted to Untrusted - Untrusted to Screened - Untrusted to Trusted</li>
+    </ul>
+    <div class="img-container">
+        <img src="../../img/classes/CyberPic/Lecture17/SecurityZones.png" alt="Security Zones">
+    </div>
+
+    <h3>Attack Surface</h3>
+    <p>
+      The attack surface refers to the totality of points within a system or network that are vulnerable to cyberattacks. This includes all hardware, software, and network components that can be exploited by attackers to gain unauthorized access or disrupt operations. Reducing the attack surface is a critical aspect of information security, as it minimizes the potential entry points for attackers and enhances the overall security posture of an organization.
+    </p>
+    <ul class="bullets">
+      <li>All possible points of entry for an attacker. The larger the attack surface, the more opportunities for exploitation. Example: Doors, windows, application code, open ports, human error, etc</li>
+      <li>Includes hardware, software, network components, and user access points</li>
+      <li>Reducing the attack surface is a key strategy in information security. Minimize potential vulnerabilities and enhance overall security posture</li>
+    </ul>
+
+    <h3>Connectivity</h3>
+    <p>
+      Connectivity refers to the ability of systems and devices to communicate and exchange data within a network or across networks. Reliable and secure connectivity is essential for ensuring seamless access to applications, services, and resources. Organizations must implement robust networking infrastructure, including firewalls, routers, and switches, to facilitate secure and efficient connectivity while protecting against potential cyber threats.
+    </p>
+    <ul class="bullets">
+      <li>How do devices connect to each other and to the internet? Wired, wireless, VPN, etc.</li>
+      <li>Different methods have different security implications. Wired connections are generally more secure than wireless connections</li>
+      <li>VPNs can provide secure remote access but may introduce additional vulnerabilities if not properly configured</li>
+    </ul>
+
+    <h3>Failure Modes</h3>
+    <p>
+      Failure modes refer to the various ways in which systems or components can fail, leading to disruptions in operations or security breaches. Understanding potential failure modes is essential for developing effective risk management strategies and ensuring system resilience. Organizations must identify and analyze possible failure scenarios, implement preventive measures, and establish contingency plans to mitigate the impact of failures on business continuity and security.
+    </p>
+    <ul class="bullets">
+      <li>Different components can fail in different ways. Hardware failures, software bugs, human error, cyberattacks</li>
+      <li>Understanding potential failure modes is essential for risk management and system resilience</li>
+      <li>Implement preventive measures and contingency plans to mitigate the impact of failures on business continuity and security</li>
+    </ul>
+
+    <h3>Device Connections</h3>
+    <p>
+      Device connections refer to the various methods and protocols used to link devices within a network, enabling communication and data exchange. Properly managing device connections is crucial for maintaining network security and performance. Organizations must ensure that connections are secure, authenticated, and monitored to prevent unauthorized access and potential cyber threats.
+    </p>
+    <ul class="bullets">
+      <li>Active Monitoring - System is connected and monitored in real-time to detect anomalies and potential security breaches. Data can be blocked in real time if suspicious activity is detected. Intrusion Detection Systems (IDS) and Intrusion Prevention Systems (IPS) are commonly active</li>
+      <li>Passive Monitoring - System is monitored without direct intervention. Data is collected and analyzed after the fact to identify potential security issues. Often used for compliance and auditing purposes</li>
+      <li>Hybrid Monitoring - Combines active and passive monitoring techniques to provide a comprehensive security approach. Real-time detection and response, along with historical analysis for trends and patterns</li>
+    </ul>
+
+    <h3>Intrusion Prevention System (IPS)</h3>
+    <p>
+      An Intrusion Prevention System (IPS) is a network security technology that monitors network traffic for suspicious activity and takes proactive measures to prevent potential threats. Unlike Intrusion Detection Systems (IDS), which only detect and alert on potential intrusions, IPS can actively block or mitigate threats in real-time. IPS systems use various techniques, such as signature-based detection, anomaly detection, and behavior analysis, to identify and respond to malicious activities.
+    </p>
+    <ul class="bullets">
+      <li>Monitors network traffic in real-time to identify and prevent potential threats</li>
+      <li>Can block or mitigate threats automatically without human intervention</li>
+      <li>Uses techniques such as signature-based detection, anomaly detection, and behavior analysis</li>
+      <li>Helps protect against a wide range of cyber threats, including malware, exploits, and denial-of-service attacks</li>
+    </ul>
+
+    <h3>Jump Server</h3>
+    <p>
+      A jump server, also known as a jump box or bastion host, is a secure intermediary server that provides controlled access to a private network from an external network. Jump servers are typically used to enhance security by isolating sensitive systems and limiting direct access to them. Users connect to the jump server first, and then use it to access other systems within the private network. This approach helps to reduce the attack surface and provides an additional layer of security.
+    </p>
+    <ul class="bullets">
+      <li>Acts as a secure gateway between external and internal networks</li>
+      <li>Limits direct access to sensitive systems, reducing the risk of unauthorized access</li>
+      <li>Often used in environments with strict security requirements, such as financial institutions and government agencies</li>
+      <li>Supports logging and monitoring of user activities for auditing and compliance purposes</li>
+    </ul>
+
+    <h3>Proxy Server</h3>
+    <p>
+      A proxy server acts as an intermediary between a user's device and the internet. It helps to enhance security, improve performance, and control access to resources. Proxy servers can be used to anonymize internet traffic, filter content, and cache frequently accessed data to reduce bandwidth usage. They are commonly employed in corporate networks to enforce security policies and monitor user activity.
+    </p>
+    <ul class="bullets">
+      <li>Acts as an intermediary between users and the internet</li>
+      <li>Enhances security by hiding internal network details</li>
+      <li>Improves performance through caching of frequently accessed content</li>
+      <li>Enables content filtering and access control</li>
+    </ul>
+
+    <h4>Forward Proxy</h4>
+    <p>
+      A forward proxy is a type of proxy server that sits between a client and the internet, forwarding requests from the client to the desired web servers. It is commonly used to provide anonymity, control access to resources, and cache content for improved performance. Forward proxies are often employed in corporate environments to enforce security policies and monitor user activity.
+    </p>
+    <ul class="bullets">
+      <li>Sits between a client and the internet, forwarding client requests</li>
+      <li>Provides anonymity by hiding the client's IP address</li>
+      <li>Controls access to resources based on policies</li>
+      <li>Caches content to improve performance and reduce bandwidth usage</li>
+    </ul>
+
+    <h4>Reverse Proxy</h4>
+    <p>
+      A reverse proxy is a type of proxy server that sits between web servers and clients, forwarding client requests to the appropriate backend servers. It is commonly used to distribute traffic, improve performance, and enhance security. Reverse proxies can also provide SSL termination, load balancing, and caching. They are often employed in large-scale web applications to optimize resource utilization and protect backend servers.
+    </p>
+    <ul class="bullets">
+      <li>Sits between web servers and clients, forwarding client requests</li>
+      <li>Distributes traffic to backend servers for load balancing</li>
+      <li>Provides SSL termination and caching to improve performance</li>
+      <li>Enhances security by hiding backend server details</li>
+    </ul>
+
+    <h4>Open Proxy</h4>
+    <p>
+      An open proxy is a proxy server that is accessible to any user on the internet, allowing them to route their traffic through it. Open proxies can be used for anonymity and bypassing content restrictions, but they also pose significant security risks. Malicious actors can exploit open proxies to conduct cyberattacks, distribute malware, or engage in illegal activities. As a result, open proxies are often blocked by websites and organizations to protect against potential threats.
+    </p>
+    <ul class="bullets">
+      <li>Accessible to any user on the internet, allowing them to route traffic through it</li>
+      <li>Can be used for anonymity and bypassing content restrictions</li>
+      <li>Poses significant security risks, as malicious actors can exploit open proxies for cyberattacks</li>
+      <li>Often blocked by websites and organizations to protect against potential threats</li>
+    </ul>
+
+    <h4>Application Proxy</h4>
+    <p>
+      An application proxy is a specialized type of proxy server that operates at the application layer, handling specific protocols and services. It acts as an intermediary for requests from clients seeking resources from servers, providing additional security and control over application-level traffic. Application proxies can perform functions such as content filtering, authentication, and logging, making them useful for enforcing security policies and monitoring user activity.
+    </p>
+    <ul class="bullets">
+      <li>Operates at the application layer, handling specific protocols and services</li>
+      <li>Acts as an intermediary for client requests to servers</li>
+      <li>Provides additional security and control over application-level traffic</li>
+      <li>Performs functions such as content filtering, authentication, and logging</li>
+      <li>A proxy may only know one application - HTTP</li>
+      <li>Many proxies are multipurpose proxies - HTTP, HTTPS, FTP, etc</li>
+    </ul>
+
+    <h3>Load Balancer</h3>
+    <p>
+      A load balancer is a network device or software application that distributes incoming network traffic across multiple servers to ensure optimal resource utilization, improve performance, and enhance reliability. By evenly distributing workloads, load balancers help prevent server overloads and ensure high availability of applications and services. Load balancers can operate at various layers of the OSI model, including the transport layer (Layer 4) and the application layer (Layer 7), providing different levels of control and functionality.
+    </p>
+    <ul class="bullets">
+      <li>Distributes incoming network traffic across multiple servers</li>
+      <li>Ensures optimal resource utilization and improves performance</li>
+      <li>Enhances reliability by preventing server overloads</li>
+      <li>Operates at various layers of the OSI model, including Layer 4 and Layer 7</li>
+    </ul>
+
+    <h4>Active/active Load Balancing</h4>
+    <p>
+      Active/active load balancing is a load balancing configuration where multiple servers are actively processing requests simultaneously. In this setup, incoming traffic is distributed evenly across all available servers, allowing for optimal resource utilization and improved performance. Active/active load balancing provides high availability, as the failure of one server does not impact the overall system's ability to handle requests, as other servers continue to operate.
+    </p>
+    <ul class="bullets">
+      <li>Configurable load - traffic can be distributed based on various algorithms such as round-robin, least connections, or IP hash</li>
+      <li>TCP offload - offloads the processing of TCP connections from the servers to the load balancer, improving server performance</li>
+      <li>SSL offload - offloads the processing of SSL/TLS encryption and decryption from the servers to the load balancer, enhancing server efficiency</li>
+      <li>Caching - stores frequently accessed content to reduce server load and improve response times</li>
+      <li>Prioritization - manages the order in which requests are processed based on predefined criteria</li>
+      <li>Content switching - directs requests to different servers based on the content of the request, enabling more efficient resource utilization</li>
+    </ul>
+
+    <h4>Active/passive Load Balancing</h4>
+    <p>
+      Active/passive load balancing is a load balancing configuration where one server is actively processing requests while another server remains on standby, ready to take over in the event of a failure. In this setup, incoming traffic is directed to the active server, and if it becomes unavailable, the passive server is activated to handle the requests. Active/passive load balancing provides redundancy and ensures high availability, as the passive server can quickly take over without disrupting service.
+    </p>
+    
+    <h3>Sensors and Collectors</h3>
+    <p>
+      Sensors and collectors are essential components of network security and monitoring systems. Sensors are devices or software applications that capture and analyze network traffic, system logs, and other data sources to detect potential security threats and anomalies. Collectors, on the other hand, aggregate and store the data collected by sensors for further analysis and reporting. Together, sensors and collectors provide organizations with valuable insights into their network activity, enabling them to identify and respond to security incidents effectively.
+    </p>
+    <ul class="bullets">
+      <li>Sensors: Devices or software applications that capture and analyze network traffic, system logs, and other data sources to detect potential security threats and anomalies</li>
+      <li>Collectors: Aggregate and store the data collected by sensors for further analysis and reporting</li>
+      <li>Together, sensors and collectors provide organizations with valuable insights into their network activity</li>
+      <li>Enable effective identification and response to security incidents</li>
+    </ul>
+
+    <h3>Port Security</h3>
+    <p>
+      Port security is a network security feature that restricts access to network ports based on predefined criteria, such as MAC addresses or VLANs. By implementing port security, organizations can prevent unauthorized devices from connecting to the network, reducing the risk of security breaches and unauthorized access. Port security can be configured on switches and routers to limit the number of devices that can connect to a specific port, block unknown devices, and log security violations for further analysis.
+    </p>
+    <ul class="bullets">
+      <li>Restricts access to network ports based on predefined criteria, such as MAC addresses or VLANs</li>
+      <li>Prevents unauthorized devices from connecting to the network</li>
+      <li>Reduces the risk of security breaches and unauthorized access</li>
+      <li>Can be configured on switches and routers to limit the number of devices per port, block unknown devices, and log violations</li>
+    </ul>
+
+    <h3>EAP (Extensible Authentication Protocol)</h3>
+    <p>
+      EAP is an authentication framework frequently used in wireless networks and point-to-point connections. It provides a variety of authentication methods, such as token cards, smart cards, certificates, and public key encryption, allowing for flexible and secure authentication mechanisms.
+    </p>
+    <ul class="bullets">
+      <li>Zone-based security technologies - More flexible (and secure) than IP address ranges</li>
+      <li>802.1X - A network access control protocol for port-based authentication</li>
+    </ul>
+
+    <h3>IEEE 802.1X</h3>
+    <p>
+      IEEE 802.1X is a network access control protocol that provides an authentication mechanism for devices attempting to connect to a LAN or WLAN. It is commonly used in enterprise networks to enhance security by requiring devices to authenticate before gaining access to network resources. IEEE 802.1X works in conjunction with EAP to support various authentication methods, ensuring that only authorized users and devices can access the network.
+    </p>
+    <ul class="bullets">
+      <li>Zone-based security technologies - More flexible (and secure) than IP address ranges</li>
+      <li>Each area of the network is associated with a zone. Trusted, untrusted - Internal, external - Inside, Internet, Servers, Databases, Screened </li>
+      <li>This simplifies security policies. Trusted to Untrusted - Untrusted to Screened - Untrusted to Trusted</li>
+      <li>Port based Network Access Control (NAC).</li>
+    </ul>
+
+    <h3>IEEE 802.1X and EAP</h3>
+    <p>
+      IEEE 802.1X and EAP work together to provide a robust authentication framework for network access control. IEEE 802.1X serves as the protocol that governs the authentication process, while EAP provides the flexibility to use various authentication methods. This combination allows organizations to implement secure access controls for their networks, ensuring that only authorized users and devices can connect and access resources.
+    </p>
+    <ul class="bullets">
+      <li>Supplicant - The device or user attempting to gain access to the network. The client.</li>
+      <li>Authenticator - The network device (e.g., switch or access point) that controls access to the network</li>
+      <li>Authentication Server - The server that validates the credentials of the supplicant. Validates the client credentials</li>
+    </ul>
+
+    <h3>The universal Security Control</h3>
+    <p>
+      The universal security control refers to a comprehensive approach to managing and enforcing security policies across an organization's entire IT infrastructure. This concept emphasizes the importance of integrating various security measures, technologies, and processes to create a unified and cohesive security framework. By implementing universal security controls, organizations can enhance their overall security posture, streamline management, and ensure consistent protection against cyber threats.
+    </p>
+    <ul class="bullets">
+      <li>Standard issue - Home, office, and in your operating system</li>
+      <li>Control the flow of network traffic - everything passes trhough the firewall</li>
+      <li>Corporate control of outbound and inbound traffic. Sensitive materials</li>
+      <li>Control of inappropriate content. Not safe for work, parental controls</li>
+      <li>Protection against evil. Anti-virus, anti-malware</li>
+    </ul>
+
+    <h3>Network Base Firewalls</h3>
+    <p>
+      Network-based firewalls are security devices that monitor and control incoming and outgoing network traffic based on predetermined security rules. They are typically deployed at the perimeter of a network to protect against external threats and unauthorized access. Network-based firewalls can be hardware appliances or software applications, and they operate by filtering traffic based on criteria such as IP addresses, port numbers, and protocols. By enforcing security policies, network-based firewalls help safeguard an organization's IT infrastructure from cyberattacks and data breaches.
+    </p>
+    <ul class="bullets">
+      <li>Filter traffic based on IP addresses, port numbers, and protocols</li>
+      <li>Encrypt traffic to protect data confidentiality and integrity. VPN between sites</li>
+      <li>Most firewalls can be layer 3 devices (routers). Often sits on the ingress/egress of the network - Network Address Translation (NAT) functionality - Authenticate dynamic routing communication</li>
+    </ul>
+
+    <h3>UTM / All-in-one Seurity Applicance</h3>
+    <p>
+      A Unified Threat Management (UTM) or all-in-one security appliance is a comprehensive security solution that integrates multiple security functions into a single device. UTM appliances typically combine features such as firewall protection, intrusion detection and prevention, antivirus and anti-malware, content filtering, and virtual private network (VPN) capabilities. By consolidating these security functions, UTM appliances provide organizations with a simplified and cost-effective approach to managing their network security.
+    </p>
+    <ul class="bullets">
+      <li>Combines multiple security functions into a single device</li>
+      <li>Includes features such as firewall protection, intrusion detection and prevention, antivirus and anti-malware, content filtering, and VPN capabilities</li>
+      <li>Provides a simplified and cost-effective approach to managing network security</li>
+    </ul>
+
+    <h3>Next generation Firewall (NGFW)</h3>
+    <p>
+      A Next-Generation Firewall (NGFW) is an advanced type of firewall that goes beyond traditional firewall capabilities by incorporating additional security features and technologies. NGFWs provide deep packet inspection, application awareness, and integrated intrusion prevention systems (IPS) to enhance network security. They are designed to address modern cyber threats and provide granular control over network traffic, allowing organizations to enforce security policies based on applications, users, and content.
+    </p>
+    <ul class="bullets">
+      <li>Incorporates additional security features and technologies beyond traditional firewalls</li>
+      <li>Provides deep packet inspection, application awareness, and integrated intrusion prevention systems (IPS)</li>
+      <li>Addresses modern cyber threats and provides granular control over network traffic</li>
+      <li>Allows organizations to enforce security policies based on applications, users, and content</li>
+      <li>Network base Firewall - control traffic flow based on the application. Microsoft SQL server, Twitter, Youtube</li>
+      <li>Intrusion Prevention System (IPS) integration for enhanced threat detection and response</li>
+      <li>Content filtering and malware detection capabilities. URL filtering.</li>
+    </ul>
+
+    <h3>Web Application Firewall (WAF)</h3>
+    <p>
+      
+    </p>
 
 </section>
 
