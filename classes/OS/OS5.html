@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Website</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"> <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../All Pages/style.css"> <!-- Global CSS -->
+  <link rel="stylesheet" href="../../All Pages/dropdown.css"> <!-- Classes-specific CSS -->
+  <link rel="stylesheet" href="../../All Pages/classPages.css"> <!-- Classes-specific CSS -->
+  <script src="../../script.js"></script>
+  <script src="../../All Pages/dropdown.js"></script>
+</head>
+<body>
+  <header>
+    <a href="../../index.html" class="logo">
+      <img src="../../img/ZernulloLogo.png" alt="Zernullo Logo">
+    </a>
+
+    <nav class="drop_down">
+      <div class="dropdown-language">
+        <button type="button" class="dropbtn-language">Language</button>
+        <div class="diff-language">
+          <a href="../../languages/html/python.html">Python</a>
+          <a href="../../languages/java.html">Java</a>
+          <a href="../../languages/html/C.html">C</a>
+          <a href="../../languages/html/C-sharp.html">C#</a>
+          <a href="../../languages/html/C++.html">C++</a>
+          <a href="../../languages/javascript.html">JavaScript</a>
+        </div>
+      </div>
+
+      <div class="dropdown-classes">
+        <button type="button" class="dropbtn-classes">Classes</button>
+        <div class="diff-classes">
+          <a href="../Cyber/Cyber.html">Intro to Cybersecurity</a>
+          <a href="../OS/OS.html">Object Systems</a>
+          <a href="../CN/CN.html">Computer Networks</a>
+          <a href="../AI/AI.html">Artifical Intelligence</a>
+          <a href="../EC/EC.html">Ethics in Computing</a>
+        </div>
+      </div>
+
+      <div class="dropdown-lecture">
+        <button type="button" class="dropbtn-lecture">Lectures</button>
+        <div class="diff-lecture">
+          <a href="OS.html">Lecture 1</a>
+          <a href="OS2.html">Lecture 2</a>
+          <a href="OS3.html">Lecture 3</a>
+          <a href="OS4.html">Lecture 4</a>
+          <a href="OS5.html">Lecture 5</a>
+          <a href="OS6.html">Lecture 6</a>
+        </div>
+      </div>
+    </nav>
+
+    <nav class="main_nav">
+      <a href="../../index.html">Home</a>
+      <a href="../../html/education.html" class="active">Education</a>
+      <a href="../../html/projects.html">Projects</a>
+      <a href="../../html/contact.html">Contact</a>
+    </nav>
+  </header>
+
+    <!-- PAGE CONTENT GOES HERE -->
+<section class="classes">
+    <h1>Operating Systems</h1>
+    <h2>Lecture 5</h2>
+    <p id="Reference">
+      Date Taken: Fall 2025<br/>
+      Status: Work in Progress<br>
+      Reference: LSU Professor Daniel Donze, ChatGPT
+    </p>
+
+    <h2>Recap</h2>
+    <h4>What is the difference between physical and logical (virtual) memory?</h4>
+    <p>
+      Physical memory refers to the actual RAM installed in a computer system, while logical (or virtual) memory is an abstraction that allows programs to use more memory than is physically available by utilizing disk space as an extension of RAM. Logical memory provides each process with its own address space, which helps with isolation and security.
+    </p>
+    <p>
+      In more simpler terms, physical memory is the hardware component (RAM), while logical memory is a software-managed concept that allows for more flexible and efficient memory usage.
+    </p>
+    <h4>How does a multi-level page table work compared to a single level page table?</h4>
+    <p>
+      A multi-level page table is a hierarchical structure that breaks down the page table into multiple levels, allowing for more efficient memory usage and reduced memory overhead. In contrast, a single-level page table is a flat structure that maps virtual addresses directly to physical addresses.
+      In a multi-level page table, the virtual address is divided into several parts, each part corresponding to a level in the hierarchy. This allows for smaller page tables at each level, which can be more easily managed and can reduce the amount of memory required for the page tables themselves.
+      Overall, multi-level page tables are more scalable and efficient for systems with large address spaces compared to single-level page tables.
+    </p>
+    <p>
+      In more simpler terms, multi-level page tables break down the mapping process into smaller, more manageable pieces, while single-level page tables handle everything in one large table.
+    </p>
+    
+    <h2>Memory</h2>
+    <h3>Background</h3>
+    <p>
+      Memory is a critical component of a computer system that stores data and instructions for the CPU to access. It is organized in a hierarchical manner, with different levels of memory providing varying speeds and capacities. The main types of memory in a computer system include:
+    </p>
+    <ul>
+      <li><strong>Registers:</strong> Small, fast storage locations within the CPU that hold data and instructions currently being processed.</li>
+      <li><strong>Cache Memory:</strong> A small amount of high-speed memory located close to the CPU that stores frequently accessed data and instructions to reduce latency.</li>
+      <li><strong>Main Memory (RAM):</strong> The primary storage area for data and instructions that are actively being used by the CPU. It is volatile, meaning it loses its contents when power is lost.</li>
+      <li><strong>Secondary Storage:</strong> Non-volatile storage devices such as hard drives and solid-state drives that store data and programs not currently in use.</li>
+    </ul>
+    <p>
+      Program must be brought (from disk) into memory and placed within a process for it to be run.
+      <strong>Main Memory</strong> and <strong>registers</strong> are only storage CPU can access directly.
+    </p>
+    <p>
+      Memory unit only sees a stream of: [addresses] → read requests and [adress & data] → write requests
+    </p>
+    <p>
+      Registers access is dont in one CPU clock (or less). Main memory can take many cycles, causing a stall. Cache sits between main memory and CPU registers
+    </p>
+    <p>
+      OS needs to partition memory for its own use and for use by multiple processes.
+      Must implement strategies that ensures correct and efficent sharing or memory.
+      Where possible, must keep processes from "bothering" each other. Must deal with issues like:
+    </p>
+    <ul class="bullets">
+      <li>Address binding</li>
+      <li>Protection</li>
+      <li>Swapping</li>
+      <li>Segmentation</li>
+      <li>Page table management</li>
+      <li>Virtual address spaces</li>
+      <li>Over-commitment of physical memory</li>
+    </ul>
+    <div class="img-container">
+        <img src="../../img/classes/OSPic/Lecture5/Background.png" alt="">
+        <img src="../../img/classes/OSPic/Lecture5/Background2.png" alt="OS Memory Hierarchy">
+    </div>
+
+    <h3>Address Binding</h3>
+    <p>
+      Address binding is the process of mapping logical addresses used by a program to physical addresses in memory. When will addresses for executable code and data be established? There are three main stages of address binding:
+    </p>
+    <ul class="bullets">
+      <li><strong>Compile Time</strong> - generate code which had hard coded addresses. Must recompile if code must load at a different place</li>
+      <li><strong>Load Time</strong> - generate addresses when the program is loaded into memory</li>
+      <li><strong>Execution Time</strong> - addresses are relative to a value which may change during execution (code/data is relocatable)</li>
+    </ul>
+
+    <h3>Virtual vs Physical Addresses</h3>
+    <p>
+      A <strong>logical address</strong> (or virtual address) is the address generated by the CPU during program execution. It is used by the program to access memory locations. A <strong>physical address</strong> is the actual address in the computer's physical memory (RAM) where data is stored.
+    </p> 
+    <ul class="bullets">
+      <li><strong>Physical Address</strong> - Address fed to the memory hardware</li>
+      <li><strong>Logical Address</strong> - Address generated by the CPU during program execution</li>
+    </ul>
+    <div class="img-container">
+      <img src="../../img/classes/OSPic/Lecture5/Addresses.png" alt="Older Hardware vs Modern Hardware">
+    </div>
+
+    <h3>Memory Mangement Unit (MMU)</h3>
+    <p>
+      The Memory Management Unit (MMU) is a hardware component responsible for handling memory access and address translation in a computer system. It translates logical addresses generated by the CPU into physical addresses used by the memory hardware. The MMU also manages memory protection, ensuring that processes can only access memory locations they are authorized to use.
+    </p>
+    <p>
+      MMU - hardware maps logical to physical address at runtime.
+      MMU relocation register provides base address.
+      Physical addresses are generated by adding the base/relocation register's value to each logical address. 
+      Limit register provides the maximun offset that should be added to the base register.
+    </p>
+
+    <h3>Memory Protection with MMU</h3>
+    <p>
+      Memory protection is a crucial function of the Memory Management Unit (MMU) that ensures the integrity and security of a computer system's memory. The MMU enforces access control policies by using mechanisms such as base and limit registers, which define the valid address range for each process. If a process attempts to access memory outside its allocated range, the MMU generates an exception, preventing unauthorized access and potential data corruption.
+    </p>
+    <p>
+      CPU must check memory access generated in user mode to be sire it is between base and limit for that user.
+      Prevents processes from accessing memory not allocated to them.
+      Instructions for loading the base and limit registers are privileged.
+    </p>
+
+    <h3>Memory Management Schemes</h3>
+    <p>
+      There are several memory management schemes used in operating systems to efficiently allocate and manage memory resources. Some common schemes include:
+    </p>
+    <p>
+      Main meory must support both OS and user processes.
+      Process code/data is placed into a block of memory - this is called allocation.
+      Memory is a limited resource; must allocate efficiently.
+      Different types of management schemes exist:
+    </p>
+    <ul class="bullets">
+      <li>Contiguous allocation. Overlays, Dynamic loading, Dynamic linking</li>
+      <li>Swapping</li>
+      <li>Segmentation</li>
+      <li>Paging</li>
+    </ul>
+
+    <h3>Contiguous Memory Allocation</h3>
+    <p>
+      Contiguous (sharing a common boundary/touching each other) memory allocation is a memory management scheme where each process is allocated a single contiguous block of memory. This approach simplifies memory management and allows for efficient access to memory locations. However, it can lead to fragmentation, where free memory is divided into small, non-contiguous blocks that may not be usable for new processes.
+    </p>
+    <p>
+      Contiguous allocation is one early method. Main memory usually into two partitions:
+    </p>
+    <ul class="bullets">
+      <li>Resident operating system, usually held in low memory with interrupt vector</li>
+      <li>User processes then held in high memory</li>
+      <li>Partitions for user processes are either fixed or variable</li>
+      <li>Each process contained in single contiguous section of memory</li>
+    </ul>
+    <div class="img-container">
+      <img src="../../img/classes/OSPic/Lecture5/Memory.png" alt="Contiguous Memory Allocation">
+      <img src="../../img/classes/OSPic/Lecture5/Memory2.png" alt="Contiguous Memory Allocation">
+    </div>
+    <pre class="tab">
+      • A hole is an available block of memory, scatteredthroughout physical memory
+      • OS must know about both allocated areas and available holes
+      • When a process is loaded into memory, an available hole of sufficient size is chosen
+      • Contiguous allocation strategies use a "hole-picking" algorithm to decide where to place a process
+    </pre>
+
+    <h3>Picking a Hole</h3>
+    <p>
+      There are several algorithms used to pick a hole for memory allocation in contiguous memory management. Some common algorithms include:
+    </p>
+    <ul class="bullets">
+      <li><strong>First Fit</strong> - Find and use the first hole of sufficient size (MINIX)</li>
+      <li><strong>Best Fit</strong> - Find and use the snuggest (smallest) hole that is big enough. Produces the smallest leftover hole.</li>
+      <li><strong>Worst Fit</strong> - Find the largest hole and use it. Produces the largest leftover hole</li>
+      <li>On average, first fit generally work better than worst fit</li>
+    </ul>
+
+    <h3>Fragmentation</h3>
+    <p>
+      Fragmentation is a phenomenon that occurs in memory management when free memory is divided into small, non-contiguous blocks, making it difficult to allocate memory for new processes. There are two main types of fragmentation:
+    </p>
+    <h4>Internal Fragmentation</h4>
+    <p>
+      Internal fragmentation occurs when allocated memory blocks are larger than the requested memory size, leading to wasted space within the allocated blocks. This type of fragmentation can result in inefficient memory usage, as the unused space within the allocated blocks cannot be utilized by other processes. To mitigate internal fragmentation, memory allocation strategies such as using smaller fixed-size blocks or implementing dynamic memory allocation techniques can be employed.
+    </p>
+    <p>
+      Internal fragmentation - hole selected is usually not a perfect fit, some memory goes unused.
+      Sometimes the hole is big enough to get reused.
+      But if the hole is too small, it is inefficient to track it, so some memory is temporarily "wasted".
+    </p>
+    <div class="img-container">
+      <img src="../../img/classes/OSPic/Lecture5/Frag.png" alt="Internal Fragmentation">
+    </div>
+    <h4>External Fragmentation</h4>
+    <p>
+      External fragmentation occurs when free memory is divided into small, non-contiguous blocks, making it difficult to allocate memory for new processes. This type of fragmentation can lead to inefficient memory usage and reduced system performance. To mitigate external fragmentation, techniques such as compaction (rearranging memory contents to create larger contiguous blocks) or using non-contiguous memory allocation schemes like paging or segmentation can be employed.
+    </p>
+    <p>
+      External fragmentation - processes "coming and going" causes holes to be allocated and released, which fragments memory.
+    </p>
+    <div class="img-container">
+      <img src="../../img/classes/OSPic/Lecture5/Frag2.png" alt="External Fragmentation">
+    </div>
+
+    <h4>Fragmentation Continue</h4>
+    <p>Can't fix internal fragmentation in contiguous allocation schemes if small holes aren't tracked</p>
+    <p>Can potentially fix external fragmentation by compacting the memory (defragging it)</p>
+    <p>Can only do compacion is address binding is at execution time (dynamic)</p>
+    <p>Problem with I/O decides: DMA doesn't like compaction. Don't allow compaction during I/O. Do I/O into OS buffers that aren't subject to compaction</p>
+
+    <h3>Memory Use Optimizations: Overlays</h3>
+    <p>
+      Overlays are a memory management technique used to optimize memory usage by loading only the necessary parts of a program into memory at any given time. This approach allows larger programs to run on systems with limited memory by dividing the program into smaller, manageable sections called overlays. When a specific overlay is needed, it is loaded into memory, replacing another overlay that is no longer required. This technique helps to conserve memory and improve system performance, especially in environments with constrained resources.
+    </p>
+    <p>
+      Overlays allow writing programs larger than available physical memory.
+      Programmer partitions program into "chunks"
+      A different chunk is loaded when needed.
+      Complex programming model, since programmer is responsible for laying out the chunks.
+      Must be careful to avoid "ping-pong" effect.
+    </p>
+
+    <h3>Optimizations: Dynamic Loading</h3>
+    <p>
+      Dynamic loading is a memory management technique where a program's code and data are loaded into memory only when they are needed during execution. This approach allows for more efficient use of memory, as it reduces the initial memory footprint of a program and enables the loading of only the necessary components. Dynamic loading is often used in conjunction with shared libraries, where common code can be loaded once and shared among multiple programs, further optimizing memory usage.
+    </p>
+    <p>In order memory allocation schemes, a program instructions and data must be all present in memory</p>
+    <p>
+      With dynamic loading, load routines only when they are needed. 
+      All routines are kept on disk in a relocatable load format.
+      The main program is laoded into memory and is executed.
+      When a routine needs to call another routine, teh calling routine first checks to see whether the other routine had been loaded.
+      If it has not, the relocatable linking loader is called to load the desired routine into memory and to update the program's address tables to reflect this change.
+      Then control is passes to the newly loaded routine.
+    </p>
+
+    <h3>Dynamic Loading Impact</h3>
+    <p>
+      Dynamic loading has several impacts on memory management and program execution:
+    </p>
+    <p>
+      Good memory utilization since infrequently used code is loaded as needed.
+      Implemented by the programmer via system calls to load new chunks of code. 
+      Unnecessary with modern virtual memory systems (soon).
+      Still heavily used in Java/Andriod platforms.
+    </p>
+
+    <h3>Optimizations: Dynamic Linking</h3>
+    <p>
+      Dynamic linking is a memory management technique where a program's external libraries or modules are linked to the program at runtime rather than at compile time. This approach allows for more efficient use of memory, as multiple programs can share the same library code in memory, reducing redundancy. Dynamic linking also enables easier updates and maintenance of libraries, as changes to a shared library can be made without recompiling the programs that use it.
+    </p>
+    <p>
+      Postpone linking with libraries until program is executing.
+      Library routines are not included in the object code for the program; instead, a stub is included.
+      When called, stub is replaced with address of actual routine and executed.
+      Allows code sharing.
+      OS must track if library is currently in memory and load it on demand if it isn't.
+    </p>
+
+    <h3>Linking Libraries</h3>
+    <p>
+      Linking libraries can be done in two main ways: static linking and dynamic linking.
+    </p>
+    <ul class="bullets">
+      <li><strong>Static Linking</strong> - In static linking, library code is copied into the executable file at compile time. This results in a larger executable file, but it does not require the presence of the library at runtime. Static linking can lead to faster execution since all necessary code is already present in the executable.</li>
+      <ul class="circles">
+        <li>Insert a copy of the library's code into the binary. Binary is larger.</li>
+      </ul>
+      <li><strong>Dynamic Linking</strong> - In dynamic linking, library code is not included in the executable file. Instead, the program contains references to the library, which are resolved at runtime. This allows multiple programs to share the same library code in memory, reducing redundancy and saving memory space. Dynamic linking also enables easier updates to libraries without recompiling the programs that use them.</li> 
+      <ul class="circles">
+        <li>Find library code needed during runtime. Reduces size of binary. Must perform lookup when used for first time</li>
+      </ul>
+    </ul>
+
+    <h3>Dynamic Linking</h3>
+    <p>
+      Dynamic linking is particularly useful for shared libraries, where multiple programs can use the same library code without each having its own copy. This not only saves memory but also allows for easier updates and maintenance of the library code. When a shared library is updated, all programs that use it automatically benefit from the changes without needing to be recompiled. Deferred binding is a key feature of dynamic linking, where the actual linking of library functions occurs only when they are called for the first time during program execution.
+    </p>
+    <ul class="bullets">
+      <li>First call - Call procedure linking table(PLT). Jump into Global Offset Table (GOT). Push funtcion ID onto stack. Call dynamic liner with ID of function, liner replaces GOT entry with address</li>
+      <li>Subsequent calls - Calls PLT. Jump into GOT. GOT has correct address so control flow goes into intended function.</li>
+    </ul>
+    <div class="img-container">
+      <img src="../../img/classes/OSPic/Lecture5/Dynamic.png" alt="Dynamic Linking">
+      <img src="../../img/classes/OSPic/Lecture5/Dynamic2.png" alt="Dynamic Linking">
+    </div>
+
+    <h3>Swaping</h3>
+    <p>
+      Swapping is a memory management technique used in operating systems to temporarily move inactive processes from main memory to secondary storage (such as a hard disk) to free up memory for active processes. When a swapped-out process is needed again, it is brought back into main memory. This technique allows the operating system to manage memory more efficiently and enables the execution of larger programs than the available physical memory.
+    </p>
+    <p>
+      Swapping - moving entire processes out of memory disk (and back) as needed.
+      <br>Advantage: Simulates a large physical memory, thus increasing the degree of multiprogramming.
+      <br>Disadvantage: Large transfer time. Disk is orders of magnitude slower than main memory.
+    </p>
+    <div class="img-container">
+      <img src="../../img/classes/OSPic/Lecture5/Swapping.png" alt="Swapping">
+      <img src="../../img/classes/OSPic/Lecture5/Recall.png" alt="Recall">
+    </div>
+
+    <h3>Segmentation</h3>
+    <p>
+      Segmentation is a memory management technique used in operating systems that divides a program's memory into variable-sized segments based on logical divisions, such as code, data, and stack segments. Each segment can grow or shrink independently, allowing for more flexible memory allocation and better utilization of memory resources. Segmentation also provides a way to implement protection and sharing of memory segments among different processes.
+    </p>
+    <p></p>
+
+
+
+
+
+</section>
+
+</body>
+</html>
