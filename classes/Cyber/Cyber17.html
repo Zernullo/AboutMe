@@ -73,13 +73,125 @@
 
     <!-- PAGE CONTENT GOES HERE -->
 <section class="classes">
+    <h1>Intro To Cyber</h1>
+    <h2>Lecture 17</h2>
+    <p id="Reference">
+        Date Taken: Fall 2025<br/>
+        Status: Work in Progress<br>
+        Reference: LSU Professor Joseph Khoury, ChatGPT
+    </p>
+    <h2>Network Infrastructure Concepts</h2>
+    <h3>Physical Isolation</h3>
+    <p>
+        Physical isolation, also known as air-gapping, is a security measure that involves separating a computer or network from unsecured networks, such as the public internet. This method is often used to protect sensitive information and critical systems from cyber threats. By physically isolating the system, it becomes significantly more difficult for unauthorized users to access the data or compromise the system.
+    </p>
+    <ul class="bullets">
+        <li>Devices are physically seperate. Air gap (A security measure that involves physically isolating a computer or network from unsecured networks, such as the public internet) between Switch A and Switch B.</li>
+        <li>Must be connected to provide communication. Direct connect, or another switch or router</li>
+        <li>Web servers in one rack. Database servers on another</li>
+        <li>Customer A on one switch, customer B on another. No opportunity for mixing data</li>
+    </ul>
 
-  <p id="Reference">
-      Date Taken: Fall 2025<br/>
-      Status: Work in Progress<br>
-      Reference: LSU Professor Joseph Khoury, ChatGPT
-  </p>
-  
+    <h3>Physical Segmentation</h3>
+    <p>
+        Physical segmentation involves dividing a network into smaller, isolated segments using physical devices such as switches and routers. This approach enhances security by limiting the spread of potential threats and controlling access to sensitive areas of the network. Each segment can have its own security policies and controls, making it easier to manage and protect the overall network.
+    </p>
+
+    <h3>Logical Segmentation with VLANs</h3>
+    <p>
+        Logical segmentation involves dividing a network into smaller, isolated segments using software-based methods such as Virtual Local Area Networks (VLANs). This approach allows for greater flexibility and easier management compared to physical segmentation. VLANs enable network administrators to group devices logically, regardless of their physical location, and apply specific security policies to each group.
+    </p>
+    <p>Virtual Local Area Network (VLAN). Separated logically instead of physically. Cannot communicate between VLANs without a Layer 3 device/router</p>
+
+    <h3>SDN (Software-Defined Networking)</h3>
+    <p>
+        Software-Defined Networking (SDN) is an approach to networking that separates the control plane from the data plane, allowing for centralized management and programmability of the network. SDN enables network administrators to dynamically configure and manage network resources, improving agility and efficiency. This approach also enhances security by allowing for more granular control over network traffic and policies.
+    </p>
+    <ul class="bullets">
+        <li>Networking devices have different functional planes of operation. Data, control, and management planes</li>
+        <li>Split the functions into seperate logical units. Extend the functionality and management of a single device. perfectly built for the cloud</li>
+        <li>Infrastructure layer/Data plane. Process the network frames and packets. Forwarding, trunking, encrypting, NAT</li>
+        <li>Control layer/Control Plane. Manages the actions of the data plane. Routing tables, session tables, NAT tables. Dynamic routing protocol updates</li>
+        <li>Application layer/Management plane. Configure and manage the device. SSH, browser, API</li>
+    </ul>
+
+    <h2>Other Infrastructure Concepts</h2>
+    <h3>Attacks Can Happen Anywhere</h3>
+    <p>
+        Attacks can occur at various points within a network infrastructure, including endpoints, servers, network devices, and communication channels. It is essential to implement comprehensive security measures across all layers of the network to protect against potential threats. This includes using firewalls, intrusion detection systems, encryption, and regular monitoring to identify and mitigate risks.
+    </p>
+    <ul class="bullets">
+        <li>Cloud base security is centralized and costs less. No dedicated hardware, no data center to secure. A third party handles everything</li>
+        <li>On premises puts the security burden on the client. Data center security and infrastructure costs</li>
+        <li>Attackers want your data. They don't care where it is</li>
+    </ul>
+
+    <h3>On Premises Security</h3>
+    <p>
+        On-premises security refers to the protection of IT infrastructure and data that is hosted within an organization's own facilities. This approach requires the organization to implement and manage its own security measures, including physical security, network security, and data protection. On-premises security can provide greater control over sensitive information but also requires significant resources and expertise to maintain.
+    </p>
+    <ul class="bullets">
+        <li>Customize your security posture. Full control when everything is in house</li>
+        <li>On site IT team can manage security better. The local team can ensure everything is secure. A locak team can be expensive and diffcult to staff</li>
+        <li>Local team maintains uptime and availability. System checks can occur at anytime. No phone call for support</li>
+        <li>Security changes can take time. New equipment, configurations, and additional costs</li>
+    </ul>
+
+    <h3>Centralized vs. Decentralized</h3>
+    <p>
+        Centralized security involves managing and controlling security measures from a single, central location. This approach allows for consistent policies and easier oversight but can create a single point of failure. Decentralized security, on the other hand, distributes security responsibilities across multiple locations or teams. This can enhance resilience and responsiveness but may lead to inconsistencies in security practices.
+    </p>
+    <ul class="bullets">
+        <li>Most organizations are physically decentrakized. Many locations, cloud providers, operating systems, etc.</li>
+        <li>Diffcult to manage and protect so many diverse systems. Centralize the security management</li>
+        <li>A centralized approach. Correlated alerts. Consolidating log file analysis. Comprehensive system status and maintenance/patching</li>
+        <li>It's not perfect. Single point of failure, potential performance issues</li>
+    </ul>
+
+    <h3>Virtualization</h3>
+    <p>
+        Virtualization is the creation of virtual versions of physical computing resources, such as servers, storage devices, and networks. This technology allows multiple virtual machines (VMs) to run on a single physical machine, optimizing resource utilization and improving scalability. Virtualization also enhances security by isolating VMs from each other, reducing the risk of cross-contamination in the event of a security breach.
+    </p>
+    <ul class="bullets">
+        <li>Virtualization - Run many different operating systems on the same hardware</li>
+        <li>Each application instance has its own operating system. Adds overhead and complexity. Virtualization relatively expensive.</li>
+    </ul>
+    <div class="img-container">
+        <img src="../../img/classes/CyberPic/Lecture17/Virtualize.png" alt="Virtualization">   
+    </div>
+
+    <h3>Application Containerization</h3>
+    <p>
+        Application containerization is a lightweight form of virtualization that packages an application and its dependencies into a single container. Containers share the host operating system's kernel but run in isolated user spaces, allowing for efficient resource utilization and rapid deployment. This approach simplifies application management and enhances security by isolating applications from each other and the host system.
+    </p>
+    <ul class="bullets">
+        <li>Container - contains everything you need to run an application. Code and dependencies. A standardized unit of software</li>
+        <li>An isolated process in a sandbox. Self contained. Apps can't ineract with each other</li>
+        <li>Container image - A standard for portability. Lightweight, uses the host kernel. Secure separation between applications</li>
+    </ul>
+    <div class="img-container">
+        <img src="../../img/classes/CyberPic/Lecture17/Containerize.png" alt="Containerization">
+    </div>
+
+    <h3>Internet of Things (IoT)</h3>
+    <p>
+        The Internet of Things (IoT) refers to the network of interconnected devices that can communicate and exchange data over the internet. These devices, which include everything from smart home appliances to industrial sensors, often have limited security features, making them vulnerable to cyberattacks. Securing IoT devices requires a comprehensive approach that includes strong authentication, regular software updates, and network segmentation to protect against potential threats.
+    </p>
+    <ul class="bullets">
+        <li>Senors - heating and coding, lighting, etc.</li>
+        <li>Smart devices - Home automation, video doorbells</li>
+        <li>Wearable technology - fitness trackers, smartwatches, health monitors</li>
+        <li>Facility Automation - Temperature, air quality, lighting</li>
+        <li>Weak defaults - IoT manufacturers are not security professionals</li>
+    </ul>
+
+    <!-- Slides 33 on Lecture 17 -->
+
+
+
+
+
+
 
 </section>
 
