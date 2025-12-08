@@ -55,8 +55,7 @@
           <a href="Cyber12&14.html">Lecture 12 & 14</a>
           <a href="Cyber15.html">Lecture 15</a>
           <a href="Cyber16.html">Lecture 16</a>
-          <a href="Cyber17.html">Lecture 17</a>
-          <a href="Cyber18.html">Lecture 18</a>
+          <a href="Cyber17&18.html">Lecture 17 & 18</a>
           <a href="Cyber19.html">Lecture 19</a>
           <a href="Cyber20.html">Lecture 20</a>
         </div>
@@ -74,10 +73,10 @@
     <!-- PAGE CONTENT GOES HERE -->
 <section class="classes">
     <h1>Intro To Cyber</h1>
-    <h2>Lecture 17</h2>
+    <h2>Lecture 17 & 18</h2>
     <p id="Reference">
         Date Taken: Fall 2025<br/>
-        Status: Work in Progress<br>
+        Status: Completed<br>
         Reference: LSU Professor Joseph Khoury, ChatGPT
     </p>
     <h2>Network Infrastructure Concepts</h2>
@@ -625,10 +624,199 @@
 
     <h3>Web Application Firewall (WAF)</h3>
     <p>
-      
+      Web Application Firewall (WAF) is a security solution that specifically protects web applications by filtering and monitoring HTTP traffic between a web application and the internet. WAFs are designed to detect and block common web application attacks such as SQL injection, cross-site scripting (XSS), and other OWASP Top Ten threats. By inspecting incoming and outgoing web traffic, WAFs help prevent unauthorized access, data breaches, and application-layer attacks, thereby enhancing the security of web applications.
     </p>
+    <ul class="bullets">
+      <li>Protects web applications by filtering and monitoring HTTP traffic</li>
+      <li>Detects and blocks common web application attacks such as SQL injection and cross-site scripting (XSS)</li>
+      <li>Helps prevent unauthorized access, data breaches, and application-layer attacks</li>
+    </ul>
 
-</section>
+    <h3>Virtual Private Network (VPN)</h3>
+    <p>
+      A Virtual Private Network (VPN) is a technology that creates a secure and encrypted connection over a less secure network, such as the internet. VPNs are commonly used to protect sensitive data, maintain privacy, and enable remote access to a private network. By encrypting the data transmitted between the user's device and the VPN server, VPNs help prevent unauthorized access and eavesdropping. They are widely used by individuals and organizations to enhance security, bypass geo-restrictions, and ensure safe communication over public networks.
+    </p>
+    <ul class="bullets">
+      <li>Creates a secure and encrypted connection over a less secure network</li>
+      <li>Protects sensitive data, maintains privacy, and enables remote access to a private network</li>
+      <li>Encrypts data transmitted between the user's device and the VPN server to prevent unauthorized access and eavesdropping</li>
+      <li>Widely used to enhance security, bypass geo-restrictions, and ensure safe communication over public networks</li>
+    </ul>
+
+    <h3>Encrypted Tunnel</h3>
+    <p>
+      Encrypted tunnels are secure communication channels that use encryption protocols to protect data transmitted between two endpoints. These tunnels ensure that the data remains confidential and intact while traversing untrusted networks, such as the internet. Encrypted tunnels are commonly used in VPNs and other secure communication technologies to prevent eavesdropping, tampering, and unauthorized access.
+    </p>
+    <ul class="bullets">
+      <li>Use encryption protocols to secure data transmitted between two endpoints</li>
+      <li>Ensure data confidentiality and integrity over untrusted networks</li>
+      <li>Commonly used in VPNs and other secure communication technologies</li>
+      <li>Prevent eavesdropping, tampering, and unauthorized access</li>
+    </ul>
+
+    <h3>SSL/TSL VPN (Secure Sockets Layer/Transport Layer Security Virtual Private Network)</h3>
+    <p>
+      SSL/TLS VPNs use the Secure Sockets Layer (SSL) or Transport Layer Security (TLS) protocols to create a secure and encrypted connection between a user's device and a VPN server. These protocols provide authentication, data integrity, and encryption, ensuring that the communication remains private and protected from interception or tampering. SSL/TLS VPNs are commonly used for remote access, allowing users to securely connect to a private network over the internet without the need for specialized client software.
+    </p>
+    <ul class="bullets">
+      <li>Use SSL or TLS protocols to establish a secure and encrypted connection</li>
+      <li>Provide authentication, data integrity, and encryption for secure communication</li>
+      <li>Enable remote access to private networks without specialized client software</li>
+      <li>Commonly used for secure remote access and protecting sensitive data</li>
+    </ul>
+
+    <h3>SD-WAN (Software-Defined Wide Area Network)</h3>
+    <p>
+      SD-WAN is a technology that simplifies the management and operation of a wide area network (WAN) by separating the networking hardware from its control mechanism. It uses software-based controllers to direct traffic across the WAN, optimizing the use of available bandwidth and improving application performance. SD-WAN enables organizations to securely connect users to applications, whether they are hosted in data centers, cloud environments, or branch offices, while reducing costs and increasing agility.
+    </p>
+    <ul class="bullets">
+      <li>Simplifies WAN management by separating hardware from control mechanisms</li>
+      <li>Uses software-based controllers to direct traffic and optimize bandwidth</li>
+      <li>Improves application performance across data centers, cloud, and branch offices</li>
+      <li>Enhances security, reduces costs, and increases network agility</li>
+    </ul>
+
+    <h3>Secure Access Service Edge (SASE)</h3>
+    <p>
+      SASE is a network architecture that combines wide area networking (WAN) and network security services into a single, cloud-delivered service model. It integrates technologies such as SD-WAN, secure web gateways, firewall as a service, and zero trust network access to provide secure and optimized access to applications and data from any location. SASE aims to improve security, reduce complexity, and enhance user experience by delivering consistent policies and protection across all edges of the network.
+    </p>
+    <ul class="bullets">
+      <li>Combines WAN and network security services into a cloud-delivered model</li>
+      <li>Integrates SD-WAN, secure web gateways, firewall as a service, and zero trust network access</li>
+      <li>Provides secure and optimized access to applications and data from any location</li>
+      <li>Improves security, reduces complexity, and enhances user experience</li>
+    </ul>
+
+    <h3>Selection of effective controls</h3>
+    <p>
+      Many different security options, selecting the most effective controls depends on the specific needs and risks of an organization. It is important to assess the threat landscape, understand the organization's assets and vulnerabilities, and implement a layered approach to security that combines multiple controls to provide comprehensive protection.
+    </p>
+    <ul class="bullets">
+      <li>SD-Wan - Manage the network connectivity to the cloud. Does not adequately address security concerns on its own</li>
+      <li>SASE - A complete network and security solution. Requires planning and implementation</li>
+      <li>VPN - SSL/TLS VPN for user access. IPsec tunnels for site-to-site connections</li>
+    </ul>
+
+    <h3>Data Types</h3>
+    <p>
+      Data Types refer to the various categories of data that organizations handle, each with its own characteristics and security requirements.
+    </p>
+    <pre class="tab">
+      Regulated - Managed by a third-party
+      Trade Secret - An organization's secret formulas
+      Intellectual Property - May be publicly visible, copyright and 
+      trademark restrictions
+      Legal Information - Court records and dos, etc…
+      Financial Information - Payment records
+      Human-readable - Human can understand the data
+      Non-Human readable -  Not easily understood by humans
+      Hybrid Formats -  CSV, JSON, XML, etc
+    </pre>
+
+    <h3>Data Classifications</h3>
+    <p>
+      Data Classifications refer to the categorization of data based on its sensitivity and the impact to the organization if it is disclosed, altered, or destroyed without authorization.
+    </p>
+    <ul class="bullets">
+      <li>Proprietary - Property of an organization, trade secrets</li>
+      <li>PII (Personally Identifiable Information) - Data that can be used to identify an individual. Example: Name, date of birth, mother's maiden name, biometric information, etc</li>
+      <li>PHI (Personally Health Information) - Health information associated with an individual. Example: Health status, health care records, payments for health care, etc</li>
+      <li>Sensitive - IP, PII, PHI</li>
+      <li>Confidential - Very sensitive</li>
+      <li>Public/Unclassified - No restrictions</li>
+      <li>Private/Classified/Restricted - Restricted access</li>
+      <li>Critical - Data should always be available</li>
+    </ul>
+
+    <h3>State of Data</h3>
+    <p>
+      Data can exist in various states, each requiring different security measures to protect its confidentiality, integrity, and availability.
+    </p>
+    <ul class="bullets">
+      <li>Data at Rest - Data stored on physical or virtual storage media</li>
+      <li>Data in Transit - Data being transmitted over a network</li>
+      <li>Data in Use - Data actively being processed by applications or systems</li>
+    </ul>
+    <h3>Protecting Data</h3>
+    <p>
+      Protecting data involves implementing security measures to ensure its confidentiality, integrity, and availability throughout its lifecycle. This includes encryption, access controls, data masking, and regular monitoring.
+    </p>
+    <ul class="bullets">
+      <li>Geographic Restrictions - Network location, User's location (Geolocation/Geofencing)</li>
+      <li>Encryption - Encode information into unreadable data</li>
+      <li>Hashing - Represent data as a short string of text</li>
+      <li>Obfuscation - Make something normally understandable very difficult to understand</li>
+      <li>Masking - Hide some of the original data</li>
+      <li>Tokenization - Replace sensitive data with a non-sensitive placeholder</li>
+      <li>Segmentation - Separate the data</li>
+      <li>Permission Restrictions - Add authentication to access the data</li>
+    </ul>
+
+    <h3>Data Resiliency</h3>
+    <p>
+      Data Resiliency refers to the ability of an organization to ensure the availability and recoverability of its data in the face of disruptions, failures, or disasters.
+    </p>
+    <ul class="bullets">
+      <li>High Availability - Always on, always available</li>
+      <li>Server clustering - Easily increase capacity and availability</li>
+      <li>Load Balancing - Distribute the load across multiple devices</li>
+      <li>Site Resiliency - Recovery site is prepped</li>
+      <li>Hot Site - An exact replica; duplicate everything</li>
+      <li>Cold Site - No hardware, no data; you bring everything</li>
+      <li>Warm Site - (in between)</li>
+      <li>Geographic Dispersion - These sites should be physically different than the organization’s primary location</li>
+      <li>Platform Diversity - Use many different platforms, operating systems, etc.</li>
+      <li>Multi-cloud systems - Use different providers, AWS, Azure, Google Cloud, etc.</li>
+      <li>Continuity of Operations Planning (COOP) - Not everything goes according to plan; there needs to be an alternative</li>
+    </ul>
+
+    <h3>Capacity Planning</h3>
+    <p>
+      Capacity Planning involves matching supply to demand to ensure resources are used efficiently and effectively.
+    </p>
+    <ul class="bullets">
+      <li>Capacity Planning - Match Supply to demand</li>
+      <li>People - Human capital is important; Not too few and not too many employees</li>
+      <li>Technology - Pick a technology that can scale</li>
+      <li>Infrastructure - Choose the underlying framework wisely</li>
+    </ul>
+
+    <h3>Recovery Testing</h3>
+    <p>
+      Recovery Testing involves verifying that an organization can successfully restore its systems and data after a disruption or disaster.
+    <ul class="bullets">
+      <li>Recovery Testing - Test your plans before an actual event</li>
+      <li>Tabletop exercises - Full-scale drills can be costly. Talk through a simulated disaster scenario</li>
+      <li>Fail over - A failure is often inevitable. Plan for the worst. Example: multiple routers, firewalls, switches, etc…</li>
+      <li>Simulation - Test with a simulated event. Example: simulate an internal phishing campaign</li>
+      <li>Parallel processing - Split a process through multiple CPUs</li>
+    </ul>
+
+    <h3>Backups</h3>
+    <p>
+      Backups involve creating copies of data to ensure it can be restored in case of loss, corruption, or disaster.
+    <ul class="bullets">
+      <li>Backups - Very critical to recover important and valuable data</li>
+      <li>On-site vs. offsite backups - Should have both. On-site in case of Internet outage. Off-site in case of a disaster</li>
+      <li>Backup frequency - Depends on the need. Example: every week, day, hour?</li>
+      <li>Encryption - Protect backup data using encryption</li>
+      <li>Snapshots - Popular on Virtual Machines and very useful in cloud environments</li>
+      <li>Replication - An ongoing, almost real-time backup</li>
+      <li>Journaling - Before writing to storage, make a journal entry. After the journal is written, write the data to storage</li>
+    </ul>
+
+    <h3>Power Resiliency</h3>
+    <p>
+      Power Resiliency involves ensuring continuous power supply to prevent disruptions and data loss.
+    </p>
+    <ul class="bullets">
+      <li>Uninterruptible Power Supply (UPS) - Provides backup power during outages</li>
+      <li>Generators - Can provide power for extended outages</li>
+      <li>Power Distribution Units (PDUs) - Manage and distribute power within data centers</li>
+      <li>Redundant Power Supplies - Multiple power sources for critical systems</li>
+    </ul>
+
+  </section>
 
 </body>
 </html>
