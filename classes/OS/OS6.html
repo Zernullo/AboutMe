@@ -92,7 +92,666 @@
   </ul>
 
   <h2>Storage and File Systems</h2>
+  <h3>File Concept</h3>
+  <p>
+    A file is a collection of related data or information that is stored on a storage device. It is identified by a unique name and can be accessed, modified, and managed by the operating system and applications.
+  </p>
+  <p>
+    File is a named collection of related information which is recorded on a persistent storage.
+    Logically contiguous storage area. Not necessarily physically contiguous (and likley not).
+    File contents and type are defined by file's creator. Ultimately of little importance to OS (usually).
+    File Formats (such as mp3, jpeg, exe, etc.) define how data is organized within thse logicallt contiguous areas.
+  </p>
+
+  <h3>File System</h3>
+  <p>
+    A file system is a method and data structure that an operating system uses to manage files on a storage device. It defines how files are named, stored, organized, and accessed, as well as how space is allocated and managed on the storage medium.
+  </p>
+  <p>
+    A file System describes how files are mapped onto physical devices, as well as how they are accessed and manipulated by both users and programs.
+    Accessing physical storage can often be slow, so file systems must be designed for - efficient access, support for file sharing, remote access to files.
+    Associated file structure (imposed by OS): None (just bytes) e.g., UNIX, Lines of data or Fixed-length data records - e.g., VAX.
+  </p>
+  <p>
+    Structural layout to organize and manage of files and directories within a storage medium.
+    Disk (CD-ROM, flash storage,  etc.) is organized into fixed-size units.
+    These units of storage are called generally called sectors but might also be organized into groups of sectors called blocks or clusters.
+    Most filesystems are stream-oriented and users are generally oblivious to the division of files into sectors.
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture6/File.png" alt="File System Diagram">
+  </div>
+
+  <h4>File System Implementation - Overview</h4>
+  <p>
+    File attributes and organization are maintained by the operating system within the file system.
+    On-disk and in-memory data structure and their design are critical to file system performance.
+    File Operations and access mechansims are provided by the OS through system calls.
+    File space allocation and free-space management are also handled by the file system.
+    How to incorporate more than one filesystem? Through a Virtual File System (VFS) layer.
+  </p>
+
+  <h4>Key File Attributes</h4>
+  <ul class="bullets">
+    <li><strong>(File Name)</strong> - the unique identifier for the file. Only infomation kept in human-readable form. possibly including an extension, .dat, .txt, etc.</li>
+    <li><strong>Identifier</strong> - a unique tag or number assigned to the file for identification within the file system.</li>
+    <li><strong>Type</strong> - the format or structure of the file (e.g., text, binary). Needed for systems that support different types, if OS supports different types, binar, text, etc.</li>
+    <li><strong>Location</strong> - the physical or logical location of the file on the storage device. Pointer to file location on device.</li>
+    <li><strong>Size</strong> - the amount of data contained in the file. Current file size.</li>
+    <li><strong>Protection</strong> - access permissions and security settings for the file. Controls who can do reading, writing, and executing.</li>
+    <li><strong>Time, Date, and User Identification</strong> - metadata that tracks when the file was created, modified, and accessed, as well as the user who owns the file. Data for protection, security, and usage monitoring.</li>
+    <li>Some file support extened attributes such as file checksum. This means additional metadata for error detection and data integrity verification.</li>
+    <li>These attributes about files are kept a data structure, which is maintained on the disk (not actually attached to the file). The purpose of this data structure is to efficiently manage and access file metadata without interfering with the file's actual content.</li>
+  </ul>
+
+  <h3>Directory Structure</h3>
+  <p>
+    A directory structure is a hierarchical organization of files and directories (folders) within a file system. It provides a way to organize and manage files, allowing users to navigate and access them easily.
+    A directory is a special file that contains information about other files. It includes the file name and a pointer to the file's location on the disk.
+    Directories can also contain other directories, creating a hierarchical structure known as a directory tree.
+    The top-level directory is called the root directory, and it contains all other files and directories within the file system.
+  </p>
+  <p>
+    A collection of nodes containing information about all files.
+    Typically, a directory entry consists of the file's name and its unique identifier.
+    The identifier in turn locates the other file attributes.
+    The directory can be viewed as a symbol table that translates file names into their file control blocks (FCB).
+    Both the directory structure and the files reside on disk.
+  </p>
+
+  <h4>File Operations</h4>
+  <ul class="bullets">
+    <li><strong>Create</strong> - create a new file in the file system.</li>
+    <li><strong>Open</strong> - open a file for reading or writing.</li>
+    <li><strong>Close</strong> - close an opened file.</li>
+    <li><strong>Write</strong> - write data to a file.</li>
+    <li><strong>Read</strong> - read data from a file.</li>
+    <li><strong>Seek</strong> - move the file pointer to a specific location within the file.</li>
+    <li><strong>Delete</strong> - remove a file from the file system.</li>
+    <li><strong>Truncate</strong> - shorten a file to a specified length. Delete content but leave metadata intact.</li> 
+    <li><strong>Extend</strong> - increase the size of a file by adding space, typically filled with zeros or other default data.</li>   
+  </ul>
+
+  <h3>Managing Open Files </h3>
+  <p>
+    When a file is opened, the operating system creates an entry in the open file table, which contains information about the file, such as its location, size, and access mode.
+    The operating system also maintains a file descriptor for each opened file, which is used by applications to reference the file during read and write operations.
+    The open file table helps the operating system manage multiple opened files efficiently and ensures that access permissions are enforced.
+  </p>
+  <p>
+    Typically, the operating system uses two levels of internal tables: a perprocess table and a system-wide table (open-file table)
+  </p>
+  <ul class="bullets">
+    <li><strong>System-wide table</strong> - tracks open files</li>
+    <ul class="circles">
+      <li>Location of the file on disk, access dates, and file size</li>
+      <li>File-open count: counter of number of times a file is open to allow removal of data from open-file table when last processes closes it</li>
+    </ul>
+    <li><strong>Per-process table</strong> - tracks files opened by each process</li>
+    <ul class="circles">
+      <li>Pointer to system-wide open-file table</li>
+      <li>Pointer to last read/write location</li>
+      <li>Access mode (read, write, etc.)</li>
+    </ul>
+  </ul>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture6/Openfile.png" alt="Open Files Diagram">
+  </div>
+
+  <h3>File Access Methods</h3>
+  <ul class="bullets">
+    <li><strong>Sequential Access</strong> - data is accessed in a linear order, one record after another. Suitable for files that are processed from beginning to end. Top to bottom, possible rewind. Generally read OR write, but NOT both, during the same open() session. Files may be updated by creating a new copy with required modifications then deleting old version.</li>
+    <li><strong>Direct or Random Access</strong> - data can be accessed directly at any location within the file, allowing for random access to records. Suitable for files that require frequent updates or retrieval of specific records. Random access by file offset. Generally R/W in any desired combination at any offset</li>
+  </ul>
+
+  <h3>Directory Structres</h3>
+  <p>
+    A directory structure is a hierarchical organization of files and directories (folders) within a file system. It provides a way to organize and manage files, allowing users to navigate and access them easily.
+    A directory is a special file that contains information about other files. It includes the file name and a pointer to the file's location on the disk.
+    Directories can also contain other directories, creating a hierarchical structure known as a directory tree.
+    The top-level directory is called the root directory, and it contains all other files and directories within the file system.
+  </p>
+  <ul class="bullets">
+    <li>Single Level Directory - all files are contained in a single directory. Simple but not scalable for large number of files.</li>
+    <li>Two Level Directory - separate directory for each user. Each user has their own directory, improving organization and security.</li>
+    <li>Acyclic graph or tree shaped directories - directories can contain subdirectories, forming a tree structure. Allows for flexible organization of files. They are the norm now</li>
+    <li>How is the directory structure organzied?</li>
+    <ul class="circles">
+      <li>Linked List - directory entries are linked together in a list, allowing for easy insertion and deletion but slower search times.</li>
+      <li>Sorted Array - directory entries are stored in a sorted array, allowing for faster search operations compared to a linked list.</li>
+      <li>Hash Table - directory entries are stored in a hash table, providing fast access to files based on their names or other attributes.</li>
+      <li>Binary Tree - directory entries are organized in a binary tree structure, enabling efficient search, insertion, and deletion operations.</li>
+    </ul>
+  </ul>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture6/Directory.png" alt="Single Level Directory Structure Diagram">
+    <img src="../../img/classes/OSPic/Lecture6/Directory2.png" alt="Two Level Directory Structure Diagram">
+    <img src="../../img/classes/OSPic/Lecture6/Directory3.png" alt="Tree Directory Structure Diagram">
+    <img src="../../img/classes/OSPic/Lecture6/Directory4.png" alt="Acyclic Directory Structure Diagram">
+  </div>
+
+  <h3>File System Implementation</h3>
+  <p>
+    File attributes and organization are maintained by the operating system within the file system.
+    On-disk and in-memory data structure and their design are critical to file system performance.
+    File Operations and access mechansims are provided by the OS through system calls.
+    File space allocation and free-space management are also handled by the file system.
+    How to incorporate more than one filesystem? Through a Virtual File System (VFS) layer.
+  </p>
+  <p>
+    Disk (CD-ROM, flash storage,  etc.) is organized into fixed-size pieces.
+    These pieces are called generally called sectors but might also be organized into groups of sectors called blocks or clusters.
+    Most filesystems are stream-oriented and users are generally oblivious to the division of files into sectors.
+    FCB or File Control Block: storage structure which contains information about a file.
+    Opening a file gets a handle to the FCB, which is used for accessing the file.
+  </p>
+
+  <h3>File Control Block (FCB)</h3>
+  <p>
+    A File Control Block (FCB) is a data structure used by the operating system to store information about a file. It contains metadata about the file, such as its attributes, location on disk, size, and access permissions.
+    The FCB is created when a file is opened and is used by the operating system to manage and access the file during read and write operations.
+    The FCB typically includes fields for the file name, file type, file size, file location (pointers to data blocks), access permissions, timestamps (creation, modification, access), and other relevant information.
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture6/FCB.png" alt="File Control Block Diagram">
+  </div>
+  <p>
+    FCB or File Control Block: storage structure which contains information about a file (attributes). Inode in UNIX file system.
+    Accessing a file gets a handle to the FCB, which is used for manipulating the file.
+  </p>
+
+  <h3>File Space Allocation Methods</h3>
+  <p>
+    File space allocation methods determine how files are stored on a storage device. The three main methods are Contiguous Allocation, Linked List Allocation, and Indexed Allocation.
+  </p>
+  <p>When storing files, we will need to decide how the data for the files is stored: where, organization, locating parts</p>
+  <ul class="bullets">
+    <li><strong>Contiguous Allocation</strong> - this method allocates consecutive blocks of memory to a file, making access fast but potentially causing fragmentation.</li>
+    <li><strong>Linked List Allocation</strong> - this method uses pointers to link blocks together, allowing for dynamic file sizes but slower access times.</li>
+    <li><strong>Indexed Allocation</strong> - this method uses an index block to keep track of all the blocks of a file, providing efficient access and flexibility.</li>
+  </ul>
+
+  <h3>Contiguous Allocation Method</h3>
+  <p>
+    In contiguous allocation, each file occupies a set of contiguous blocks on the disk. This method is simple and provides fast access to files since the entire file can be read in a single operation. However, it can lead to fragmentation over time as files are created and deleted, making it difficult to find large enough contiguous blocks for new files.
+  </p>
+  <p>
+    File occupies a contiguous set of disk blocks.
+    Swquential and direct access are both easy with this method.
+    Less metadata needed (only starting block and length).
+    Growing files is difficult unless some form of compaction is used.
+    Options for handling file growth: never, only if a proper sized hole is available, compaction, user specified max results in pre-allocation.
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture6/Contiguous.png" alt="Contiguous Allocation Diagram">
+  </div>
+  <p>How much space is available? What is the largest file we can store at this point?</p>
+
+  <h3>Linked Allocation Method</h3>
+  <p>
+    In linked allocation, each file is stored as a linked list of blocks scattered throughout the disk. Each block contains a pointer to the next block in the file. This method allows for dynamic file sizes and eliminates fragmentation, but access times can be slower since the blocks may not be stored contiguously.
+  </p>
+  <p>
+    Contents for each file are stored in a linked list of disk blocks.
+    Each block contains some file data and a link to the next block in the file.
+    Blocks may be scattered anywhere on disk.
+    Additional blocks are allocated as the file grows.
+    No external fragmentation.
+    Sequential access no problem, direct access suffers.
+    Corruption of pointer chain causes major problems.
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture6/Linked.png" alt="Linked Allocation Diagram">
+    <img src="../../img/classes/OSPic/Lecture6/Linked2.png" alt="Linked Allocation Diagram">
+  </div>
+
+  <h3>Variation of Linked: FAT (File Allocation Table)</h3>
+  <p>
+    The File Allocation Table (FAT) is a variation of the linked allocation method used in many file systems. It maintains a table that maps each block on the disk to the next block in the file, allowing for efficient access and management of files.
+  </p>
+  <p>
+    File Allocation Table (FAT): group all pointers into a table rather than spreading them all over the disk.
+    Allocate table at start of storage volume to contain pointers.
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture6/FAT.png" alt="File Allocation Table Diagram">
+  </div>
+  <p>
+    Can cache FAT entries and support direct access. Sequential access is trivial, just follow the linked list.
+    Destruction of the FAT: Bad. popular target for viruses in olden times.
+    MS-DOS, Windows, one of the OS/2 file systems are FAT-based.
+    The FAT concept itself isn't responsible for some of the crippling limitations of the MS-DOS implementation, Short filenames (8.3).
+    FAT can still be found as the system used on some small capacity devices (flash drives, embedded systems…).
+  </p>
+
+  <h3>Indexed Allocation Method</h3>
+  <p>
+    In indexed allocation, each file has an index block that contains pointers to all the blocks of the file. This method allows for efficient access to files and supports both sequential and direct access. However, it requires additional metadata to store the index block.
+  </p>
+  <p>
+    Problem with linked allocation is that links are scattered all over.
+    FAT partially solves this by moving the links together into a table.
+    Indexed allocation groups the links together and associates them with a particular file.
+    Unix file system inodes are an example.
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture6/Indexed.png" alt="Indexed Allocation Diagram">
+    <img src="../../img/classes/OSPic/Lecture6/Indexed2.png" alt="Indexed Allocation Diagram">
+  </div>
+
+  <h3>Free Space Management</h3>
+  <p>
+    Free space management is the process of tracking and managing the available storage space on a storage device. It ensures that files can be allocated and deallocated efficiently, minimizing fragmentation and maximizing the use of available space.
+  </p>
+  <p>
+    Free space is the list(s) of available storage blocks in a file system.
+    Need to track where new files / allocations can be made.
+    Bit-vector: Maintain bit vector for free spaces and Mac OS, Windows.
+    Linked list: Link free blocks together.
+    Grouping: Cluster free blocks in linked list.
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture6/FreeSpace.png" alt="Free Space Management Diagram">
+    <img src="../../img/classes/OSPic/Lecture6/FreeSpace2.png" alt="Free Space Management Diagram">
+    <img src="../../img/classes/OSPic/Lecture6/FreeSpace3.png" alt="Free Space Management Diagram">
+  </div>
+
+  <h3>Optimizations: File Block Caching</h3>
+  <p>
+    File block caching is an optimization technique used to improve file system performance by storing frequently accessed file blocks in memory. This reduces the need to access the slower storage device, resulting in faster read and write operations.
+  </p>
+  <p>
+    Read-Ahead: User requests block 1, start reading blocks 2,3,4,etc. Speeds up sequential access.
+    <br>Write-Behind: Delay writes to disk, buffer data in memory. User writes 100 bytes, then 100 more bytes… All data can be transferred by 1 I/O request rather than multiple.
+  </p>
+
+  <h3>I/O Blind Page Cache</h3>
+  <p>
+    An I/O blind page cache is a caching mechanism that stores frequently accessed pages of data in memory without considering the specific I/O patterns of the application. This approach aims to improve overall system performance by reducing the number of I/O operations required to access data.
+  </p>
+  <p>
+    Page cache will cache pages used in memory-mapped I/O.
+    Buffer cache stores frequently used blocks.
+    This can lead to double caching.
+    Entries will appear in both caches.
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture6/IOBlind.png" alt="I/O Blind Page Cache Diagram">
+    <img src="../../img/classes/OSPic/Lecture6/BufferCache.png" alt="Buffer Cache Diagram">
+  </div>
+
+  <h3>Virtual File System (VFS)</h3>
+  <p>
+    A Virtual File System (VFS) is an abstraction layer that provides a uniform interface for different file systems, allowing applications to access files without needing to know the specifics of the underlying file system. VFS enables the operating system to support multiple file systems simultaneously and allows for seamless integration of new file systems.
+  </p>
+  <p>
+    VFS creates an abstraction layer between applications & the underlying file system.
+    Calls like open(), read(), write() -> virtual interface.
+    Why?
+    One operating System can encounter multiple different File systems:
+    <br>Hard drive -> ext2/3/4
+    <br>USB -> FAT, VFAT, …
+    <br>Attached Network drive -> NFS
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture6/VFS.png" alt="Virtual File System Diagram">
+  </div>
+
+  <h4>Linux VFS</h4>
+  <p>
+    Linux VFS is a virtual file system layer in the Linux operating system that provides a uniform interface for different file systems. It allows applications to access files without needing to know the specifics of the underlying file system, enabling support for multiple file systems simultaneously.
+  </p>
+  <p>
+    Kernel implements a common model for filesystem operations.
+    An array of function pointers for file operations isolates implementation of each filesystem from the kernel.
+    Each filesystem implements a standard set of methods.
+  </p>
+  <pre class="tab">
+    Disk-based filesystems
+          ext2, ext3, ext4, reiserfs, [Linux]
+          FATx, NTFS, HPFS [Microsoft/IBM]
+          XENIX, BSD, Solaris, Minix, CD-ROM, DVD
+          lots more, including journaling filesystems like IBM's JFS
+    Network-based filesystems
+          NFS, Coda, AFS, SMB, NCP …
+    Special filesystems
+          e.g., /proc filesystem, /dev filesystem
+  </pre>
+
+  <h4>VFS: Common File Model</h4>
+  <p>
+    The VFS common file model defines a standard set of operations and data structures that all file systems must implement to be compatible with the VFS layer. This includes operations such as open, read, write, close, and seek, as well as data structures for representing files, directories, and file system metadata.
+  </p>
+  <p>
+    VFS introduces a common file model for all Linux file systems.
+    Model mirrors standard Unix filesystem model.
+    Allows native filesystem to run w/ minimal overhead.
+    Other filesystems must conform to the model.
+    Example:  inodes are standard file allocation object in VFS / Unix.
+    Different in FAT, used File Allocation Table.
+    Up to the FAT implementation under VFS to model inode operations.
+  </p>
+  <p>
+    Most VFS operations are relatively abstract.
+    Rely on specific implementation in the real filesystems.
+    <br>e.g. read system call:  read() → sys_read() → file.f_op->read()
+    <br>Commone File Model Objects Examples:
+  </p>
+  <ul class="bullets">
+    <li><strong>Superblock</strong> - represents the entire file system and contains metadata about the file system, such as its size, type, and status. Stores information about a mounted filesystem.</li>
+    <li><strong>Inode</strong> - represents a file or directory and contains metadata about the file, such as its size, location on disk, and access permissions. Track blocks allocated file, stores other info such as access dates, permissions, etc. Each inode object is associated with an inode number, which uniquely identifies the file within the filesystem.</li>
+    <li><strong>File</strong> - represents an opened file and contains information about the file's current position, access mode, and associated dentry and inode. Info about the interaction between an open file and a process. Volatile</li>
+    <li><strong>Dentry</strong> - represents a directory entry and contains information about the file or directory name and its associated inode. Links a directory entry with a particular file. Generally, each disk-based filesystem stores directories in a different way on disk.</li>
+  </ul>
+
+  <h2>File System Internals</h2>
+  <h3>FAT File System</h3>
+  <p>
+    The FAT (File Allocation Table) file system is a simple and widely used file system that organizes files on a storage device using a table that maps each block on the disk to the next block in the file. It is commonly used in removable storage devices such as USB drives and memory cards.
+  </p>
+  <p>
+    Microsoft - MS-DOS, Win95/98/NT/2000/XP.
+    Cluster - Basic storage unit for files.
+    Four regions in FAT partition (in order):
+    Boot Sector region,
+    FAT Region,
+    Root Directory Region, 
+    File and Directory Data Region
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture6/FATFileSystem.png" alt="FAT File System Diagram">
+  </div>
+
+  <h3>Boot Sector - FAT</h3>
+  <p>
+    The boot sector in the FAT file system is the first sector of the storage device and contains important information about the file system, such as its size, type, and layout. It also includes the boot code that is executed when the system is started.
+  </p>
+  <p>
+    Boot Sector region contains BPB (BIOS Parameter Block):
+    Contains bootstrap code + config info for partition.
+    Bytes per sector, sectors per cluster.
+    Volume ID, # of FATs.
+    <br><br>See reference for complete details:
+    https://www.win.tue.nl/~aeb/linux/fs/fat/fat-1.html
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture6/BootSector.png" alt="Boot Sector Diagram">
+  </div>
+
+  <h3>Characteristics of Different FAT Implementations</h3>
+  <ul class="bullets">
+    <li>Basic difference is size of FAT entry—12, 16, or 32 bits.</li>
+    <ul class="circles">
+      <li>Affects maximum number of addressable clusters</li>
+    </ul>
+    <li>FAT12/FAT16 (MS-DOS, Win95/98/NT/2000/XP)</li>
+    <ul class="circles">
+      <li>Limited root directory size (224/512 directory entries)</li>
+      <li>No security features</li>
+      <li>8.3 filenames</li>
+      <li>12/16 bit cluster numbers</li>
+      <li>For FAT12/16, loss of sector 0 (storing BPB) can cause serious problems</li>
+    </ul>
+    <li>FAT32 (Win95 w/ patches/98/2000/XP)</li>
+    <ul class="circles">
+      <li>No limit on root directory size</li>
+      <li>No security features</li>
+      <li>Support for long filenames</li>
+      <li>FAT32 maintains a backup of the BPB at sector 6</li>
+    </ul>
+    <li>Limited time/date information for FAT files</li>
+    <ul class="circles">
+      <li>Last write date/time is always available</li>
+      <li>Creation date/time is optional and may not be available</li>
+      <li>Last access DATE ONLY is optional and may not be available</li>
+    </ul>
+  </ul>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture6/FATImplementation.png" alt="FAT Implementations Diagram">
+  </div>
+
+  <h3>FAT: Dir Entry Filenames</h3>
+  <p>
+    In the FAT file system, directory entries store filenames using the 8.3 filename format, which consists of a maximum of eight characters for the filename and three characters for the file extension. This format is used to maintain compatibility with older operating systems and software.
+  </p>
+  <p>
+    Short filenames (8 + 3 characters).
+    If first byte of name is 0xE5, then entry is deleted.
+    If first byte is 0x05, then first byte represents 0xE5 (valid Japanese char).
+    If first byte of name is 0x00, all entries following this one are free: More efficient, because remaining entries don't need to be checked.
+  </p>
+  <p>
+    These characters are illegal:
+    Less than 0x20 (space), except 0x05 special case.
+    Generally, ASCII chars less than 0x20 are control characters, such as carriage return, line feed, bell, tab, backspace, etc.
+  </p>
+  <p>
+    0x22, 0x2A, 0x2B, 0x2C, 0x2E, 0x2F, 0x3A, 0x3B, 0x3C, 0x3D, 0x3E, 0x3F, 0x5B, 0x5C, 0x5D, 0x7C
+  </p>
+
+  <h3>FAT: Short Filename Storage</h3>
+  <p>
+    Short filenames in the FAT file system are stored in directory entries using a specific format. The filename is divided into two parts: the name and the extension. The name consists of up to eight characters, while the extension consists of up to three characters. Both parts are stored in uppercase and padded with spaces if they are shorter than the maximum length.
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture6/short.png" alt="Short Filename Diagram">
+  </div>
+
+  <h3>FAT: Long Filename Storage</h3>
+  <p>
+    Long filenames in the FAT file system are stored using a special technique that allows for filenames longer than the 8.3 format. This is achieved by using multiple directory entries to store the long filename, with each entry containing a portion of the filename and additional metadata.
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture6/long.png" alt="Long Filename Diagram">
+  </div>
+  <p>
+    Long filename support is a hack, designed to be backwards compatible.
+    Thus, long filenames are stored as a combination/chaining of a regular, short filename directory structure followed by a bunch of additional directory structures that will be “ignored” by non-compliant FAT versions.
+    Must have a short filename and the long file names are stored before short file names.
+    Special attributes to indicate long file names.
+    Checksum to validate short file names.
+  </p>
+  <p>Up to 255 characters in pathname component. More supported characters. Leading/trailing spaces ignored. Internal spaces allowed. Leading/embedded "." allowed. Trailing "." are ignored.</p>
+
+  <h3>Drawback of FAT</h3>
+  <p>
+    The FAT file system has several drawbacks, including limited support for large files and volumes, lack of security features, and susceptibility to fragmentation. Additionally, the 8.3 filename format can be restrictive for users who want to use longer filenames.
+  </p>
+  <p>
+    No ownership or access control.
+    No encryption or compression.
+    No journaling (risk of corruption on crash):
+    techniques used to keep file system integrity in case of crashes during key events and power is pulled during a file write.
+  </p>
+
+  <h3>NTFS (New Technology File System)</h3>
+  <p>
+    NTFS (New Technology File System) is a modern file system developed by Microsoft that offers advanced features such as support for large files and volumes, file compression, encryption, and access control. It is the default file system for Windows operating systems and provides improved performance and reliability compared to older file systems like FAT.
+  </p>
+  <pre class="tab">
+    Fat12/16/32 - max volume 32MB/2GB/2TB
+    • 64-bit cluster numbers
+    • Can address 1,152,921,504,606,846,976 bytes of disk space (16 exabytes)
+    • Security features
+    • Access Control Lists
+    • Encryption
+    • Support for compression 
+    • Support for journaling - Log File Service (LFS)
+  </pre>
   
+
+  <h3>NTFS MFT (Master File Table)</h3>
+  <p>
+    The Master File Table (MFT) in NTFS is a special file that contains information about all the files and directories on the NTFS volume. Each file and directory has a corresponding entry in the MFT, which includes metadata such as the file name, size, location on disk, and access permissions.
+  </p>
+  <p>
+    NTFS:  Everything is a file.
+    Master File Table (MFT): Table that describes files and directories, Location of first entry is stored in boot sector, First entry corresponds to MFT—MFT is also a file!
+    <br><br>MFT starts small and is expanded as needed.
+    MFT entries are not removed once created.
+    Size of MFT increases when files are created, but never shrinks.
+  </p>
+
+  <h4>MFT Entries</h4>
+  <p>
+    Each entry in the MFT contains a variety of attributes that describe the file or directory. These attributes include standard information such as the file name, size, and timestamps, as well as additional metadata such as security descriptors, data streams, and indexing information.
+  </p>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture6/MFT.png" alt="Master File Table Diagram">
+  </div>
+  <p>
+    Each file and directory has an entry in MFT.
+    Each MFT entry fixed size → 1024 bytes long.
+    Microsoft reserves the first 16 MFT entries for file system metadata files.
+  </p>
+
+  <h3>NTFS: File System Metadata Files</h3>
+  <p>
+    NTFS uses several special metadata files to manage the file system and provide additional functionality. These metadata files include the Master File Table (MFT), the log file, the volume bitmap, and the attribute definition table.
+  </p>
+  <pre class="tab">
+    Many system files that contain filesystem metadata
+      • $LOGFILE: filesystem transaction file
+      • $VOLUME: serial number, creation time, …
+      • $BITMAP: cluster allocation bitmap
+      • $BOOT: boot record for filesystem
+      • $BADCLUS: list of bad clusters for volume
+  </pre>
+  <p>
+    In earlier versions of NTFS, these files are visible with, e.g., “dir /ah”.
+    Completely invisible in Win2000/XP/…/→ need special forensics or system analysis and introspection tools such as fssat (sleuthkit), ntfsinfo (system internals).
+  </p>
+
+  <h3>NTFS Transactions</h3>
+  <p>
+    NTFS transactions are a feature of the NTFS file system that ensures data integrity and consistency during file operations. They use a journaling mechanism to log changes before they are committed to the file system, allowing for recovery in case of system crashes or power failures.
+  </p>
+  <p>
+    Each operation that changes Filesystem data structures first writes to a log: Includes redo & undo information.
+    After operation is complete, a commit is written to the log.
+    If a failure occurs during the update, can use log to undo partial transactions and then re-do them from scratch.
+    At set intervals (~5 sec), NTFS will write a checkpoint to the log: Do not need to worry about storing or dealing with transactions before a checkpoint.
+    Note that this protects metadata, not file data.
+  </p>
+
+  <h3>NTFS Volume Shadow Copies</h3>
+  <p>
+    NTFS Volume Shadow Copies is a feature of the NTFS file system that allows for the creation of point-in-time snapshots of a volume. These snapshots can be used for backup and recovery purposes, allowing users to restore previous versions of files or recover from accidental deletions or modifications.
+  </p>
+  <p>
+    A type of file system snapshot.
+    A copy-on-right (CoW) is made of the filesystem.
+    If a file is modified, the old version is written to the shadow copy.
+    Can be used to restore file system to a known state.
+  </p>
+
+  <h3>Linux File Systems</h3>
+  <p>
+    Linux supports a variety of file systems, including ext2, ext3, ext4, XFS, Btrfs, and more. Each file system has its own features and characteristics, allowing users to choose the most suitable file system for their needs based on factors such as performance, reliability, and scalability.
+  </p>
+  <pre class="tab">
+    • EXT - Extended File System
+        - ext2, ext3, ext4
+    • Complicated internal structure to enhance performance, but on-disk structure is straightforward
+  </pre>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture6/LinuxFS.png" alt="Linux File Systems Diagram">
+  </div>
+
+  <h4>Linux File System Components</h4>
+  <ul class="bullets">
+    <li>Boot Block - First block in a filesystem, needed to find and execute the bootloader</li>
+    <li>Superblock - Contains information about the filesystem, such as size, block size, and status. Single block after the boot block, which has: Size of i-node table, Size of logical blocks, Size of file system (in logical blocks)</li>
+    <li>Inode Table - Contains inodes, which store metadata about files and directories. Contains I-node entries</li>
+    <li>Data Blocks - Store the actual file and directory data. Basic Storage unit.</li>
+  </ul>
+
+  <h3>Management of Files and Directories</h3>
+  <p>
+    In Linux, files and directories are managed using a hierarchical file system structure. Each file and directory is represented by an inode, which contains metadata about the file or directory, such as its size, location on disk, and access permissions.
+    Directories are special files that contain a list of entries, each of which maps a file or directory name to its corresponding inode.
+    The Linux file system supports various file operations, such as creating, opening, reading, writing, and deleting files and directories.
+  </p>
+  <ul class="bullets">
+    <li>Inode Table - Record of all files and directories in ext2</li>
+    <li>Inode Number - Unique identifier for files and directories. This number serves as an index into the inode table, allowing the file system to locate and retrieve the corresponding inode.</li>
+    <li>Inode Structure - Each entry in the inode table represents an inode data structure. The inode data structure contains critical metadata about a file or directory</li>
+    <li>Inode BitMap - Keeps track of used and free inodes to manage file and directory creation and deletion efficiently</li>
+  </ul>
+
+  <h3>ext2 - Pros and Cons</h3>
+  <p>ext2 is a widely used Linux file system known for its simplicity and efficiency. The classic Linux file system 1993 to 2001.</p>
+  <ul class="bullets">
+    <li><strong>Pros</strong> - simple design, efficient storage, good performance for small to medium-sized files, widely supported. Volume file system size: 4TB to 32TB. Individual file size: 16GB to 2TB. Maximum filename length: 255 bytes (characters). Maximum number of files: 10^18</li>
+    <li><strong>Cons</strong> - lacks journaling, limited scalability for large files and volumes, no built-in support for advanced features like encryption or compression. No hournaling. Offline file system growth.</li>
+  </ul>
+
+  <h3>ext3 Characteristics</h3>
+  <p>
+    ext3 is a journaling file system for Linux that builds upon the ext2 file system. It adds journaling capabilities to improve data integrity and recovery in case of system crashes or power failures. ext3 is backward compatible with ext2, allowing for easy migration between the two file systems.
+  </p>
+  <p>
+    2001 to 2006 (ext2 with journaling).
+    Binary compatible with ext2 on-disk.
+    Reason for existence: huge disks == huge amounts of time to restore filesystem consistency after improper shutdown: Must check all inodes, correlate with free space tracking, etc.
+    <br><br>ext3 improvement over ext2: journal that stores info about in-progress file operations.
+    On boot, can check journal and quickly restore filesystem consistency.
+    But: journaling filesystems could lead to potential security issues!
+  </p>
+
+  <h4>Journaling Basics</h4>
+  <p>
+    Journaling is a technique used in file systems to improve data integrity and recovery in case of system crashes or power failures. It involves maintaining a log (journal) of changes made to the file system before they are committed to the main file system structures. In the event of a crash, the journal can be used to replay or roll back changes, ensuring that the file system remains consistent.
+  </p>
+  <p>
+    Idea behind journaling:
+    Copy blocks to be written FIRST to the journal, then to the filesystem.
+    When blocks have successfully been written to filesystem, delete from journal.
+    Group low-level operations together into high-level operations (transactions) and commit all or none.
+  </p>
+  <p>
+    Two possibilities on filesystem recovery:
+    System failed before high level operation was committed to journal → Don't commit these changes to filesystem.
+    System failed after high level operation was committed to journal → Do commit these changes to filesystem.
+  </p>
+
+  <h4>Journaling Modes</h4>
+  <ul class="bullets">
+    <li><strong>Journal/Data Mode</strong> - both metadata and data blocks are journaled, ensuring that all changes are recorded in the journal before being committed to the file system. This mode provides the highest level of data integrity but may have a performance impact. Write all data and metadata blocks to journal before writing to filesystem. Most expensive</li>
+    <li><strong>Ordered Mode</strong> - metadata is journaled, and data blocks are written to the file system before the corresponding metadata is committed to the journal. This mode provides a balance between performance and data integrity. Write only metadata blocks to journal, but write data blocks to disk before metadata - it forces the data to the disk before the metadata are committed to the journal partition. Minimized file damage. Default ext3 mode.</li>
+    <li><strong>Writeback Mode</strong> - only metadata is journaled, and data blocks are written to the file system without any specific order. This mode provides the best performance but may lead to data loss in case of a crash. Simply logs metadata changes.</li>
+
+  </ul>
+
+  <h4>Drawback of ext3</h4>
+  <p>
+    While ext3 offers several advantages, it also has some drawbacks. One of the main limitations is its lack of support for larger file sizes and volumes compared to more modern file systems. Additionally, ext3 does not support advanced features such as file system snapshots or checksumming, which can be found in newer file systems like ext4 or Btrfs.
+  </p>
+  <p>
+    No checksumming in the journal when writing to the journal on a storage device.
+    Lacks some advanced features like extents, dynamic allocation inodes, and block sub-allocation.
+    Hard to recover the deleted files since the ext3 driver deletes files by wiping file inodes.
+    No snapshots support.
+  </p>
+
+  <h3>ext4</h3>
+  <p>
+    ext4 is a modern file system for Linux that builds upon the ext3 file system. It introduces several new features and improvements, such as support for larger file sizes and volumes, extents for improved performance, and better allocation algorithms. ext4 is backward compatible with ext3, allowing for easy migration between the two file systems.
+  </p>
+  <pre class="tab">
+    Large file system support
+        • Volumes up to 1EB
+        • Files up to 1TB
+    Extents
+        • Ranges of contiguously allocated blocks
+        • Improves performance for large files
+        • Four extents per inode, each can address 128MB
+    Compatibility
+        • With some limitations, on-disk compatibility with ext2/3 (unless extents are used)
+  </pre>
+  <div class="img-container">
+    <img src="../../img/classes/OSPic/Lecture6/ext4.png" alt="ext4 file system diagram">
+  </div>
 
   
 

@@ -501,9 +501,9 @@
       Where p_1 is an index into the outer page table, and p_2 i the displacement within the page of the inner page table. Known as forward-mapped page table.
     </p>
     <div class="img-container">
-      <img src="../../img/classes/OSPic/Lecture5/TwoLevel.png" alt="Two Level Paging Example">
-      <img src="../../img/classes/OSPic/Lecture5/TwoLevel2.png" alt="Two Level Paging Example">
-      <img src="../../img/classes/OSPic/Lecture5/TwoLevel3.png" alt="Two Level Paging Example">
+      <img src="../../img/classes/OSPic/Lecture5/Twolevel.png" alt="Two Level Paging Example">
+      <img src="../../img/classes/OSPic/Lecture5/Twolevel2.png" alt="Two Level Paging Example">
+      <img src="../../img/classes/OSPic/Lecture5/Twolevel3.png" alt="Two Level Paging Example">
     </div>
 
     <h3>Physical Address Extension (PAE)</h3>
@@ -820,6 +820,160 @@
       <li>When selecting a page to replace, examine the values: 00001110 vs. 11000001</li>
       <li>Smallest value = approximately LRU</li>
     </ul>
+
+    <h4>A Third Approximation: Second Chance</h4>
+    <p>
+      The Second Chance page replacement algorithm is an approximation of the LRU (Least Recently Used) algorithm that provides a simple and efficient way to manage memory when a page fault occurs. In this approach, each page in memory is associated with a reference bit that indicates whether the page has been accessed recently. When a page fault occurs and a page needs to be evicted, the operating system checks the reference bit of the pages in a circular manner. If the reference bit is set to 1, the page is given a "second chance" and its reference bit is cleared. If the reference bit is 0, the page is evicted. This process continues until a page is found for eviction.
+    </p>
+    <pre class="tab">
+      Approach:
+            FIFO, but give pages a "second chance"
+            Gets set to 1 if the page is referenced
+      IF a page needs to be evicted, go through list
+            If reference bit = 0, evict page
+            If reference bit = 1, clear it (set to 0) and move on
+      Example:
+            4 Frames of memory, 5 virtual pages
+            8 Total Page Faults
+    </pre>
+
+    <h3>Thrashing</h3>
+    <p>
+      Thrashing is a phenomenon that occurs in virtual memory systems when a process spends more time swapping pages in and out of memory than executing its instructions. This situation arises when the working set of a process exceeds the available physical memory, leading to a high rate of page faults. As a result, the operating system is forced to continuously load and unload pages from secondary storage, causing significant performance degradation and making the system unresponsive.
+    </p>
+    <p>
+      Thrashing is when too much swapping occurs.
+      Example: Page 3 evicts page 1, the page 1 evicts page 3, then page 3 evicts page 1, etc.
+      CPU utilization drops - OS is busy swapping pages rather than executing instructions.
+    </p>
+    <p>
+      Paging work because of the locality exhibited by programs. But when minimal memory requirements can't be met, lots of swapping.
+    </p>
+    <p>
+      Low CPU utilization, tons of I/O ==> OS may try to increase CPU utilization by increasing the number of processes. Make thrashing even worse. Negatively impacts system performance.
+      More processes => more frames needed => more page faults => more I/O => lower CPU utilization.
+    </p>
+
+    <h3>Process Working Set</h3>
+    <p>
+      The process working set is a concept in operating systems that refers to the set of pages that a process is currently using or has recently used. The working set is important because it helps to determine the amount of physical memory that should be allocated to a process in order to minimize page faults and optimize performance. By keeping the working set of a process in memory, the operating system can reduce the number of page faults and improve overall system responsiveness.
+    </p>
+    <p>
+      A working set defines the set of pages frames a process referenced at a given time interval. Pages a process is "currently" using (locality taken into account).
+      <br>Δ ≡ working-set window ≡ a fixed number of page references. Example: 10,000 instructions.
+    </p>
+    <p>
+      WSS_i (working set size of Process P_i) = total number of pages referenced in the most recent Δ (varies in time).
+      Goal - Keep the entire working set in RAM to avoid frequent page faults.
+    </p>
+    <ul class="bullets">
+      <li>if Δ too small will not encompass entire locality</li>
+      <li>if Δ too large will encompass several localities</li>
+      <li>if Δ = ∞ ⇒ will encompass entire program</li>
+    </ul>
+
+    <h3>Working Sets vs Thrashing</h3>
+    <p>
+      Working sets and thrashing are two important concepts in operating systems that are closely related to memory management. The working set of a process refers to the set of pages that the process is currently using or has recently used, while thrashing occurs when a process spends more time swapping pages in and out of memory than executing its instructions. When the working set of a process exceeds the available physical memory, it can lead to thrashing, as the operating system is forced to continuously load and unload pages from secondary storage. To prevent thrashing, operating systems often use techniques such as working set management and page replacement algorithms to ensure that the working set of a process is kept in memory.
+    </p>
+    <p>
+      Working sets are one way to help control thrashing.
+      Thrashing will result if the working set sizes of all processes exceed the amount of available physical memory.
+      D = Σ WSSi ≡ total demand frames.
+      if D > m (where m is the total number frames) ⇒ Thrashing.
+      Policy if D > m, then suspend or swap out one of the processes.
+    </p>
+
+    <h3>Other Considerations/Optimization</h3>
+    <p>
+      There are several other considerations and optimizations that can be made in operating systems to improve performance and efficiency. These include techniques such as prefetching, which involves loading pages into memory before they are needed to reduce page faults; clustering, which groups related pages together to improve access times; and working set management, which ensures that the working set of a process is kept in memory to minimize page faults. Additionally, operating systems may implement various scheduling algorithms to optimize CPU utilization and responsiveness, as well as techniques for managing I/O operations and disk access to improve overall system performance.
+    </p>
+    <ul class="bullets">
+      <li><strong>Ram Compression</strong> - Compress pages in memory to increase effective memory size.</li>
+      <li><strong>Prefetching ("pre-paging")</strong> - Bring in pages before they are needed to reduce page faults.</li>
+      <li><strong>Page Size</strong> - Larger pages reduce page table size but may increase internal fragmentation.</li>
+      <li><strong>TLB Reach</strong> - The amount of memory accessible via the TLB. Larger TLB reach improves performance.</li>
+      <li><strong>Program Structure</strong> - Organizing programs to improve locality and reduce page faults.</li>
+      <li><strong>I/O Interlock</strong> - Coordinating I/O operations with memory management to optimize performance.</li>
+    </ul>
+
+    <h3>Avoiding Swapping by Compressing RAM</h3>
+    <p>
+      Avoiding swapping by compressing RAM is a technique used in operating systems to increase the effective size of physical memory and reduce the need for swapping pages to and from secondary storage. By compressing pages in memory, the operating system can store more data in the same amount of physical memory, allowing it to keep more pages in memory and reduce the frequency of page faults. This approach can help to improve overall system performance and responsiveness, as it minimizes the time spent on I/O operations associated with swapping.
+    </p>
+    <p>
+      Optimization:
+      When RAM is running low, compress pages in memory instead of swapping to disk.
+      “Hoard” some RAM, not available to processes, save compressed pages in RAM then disk (in that order).
+      Modern CPUs can compress and decompress very efficiently, because there are generally free cores.
+    </p>
+    <div class="img-container">
+      <img src="../../img/classes/OSPic/Lecture5/RAMCompression.png" alt="Avoiding Swapping by Compressing RAM">
+      <img src="../../img/classes/OSPic/Lecture5/RAMCompression2.png" alt="Avoiding Swapping by Compressing RAM">
+      <img src="../../img/classes/OSPic/Lecture5/RAMCompression3.png" alt="Avoiding Swapping by Compressing RAM">
+    </div>
+
+    <h3>Prefetching ("pre-paging")</h3>
+    <p>
+      Prefetching, also known as pre-paging, is a technique used in operating systems to improve memory management and reduce page faults by loading pages into memory before they are actually needed by a process. By anticipating the pages that a process is likely to access in the near future, the operating system can proactively load these pages into memory, reducing the likelihood of page faults and improving overall system performance. Prefetching can be based on various strategies, such as analyzing access patterns or using heuristics to predict future page accesses.
+    </p>
+    <p>
+      Prefetching ("pre-paging")
+      Predict future by bringing pages into memory ahead of time.
+      Implementation: upon a page fault.
+      loads the faulting page.
+      predictively loads additional pages that are likely to be used soon.
+      Pros - may reduce page fault.
+      Cons - ineffective if the pages brought in are not referenced.
+    </p>
+
+    <h3>Page Size</h3>
+    <p>
+      Page size is an important consideration in operating systems, as it can have a significant impact on memory management and overall system performance. Larger page sizes can reduce the size of page tables and decrease the overhead associated with managing memory, but they can also lead to increased internal fragmentation, where unused space within a page is wasted. Conversely, smaller page sizes can improve memory utilization and reduce fragmentation, but they may increase the size of page tables and the overhead of managing memory. The choice of page size often involves a trade-off between these factors, and operating systems may provide options for configuring page sizes based on specific workloads and performance requirements.
+    </p>
+    <p>
+      Large page sizes vs. small page sizes.
+      Sometimes OS designers have a choice.
+      Especially if running on custom-built CPU.
+      Page size selection must take into consideration:
+    </p>
+    <ul class="bullets">
+      <li><strong>Fragmentation</strong></li>
+      <li><strong>Page table size</strong></li>
+      <li><strong>TLB size and effectiveness</strong></li>
+      <li><strong>I/O overhead</strong></li>
+      <li><strong>Number of page faults</strong></li>
+      <li><strong>Locality</strong></li>
+    </ul>
+
+    <h3>TLB Reach</h3>
+    <p>
+      TLB reach refers to the amount of memory that can be accessed using the entries stored in the Translation Lookaside Buffer (TLB) of a computer's memory management unit. The TLB is a cache that stores recent translations of virtual memory addresses to physical memory addresses, allowing for faster access to frequently used memory locations. The reach of the TLB is determined by the number of entries it can hold and the size of the pages being used in the system. A larger TLB reach can improve performance by reducing the number of page table lookups required for memory access, while a smaller TLB reach may lead to more frequent page faults and slower performance.
+    </p>
+    <p>
+      TLB Reach - The amount of memory accessible from the TLB.
+      TLB Reach = (TLB Size) X (Page Size).
+      Ideally, the working set of each process is stored in the TLB.
+      Otherwise, there is a high degree of page faults.
+      Increase TLB reach by.
+      Increasing the Page Size.
+      This may lead to an increase in fragmentation as not all applications require a large page size.
+      Providing Multiple Page Sizes.
+      This allows applications that require larger page sizes the opportunity to use them without an increase in fragmentation.
+    </p>
+
+    <h3>I/O Interlock/Pinning</h3>
+    <p>
+      I/O interlock, also known as pinning, is a technique used in operating systems to ensure that certain pages of memory remain in physical memory during I/O operations. This is important because if a page that is being used for an I/O operation is swapped out to secondary storage, it can lead to data corruption or loss. By pinning pages in memory, the operating system can prevent them from being evicted during I/O operations, ensuring that the data remains accessible and intact. This technique is commonly used for pages that are involved in direct memory access (DMA) operations or other critical I/O tasks.
+    </p>
+    <p>
+      Consider - When a process initiates an I/O operation (e.g., reading from disk into a buffer), to prevent memory corruption it must not be allowed to modify or free the memory before the I/O completes.
+      I/O Interlock - Pages must sometimes be locked into memory to prevent it from being modified.
+      Pinning - lock into memory to prevent it from being selected for eviction by a page replacement algorithm (often during I/O).
+      They're often used together: pin the page so it stays in memory, and interlock it so it's not modified during I/O.
+    </p>
+
+
 </section>
 
 </body>
