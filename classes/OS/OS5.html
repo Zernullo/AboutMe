@@ -89,6 +89,24 @@
     <p>
       In more simpler terms, multi-level page tables break down the mapping process into smaller, more manageable pieces, while single-level page tables handle everything in one large table.
     </p>
+
+    <h4>Where/when does the page replacement algorithm come in?</h4>
+    <p>
+      The page replacement algorithm comes into play when a page fault occurs, which happens when a program tries to access a page that is not currently in physical memory (RAM). When this happens, the operating system must decide which page to evict from memory to make room for the new page that needs to be loaded.
+      The page replacement algorithm determines which page to remove based on various criteria, such as least recently used (LRU), first-in-first-out (FIFO), or optimal replacement. The choice of algorithm can significantly impact the performance of the system, as it affects how efficiently memory is utilized and how quickly pages can be accessed.
+    </p>
+
+    <h4>What metric do we use in evaluating page replacement algorithms?</h4>
+    <p>
+      The primary metric used to evaluate page replacement algorithms is the page fault rate, which is the ratio of page faults to the total number of memory accesses. A lower page fault rate indicates a more efficient algorithm, as it means that fewer page faults occur during program execution.
+      Other metrics that may be considered include the average memory access time, which takes into account both the time to access pages in memory and the time to handle page faults, as well as the overall system throughput and responsiveness.
+    </p>
+
+    <h4>What is the concept of swapping pages?</h4>
+    <p>
+      Swapping pages is a memory management technique used by operating systems to move pages of memory between physical RAM and secondary storage (such as a hard disk or SSD) when there is not enough physical memory available to hold all the active pages of a program. When a page is swapped out, it is written to disk, and when it is needed again, it is read back into RAM.
+      This technique allows the operating system to manage memory more effectively, enabling programs to run even when the available physical memory is limited. However, swapping can lead to performance issues, as accessing data from disk is significantly slower than accessing it from RAM.
+    </p>
     
     <h2>Memory</h2>
     <h3>Background</h3>
