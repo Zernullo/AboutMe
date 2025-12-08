@@ -64,12 +64,36 @@
 
     <!-- PAGE CONTENT GOES HERE -->
 <section class="classes">
-
+  <h1>Operating Systems</h1>
+  <h2>Lecture 6</h2>
   <p id="Reference">
       Date Taken: Fall 2025<br/>
       Status: Work in Progress<br>
       Reference: LSU Professor Daniel Donze, ChatGPT
   </p>
+  <h2>Recap</h2>
+  <h4>How do the different file allocation methods work? Contiguous, Linked List, Indexed</h4>
+  <ul class="bullets">
+    <li><strong>Contiguous</strong> - this file allocation work by allocating consecutive blocks of memory to a file, making access fast but potentially causing fragmentation.</li>
+    <li><strong>Linked List</strong> - this file allocation method uses pointers to link blocks together, allowing for dynamic file sizes but slower access times.</li>
+    <li><strong>Indexed</strong> - this method uses an index block to keep track of all the blocks of a file, providing efficient access and flexibility.</li>
+  </ul>
+
+  <h4>What is the purpose of a Virtual File System (VFS)?</h4>
+  <p>
+    The purpose of a Virtual File System (VFS) is to provide a uniform interface for different file systems, allowing applications to access files without needing to know the specifics of the underlying file system.
+  </p>
+
+  <h4>How do the different Free-space tracking methods work? Bit Vector, Linked List, Grouping</h4>
+  <ul class="bullets">
+    <li><strong>Bit Vector</strong> - this method uses a bitmap to represent free and used blocks, where each bit corresponds to a block of storage.</li>
+    <li><strong>Linked List</strong> - this method maintains a linked list of free blocks, allowing for easy allocation and deallocation of space.</li>
+    <li><strong>Grouping</strong> - this method groups free blocks together, reducing fragmentation and improving allocation efficiency.</li>
+  </ul>
+
+  <h2>Storage and File Systems</h2>
+  
+
   
 
 </section>
