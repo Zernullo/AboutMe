@@ -2,6 +2,7 @@
 /* Contains theme variables, utility classes, and other global CSS rules */
 /* Global base styles for the entire application */
 /* Defines default typography, colors, and responsive design rules */
+@import "tailwindcss";
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
