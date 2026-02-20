@@ -1,11 +1,22 @@
 import { useState } from 'react'
 
 const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:3001'
+const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY || ''
+
+declare global {
+  interface Window {
+    grecaptcha: {
+      ready: (callback: () => void) => void
+      execute: (siteKey: string, options: { action: string }) => Promise<string>
+    }
+  }
+}
 
 function ContactSection() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
+  const [honeypot, setHoneypot] = useState('')
   const [status, setStatus] = useState('')
   const [statusTone, setStatusTone] = useState<'success' | 'error' | 'info'>('info')
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -23,10 +34,28 @@ function ContactSection() {
 
     setIsSubmitting(true)
     try {
+      let recaptchaToken = ''
+      
+      if (RECAPTCHA_SITE_KEY && window.grecaptcha) {
+        try {
+          recaptchaToken = await new Promise<string>((resolve) => {
+            window.grecaptcha.ready(async () => {
+              const token = await window.grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'contact' })
+              resolve(token)
+            })
+          })
+        } catch {
+          setStatus('Security check failed. Please refresh and try again.')
+          setStatusTone('error')
+          setIsSubmitting(false)
+          return
+        }
+      }
+
       const response = await fetch(`${API_BASE}/api/contact`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, message })
+        body: JSON.stringify({ name, email, message, honeypot, recaptchaToken })
       })
 
       const data = await response.json()
@@ -36,7 +65,7 @@ function ContactSection() {
         return
       }
 
-      setStatus('Message sent. Thank you!')
+      setStatus(data?.message || 'Please check your email to verify your message.')
       setStatusTone('success')
       setName('')
       setEmail('')
@@ -60,11 +89,12 @@ function ContactSection() {
           <div className="inline-flex w-fit items-center gap-2 rounded-full border border-[#234026] bg-[#0a120c] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.25em] text-[#7dfc9c]">
             Secure intake
           </div>
-          <h2 className="text-3xl font-bold text-[#00ff41] md:text-4xl">Contact</h2>
-          <p className="max-w-2xl text-sm text-[#c7c7c7] md:text-base">
-            Share a quick overview and I will reply with a plan, timeline, and next steps. Messages
-            are reviewed within 24 hours on weekdays.
-          </p>
+          <div className="flex flex-col items-center gap-3 text-center">
+            <h2 className="text-3xl font-bold text-[#00ff41] md:text-4xl">Contact</h2>
+            <p className="max-w-2xl text-sm leading-relaxed text-[#c7c7c7] md:text-base">
+              Reach out for project opportunities, job inquiries, collaborations, or just to connect. I respond to all messages within 24 hours on weekdays.
+            </p>
+          </div>
         </div>
         <div className="grid gap-8 md:grid-cols-[0.95fr_1.05fr]">
           <div className="flex flex-col justify-between gap-6 rounded-2xl border border-[#1a231c] bg-[#0a0f0a] p-5 text-left">
@@ -93,6 +123,16 @@ function ContactSection() {
             className="flex flex-col gap-4 text-left"
             onSubmit={handleSubmit}
           >
+            <input
+              type="text"
+              name="website"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+              style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px' }}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+            />
             <label className="text-xs uppercase tracking-[0.2em] text-[#8aa395]">
               Name
               <input
@@ -118,6 +158,7 @@ function ContactSection() {
                 value={message}
                 onChange={(event) => setMessage(event.target.value)}
                 className="mt-2 min-h-35 w-full resize-none rounded-xl border border-[#203124] bg-[#0c120c] px-4 py-3 text-sm text-[#e6ffe6] outline-none transition-all focus:border-[#00ff41] focus:shadow-[0_0_0_1px_#00ff41,0_0_16px_rgba(0,255,65,0.35)]"
+                rows={5}
                 required
               />
             </label>
