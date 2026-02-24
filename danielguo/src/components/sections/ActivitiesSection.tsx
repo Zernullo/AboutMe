@@ -7,7 +7,14 @@ type ActivitiesSectionProps = {
 function ActivitiesSection({ onOpen }: ActivitiesSectionProps) {
   return (
     <section id="activities" className="py-10">
-      <h2 className="text-2xl font-bold text-[#00ff41]">Activities & Clubs</h2>
+      <div className="flex items-center gap-6 mb-12">
+        <div className="flex-1 h-px bg-linear-to-r from-transparent via-[#00ff41]/40 to-[#00ff41]/10" />
+          <div className="text-center">
+            <h2 className="text-3xl font-mono font-black tracking-wide text-[#00ff41] uppercase italic">Activities & Clubs</h2>
+            <p className="mt-1 text-[10px] font-mono uppercase tracking-[0.3em] text-[#888]">Extracurriculars & Leadership</p>
+          </div>
+        <div className="flex-1 h-px bg-linear-to-l from-transparent via-[#00ff41]/40 to-[#00ff41]/10" />
+      </div>
       <div className="mt-6 grid gap-4 md:grid-cols-3">
         {activityCards.map((activity) => (
           <button

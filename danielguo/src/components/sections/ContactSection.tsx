@@ -90,10 +90,13 @@ function ContactSection() {
             Secure intake
           </div>
           <div className="flex flex-col items-center gap-3 text-center">
-            <h2 className="text-3xl font-bold text-[#00ff41] md:text-4xl">Contact</h2>
-            <p className="max-w-2xl text-sm leading-relaxed text-[#c7c7c7] md:text-base">
-              Reach out for project opportunities, job inquiries, collaborations, or just to connect. I respond to all messages within 24 hours on weekdays.
-            </p>
+              <div className="text-center">
+                <h2 className="text-3xl font-mono font-black tracking-wide text-[#00ff41] uppercase italic">Contact</h2>
+                <p className="mt-1 text-[10px] font-mono uppercase tracking-[0.3em] text-[#888]">Get In Touch</p>
+              </div>
+              <p className="max-w-2xl text-sm leading-relaxed text-[#c7c7c7] md:text-base">
+                If you have any questions, or just want to connect, feel free to reach out to me.
+              </p>
           </div>
         </div>
         <div className="grid gap-8 md:grid-cols-[0.95fr_1.05fr]">
@@ -103,15 +106,15 @@ function ContactSection() {
               <ul className="space-y-3 text-sm text-[#9db3a3]">
                 <li className="flex items-start gap-3">
                   <span className="mt-1 h-2 w-2 rounded-full bg-[#00ff41]" />
-                  Project goal, expected outcomes, and key constraints.
+                  Briefly describe your inquiry.
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="mt-1 h-2 w-2 rounded-full bg-[#00ff41]" />
-                  Timeline target or launch date you are working toward.
+                  Any relevant details, links, or context.
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="mt-1 h-2 w-2 rounded-full bg-[#00ff41]" />
-                  Best way to reach you and your preferred cadence.
+                  Your preferred contact method and availability.
                 </li>
               </ul>
             </div>

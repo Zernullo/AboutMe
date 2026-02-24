@@ -172,7 +172,7 @@ app.post('/api/contact', async (req, res) => {
 
 // Cybernews endpoint with database storage
 let lastFetchTimestamp = 0
-const FETCH_INTERVAL = 30 * 60 * 1000 // Fetch new articles every 30 minutes
+const FETCH_INTERVAL = 24 * 60 * 60 * 1000 // Fetch new articles every 24 hours
 
 async function fetchAndStoreNews() {
   const apiKey = process.env.NEWS_API_KEY
@@ -182,44 +182,64 @@ async function fetchAndStoreNews() {
   }
 
   try {
-    const response = await fetch(
-      `https://newsapi.org/v2/everything?q=cybersecurity OR hacking OR data breach OR cyber attack&language=en&sortBy=publishedAt&pageSize=10&apiKey=${apiKey}`
-    )
+    const response = await fetch('https://eventregistry.org/api/v1/article/getArticles', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        action: 'getArticles',
+        keyword: ['cybersecurity', 'hacking', 'data breach', 'cyber attack'],
+        keywordOper: 'OR',
+        lang: 'eng',
+        sortBy: 'date',
+        sortByAsc: false,
+        articlesPage: 1,
+        articlesCount: 100,
+        articlesSortBy: 'date',
+        includeArticleSummary: true,
+        includeArticleImage: true,
+        apiKey
+      })
+    })
 
     if (!response.ok) {
-      throw new Error(`NewsAPI returned ${response.status}`)
+      throw new Error(`newsapi.ai returned ${response.status}`)
     }
 
     const data = await response.json()
+    const articles = data.articles?.results || []
     let newCount = 0
 
-    for (const article of data.articles || []) {
+    for (const article of articles) {
       if (!article.url || !article.title) continue
 
-      const summary = article.description || article.content?.substring(0, 200) + '...' || 'No summary available'
-      const source = article.source?.name || 'Unknown'
-      const publishedAt = article.publishedAt
+      const title = typeof article.title === 'object' ? article.title.eng : article.title
+      const summary = typeof article.summary === 'object' 
+        ? article.summary.eng 
+        : article.summary || article.body?.substring(0, 500) + '...' || 'No summary available'
+      const source = article.source?.title || 'Unknown'
+      const publishedAt = article.dateTimePub || article.dateTime
+      const imageUrl = article.image || null
+
 
       try {
-        // Insert only if URL doesn't exist (ON CONFLICT DO NOTHING)
         const result = await pool.query(
-          `INSERT INTO cybernews_articles (title, summary, url, source, published_at)
-           VALUES ($1, $2, $3, $4, $5)
+          `INSERT INTO cybernews_articles (title, summary, url, source, image_url, published_at)
+           VALUES ($1, $2, $3, $4, $5, $6)
            ON CONFLICT (url) DO NOTHING
            RETURNING id`,
-          [article.title, summary, article.url, source, publishedAt]
+          [title, summary, article.url, source, imageUrl, publishedAt]
         )
-        
+
         if (result.rowCount > 0) newCount++
       } catch (err) {
         console.error('Failed to insert article:', err.message)
       }
     }
-
+    console.log('First article image:', articles[0]?.image)
     console.log(`Stored ${newCount} new articles`)
     lastFetchTimestamp = Date.now()
   } catch (error) {
-    console.error('Failed to fetch from NewsAPI:', error.message)
+    console.error('Failed to fetch from newsapi.ai:', error.message)
   }
 }
 
@@ -236,7 +256,7 @@ app.get('/api/cybernews', async (req, res) => {
 
     // Return articles from database
     const result = await pool.query(
-      `SELECT title, summary, url, source, published_at as "publishedAt"
+      `SELECT title, summary, url, source, image_url as "image", published_at as "publishedAt"
        FROM cybernews_articles
        ORDER BY published_at DESC
        LIMIT $1`,
@@ -248,6 +268,7 @@ app.get('/api/cybernews', async (req, res) => {
       summary: row.summary,
       url: row.url,
       source: row.source,
+      image: row.image,
       publishedAt: row.publishedAt,
       date: new Date(row.publishedAt).toLocaleDateString('en-US', {
         month: 'short',
@@ -263,8 +284,20 @@ app.get('/api/cybernews', async (req, res) => {
   }
 })
 
-// Fetch initial news on server start
-fetchAndStoreNews().catch(err => console.error('Initial news fetch failed:', err))
+// On server start, check when we last fetched, so we don't start with an empty database if we recently fetched
+const { rows } = await pool.query(
+  'SELECT MAX(created_at) as last_fetch FROM cybernews_articles'
+)
+
+const lastFetch = rows[0]?.last_fetch
+const oneDayAgo = Date.now() - 24 * 60 * 60 * 1000
+
+if (!lastFetch || new Date(lastFetch).getTime() < oneDayAgo) {
+  fetchAndStoreNews().catch(err => console.error('Initial news fetch failed:', err))
+} else {
+  console.log('Articles are fresh, skipping initial fetch')
+  lastFetchTimestamp = new Date(lastFetch).getTime()
+}
 
 // Automatic cleanup of old articles
 async function cleanupOldArticles() {

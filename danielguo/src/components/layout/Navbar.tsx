@@ -19,12 +19,12 @@ function Navbar() {
                 </div>
                 
                 {/* Desktop Navigation - hidden on mobile, visible on md+ */}
-                <div className="hidden md:flex items-center space-x-4 text-xl">
-                    <a href="#home" className="hover:text-[#00ff41] hover:underline transition-colors">Home</a>
-                    <a href="#about" className="hover:text-[#00ff41] hover:underline transition-colors">About</a>
-                    <a href="#projects" className="hover:text-[#00ff41] hover:underline transition-colors">Projects</a>
-                    <a href="#cybernews" className="hover:text-[#00ff41] hover:underline transition-colors">Cybernews</a>
-                    <a href="#contact" className="hover:text-[#00ff41] hover:underline transition-colors">Contact</a>
+                <div className="hidden md:flex items-center space-x-4 text-lg">
+                    <a href="#home" className="underline hover:text-[#00ff41] transition-colors">Home</a>
+                    <a href="#about" className="underline hover:text-[#00ff41] transition-colors">About</a>
+                    <a href="#projects" className="underline hover:text-[#00ff41] transition-colors">Projects</a>
+                    <a href="#cybernews" className="underline hover:text-[#00ff41] transition-colors">Cybernews</a>
+                    <a href="#contact" className="underline hover:text-[#00ff41] transition-colors">Contact</a>
                     <div className="mx-2 h-6 w-px bg-[#333]" />
                     <div className="flex items-center gap-3">
                         <a href="https://github.com/Zernullo" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub Profile" className="transition-all hover:drop-shadow-[0_0_8px_rgba(0,255,65,0.6)]">
@@ -79,27 +79,27 @@ function Navbar() {
                     <div className="flex flex-col space-y-2 px-6 py-6">
                         <a
                             href="#home"
-                            className="hover:text-[#00ff41] hover:underline transition-colors py-3 text-xl"
+                            className="underline hover:text-[#00ff41] transition-colors py-3 text-xl inline-block"
                             onClick={() => setIsMenuOpen(false)}
                         >Home</a>
                         <a
                             href="#about"
-                            className="hover:text-[#00ff41] hover:underline transition-colors py-3 text-xl"
+                            className="underline hover:text-[#00ff41] transition-colors py-3 text-xl inline-block"
                             onClick={() => setIsMenuOpen(false)}
                         >About</a>
                         <a
                             href="#projects"
-                            className="hover:text-[#00ff41] hover:underline transition-colors py-3 text-xl"
+                            className="underline hover:text-[#00ff41] transition-colors py-3 text-xl inline-block"
                             onClick={() => setIsMenuOpen(false)}
                         >Projects</a>
                         <a
-                            href="/cybernews"
-                            className="hover:text-[#00ff41] hover:underline transition-colors py-3 text-xl"
+                            href="#cybernews"
+                            className="underline hover:text-[#00ff41] transition-colors py-3 text-xl inline-block"
                             onClick={() => setIsMenuOpen(false)}
                         >Cybernews</a>
                         <a
                             href="#contact"
-                            className="hover:text-[#00ff41] hover:underline transition-colors py-3 text-xl"
+                            className="underline hover:text-[#00ff41] transition-colors py-3 text-xl inline-block"
                             onClick={() => setIsMenuOpen(false)}
                         >Contact</a>
 

@@ -6,7 +6,8 @@ CREATE TABLE IF NOT EXISTS cybernews_articles (
   url TEXT UNIQUE NOT NULL,
   source TEXT NOT NULL,
   published_at TIMESTAMP WITH TIME ZONE NOT NULL,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+  image_url TEXT
 );
 
 -- Index for faster queries by date
