@@ -15,7 +15,8 @@ function AboutSection() {
     let charIndex = 0
     let isDeleting = false
     let typingSpeed = 100
-
+    
+    let timeout: ReturnType<typeof setTimeout>
     const typeInterest = () => {
       const currentInterest = interests[interestIndex]
 
@@ -38,11 +39,11 @@ function AboutSection() {
         typingSpeed = 500
       }
 
-      setTimeout(typeInterest, typingSpeed)
+      timeout = setTimeout(typeInterest, typingSpeed)
     }
 
-    const timer = setTimeout(typeInterest, 2000)
-    return () => clearTimeout(timer)
+    timeout = setTimeout(typeInterest, 2000)
+    return () => clearTimeout(timeout)
   }, [])
 
   return (

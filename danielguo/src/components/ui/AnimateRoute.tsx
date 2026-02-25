@@ -215,18 +215,15 @@ const pageTransition: Variants = {
   initial: {
     opacity: 0,
     y: 10,
-    filter: "brightness(1.8) blur(3px)",
   },
   animate: {
     opacity: 1,
     y: 0,
-    filter: "brightness(1) blur(0px)",
     transition: { duration: 0.4, ease: "easeOut" },
   },
   exit: {
     opacity: 0,
     y: -10,
-    filter: "brightness(1.8) blur(3px)",
     transition: { duration: 0.22, ease: "easeIn" },
   },
 }

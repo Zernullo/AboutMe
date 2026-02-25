@@ -10,7 +10,7 @@ function ProjectsPage() {
 			<MatrixRain />
 
 			<Navbar />
-			<main className="w-full flex-1 pt-24 pb-12 px-4 relative z-1">
+			<main className="w-full flex-1 pt-24 pb-12 px-4 relative z-10">
 				<div className="mx-auto max-w-5xl">
 					<div className="flex items-center gap-6 mb-12">
 						<div className="flex-1 h-px bg-linear-to-r from-transparent via-[#00ff41]/40 to-[#00ff41]/10" />

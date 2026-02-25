@@ -42,6 +42,7 @@ const NetworkNodesBackground = () => {
       vy: random(-0.5, 0.5),
     }))
 
+    let animationId: number
     const animate = () => {
       ctx.clearRect(0, 0, width, height)
 
@@ -111,7 +112,7 @@ const NetworkNodesBackground = () => {
         if (node.y < 0 || node.y > height) node.vy *= -1
       }
 
-      requestAnimationFrame(animate)
+      animationId = requestAnimationFrame(animate)
     }
 
     animate()
@@ -126,6 +127,7 @@ const NetworkNodesBackground = () => {
     window.addEventListener('resize', handleResize)
 
     return () => {
+      cancelAnimationFrame(animationId)
       window.removeEventListener('resize', handleResize)
     }
   }, [])

@@ -87,8 +87,8 @@ export const projectCards = [
     title: 'BlobFish Flappy Bird (Game)',
     status: 'Completed',
     year: 'March 2025',
-    summary: 'Short description of what this project does and why it is cool.',
-    details: 'Add a longer explanation here: the goal, the stack, and the impact.'
+    summary: 'Blobfish Flappy Bird is a fun and quirky take on the classic Flappy Bird game, featuring a blobfish character navigating through obstacles.',
+    details: ''
   },
 ]
 
@@ -98,14 +98,14 @@ export const certificationCards = [
     year: '2026',
     issuer: 'CompTia',
     status: 'In Progress',
-    details: 'Add what this certification covers and why you are pursuing it.'
+    details: 'CompTia Security+ is a globally recognized certification that validates foundational cybersecurity skills and knowledge. It covers topics such as network security, threat management, cryptography, and risk mitigation, making it an essential credential for aspiring cybersecurity professionals.'
   },
   {
     title: 'CC',
     year: '2026',
     issuer: 'ISC2',
     status: 'In Progress',
-    details: 'Add what you learned or achieved with this certification.'
+    details: 'ISC2\'s Certified in Cybersecurity (CC) is an entry-level certification designed to validate fundamental cybersecurity knowledge and skills. It covers essential topics such as security principles, risk management, and incident response, making it an ideal starting point for individuals pursuing a career in cybersecurity.'
   }
 ]
 
@@ -114,14 +114,14 @@ export const activityCards = [
     title: 'Google Developer Student Clubs (GDSC)',
     badge: 'Officer',
     role: 'Operational Manager',
-    dates: '2024 - Present',
-    details: 'Describe your responsibilities and impact in this activity.'
+    dates: '2025 - Present',
+    details: 'As the Operational Manager for LSU GDSC, I coordinate logistics for events, manage communications, and support the team in executing workshops, and speaker sessions to foster a vibrant developer community on campus.'
   },
   {
     title: 'SSL',
     badge: 'Member',
     role: 'Member',
-    dates: '2023 - Present',
+    dates: '2025 - Present',
     details: 'A member of LSU SSL (Security Society at LSU) where I participate in weekly meetings, workshops, and CTFs to enhance my cybersecurity skills and collaborate with like-minded peers.'
   },
 ]

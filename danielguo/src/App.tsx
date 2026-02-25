@@ -12,7 +12,7 @@ import ContactSection from '@/components/sections/ContactSection'
 import { type DetailItem } from '@/data/portfolio'
 import NetworkNodesBackground from './components/ui/NetworkNodeBackground'
 import GlitchHeading from '@/components/ui/GlitchEffect'
-import SplashIntro from '@/components/ui/SplashIntro'
+import SplashIntro from '@/components/ui/LoginFeature'
 import ScrollReveal from '@/components/ui/ScrollingAnimation'
 import { useLocation } from "react-router-dom"
 import BootScreen from '@/components/ui/BootScreen'
@@ -48,7 +48,7 @@ function App() {
       if (element) {
         setTimeout(() => {
           element.scrollIntoView({ behavior: "smooth", block: "start" })
-        }, 100)
+        }, 300)
       }
     }
   }, [location])
@@ -84,14 +84,14 @@ function App() {
   return (
     <>
       <NetworkNodesBackground />
-      <div className="flex min-h-screen w-full flex-col overflow-x-hidden scroll-smooth relative z-10">
+      <div className="flex min-h-screen w-full flex-col overflow-x-hidden scroll-smooth relative">
         <Navbar />
 
         <div className="min-h-screen flex items-center justify-center">
           <GlitchHeading />
         </div>
 
-        <main className="w-full flex-1 pt-24">
+        <main className="w-full flex-1" style={{ paddingTop: 'var(--navbar-height)' }}>
           <div className="mx-auto w-full max-w-6xl px-6 py-10 text-center">
             <ScrollReveal><HeroSection /></ScrollReveal>
             <ScrollReveal delay={100}><AboutSection /></ScrollReveal>
@@ -108,6 +108,7 @@ function App() {
           <div
             className={`${isClosing ? 'animate-modal-overlay-out' : 'animate-modal-overlay'} fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4`}
             onClick={closeModal}
+            style={{ overflowY: 'auto' }} // Add this line
           >
             <div
               className={`${isClosing ? 'animate-modal-panel-out' : 'animate-modal-panel'} relative w-full max-w-2xl text-left`}

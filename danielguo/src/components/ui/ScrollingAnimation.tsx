@@ -8,6 +8,7 @@ interface ScrollRevealProps {
 function ScrollReveal({ children, delay = 0 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement | null>(null)
   const [isVisible, setIsVisible] = useState(false)
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
   useEffect(() => {
     const element = ref.current
@@ -21,7 +22,8 @@ function ScrollReveal({ children, delay = 0 }: ScrollRevealProps) {
         }
       },
       {
-        threshold: 0.15,
+        threshold: 0.08,
+        rootMargin: '0px 0px -50px 0px',
       }
     )
 
@@ -33,12 +35,10 @@ function ScrollReveal({ children, delay = 0 }: ScrollRevealProps) {
   return (
     <div
       ref={ref}
-      style={{ transitionDelay: `${delay}ms` }}
+      style={{ transitionDelay: prefersReducedMotion ? '0ms' : `${delay}ms` }}
       className={`
-        transition-all
-        duration-1800
-        ease-[cubic-bezier(0.22,0.61,0.36,1)]
-        ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}
+        ${prefersReducedMotion ? '' : 'transition-all duration-1800 ease-[cubic-bezier(0.22,0.61,0.36,1)]'}
+        ${isVisible || prefersReducedMotion ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}
       `}
     >
       {children}

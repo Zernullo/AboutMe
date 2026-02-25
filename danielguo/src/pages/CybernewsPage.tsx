@@ -49,7 +49,7 @@ function CybernewsPage() {
     <div className="flex min-h-screen w-full flex-col bg-[#111111]">
         <MatrixRain />
         <Navbar />
-        <main className="w-full flex-1 pt-24 pb-12 px-4 relative z-1">
+        <main className="w-full flex-1 pt-24 pb-12 px-4 relative z-10">
             <div className="mx-auto max-w-4xl">
                 {/* Header */}
                 <div className="flex items-center gap-6 mb-12">
