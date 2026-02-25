@@ -7,7 +7,7 @@ function Footer() {
 	const currentYear = new Date().getFullYear()
 
 	return (
-        <footer className="w-full overflow-x-hidden rounded-t-xl border-t border-[#333] bg-[#1a1a1a] text-[#e0e0e0]">
+        <footer className="w-full overflow-x-hidden rounded-t-xl border-t border-[#333] bg-[#1a1a1a] text-[#e0e0e0] relative z-1">
             <div className="grid w-full grid-cols-1 gap-6 px-4 py-8 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
                 <div className="min-w-0 text-center sm:text-left">
                     <h1 className="wrap-break-word text-xl font-bold text-[#00ff41] sm:text-4xl">Daniel Guo</h1>

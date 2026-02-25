@@ -187,13 +187,23 @@ async function fetchAndStoreNews() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         action: 'getArticles',
-        keyword: ['cybersecurity', 'hacking', 'data breach', 'cyber attack'],
+        sourceUri: [
+          'thehackernews.com',
+          'bleepingcomputer.com',
+          'krebsonsecurity.com',
+          'darkreading.com',
+          'securityweek.com',
+          'threatpost.com',
+          'cyberscoop.com',
+          'wired.com'
+        ],
+        keyword: ['cybersecurity', 'hacking', 'data breach', 'cyber attack', 'malware', 'ransomware'],
         keywordOper: 'OR',
         lang: 'eng',
         sortBy: 'date',
         sortByAsc: false,
         articlesPage: 1,
-        articlesCount: 100,
+        articlesCount: 20,
         articlesSortBy: 'date',
         includeArticleSummary: true,
         includeArticleImage: true,
@@ -235,7 +245,6 @@ async function fetchAndStoreNews() {
         console.error('Failed to insert article:', err.message)
       }
     }
-    console.log('First article image:', articles[0]?.image)
     console.log(`Stored ${newCount} new articles`)
     lastFetchTimestamp = Date.now()
   } catch (error) {
@@ -246,21 +255,23 @@ async function fetchAndStoreNews() {
 app.get('/api/cybernews', async (req, res) => {
   try {
     const limit = Math.min(parseInt(req.query.limit) || 10, 50)
+    const page = Math.max(parseInt(req.query.page) || 1, 1)
+    const offset = (page - 1) * limit
     const now = Date.now()
 
-    // Fetch new articles if interval has passed
     if (now - lastFetchTimestamp > FETCH_INTERVAL) {
-      // Don't await - fetch in background
       fetchAndStoreNews().catch(err => console.error('Background fetch failed:', err))
     }
 
-    // Return articles from database
+    const countResult = await pool.query('SELECT COUNT(*) FROM cybernews_articles')
+    const total = parseInt(countResult.rows[0].count)
+
     const result = await pool.query(
       `SELECT title, summary, url, source, image_url as "image", published_at as "publishedAt"
        FROM cybernews_articles
        ORDER BY published_at DESC
-       LIMIT $1`,
-      [limit]
+       LIMIT $1 OFFSET $2`,
+      [limit, offset]
     )
 
     const articles = result.rows.map(row => ({
@@ -277,7 +288,7 @@ app.get('/api/cybernews', async (req, res) => {
       })
     }))
 
-    res.json({ ok: true, articles, total: result.rowCount })
+    res.json({ ok: true, articles, total, page, limit, totalPages: Math.ceil(total / limit) })
   } catch (error) {
     console.error('Cybernews query error:', error)
     res.status(500).json({ ok: false, error: 'Failed to fetch cybernews' })

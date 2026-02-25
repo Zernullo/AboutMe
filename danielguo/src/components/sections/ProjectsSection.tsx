@@ -16,7 +16,7 @@ function ProjectsSection({ onOpen }: ProjectsSectionProps) {
         <div className="flex-1 h-px bg-linear-to-l from-transparent via-[#00ff41]/40 to-[#00ff41]/10" />
       </div>
       <div className="mt-4 grid gap-4 md:grid-cols-2">
-        {projectCards.slice(0, 3).map((project) => (
+        {projectCards.slice(0, 4).map((project) => (
           <button
             key={project.title}
             type="button"

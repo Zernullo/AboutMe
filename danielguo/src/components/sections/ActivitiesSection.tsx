@@ -15,7 +15,7 @@ function ActivitiesSection({ onOpen }: ActivitiesSectionProps) {
           </div>
         <div className="flex-1 h-px bg-linear-to-l from-transparent via-[#00ff41]/40 to-[#00ff41]/10" />
       </div>
-      <div className="mt-6 grid gap-4 md:grid-cols-3">
+      <div className="grid justify-center mt-6 gap-4 md:grid-cols-2">
         {activityCards.map((activity) => (
           <button
             key={activity.title}

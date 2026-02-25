@@ -21,6 +21,13 @@ export const projectCards = [
     details: 'Add a longer explanation here: challenges solved and key features.'
   },
   {
+    title: 'GeoData Visualizer',
+    status: 'In Progress',
+    year: '2026 - Present',
+    summary: 'Short description of what this project does and why it is cool.',
+    details: 'Add a longer explanation here: the goal, the stack, and the impact.'
+  },
+  {
     title: 'Suni The Travel Companion',
     status: 'In Progress',
     year: '2026 - Present',

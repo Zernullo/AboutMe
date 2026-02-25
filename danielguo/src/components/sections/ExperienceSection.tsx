@@ -8,27 +8,20 @@ type Experience = {
 }
 
 const experiences: Experience[] = [
-	{
-		company: 'CyberTech Solutions',
-		role: 'Security Analyst',
-		period: '2024 - Present',
-		description: 'Analyzed threat intelligence, performed vulnerability assessments, and contributed to incident response for enterprise clients.',
-		skills: ['Threat Analysis', 'SIEM', 'Incident Response', 'Python']
-	},
-	{
-		company: 'DataGuard Inc.',
-		role: 'Penetration Tester',
-		period: '2022 - 2024',
-		description: 'Conducted penetration tests, wrote detailed reports, and helped clients improve their security posture.',
-		skills: ['PenTesting', 'Reporting', 'Linux', 'Burp Suite']
-	},
-	{
+    {
 		company: 'University IT',
 		role: 'IT Support Specialist',
 		period: '2020 - 2022',
 		description: 'Provided technical support, managed user accounts, and maintained network infrastructure.',
 		skills: ['Technical Support', 'Networking', 'Active Directory']
-	}
+	},
+	{
+		company: 'Rise Studio',
+		role: 'Penetration Tester',
+		period: '2022 - 2024',
+		description: 'Conducted penetration tests, wrote detailed reports, and helped clients improve their security posture.',
+		skills: ['PenTesting', 'Reporting', 'Linux', 'Burp Suite']
+	},
 ]
 
 function ExperienceSection() {
