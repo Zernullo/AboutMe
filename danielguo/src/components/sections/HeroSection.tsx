@@ -20,6 +20,9 @@ function HeroSection() {
         <Button asChild>
           <a href="#contact">Get In Touch</a>
         </Button>
+        <Button asChild>
+          <a href="#cybernews">CyberNews</a>
+        </Button>
       </div>
       <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
         <a

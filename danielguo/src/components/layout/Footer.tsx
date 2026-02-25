@@ -2,6 +2,7 @@
 // Displays footer content including copyright information and social media links
 
 import { Github, Linkedin, Shield } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 function Footer() {
 	const currentYear = new Date().getFullYear()
@@ -16,8 +17,8 @@ function Footer() {
 
                 <div className="min-w-0 text-center sm:text-left">
                     <h3 className="mb-3 text-lg font-bold text-[#00ff41] sm:text-xl">Contact</h3>
-                    <p className="wrap-break-word">Email: your.email@example.com</p>
-                    <p className="wrap-break-word">Location: Your City, State</p>
+                    <p className="wrap-break-word">Email: dguo1@lsu.edu</p>
+                    <p className="wrap-break-word">Location: Baton Rouge, LA</p>
                     <p className="wrap-break-word text-[#888888]">Open to opportunities</p>
                 </div>
 
@@ -40,24 +41,29 @@ function Footer() {
                     <h3 className="mb-3 text-lg font-bold text-[#00ff41] sm:text-xl">Navigation</h3>
                     <ul className="space-y-1">
                         <li>
-                            <a href="#" className="wrap-break-word hover:text-[#00ff41] hover:underline">
+                            <Link to="/#home" className="wrap-break-word hover:text-[#00ff41] hover:underline">
                                 Home
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href="#" className="wrap-break-word hover:text-[#00ff41] hover:underline">
+                            <Link to="/#about" className="wrap-break-word hover:text-[#00ff41] hover:underline">
                                 About
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href="#" className="wrap-break-word hover:text-[#00ff41] hover:underline">
+                            <Link to="/projects" className="wrap-break-word hover:text-[#00ff41] hover:underline">
                                 Projects
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href="#" className="wrap-break-word hover:text-[#00ff41] hover:underline">
+                            <Link to="/cybernews" className="wrap-break-word hover:text-[#00ff41] hover:underline">
+                                Cybernews
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/#contact" className="wrap-break-word hover:text-[#00ff41] hover:underline">
                                 Contact
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>

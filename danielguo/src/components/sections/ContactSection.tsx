@@ -87,7 +87,7 @@ function ContactSection() {
       <div className="mx-auto flex max-w-5xl flex-col gap-8 rounded-[28px] border border-[#1f2a1f] bg-[linear-gradient(135deg,#0b0f0b_0%,#0e1410_45%,#0a0d0a_100%)] p-6 shadow-[0_20px_80px_rgba(0,0,0,0.55)] md:p-10">
         <div className="flex flex-col gap-3">
           <div className="inline-flex w-fit items-center gap-2 rounded-full border border-[#234026] bg-[#0a120c] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.25em] text-[#7dfc9c]">
-            Secure intake
+            Connect
           </div>
           <div className="flex flex-col items-center gap-3 text-center">
               <div className="text-center">

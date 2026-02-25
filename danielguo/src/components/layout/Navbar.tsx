@@ -2,6 +2,7 @@
 // Provides navigation links to different pages and handles theme switching
 
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Github, Linkedin, Menu, Shield, X } from 'lucide-react'
 
 function Navbar() {
@@ -15,16 +16,16 @@ function Navbar() {
         <nav className="fixed left-0 top-0 z-50 w-full overflow-x-hidden rounded-b-xl border-b border-[#333] bg-[#1a1a1a] text-[#e0e0e0]">
             <div className="flex items-center justify-between px-4 py-5 sm:px-6 lg:px-8">
                 <div className="pl-10 text-2xl font-bold text-[#00ff41]">
-                    <a href="/" className="hover:text-[#00ff41] hover:underline transition-colors">Daniel Guo</a>
+                    <Link to="/" className="hover:text-[#00ff41] hover:underline transition-colors">Daniel Guo</Link>
                 </div>
                 
                 {/* Desktop Navigation - hidden on mobile, visible on md+ */}
                 <div className="hidden md:flex items-center space-x-4 text-lg">
-                    <a href="#home" className="underline hover:text-[#00ff41] transition-colors">Home</a>
-                    <a href="#about" className="underline hover:text-[#00ff41] transition-colors">About</a>
-                    <a href="#projects" className="underline hover:text-[#00ff41] transition-colors">Projects</a>
-                    <a href="#cybernews" className="underline hover:text-[#00ff41] transition-colors">Cybernews</a>
-                    <a href="#contact" className="underline hover:text-[#00ff41] transition-colors">Contact</a>
+                    <Link to="/#home" className="underline hover:text-[#00ff41] transition-colors">Home</Link>
+                    <Link to="/#about" className="underline hover:text-[#00ff41] transition-colors">About</Link>
+                    <Link to="/projects" className="underline hover:text-[#00ff41] transition-colors">Projects</Link>
+                    <Link to="/cybernews" className="underline hover:text-[#00ff41] transition-colors">Cybernews</Link>
+                    <Link to="/#contact" className="underline hover:text-[#00ff41] transition-colors">Contact</Link>
                     <div className="mx-2 h-6 w-px bg-[#333]" />
                     <div className="flex items-center gap-3">
                         <a href="https://github.com/Zernullo" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub Profile" className="transition-all hover:drop-shadow-[0_0_8px_rgba(0,255,65,0.6)]">
@@ -77,31 +78,31 @@ function Navbar() {
                     
                     {/* Menu items */}
                     <div className="flex flex-col space-y-2 px-6 py-6">
-                        <a
-                            href="#home"
+                        <Link
+                            to="/#home"
                             className="underline hover:text-[#00ff41] transition-colors py-3 text-xl inline-block"
                             onClick={() => setIsMenuOpen(false)}
-                        >Home</a>
-                        <a
-                            href="#about"
+                        >Home</Link>
+                        <Link
+                            to="/#about"
                             className="underline hover:text-[#00ff41] transition-colors py-3 text-xl inline-block"
                             onClick={() => setIsMenuOpen(false)}
-                        >About</a>
-                        <a
-                            href="#projects"
+                        >About</Link>
+                        <Link
+                            to="/projects"
                             className="underline hover:text-[#00ff41] transition-colors py-3 text-xl inline-block"
                             onClick={() => setIsMenuOpen(false)}
-                        >Projects</a>
-                        <a
-                            href="#cybernews"
+                        >Projects</Link>
+                        <Link
+                            to="/cybernews"
                             className="underline hover:text-[#00ff41] transition-colors py-3 text-xl inline-block"
                             onClick={() => setIsMenuOpen(false)}
-                        >Cybernews</a>
-                        <a
-                            href="#contact"
+                        >Cybernews</Link>
+                        <Link
+                            to="/#contact"
                             className="underline hover:text-[#00ff41] transition-colors py-3 text-xl inline-block"
                             onClick={() => setIsMenuOpen(false)}
-                        >Contact</a>
+                        >Contact</Link>
 
                         <div className="my-2 h-px bg-[#333]" />
                         <div className="flex items-center gap-4 py-2">

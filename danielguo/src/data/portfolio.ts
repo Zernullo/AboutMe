@@ -122,6 +122,6 @@ export const activityCards = [
     badge: 'Member',
     role: 'Member',
     dates: '2023 - Present',
-    details: 'Describe what you worked on or contributed to.'
+    details: 'A member of LSU SSL (Security Society at LSU) where I participate in weekly meetings, workshops, and CTFs to enhance my cybersecurity skills and collaborate with like-minded peers.'
   },
 ]

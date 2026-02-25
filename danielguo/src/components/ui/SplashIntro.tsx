@@ -72,7 +72,7 @@ const SplashIntro = ({ onFinish }: { onFinish: () => void }) => {
     };
 
     return (
-        <div className={`fixed inset-0 flex flex-col items-center justify-center bg-[#1a1c1e] transition-opacity duration-1000 ${fadeOut ? "opacity-0" : "opacity-100"}`}>
+        <div className={`fixed inset-0 flex flex-col items-center justify-center bg-[#1a1c1e] min-h-screen transition-opacity duration-1000 ${fadeOut ? "opacity-0" : "opacity-100"}`}>
             
             <div className="z-10 mb-10">
                 <GlitchHeading />
@@ -120,7 +120,9 @@ const SplashIntro = ({ onFinish }: { onFinish: () => void }) => {
                                     <label className="block text-[10px] uppercase text-slate-400 mb-2 tracking-widest">User_ID</label>
                                     <input
                                         className="bg-slate-900/50 border border-white/10 rounded-md text-white outline-none w-full px-4 py-3 focus:border-[#00ff41]/50 focus:bg-slate-900/80 transition-all placeholder-slate-600 font-mono"
+                                        type="text"
                                         placeholder="Enter Username"
+                                        autoComplete="username"
                                         value={username}
                                         onChange={e => setUsername(e.target.value)}
                                         autoFocus
@@ -131,11 +133,9 @@ const SplashIntro = ({ onFinish }: { onFinish: () => void }) => {
                                     <label className="block text-[10px] uppercase text-slate-400 mb-2 tracking-widest">Pass_Key</label>
                                     <input
                                         type="password"
-                                        /* The following Tailwind classes ensure the default browser eye icon 
-                                           is white/visible on your dark background where supported.
-                                        */
                                         className="bg-slate-900/50 border border-white/10 rounded-md text-white outline-none w-full px-4 py-3 focus:border-[#00ff41]/50 focus:bg-slate-900/80 transition-all placeholder-slate-600 font-mono accent-[#00ff41]"
                                         placeholder="••••••••"
+                                        autoComplete="current-password"
                                         value={password}
                                         onChange={e => setPassword(e.target.value)}
                                     />
@@ -154,36 +154,36 @@ const SplashIntro = ({ onFinish }: { onFinish: () => void }) => {
                             {/* Terminal Display */}
                             <div ref={scrollRef} className="flex-1 h-64 overflow-y-auto mb-6 space-y-2 text-sm scrollbar-hide">
                             {terminalOutput.map((line, idx) => {
-  const isCommand = line.startsWith("> ");
-  const isHelp = line.startsWith("AVAILABLE:");
+                                const isCommand = line.startsWith("> ");
+                                const isHelp = line.startsWith("AVAILABLE:");
 
-  return (
-    <div key={idx} className="flex">
-      {isCommand ? (
-        <>
-          {/* Prompt */}
-          <span className="font-bold mr-1 text-red-400 select-none">root</span>
-          <span className="font-bold text-white select-none">@</span>
-          <span className="font-bold text-cyan-400 select-none">daniel</span>
-          <span className="text-gray-400 select-none">:~$</span>
-          <span className="text-slate-400 ml-2">{line.slice(2)}</span>
-        </>
-      ) : isHelp ? (
-        <span className="ml-6 leading-relaxed">
-          <span className="text-green-400">AVAILABLE:</span>{" "}
-          <span className="text-cyan-400 font-semibold">whoami</span>,{" "}
-          <span className="text-purple-400 font-semibold">echo $major</span>,{" "}
-          <span className="text-yellow-400 font-semibold">clear</span>,{" "}
-          <span className="text-pink-400 font-semibold">login</span>
-        </span>
-      ) : (
-        <span className="text-[#00ff41] ml-6 leading-relaxed">
-          {line}
-        </span>
-      )}
-    </div>
-  );
-})}
+                                return (
+                                    <div key={idx} className="flex">
+                                    {isCommand ? (
+                                        <>
+                                        {/* Prompt */}
+                                        <span className="font-bold mr-1 text-red-400 select-none">root</span>
+                                        <span className="font-bold text-white select-none">@</span>
+                                        <span className="font-bold text-cyan-400 select-none">daniel</span>
+                                        <span className="text-gray-400 select-none">:~$</span>
+                                        <span className="text-slate-400 ml-2">{line.slice(2)}</span>
+                                        </>
+                                    ) : isHelp ? (
+                                        <span className="ml-6 leading-relaxed">
+                                        <span className="text-green-400">AVAILABLE:</span>{" "}
+                                        <span className="text-cyan-400 font-semibold">whoami</span>,{" "}
+                                        <span className="text-purple-400 font-semibold">echo $major</span>,{" "}
+                                        <span className="text-yellow-400 font-semibold">clear</span>,{" "}
+                                        <span className="text-pink-400 font-semibold">login</span>
+                                        </span>
+                                    ) : (
+                                        <span className="text-[#00ff41] ml-6 leading-relaxed">
+                                        {line}
+                                        </span>
+                                    )}
+                                    </div>
+                                );
+                            })}
                             <div className="text-[#00ff41] opacity-70 italic mt-4 border-t border-white/5 pt-2">
                                 <span className="opacity-50 mr-2">::</span>
                                 {terminalHint}
