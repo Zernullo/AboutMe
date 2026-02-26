@@ -1,9 +1,12 @@
 {
+  "homepage": "https://zernullo.github.io/AboutMe",
   "name": "danielguo",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "server": "kill-port 3001 && node --env-file=.env server/index.js",
     "build": "tsc -b && vite build",

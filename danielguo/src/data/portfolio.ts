@@ -73,22 +73,29 @@ export const projectCards = [
     title: 'Finance Theme (Hackathon Project)',
     status: 'Completed',
     year: '3 Day Hackathon - March 2025',
-    summary: 'Short description of what this project does and why it is cool.',
-    details: 'Add a longer explanation here: the goal, the stack, and the impact.'
+    summary: 'Hackathon project where we built a finance-themed app that helps users track expenses and manage budgets.',
+    details: `This project was built during a 3-day hackathon where we created a finance-themed app that helps users track expenses and manage budgets. 
+    The app features a clean UI, expense tracking, and budget management tools. It was built using JavaScript and HTML/CSS, and it was a great experience in rapid prototyping and teamwork.`
   },
   {
     title: 'Travel Theme (Hackathon Project)',
     status: 'Completed',
     year: '3 Day Hackathon - November 2024',
-    summary: 'Short description of what this project does and why it is cool.',
-    details: 'Add a longer explanation here: the goal, the stack, and the impact.'
+    summary: 'Hackathon project where we built a travel-themed app that helps users discover new destinations and plan trips.',
+    details: `This project was built during a 3-day hackathon where we created a travel-themed app that helps users discover new destinations and plan trips. 
+    The app features a clean UI, and personalized recommendations based on user preferences. 
+    It was built using JavaScript and HTML/CSS, and it was a great experience in rapid prototyping and teamwork.`
   },
   {
     title: 'BlobFish Flappy Bird (Game)',
     status: 'Completed',
     year: 'March 2025',
     summary: 'Blobfish Flappy Bird is a fun and quirky take on the classic Flappy Bird game, featuring a blobfish character navigating through obstacles.',
-    details: ''
+    details: `Blobfish Flappy Bird is a fun and quirky take on the classic Flappy Bird game, featuring a blobfish character navigating through obstacles.
+    This is a game I developed as a fun side project to practice my game development skills. 
+    The game features a blobfish character that players control by tapping the screen to make it flap its fins and navigate through a series of pipes. 
+    The goal is to achieve the highest score possible by passing through as many pipes as you can without crashing. 
+    I built this game using Java, and it was a great opportunity to learn about game mechanics.`,
   },
 ]
 
