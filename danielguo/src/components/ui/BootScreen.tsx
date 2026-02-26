@@ -1,18 +1,26 @@
 import { useEffect, useRef, useState } from 'react'
 import { LoadingScreen } from './AnimateRoute'
 
+const alreadyBooted = () => sessionStorage.getItem('hasBooted') === 'true'
+
 export default function BootScreen({ onDone }: { onDone: () => void }) {
-  const [fading, setFading] = useState(false)
-  const calledRef = useRef(false)           // guard against double calls
+  const [fading, setFading] = useState(alreadyBooted)
+  const calledRef = useRef(false)
 
   useEffect(() => {
-    const t = setTimeout(() => setFading(true), 4400)   // fade starts at 4.4s
+    if (alreadyBooted()) {
+      onDone()
+      return
+    }
+
+    const t = setTimeout(() => setFading(true), 4400)
     return () => clearTimeout(t)
-  }, [])
+  }, [onDone])
 
   const handleTransitionEnd = () => {
     if (fading && !calledRef.current) {
       calledRef.current = true
+      sessionStorage.setItem('hasBooted', 'true')  // persists through refresh
       onDone()
     }
   }

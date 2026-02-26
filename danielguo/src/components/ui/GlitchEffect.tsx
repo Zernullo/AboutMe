@@ -31,7 +31,7 @@ function GlitchHeading() {
   return (
     <h1
       ref={headingRef}
-      className="text-green-400 font-bold text-4xl font-mono"
+      className="text-green-400 font-bold font-mono text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-center wrap-break-words"
     >
       Welcome to My Portfolio
     </h1>

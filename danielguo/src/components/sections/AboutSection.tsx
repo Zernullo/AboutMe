@@ -47,7 +47,7 @@ function AboutSection() {
   }, [])
 
   return (
-    <section id="about" className="py-1">
+    <section id="about" className="py-1" style={{ scrollMarginTop: '100px' }}>
       <div className="flex items-center gap-6 mb-12">
         <div className="flex-1 h-px bg-linear-to-r from-transparent via-[#00ff41]/40 to-[#00ff41]/10" />
           <div className="text-center">

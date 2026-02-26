@@ -12,7 +12,7 @@ import ContactSection from '@/components/sections/ContactSection'
 import { type DetailItem } from '@/data/portfolio'
 import NetworkNodesBackground from './components/ui/NetworkNodeBackground'
 import GlitchHeading from '@/components/ui/GlitchEffect'
-import SplashIntro from '@/components/ui/LoginFeature'
+// import SplashIntro from '@/components/ui/LoginFeature'
 import ScrollReveal from '@/components/ui/ScrollingAnimation'
 import { useLocation } from "react-router-dom"
 import BootScreen from '@/components/ui/BootScreen'
@@ -43,15 +43,19 @@ function App() {
   }, [activeItem])
 
   useEffect(() => {
+    // Wait for DOM update after route change
     if (location.hash) {
-      const element = document.querySelector(location.hash)
-      if (element) {
-        setTimeout(() => {
+      const scrollToHash = () => {
+        const element = document.querySelector(location.hash)
+        if (element) {
           element.scrollIntoView({ behavior: "smooth", block: "start" })
-        }, 300)
+        }
       }
+      // Try immediately, then again after a short delay
+      scrollToHash()
+      setTimeout(scrollToHash, 350)
     }
-  }, [location])
+  }, [location.pathname, location.hash])
 
   const closeModal = () => {
     if (!activeItem || isClosing) return
@@ -69,16 +73,16 @@ function App() {
   }
 
   // ── splash / login ──────────────────────────────────────────────────────────
-  if (phase === "splash") {
-    return (
-      <SplashIntro
-        onFinish={() => {
-          sessionStorage.setItem('hasLoggedIn', 'true')
-          setPhase("app")
-        }}
-      />
-    )
-  }
+  // if (phase === "splash") {
+  //   return (
+  //     <SplashIntro
+  //       onFinish={() => {
+  //         sessionStorage.setItem('hasLoggedIn', 'true')
+  //         setPhase("app")
+  //       }}
+  //     />
+  //   )
+  // }
 
   // ── main app ────────────────────────────────────────────────────────────────
   return (
