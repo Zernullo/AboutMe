@@ -21,11 +21,11 @@ function Navbar() {
                 
                 {/* Desktop Navigation - hidden on mobile, visible on md+ */}
                 <div className="hidden md:flex items-center space-x-4 text-lg">
-                    <Link to="/#home" className="underline hover:text-[#00ff41] transition-colors">Home</Link>
-                    <Link to="/#about" className="underline hover:text-[#00ff41] transition-colors">About</Link>
+                    <Link to="/" className="underline hover:text-[#00ff41] transition-colors">Home</Link>
+                    <Link to={{ pathname: "/", hash: "#about" }} className="underline hover:text-[#00ff41] transition-colors">About</Link>
                     <Link to="/projects" className="underline hover:text-[#00ff41] transition-colors">Projects</Link>
                     <Link to="/cybernews" className="underline hover:text-[#00ff41] transition-colors">Cybernews</Link>
-                    <Link to="/#contact" className="underline hover:text-[#00ff41] transition-colors">Contact</Link>
+                    <Link to={{ pathname: "/", hash: "#contact" }} className="underline hover:text-[#00ff41] transition-colors">Contact</Link>
                     <div className="mx-2 h-6 w-px bg-[#333]" />
                     <div className="flex items-center gap-3">
                         <a href="https://github.com/Zernullo" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub Profile" className="transition-all hover:drop-shadow-[0_0_8px_rgba(0,255,65,0.6)]">
@@ -79,12 +79,12 @@ function Navbar() {
                     {/* Menu items */}
                     <div className="flex flex-col space-y-2 px-6 py-6">
                         <Link
-                            to="/#home"
+                            to="/"
                             className="underline hover:text-[#00ff41] transition-colors py-3 text-xl inline-block"
                             onClick={() => setIsMenuOpen(false)}
                         >Home</Link>
                         <Link
-                            to="/#about"
+                            to={{ pathname: "/", hash: "#about" }}
                             className="underline hover:text-[#00ff41] transition-colors py-3 text-xl inline-block"
                             onClick={() => setIsMenuOpen(false)}
                         >About</Link>
@@ -99,7 +99,7 @@ function Navbar() {
                             onClick={() => setIsMenuOpen(false)}
                         >Cybernews</Link>
                         <Link
-                            to="/#contact"
+                            to={{ pathname: "/", hash: "#contact" }}
                             className="underline hover:text-[#00ff41] transition-colors py-3 text-xl inline-block"
                             onClick={() => setIsMenuOpen(false)}
                         >Contact</Link>

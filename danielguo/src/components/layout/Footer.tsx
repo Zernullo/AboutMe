@@ -41,12 +41,12 @@ function Footer() {
                     <h3 className="mb-3 text-lg font-bold text-[#00ff41] sm:text-xl">Navigation</h3>
                     <ul className="space-y-1">
                         <li>
-                            <Link to="/#home" className="wrap-break-word hover:text-[#00ff41] hover:underline">
+                            <Link to="/" className="wrap-break-word hover:text-[#00ff41] hover:underline">
                                 Home
                             </Link>
                         </li>
                         <li>
-                            <Link to="/#about" className="wrap-break-word hover:text-[#00ff41] hover:underline">
+                            <Link to={{ pathname: "/", hash: "#about" }} className="wrap-break-word hover:text-[#00ff41] hover:underline">
                                 About
                             </Link>
                         </li>
@@ -61,7 +61,7 @@ function Footer() {
                             </Link>
                         </li>
                         <li>
-                            <Link to="/#contact" className="wrap-break-word hover:text-[#00ff41] hover:underline">
+                            <Link to={{ pathname: "/", hash: "#contact" }} className="wrap-break-word hover:text-[#00ff41] hover:underline">
                                 Contact
                             </Link>
                         </li>
