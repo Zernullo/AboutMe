@@ -53,7 +53,7 @@ function CybernewsSection({ onOpen }: CybernewsSectionProps) {
         
         <div className="text-center">
           <h2 className="text-3xl font-mono font-black tracking-wide text-[#00ff41] uppercase italic ">
-            Intelligence_Feed 
+            Intelligence Feed 
           </h2>
           <p className="mt-1 text-[10px] font-mono uppercase tracking-[0.3em] text-[#888]">
             Sector: Cybersecurity / Global Updates

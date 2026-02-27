@@ -4,6 +4,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Github, Linkedin, Menu, Shield, X } from 'lucide-react'
+// import logo from '../../assets/icons/logo.png'
 
 function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -16,7 +17,14 @@ function Navbar() {
         <nav className="fixed left-0 top-0 z-50 w-full overflow-x-hidden rounded-b-xl border-b border-[#333] bg-[#1a1a1a] text-[#e0e0e0]">
             <div className="flex items-center justify-between px-4 py-5 sm:px-6 lg:px-8">
                 <div className="pl-10 text-2xl font-bold text-[#00ff41]">
-                    <Link to="/" className="hover:text-[#00ff41] hover:underline transition-colors">Daniel Guo</Link>
+                    <Link to="/" className="hover:text-[#00ff41] hover:underline transition-colors">Daniel Guo
+                        {/* <img
+                            src={logo}
+                            alt="Logo"
+                            className="h-8 w-8 inline-block align-middle"
+                            style={{ verticalAlign: 'middle' }}
+                        /> */}
+                    </Link>
                 </div>
                 
                 {/* Desktop Navigation - hidden on mobile, visible on md+ */}

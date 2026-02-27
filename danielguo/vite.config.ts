@@ -5,7 +5,7 @@ import path from 'node:path'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/AboutMe/',
+  base: process.env.NODE_ENV === 'production' ? '/AboutMe/' : '/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
