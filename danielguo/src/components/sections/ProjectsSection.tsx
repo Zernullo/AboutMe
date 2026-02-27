@@ -1,4 +1,5 @@
 import { type DetailItem, projectCards } from '@/data/portfolio'
+import { Link } from 'react-router'
 
 type ProjectsSectionProps = { 
   onOpen: (item: DetailItem) => void
@@ -36,13 +37,13 @@ function ProjectsSection({ onOpen }: ProjectsSectionProps) {
         ))}
       </div>
       <div className="mt-6 flex justify-center">
-        <a
-          href="/projects"
+        <Link
+          to="/projects"
           className="inline-flex items-center gap-2 rounded-full border border-[#00ff41] px-5 py-2 text-sm font-semibold text-[#00ff41] transition-all hover:-translate-y-1 hover:bg-[#00ff41]/10 hover:shadow-[0_0_18px_rgba(0,255,65,0.55)]"
         >
           View more projects
           <span aria-hidden="true">→</span>
-        </a>
+        </Link>
       </div>
     </section>
   )

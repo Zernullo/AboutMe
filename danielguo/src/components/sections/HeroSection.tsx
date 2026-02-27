@@ -1,5 +1,5 @@
-import { Button } from '@/components/ui/button'
 import { Github, Linkedin, Shield } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 function HeroSection() {
   return (
@@ -14,15 +14,26 @@ function HeroSection() {
         Aspiring security engineer creating clean, efficient tools and platforms with usability and protection in mind.
       </p>
       <div className="mt-6 flex flex-wrap justify-center gap-3">
-        <Button asChild>
-          <a href="#projects">View Projects</a>
-        </Button>
-        <Button asChild>
-          <a href="#contact">Get In Touch</a>
-        </Button>
-        <Button asChild>
-          <a href="#cybernews">CyberNews</a>
-        </Button>
+        <Link
+          to={{ pathname: "/", hash: "#projects" }}
+          className="inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground px-4 py-2 text-sm font-medium hover:bg-primary/90"
+        >
+          View Projects
+        </Link>
+
+        <Link
+          to={{ pathname: "/", hash: "#contact" }}
+          className="inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground px-4 py-2 text-sm font-medium hover:bg-primary/90"
+        >
+          Get In Touch
+        </Link>
+
+        <Link
+          to={{ pathname: "/", hash: "#cybernews" }}
+          className="inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground px-4 py-2 text-sm font-medium hover:bg-primary/90"
+        >
+          CyberNews
+        </Link>
       </div>
       <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
         <a

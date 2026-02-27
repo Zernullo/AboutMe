@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { type DetailItem } from '@/data/portfolio'
+import { Link } from 'react-router'
 
 type CybernewsSectionProps = {
   onOpen: (item: DetailItem) => void
@@ -132,13 +133,13 @@ function CybernewsSection({ onOpen }: CybernewsSectionProps) {
         ))}
       </div>
       <div className="mt-6 flex justify-center">
-        <a
-          href="/cybernews"
+        <Link
+          to="/cybernews"
           className="inline-flex items-center gap-2 rounded-full border border-[#00ff41] px-5 py-2 text-sm font-semibold text-[#00ff41] transition-all hover:-translate-y-1 hover:bg-[#00ff41]/10 hover:shadow-[0_0_18px_rgba(0,255,65,0.55)]"
         >
           View more news
           <span aria-hidden="true">→</span>
-        </a>
+        </Link>
       </div>
     </section>
   )

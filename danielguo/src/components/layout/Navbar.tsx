@@ -29,7 +29,7 @@ function Navbar() {
                 
                 {/* Desktop Navigation - hidden on mobile, visible on md+ */}
                 <div className="hidden md:flex items-center space-x-4 text-lg">
-                    <Link to="/" className="underline hover:text-[#00ff41] transition-colors">Home</Link>
+                    <Link to={{ pathname: "/", hash: "#home" }} className="underline hover:text-[#00ff41] transition-colors">Home</Link>
                     <Link to={{ pathname: "/", hash: "#about" }} className="underline hover:text-[#00ff41] transition-colors">About</Link>
                     <Link to="/projects" className="underline hover:text-[#00ff41] transition-colors">Projects</Link>
                     <Link to="/cybernews" className="underline hover:text-[#00ff41] transition-colors">Cybernews</Link>
