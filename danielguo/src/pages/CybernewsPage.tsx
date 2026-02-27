@@ -38,8 +38,20 @@ function CybernewsPage() {
   const [isClosing, setIsClosing] = useState(false)
 
   useEffect(() => {
-    document.body.style.overflow = activeItem ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
+    if (activeItem) {
+      document.body.style.overflow = 'hidden'
+      document.body.style.position = 'fixed'
+      document.body.style.width = '100%'
+    } else {
+      document.body.style.overflow = ''
+      document.body.style.position = ''
+      document.body.style.width = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+      document.body.style.position = ''
+      document.body.style.width = ''
+    }
   }, [activeItem])
 
   const openItem = (article: NewsArticle) => {
@@ -89,7 +101,7 @@ function CybernewsPage() {
             <div className="flex-1 h-px bg-linear-to-r from-transparent via-[#00ff41]/40 to-[#00ff41]/10" />
             <div className="text-center">
               <h1 className="text-3xl font-mono font-black tracking-wide text-[#00ff41] uppercase italic">
-                Intelligence_Feed
+                Intelligence Feed
               </h1>
               <p className="mt-1 text-[10px] font-mono uppercase tracking-[0.3em] text-[#888]">
                 Sector: Cybersecurity / Global Updates
