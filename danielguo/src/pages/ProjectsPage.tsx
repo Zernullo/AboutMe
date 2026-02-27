@@ -10,19 +10,16 @@ function ProjectsPage() {
   const [isClosing, setIsClosing] = useState(false)
 
   useEffect(() => {
-    if (activeItem) {
-      document.body.style.overflow = 'hidden'
-      document.body.style.position = 'fixed'
-      document.body.style.width = '100%'
-    } else {
-      document.body.style.overflow = ''
-      document.body.style.position = ''
-      document.body.style.width = ''
-    }
+    if (!activeItem) return
+
+    const preventScroll = (e: TouchEvent) => e.preventDefault()
+    
+    document.body.style.overflow = 'hidden'
+    document.addEventListener('touchmove', preventScroll, { passive: false })
+
     return () => {
       document.body.style.overflow = ''
-      document.body.style.position = ''
-      document.body.style.width = ''
+      document.removeEventListener('touchmove', preventScroll)
     }
   }, [activeItem])
 
