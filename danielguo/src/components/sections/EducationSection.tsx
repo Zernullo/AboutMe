@@ -31,7 +31,7 @@ const educationList: Education[] = [
 function EducationSection() {
   return (
     <section id="education" className="py-10">
-      <div className="flex items-center gap-6 mb-12">
+      <div className="flex flex-col gap-6 mb-12 sm:flex-row sm:items-center">
         <div className="flex-1 h-px bg-linear-to-r from-transparent via-[#00ff41]/40 to-[#00ff41]/10" />
         <div className="text-center">
           <h2 className="text-3xl font-mono font-black tracking-wide text-[#00ff41] uppercase italic">
@@ -48,29 +48,30 @@ function EducationSection() {
         {educationList.map((edu, idx) => (
           <div
             key={edu.school + edu.degree + idx}
-            className="rounded border border-[#00ff41]/20 bg-[#1a1a1a] p-6 shadow-md hover:border-[#00ff41]/60 transition-all"
+            className="rounded border border-[#00ff41]/20 bg-[#1a1a1a] p-4 sm:p-6 shadow-md hover:border-[#00ff41]/60 transition-all"
           >
             {/* Top row */}
-            <div className="flex items-start justify-between gap-4 mb-4">
+            <div className="flex items-center justify-between gap-2 mb-4">
               <div className="flex items-center gap-2">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#00ff41] shadow-[0_0_6px_#00ff41] mt-0.5 shrink-0" />
-                <span className="text-xs font-mono uppercase tracking-widest text-[#00ff41]">{edu.school}</span>
+                <span className="text-sm font-mono uppercase tracking-widest text-[#00ff41]">{edu.school}</span>
               </div>
-              <span className="text-xs font-mono text-[#888888] shrink-0">{edu.startYear} – {edu.endYear}</span>
+              <span className="text-sm font-mono text-[#888888] shrink-0">{edu.startYear} – {edu.endYear}</span>
             </div>
 
             {/* Degree */}
-            <h3 className="text-lg font-bold text-[#e0e0e0] mb-3 pl-4">{edu.degree}</h3>
+            <h3 className="text-base sm:text-lg font-bold text-[#e0e0e0] mb-3 pl-2 sm:pl-4">{edu.degree}</h3>
 
             {/* Badges row */}
-            <div className="flex flex-wrap items-center justify-between pl-4 mb-4">
+            <div className="flex pl-2 sm:pl-4 mb-4">
               {edu.concentration && (
-                <span className="rounded-full border border-[#00ff41] px-3 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#00ff41]">
+                <span className="rounded-full border border-[#00ff41] px-3 py-0.5 text-xs font-semibold uppercase tracking-wide text-[#00ff41] w-max">
                   {edu.concentration}
                 </span>
               )}
+              <div className="flex-1" />
               {edu.gpa && (
-                <span className="rounded-full border border-[#00ff41] px-3 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#00ff41]">
+                <span className="rounded-full border border-[#00ff41] px-3 py-0.5 text-xs font-semibold uppercase tracking-wide text-[#00ff41] w-max">
                   GPA {edu.gpa}
                 </span>
               )}
@@ -78,14 +79,14 @@ function EducationSection() {
 
             {/* Description */}
             {edu.description && (
-              <div className="pl-4 mb-2">
-                <p className="text-base font-mono text-[#a5a5a5]">{edu.description}</p>
+              <div className="pl-2 sm:pl-4 mb-2">
+                <p className="text-base sm:text-lg font-mono text-[#a5a5a5]">{edu.description}</p>
               </div>
             )}
 
             {/* Coursework */}
             {edu.skills && (
-              <div className="pl-4 pt-3 border-t border-[#2a2a2a]">
+              <div className="pl-2 sm:pl-4 pt-3 border-t border-[#2a2a2a]">
                 <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#555] mb-2">
                   Relevant Coursework
                 </p>
