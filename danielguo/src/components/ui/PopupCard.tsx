@@ -46,6 +46,16 @@ const PopupCard = ({ item, isClosing, onClose }: PopupCardProps) => (
           </div>
         )}
 
+        {item.links && item.links.length > 0 && (
+          <div className="mt-4 space-y-2">
+            {item.links.map((link, idx) => (
+              <a key={idx} href={link.url} target="_blank" rel="noopener noreferrer" className="block text-xs font-mono text-[#00ff41]/60 hover:text-[#00ff41]">
+                {link.label}
+              </a>
+            ))}
+          </div>
+        )}
+
         <div className="mt-6 flex items-center justify-between border-t border-[#2a2a2a] pt-3">
           {item.details.includes('\nRead more at: ') && (
             <a href={item.details.split('\nRead more at: ')[1]} target="_blank" rel="noopener noreferrer" className="text-xs font-mono text-[#00ff41]/60 hover:text-[#00ff41]">
