@@ -78,7 +78,7 @@ export const projectCards = [
   },
   {
     title: 'Geaux App',
-    status: 'In Progress',
+    status: 'Hiatus',
     year: '2025 - Hiatus',
     links: [
       { label: 'GitHub Repository', url: 'https://github.com/Google-Developers-Student-Club-LSU/GeauxApp-Frontend' }

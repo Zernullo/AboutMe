@@ -7,6 +7,7 @@ type Education = {
   description?: string
   concentration?: string
   gpa?: string
+  skills?: string
 }
 
 const educationList: Education[] = [
@@ -18,7 +19,12 @@ const educationList: Education[] = [
     startYear: "2023",
     endYear: "2027",
     gpa: "3.85",
-    description: "AI & LLM Development, Data Driven Security, Artificial Intelligence, Intro to Cyber, Networks, Operating Systems, Advanced Data Structures and Algorithms, Intro Systems Programming"
+    skills: "AI & LLM Development, Data Driven Security, Artificial Intelligence, Intro to Cyber, Networks, Operating Systems, Advanced Data Structures and Algorithms, Intro Systems Programming",
+    description: `Currently pursuing a Bachelor of Science in Computer Science at Louisiana State University with a concentration in Cybersecurity. 
+    Expected graduation is in 2027 with a strong academic record, maintaining a GPA of 3.85. 
+    My coursework has provided me with a solid foundation in computer science principles, with a particular focus on cybersecurity concepts and practices. 
+    I have developed skills in AI and LLM development, data-driven security approaches, and have gained hands-on experience through various projects and research opportunities at LSU. 
+    I am actively involved in the cybersecurity community on campus and am committed to applying my knowledge and skills to real-world security challenges in the future.`
   },
 ]
 
@@ -57,7 +63,7 @@ function EducationSection() {
             <h3 className="text-lg font-bold text-[#e0e0e0] mb-3 pl-4">{edu.degree}</h3>
 
             {/* Badges row */}
-            <div className="flex flex-wrap gap-2 pl-4 mb-4">
+            <div className="flex flex-wrap items-center justify-between pl-4 mb-4">
               {edu.concentration && (
                 <span className="rounded-full border border-[#00ff41] px-3 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#00ff41]">
                   {edu.concentration}
@@ -70,14 +76,21 @@ function EducationSection() {
               )}
             </div>
 
-            {/* Coursework */}
+            {/* Description */}
             {edu.description && (
+              <div className="pl-4 mb-2">
+                <p className="text-base font-mono text-[#a5a5a5]">{edu.description}</p>
+              </div>
+            )}
+
+            {/* Coursework */}
+            {edu.skills && (
               <div className="pl-4 pt-3 border-t border-[#2a2a2a]">
                 <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#555] mb-2">
                   Relevant Coursework
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {edu.description.split(',').map(course => (
+                  {edu.skills.split(',').map(course => (
                     <span
                       key={course.trim()}
                       className="rounded bg-[#00ff41]/5 border border-[#00ff41]/15 px-2 py-1 text-xs font-mono text-[#888888]"
