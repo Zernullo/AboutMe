@@ -271,3 +271,8 @@ a.underline:hover::after, a.underline:focus::after {
     @apply border-border outline-ring/50;
   }
 }
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
