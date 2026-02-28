@@ -20,10 +20,8 @@ const educationList: Education[] = [
     endYear: "2027",
     gpa: "3.85",
     skills: "AI & LLM Development, Data Driven Security, Artificial Intelligence, Intro to Cyber, Networks, Operating Systems, Advanced Data Structures and Algorithms, Intro Systems Programming",
-    description: `Currently pursuing a Bachelor of Science in Computer Science at Louisiana State University with a concentration in Cybersecurity. 
-    Expected graduation is in 2027 with a strong academic record, maintaining a GPA of 3.85. 
-    My coursework has provided me with a solid foundation in computer science principles, with a particular focus on cybersecurity concepts and practices. 
-    I have developed skills in AI and LLM development, data-driven security approaches, and have gained hands-on experience through various projects and research opportunities at LSU. 
+    description: `Currently pursuing a Bachelor of Science in Computer Science at Louisiana State University with a concentration in Cybersecurity. Expected graduation is in 2027 with a strong academic record, maintaining a GPA of 3.85. 
+    My coursework has provided me with a solid foundation in computer science principles, with a particular focus on cybersecurity concepts and practices. I have developed skills in AI and LLM development, data-driven security approaches, and have gained hands-on experience through various projects and research opportunities at LSU. 
     I am actively involved in the cybersecurity community on campus and am committed to applying my knowledge and skills to real-world security challenges in the future.`
   },
 ]
@@ -80,7 +78,7 @@ function EducationSection() {
             {/* Description */}
             {edu.description && (
               <div className="pl-2 sm:pl-4 mb-2">
-                <p className="text-base sm:text-lg font-mono text-[#a5a5a5]">{edu.description}</p>
+                <p className="text-sm font-mono text-[#888888] whitespace-pre-line">{edu.description}</p>
               </div>
             )}
 
