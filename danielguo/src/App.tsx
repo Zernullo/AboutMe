@@ -17,6 +17,7 @@ import GlitchHeading from '@/components/ui/GlitchEffect'
 import ScrollReveal from '@/components/ui/ScrollingAnimation'
 import { useLocation } from "react-router-dom"
 import BootScreen from '@/components/ui/BootScreen'
+import EducationSection from './components/sections/EducationSection'
 
 type Phase = "boot" | "splash" | "app"
 
@@ -109,8 +110,9 @@ function App() {
           <div className="mx-auto w-full max-w-6xl px-6 py-10 text-center">
             <ScrollReveal><HeroSection /></ScrollReveal>
             <ScrollReveal delay={100}><AboutSection /></ScrollReveal>
-            <ScrollReveal delay={200}><ProjectsSection onOpen={openItem} /></ScrollReveal>
+            <ScrollReveal delay={200}><EducationSection /></ScrollReveal>
             <ScrollReveal delay={300}><ExperienceSection /></ScrollReveal>
+            <ScrollReveal delay={200}><ProjectsSection onOpen={openItem} /></ScrollReveal>
             <ScrollReveal delay={400}><CertificationsSection onOpen={openItem} /></ScrollReveal>
             <ScrollReveal delay={450}><ActivitiesSection onOpen={openItem} /></ScrollReveal>
             <ScrollReveal delay={500}><CybernewsSection onOpen={openItem} /></ScrollReveal>

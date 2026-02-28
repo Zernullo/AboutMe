@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 
 function Footer() {
 	const currentYear = new Date().getFullYear()
+	const lastUpdated = "February 27, 2026" // Update this date as needed
 
 	return (
         <footer className="w-full overflow-x-hidden rounded-t-xl border-t border-[#333] bg-[#1a1a1a] text-[#e0e0e0] relative z-10">
@@ -68,7 +69,7 @@ function Footer() {
                     </ul>
                 </div>
             </div>
-            <div className="border-t border-[#00ff41]/30 px-4 py-4 text-center text-sm text-[#888888] sm:px-6 lg:px-8">© {currentYear} Daniel Guo. All rights reserved.</div>
+            <div className="border-t border-[#00ff41]/30 px-4 py-4 text-center text-sm text-[#888888] sm:px-6 lg:px-8">© {currentYear} Daniel Guo. All rights reserved.<br />Last updated: {lastUpdated}</div>
         </footer>
 	)
 }
