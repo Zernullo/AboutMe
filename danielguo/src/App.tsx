@@ -40,20 +40,6 @@ function App() {
   }
 
   useEffect(() => {
-    if (!activeItem) return
-
-    const preventScroll = (e: TouchEvent) => e.preventDefault()
-    
-    document.body.style.overflow = 'hidden'
-    document.addEventListener('touchmove', preventScroll, { passive: false })
-
-    return () => {
-      document.body.style.overflow = ''
-      document.removeEventListener('touchmove', preventScroll)
-    }
-  }, [activeItem])
-
-  useEffect(() => {
     // Wait for DOM update after route change
     if (location.hash) {
       const scrollToHash = () => {

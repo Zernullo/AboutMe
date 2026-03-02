@@ -37,20 +37,6 @@ function CybernewsPage() {
   const [activeItem, setActiveItem] = useState<DetailItem | null>(null)
   const [isClosing, setIsClosing] = useState(false)
 
-  useEffect(() => {
-    if (!activeItem) return
-
-    const preventScroll = (e: TouchEvent) => e.preventDefault()
-    
-    document.body.style.overflow = 'hidden'
-    document.addEventListener('touchmove', preventScroll, { passive: false })
-
-    return () => {
-      document.body.style.overflow = ''
-      document.removeEventListener('touchmove', preventScroll)
-    }
-  }, [activeItem])
-
   const openItem = (article: NewsArticle) => {
     setIsClosing(false)
     setActiveItem(articleToDetailItem(article))

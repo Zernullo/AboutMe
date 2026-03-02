@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { projectCards, type DetailItem } from '@/data/portfolio'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
@@ -8,20 +8,6 @@ import PopupCard from '@/components/ui/PopupCard'
 function ProjectsPage() {
   const [activeItem, setActiveItem] = useState<DetailItem | null>(null)
   const [isClosing, setIsClosing] = useState(false)
-
-  useEffect(() => {
-    if (!activeItem) return
-
-    const preventScroll = (e: TouchEvent) => e.preventDefault()
-    
-    document.body.style.overflow = 'hidden'
-    document.addEventListener('touchmove', preventScroll, { passive: false })
-
-    return () => {
-      document.body.style.overflow = ''
-      document.removeEventListener('touchmove', preventScroll)
-    }
-  }, [activeItem])
 
   const openItem = (item: DetailItem) => {
     setIsClosing(false)
