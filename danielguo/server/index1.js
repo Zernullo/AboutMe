@@ -1,3 +1,4 @@
+// ignore this file, this is for sql storage version which is currently not used, but may be useful in the future if I want to add more features that require a database. The current in-memory cache version is simpler and sufficient for now.
 import express from 'express'
 import cors from 'cors'
 import helmet from 'helmet'
