@@ -11,47 +11,51 @@ export const projectCards = [
     title: 'Performance Contract',
     status: 'In Progress',
     year: '2026 - Present',
-    links: [
-      { label: 'GitHub Repository (In Progress)', url: 'https://github.com/Tamely/Performance-LLM' }
-    ],
+    // links: [
+    //   { label: 'GitHub Repository (In Progress)', url: 'https://github.com/Tamely/Performance-LLM' }
+    // ],
     summary: 'This project was developed for my CSC 4700 AI & LLM Development class in collaboration with Performance Contractors and focuses on analyzing slip-and-fall incident data using a Large Language Model. The purpose is to allow personnel on-site to ask the LLM what hazards to look out for based on historical incident patterns and safety reports.',
     details: `For this class project, I am building an LLM-based safety assistant designed specifically around slip-and-fall incident data provided by Performance Contractors. 
     The system analyzes past incident reports and safety documentation so that when a worker or supervisor is physically present at a job site, they can ask the model contextual questions such as what risks are common in that area, during certain shifts, or under particular conditions. 
     Instead of manually reviewing years of reports, the LLM interprets historical safety information and provides clear, practical guidance to help workers stay aware of potential hazards. 
-    The overall goal is to reduce incidents by making safety knowledge easily accessible, actionable, and available in real time.`
+    The overall goal is to reduce incidents by making safety knowledge easily accessible, actionable, and available in real time.
+    This project is built using C# for the backend data processing, React for the frontend interface, and Azure/PostgreSQL for the database. It is a great opportunity to explore real-world applications of LLMs in occupational safety.`
   },
   {
     title: 'ZL-Audio (Zero Latency Audio)',
     status: 'Starting Soon',
     year: '2026 - Present',
-    links: [
-      { label: 'GitHub Repository (In Progress)', url: '' }
-    ],
+    // links: [
+    //   { label: 'GitHub Repository (In Progress)', url: '' }
+    // ],
     summary: 'This is a personal project that I will be working on to create a low-latency audio processing library for real-time applications.',
-    details: `ZL-Audio (Zero Latency Audio) is a real-time translation platform built on a low-latency audio engine that breaks language barriers across any foreign-language media — videos, novels, manga, songs, and more.
-    The platform captures and processes audio, text, and images through specialized AI engines including ASR, OCR, and NLP to deliver instant, context-aware translations as captions, overlays, or spoken output.
+    details: `ZL-Audio (Zero Latency Audio) is a real-time translation platform built on a low-latency audio engine that breaks language barriers across any foreign-language media — live audio, videos, novels, manga, songs, and more.
+    The platform captures and processes speech, audio, text, and images through specialized AI engines including ASR, OCR, and NLP to deliver instant, context-aware translations as captions, overlays, or spoken output.
     Its zero-latency design enables floating subtitles, interactive reading modes, and live talk-back translation for real-time conversations.
-    Starting with Chinese-to-English, ZL-Audio is built on a scalable, modular foundation ready for global expansion, LLM-powered context awareness, and personalized learning features — making it suitable for professional audio, streaming, and real-time multilingual communication applications.`
+    Starting with Chinese-to-English, ZL-Audio is built on a scalable, modular foundation ready for global expansion, LLM-powered context awareness, and personalized learning features — making it suitable for professional audio, streaming, and real-time multilingual communication applications.
+    This project is built using Python for the backend audio processing and React for the frontend interface, and it is a great opportunity to explore real-time audio processing and AI integration.`
   },
   {
     title: 'GeoData Visualizer',
     status: 'Starting Soon',
     year: '2026 - Present',
-    links: [
-      { label: 'GitHub Repository (In Progress)', url: '' }
-    ],
-    summary: 'This project is my class project for CSC 4700, Data Driven Security. A project that visualizes geospatial data in an innovative way.',
-    details: `This project is my class project for CSC 4700, Data Driven Security. The goal of this project is to create a geospatial data visualizer that can take in various types of geospatial data and visualize it in an interactive and informative way.
-    The project currently just started and I am in the early stages of planning and research. 
-    More project specifications and details will be added as the project progresses, but the main focus will be on creating a tool that can help users understand and analyze geospatial data effectively.`
+    // links: [
+    //   { label: 'GitHub Repository (In Progress)', url: '' }
+    // ],
+    summary: 'This project is my class project for CSC 4700, Data Driven Security. A project that finds metadata in images. The goal of this project is to analyze social media images to extract metadata such as geolocation, timestamps, and other relevant information that can be used for security analysis and threat detection.',
+    details: `For this class project, I am developing a GeoData Visualizer that processes images from social media platforms to extract and visualize metadata such as geolocation, timestamps, and other relevant information.
+    The system uses images posted on social media to identify potential security threats by analyzing patterns in the metadata.
+    We will have a controlled dataset of images we took ourselves, and post them on numerous social media platforms to test the system's ability to extract and analyze metadata accurately.
+    Then we will compare the results to identify social media platforms that are more secure in terms of metadata exposure, and we will also analyze the types of metadata that are commonly exposed and how they can be used for security analysis.
+    The project will be built using Python for data processing and React for the frontend.`
   },
   {
     title: 'Suni The Travel Companion',
     status: 'In Progress',
     year: '2026 - Present',
-    links: [
-      { label: 'GitHub Repository', url: 'https://github.com/Haze-7/Suni' }
-    ],
+    // links: [
+    //   { label: 'GitHub Repository', url: 'https://github.com/Haze-7/Suni' }
+    // ],
     summary: 'This project is my class project for CSC 4330, Software System. This is a capstone course where we have to build a software system from scratch. The project is a travel companion app that provides users with personalized travel recommendations, itinerary planning, and real-time updates on their trips.',
     details: `This project is my class project for CSC 4330, Software System. This is a capstone course where we have to build a software system from scratch. 
     Suni is a travel companion app that provides users with personalized travel recommendations, itinerary planning, and real-time updates on their trips.
@@ -59,7 +63,7 @@ export const projectCards = [
     The app will also generate a plans based on the weather forecast, and it will have a feature where it give user travel tips.
     The app features a clean UI, real-time updates, and integration with Maps APIs for accurate information.
     As well as a live iterary planner based on the weather forecast as date approaches.
-    This project is built using React Native for cross-platform compatibility, and it is a great experience in mobile app development and teamwork.`
+    This project is built using React Native for cross-platform compatibility, and Django Python for the backend, making it a great experience in mobile app development and teamwork.`
   },
   {
     title: 'Texas Holdem Bot',
