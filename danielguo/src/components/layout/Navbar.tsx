@@ -1,10 +1,6 @@
-// Navigation bar component
-// Provides navigation links to different pages and handles theme switching
-
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Github, Linkedin, Menu, Shield, X } from 'lucide-react'
-// import logo from '../../assets/icons/logo.png'
 
 function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -16,18 +12,13 @@ function Navbar() {
     return (
         <nav className="fixed left-0 top-0 z-50 w-full overflow-x-hidden rounded-b-xl border-b border-[#333] bg-[#1a1a1a] text-[#e0e0e0]">
             <div className="flex items-center justify-between px-4 py-5 sm:px-6 lg:px-8">
-                <div className="pl-10 text-2xl font-bold text-[#00ff41]">
-                    <Link to="/" className="hover:text-[#00ff41] hover:underline transition-colors">Daniel Guo
-                        {/* <img
-                            src={logo}
-                            alt="Logo"
-                            className="h-8 w-8 inline-block align-middle"
-                            style={{ verticalAlign: 'middle' }}
-                        /> */}
+                <div className="pl-4 sm:pl-10 text-2xl font-bold text-[#00ff41]">
+                    <Link to="/" className="hover:text-[#00ff41] transition-colors">
+                        Daniel Guo
                     </Link>
                 </div>
                 
-                {/* Desktop Navigation - hidden on mobile, visible on md+ */}
+                {/* Desktop Navigation */}
                 <div className="hidden md:flex items-center space-x-4 text-lg">
                     <Link to={{ pathname: "/", hash: "#home" }} className="underline hover:text-[#00ff41] transition-colors">Home</Link>
                     <Link to={{ pathname: "/", hash: "#about" }} className="underline hover:text-[#00ff41] transition-colors">About</Link>
@@ -48,25 +39,25 @@ function Navbar() {
                     </div>
                 </div>
 
-                {/* Hamburger Menu Button - visible on mobile, hidden on md+ */}
+                {/* Hamburger Menu Button */}
                 <button
                     onClick={toggleMenu}
-                    className="md:hidden text-[#e0e0e0] hover:text-[#00ff41] transition-colors p-2"
+                    className="md:hidden text-[#e0e0e0] hover:text-[#00ff41] transition-colors p-2 cursor-pointer"
                     aria-label="Toggle menu"
                 >
                     {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
             </div>
 
-            {/* Mobile Navigation - slides down when menu is open */}
+            {/* Mobile Navigation Backdrop */}
             {isMenuOpen && (
                 <div 
-                    className="md:hidden fixed inset-0 z-40 bg-black bg-opacity-50"
+                    className="md:hidden fixed inset-0 z-40 bg-black/60 backdrop-blur-xs"
                     onClick={() => setIsMenuOpen(false)}
                 />
             )}
             
-            {/* Mobile Sidebar - slides in from right */}
+            {/* Mobile Sidebar */}
             <div 
                 className={`md:hidden fixed top-0 right-0 h-full w-64 bg-[#1a1a1a] border-l border-[#333] shadow-lg transform transition-transform duration-300 ease-in-out z-50 ${
                     isMenuOpen ? 'translate-x-0' : 'translate-x-full'
@@ -77,7 +68,7 @@ function Navbar() {
                     <div className="flex justify-end p-4 border-b border-[#333]">
                         <button
                             onClick={toggleMenu}
-                            className="text-[#e0e0e0] hover:text-[#00ff41] transition-colors p-2"
+                            className="text-[#e0e0e0] hover:text-[#00ff41] transition-colors p-2 cursor-pointer"
                             aria-label="Close menu"
                         >
                             <X size={24} />
@@ -87,7 +78,7 @@ function Navbar() {
                     {/* Menu items */}
                     <div className="flex flex-col space-y-2 px-6 py-6">
                         <Link
-                            to="/"
+                            to={{ pathname: "/", hash: "#home" }}
                             className="underline hover:text-[#00ff41] transition-colors py-3 text-xl inline-block"
                             onClick={() => setIsMenuOpen(false)}
                         >Home</Link>

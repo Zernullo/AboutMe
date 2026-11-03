@@ -1,9 +1,7 @@
-// https://newsapi.ai/dashboard?tab=home - api key for fetching cybersecurity news
 import express from 'express'
 import cors from 'cors'
 import helmet from 'helmet'
 import nodemailer from 'nodemailer'
-// import { Pool } from 'pg'
 import { z } from 'zod'
 
 const app = express()
@@ -27,10 +25,6 @@ app.use(
     }
   })
 )
-
-// const pool = new Pool({
-//   connectionString: process.env.DATABASE_URL
-// })
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
@@ -63,7 +57,7 @@ function isDisposableEmail(email) {
 
 function isSuspiciousEmail(email) {
   const localPart = email.split('@')[0]?.toLowerCase()
-  if (localPart.length < 3) return true
+  if (!localPart || localPart.length < 3) return true
   const fakePatterns = /^(test|fake|spam|asdf|qwer|admin|temp|dummy|sample|example|user\d+|aaa+|zzz+)$/i
   if (fakePatterns.test(localPart)) return true
   if (!/[aeiou]/i.test(localPart)) return true
@@ -78,7 +72,7 @@ async function verifyRecaptcha(token) {
     const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${token}`
+      body: `secret=${encodeURIComponent(process.env.RECAPTCHA_SECRET_KEY)}&response=${encodeURIComponent(token)}`
     })
     const data = await response.json()
     return data.success && data.score > 0.5
@@ -87,14 +81,26 @@ async function verifyRecaptcha(token) {
   }
 }
 
+// Rate limiting with automatic garbage collection
 const lastRequestByIp = new Map()
+const RATE_LIMIT_WINDOW = 10000 // 10 seconds
+
+function cleanOldRateLimits() {
+  const now = Date.now()
+  for (const [ip, timestamp] of lastRequestByIp.entries()) {
+    if (now - timestamp > RATE_LIMIT_WINDOW) {
+      lastRequestByIp.delete(ip)
+    }
+  }
+}
+setInterval(cleanOldRateLimits, 60000)
 
 app.post('/api/contact', async (req, res) => {
   try {
     const ip = req.headers['x-forwarded-for']?.split(',')[0] || req.socket.remoteAddress
     const lastRequest = lastRequestByIp.get(ip)
 
-    if (lastRequest && Date.now() - lastRequest < 10000) {
+    if (lastRequest && Date.now() - lastRequest < RATE_LIMIT_WINDOW) {
       res.status(429).json({ ok: false, error: 'Please wait before sending another message.' })
       return
     }
@@ -114,21 +120,10 @@ app.post('/api/contact', async (req, res) => {
       }
     }
 
-    if (isDisposableEmail(email)) {
+    if (isDisposableEmail(email) || isSuspiciousEmail(email)) {
       res.status(400).json({ ok: false, error: 'Please use a valid email address.' })
       return
     }
-
-    if (isSuspiciousEmail(email)) {
-      res.status(400).json({ ok: false, error: 'Please use a valid email address.' })
-      return
-    }
-
-    // // Save to database
-    // await pool.query(
-    //   'INSERT INTO contact_messages (name, email, message) VALUES ($1, $2, $3)',
-    //   [name, email, message]
-    // )
 
     const to = process.env.CONTACT_TO
     const from = process.env.CONTACT_FROM || process.env.SMTP_USER
@@ -142,7 +137,7 @@ app.post('/api/contact', async (req, res) => {
     })
 
     lastRequestByIp.set(ip, Date.now())
-    res.json({ ok: true, message: 'Message sent. Thank you!' })
+    res.json({ ok: true, message: 'Message sent successfully. Thank you!' })
   } catch (error) {
     if (error instanceof z.ZodError) {
       res.status(400).json({ ok: false, error: error.errors.map((e) => e.message).join(' ') })
@@ -161,7 +156,7 @@ const FETCH_INTERVAL = 24 * 60 * 60 * 1000
 async function fetchNews() {
   const apiKey = process.env.NEWS_API_KEY
   if (!apiKey) {
-    console.error('NEWS_API_KEY not configured')
+    console.warn('NEWS_API_KEY not configured, skipping fetch')
     return
   }
 
@@ -202,53 +197,39 @@ async function fetchNews() {
 
     cachedArticles = articles
       .filter(a => a.url && a.title)
-      .map(a => ({
-        title: typeof a.title === 'object' ? a.title.eng : a.title,
-        summary: typeof a.summary === 'object'
+      .map(a => {
+        const titleStr = typeof a.title === 'object' ? a.title.eng : a.title
+        const summaryStr = typeof a.summary === 'object'
           ? a.summary.eng
-          : a.summary || a.body?.substring(0, 500) + '...' || 'No summary available',
-        url: a.url,
-        source: a.source?.title || 'Unknown',
-        image: a.image || null,
-        publishedAt: a.dateTimePub || a.dateTime,
-        date: new Date(a.dateTimePub || a.dateTime).toLocaleDateString('en-US', {
-          month: 'short', day: 'numeric', year: 'numeric'
-        })
-      }))
+          : a.summary || (a.body ? a.body.substring(0, 500) + '...' : 'No summary available')
+        const rawDate = a.dateTimePub || a.dateTime
+        const parsedDate = rawDate ? new Date(rawDate) : null
+        const dateStr = parsedDate && !isNaN(parsedDate.getTime())
+          ? parsedDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+          : 'Recent'
+
+        return {
+          title: titleStr,
+          summary: summaryStr,
+          url: a.url,
+          source: a.source?.title || 'Unknown',
+          image: a.image || null,
+          publishedAt: rawDate || new Date().toISOString(),
+          date: dateStr
+        }
+      })
 
     lastFetchTimestamp = Date.now()
-    console.log(`Fetched ${cachedArticles.length} articles`)
+    console.log(`Fetched ${cachedArticles.length} cybersecurity articles`)
   } catch (error) {
     console.error('Failed to fetch news:', error.message)
   }
 }
 
-// async function fetchAndStoreNews() {
-//   const apiKey = process.env.NEWS_API_KEY
-//   if (!apiKey) {
-//     console.error('NEWS_API_KEY not configured')
-//     return
-//   }
-//   try {
-//     const response = await fetch('https://eventregistry.org/api/v1/article/getArticles', { ... })
-//     ...
-//     for (const article of articles) {
-//       await pool.query(
-//         `INSERT INTO cybernews_articles (title, summary, url, source, image_url, published_at)
-//          VALUES ($1, $2, $3, $4, $5, $6)
-//          ON CONFLICT (url) DO NOTHING`,
-//         [title, summary, article.url, source, imageUrl, publishedAt]
-//       )
-//     }
-//   } catch (error) {
-//     console.error('Failed to fetch from newsapi.ai:', error.message)
-//   }
-// }
-
 app.get('/api/cybernews', async (req, res) => {
   try {
-    const limit = Math.min(parseInt(String(req.query.limit)) || 10, 50)
-    const page = Math.max(parseInt(String(req.query.page)) || 1, 1)
+    const limit = Math.min(parseInt(String(req.query.limit), 10) || 10, 50)
+    const page = Math.max(parseInt(String(req.query.page), 10) || 1, 1)
 
     // Refresh cache if older than 24 hours
     if (Date.now() - lastFetchTimestamp > FETCH_INTERVAL) {
@@ -259,18 +240,7 @@ app.get('/api/cybernews', async (req, res) => {
     const offset = (page - 1) * limit
     const articles = cachedArticles.slice(offset, offset + limit)
 
-    // // Database version:
-    // const countResult = await pool.query('SELECT COUNT(*) FROM cybernews_articles')
-    // const total = parseInt(countResult.rows[0].count)
-    // const result = await pool.query(
-    //   `SELECT title, summary, url, source, image_url as "image", published_at as "publishedAt"
-    //    FROM cybernews_articles
-    //    ORDER BY published_at DESC
-    //    LIMIT $1 OFFSET $2`,
-    //   [limit, offset]
-    // )
-
-    res.json({ ok: true, articles, total, page, limit, totalPages: Math.ceil(total / limit) })
+    res.json({ ok: true, articles, total, page, limit, totalPages: Math.ceil(total / limit) || 1 })
   } catch (error) {
     console.error('Cybernews error:', error)
     res.status(500).json({ ok: false, error: 'Failed to fetch cybernews' })
@@ -284,33 +254,6 @@ fetchNews().catch(err => console.error('Initial news fetch failed:', err))
 setInterval(() => {
   fetchNews().catch(err => console.error('Scheduled fetch failed:', err))
 }, FETCH_INTERVAL)
-
-// // On server start with database:
-// const { rows } = await pool.query('SELECT MAX(created_at) as last_fetch FROM cybernews_articles')
-// const lastFetch = rows[0]?.last_fetch
-// const oneDayAgo = Date.now() - 24 * 60 * 60 * 1000
-// if (!lastFetch || new Date(lastFetch).getTime() < oneDayAgo) {
-//   fetchAndStoreNews().catch(err => console.error('Initial news fetch failed:', err))
-// } else {
-//   console.log('Articles are fresh, skipping initial fetch')
-//   lastFetchTimestamp = new Date(lastFetch).getTime()
-// }
-
-// // Automatic cleanup of old articles
-// async function cleanupOldArticles() {
-//   try {
-//     const result = await pool.query(
-//       `DELETE FROM cybernews_articles
-//        WHERE published_at < NOW() - INTERVAL '6 months'
-//        RETURNING id`
-//     )
-//     if (result.rowCount > 0) console.log(`Cleaned up ${result.rowCount} old articles`)
-//   } catch (error) {
-//     console.error('Failed to cleanup old articles:', error.message)
-//   }
-// }
-// setInterval(() => cleanupOldArticles(), 24 * 60 * 60 * 1000)
-// cleanupOldArticles()
 
 app.listen(port, () => {
   console.log(`API running on port ${port}`)

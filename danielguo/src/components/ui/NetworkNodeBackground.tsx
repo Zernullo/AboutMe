@@ -2,18 +2,6 @@ import { useEffect, useRef } from 'react'
 
 const NODE_COUNT = 30
 const LINK_DISTANCE = 120
-function getProtectedArea() {
-  const width = window.innerWidth * 0.7;  // 70% of viewport width
-  const height = window.innerHeight * 0.3; // 30% of viewport height
-  return {
-    width,
-    height,
-    x: window.innerWidth / 2 - width / 2,
-    y: window.innerHeight / 2 - height / 2,
-  };
-}
-
-let PROTECTED_AREA = getProtectedArea()
 
 function random(min: number, max: number) {
   return Math.random() * (max - min) + min
@@ -34,6 +22,19 @@ const NetworkNodesBackground = () => {
     canvas.width = width
     canvas.height = height
 
+    let protectedArea = {
+      width: width * 0.7,
+      height: height * 0.3,
+      x: width * 0.15,
+      y: height * 0.35,
+    }
+
+    const isInProtectedArea = (x: number, y: number) =>
+      x > protectedArea.x &&
+      x < protectedArea.x + protectedArea.width &&
+      y > protectedArea.y &&
+      y < protectedArea.y + protectedArea.height
+
     // Initialize nodes
     nodes.current = Array.from({ length: NODE_COUNT }, () => ({
       x: random(0, width),
@@ -46,19 +47,12 @@ const NetworkNodesBackground = () => {
     const animate = () => {
       ctx.clearRect(0, 0, width, height)
 
-      // Draw protected area for debugging
-      // ctx.save()
-      // ctx.globalAlpha = 0.3
-      // ctx.fillStyle = '#ff00ff' // Magenta, change to any color you like
-      // ctx.fillRect(
-      //   PROTECTED_AREA.x,
-      //   PROTECTED_AREA.y,
-      //   PROTECTED_AREA.width,
-      //   PROTECTED_AREA.height
-      // )
-      // ctx.restore()
-
       // Draw links
+      ctx.strokeStyle = '#00ff41'
+      ctx.globalAlpha = 0.6
+      ctx.lineWidth = 1
+      ctx.beginPath()
+
       for (let i = 0; i < NODE_COUNT; i++) {
         for (let j = i + 1; j < NODE_COUNT; j++) {
           const a = nodes.current[i]
@@ -71,35 +65,29 @@ const NetworkNodesBackground = () => {
             !isInProtectedArea(a.x, a.y) &&
             !isInProtectedArea(b.x, b.y)
           ) {
-            ctx.save()
-            ctx.globalAlpha = 1 // Increased for more visible lines
-            ctx.strokeStyle = '#00ff41' // Neon green color
-            ctx.beginPath()
             ctx.moveTo(a.x, a.y)
             ctx.lineTo(b.x, b.y)
-            ctx.stroke()
-            ctx.restore()
           }
         }
       }
+      ctx.stroke()
 
       // Draw nodes
+      ctx.shadowColor = '#00ff41'
+      ctx.shadowBlur = 10
+      ctx.fillStyle = '#00ff41'
+      ctx.globalAlpha = 0.7
+
       for (const node of nodes.current) {
-        ctx.save()
-        ctx.shadowColor = '#00ff41' // Neon green shadow
-        ctx.shadowBlur = 12
-        ctx.fillStyle = '#00ff41' // Neon green color
-        ctx.globalAlpha = 0.7
         ctx.beginPath()
-        ctx.arc(node.x, node.y, 5, 0, Math.PI * 2)
+        ctx.arc(node.x, node.y, 4, 0, Math.PI * 2)
         ctx.fill()
-        ctx.restore()
 
         // Bounce off protected area
         if (isInProtectedArea(node.x, node.y)) {
-          if (node.x < PROTECTED_AREA.x + PROTECTED_AREA.width / 2) node.vx = -Math.abs(node.vx)
+          if (node.x < protectedArea.x + protectedArea.width / 2) node.vx = -Math.abs(node.vx)
           else node.vx = Math.abs(node.vx)
-          if (node.y < PROTECTED_AREA.y + PROTECTED_AREA.height / 2) node.vy = -Math.abs(node.vy)
+          if (node.y < protectedArea.y + protectedArea.height / 2) node.vy = -Math.abs(node.vy)
           else node.vy = Math.abs(node.vy)
         }
 
@@ -112,6 +100,9 @@ const NetworkNodesBackground = () => {
         if (node.y < 0 || node.y > height) node.vy *= -1
       }
 
+      // Reset shadow for next frame
+      ctx.shadowBlur = 0
+
       animationId = requestAnimationFrame(animate)
     }
 
@@ -122,7 +113,17 @@ const NetworkNodesBackground = () => {
       height = window.innerHeight
       canvas.width = width
       canvas.height = height
-      PROTECTED_AREA = getProtectedArea()
+      protectedArea = {
+        width: width * 0.7,
+        height: height * 0.3,
+        x: width * 0.15,
+        y: height * 0.35,
+      }
+      // Re-clamp any out of bound nodes
+      for (const node of nodes.current) {
+        if (node.x > width) node.x = width - 10
+        if (node.y > height) node.y = height - 10
+      }
     }
     window.addEventListener('resize', handleResize)
 
@@ -143,17 +144,11 @@ const NetworkNodesBackground = () => {
         height: '100vh',
         zIndex: 0,
         pointerEvents: 'none',
-        opacity: 0.8, // Increased for better visibility
-        mixBlendMode: 'normal', // Change to normal for more contrast
+        opacity: 0.8,
+        mixBlendMode: 'normal',
       }}
     />
   )
 }
-
-const isInProtectedArea = (x: number, y: number) =>
-  x > PROTECTED_AREA.x &&
-  x < PROTECTED_AREA.x + PROTECTED_AREA.width &&
-  y > PROTECTED_AREA.y &&
-  y < PROTECTED_AREA.y + PROTECTED_AREA.height
 
 export default NetworkNodesBackground

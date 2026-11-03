@@ -43,16 +43,24 @@ function ProjectsPage() {
           </div>
           <div className="grid gap-6 md:grid-cols-2">
             {projectCards.map((project) => (
-              <div
+              <button
                 key={project.title}
-                onClick={() => openItem(project)}  // ← wire up the click
-                className="cursor-pointer rounded border border-[#333] bg-[#1a1a1a] p-5 text-left transition-all hover:-translate-y-2 hover:border-[#00ff41]/60 hover:shadow-[0_0_20px_rgba(0,255,65,0.15)]"
+                type="button"
+                onClick={() =>
+                  openItem({
+                    title: project.title,
+                    meta: `${project.year ? project.year : ''} • ${project.status ? project.status : ''}`,
+                    details: project.details,
+                    links: project.links
+                  })
+                }
+                className="cursor-pointer rounded border border-[#333] bg-[#1a1a1a] p-5 text-left transition-all hover:-translate-y-2 hover:border-[#00ff41]/60 hover:shadow-[0_0_20px_rgba(0,255,65,0.15)] w-full"
               >
                 <h2 className="text-lg font-bold text-[#e0e0e0] mb-1">{project.title}</h2>
                 <span className="rounded-full border border-[#00ff41] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#00ff41]">{project.status}</span>
                 <p className="mt-2 text-sm text-[#888888]">{project.summary}</p>
                 <p className="mt-2 text-xs text-[#888888]">{project.year}</p>
-              </div>
+              </button>
             ))}
           </div>
         </div>

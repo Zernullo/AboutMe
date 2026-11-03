@@ -15,8 +15,8 @@ const MatrixRain = () => {
     canvas.height = height
 
     const fontSize = 16
-    const columns = Math.floor(width / fontSize)
-    const drops = Array.from({ length: columns }, () => Math.random() * height / fontSize)
+    let columns = Math.floor(width / fontSize)
+    let drops = Array.from({ length: columns }, () => Math.random() * (height / fontSize))
 
     const draw = () => {
       ctx.fillStyle = 'rgba(17,17,17,0.15)'
@@ -46,6 +46,11 @@ const MatrixRain = () => {
       height = window.innerHeight
       canvas.width = width
       canvas.height = height
+      const newColumns = Math.floor(width / fontSize)
+      if (newColumns !== columns) {
+        columns = newColumns
+        drops = Array.from({ length: columns }, () => Math.random() * (height / fontSize))
+      }
     }
     window.addEventListener('resize', handleResize)
 

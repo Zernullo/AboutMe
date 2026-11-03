@@ -10,7 +10,7 @@ type Experience = {
 }
 
 const experiences: Experience[] = [
-    {
+  {
 		company: 'University IT',
 		role: 'IT Support Specialist',
 		period: '2026 - Present (Part-Time)',
@@ -24,12 +24,12 @@ const experiences: Experience[] = [
 		company: 'Rise Studio',
 		role: 'Research Assistant',
 		period: '2025 - Present (Part-Time)',
-		description: `LSU Rise Studio is an interdisciplinary research lab focused on Software Engineering and Robotics
-		I work closely under PHD candidate Elijah Phifer on a project called pAIrStudio, which is a research platform designed to study the effectiveness of AI-assisted programming in educational contexts.
-		The participant will complete a visual programming challenges to control a warehouse robot in an isometric environment while receiving levels of AI assistance based on experimental group assignment.
+		description: `LSU Rise Studio is an interdisciplinary research lab focused on Software Engineering and Robotics.
+		I work closely under PhD candidate Elijah Phifer on a project called pAIrStudio, which is a research platform designed to study the effectiveness of AI-assisted programming in educational contexts.
+		Participants complete visual programming challenges to control a warehouse robot in an isometric environment while receiving levels of AI assistance based on experimental group assignment.
 		My role involves developing the platform using Phaser.js for the game environment, implementing features and completing tasks assigned by the lead developer, Elijah.
 		This experience has allowed me to gain hands-on experience in software development, research methodologies, and the application of AI in educational settings.`,
-		skills: ['JavaScript', 'Phaser.js', 'AI Chatbox Integration', 'Educational Technology'],
+		skills: ['JavaScript', 'Phaser.js', 'AI Chatbot Integration', 'Educational Technology'],
 		github: { label: 'View on GitHub', url: 'https://github.com/riseatlsu/pAIrStudio' }
 	},
 ]
@@ -52,7 +52,7 @@ function ExperienceSection() {
 
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 				{experiences.map(exp => (
-					<div key={exp.company + exp.role} className="flex flex-col rounded border border-[#00ff41]/20 bg-[#1a1a1a] p-6 shadow-md hover:border-[#00ff41]/60 transition-all">
+					<div key={exp.company + exp.role} className="flex flex-col rounded border border-[#00ff41]/20 bg-[#1a1a1a] p-6 shadow-md hover:border-[#00ff41]/60 transition-all text-left">
 						<div className="flex items-center gap-2 mb-2">
 							<span className="h-1.5 w-1.5 rounded-full bg-[#00ff41] shadow-[0_0_6px_#00ff41]" />
 							<span className="text-xs font-mono uppercase tracking-widest text-[#00ff41]">{exp.company}</span>

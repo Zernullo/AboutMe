@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { type DetailItem } from '@/data/portfolio'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 
 type CybernewsSectionProps = {
   onOpen: (item: DetailItem) => void
@@ -24,36 +24,45 @@ function CybernewsSection({ onOpen }: CybernewsSectionProps) {
   const [error, setError] = useState('')
 
   useEffect(() => {
+    let isMounted = true
     const fetchNews = async () => {
       try {
         const response = await fetch(`${API_BASE}/api/cybernews`)
         const data = await response.json()
         
-        if (data.ok && data.articles) {
-          setArticles(data.articles)
-          setError('')
-        } else {
-          setError('Unable to load news')
+        if (isMounted) {
+          if (data.ok && data.articles) {
+            setArticles(data.articles)
+            setError('')
+          } else {
+            setError('Unable to load news')
+          }
         }
       } catch {
-        setError('Failed to fetch news')
+        if (isMounted) {
+          setError('Failed to fetch news')
+        }
       } finally {
-        setLoading(false)
+        if (isMounted) {
+          setLoading(false)
+        }
       }
     }
 
     fetchNews()
+    return () => {
+      isMounted = false
+    }
   }, [])
 
   return (
     <section id="cybernews" className="py-10">
       {/* Header Section with Decorative Lines */}
       <div className="flex items-center gap-6 mb-12">
-        {/* Left Decorative Line */}
         <div className="flex-1 h-px bg-linear-to-r from-transparent via-[#00ff41]/40 to-[#00ff41]/10" />
         
         <div className="text-center">
-          <h2 className="text-3xl font-mono font-black tracking-wide text-[#00ff41] uppercase italic ">
+          <h2 className="text-3xl font-mono font-black tracking-wide text-[#00ff41] uppercase italic">
             Intelligence Feed 
           </h2>
           <p className="mt-1 text-[10px] font-mono uppercase tracking-[0.3em] text-[#888]">
@@ -61,7 +70,6 @@ function CybernewsSection({ onOpen }: CybernewsSectionProps) {
           </p>
         </div>
 
-        {/* Right Decorative Line */}
         <div className="flex-1 h-px bg-linear-to-l from-transparent via-[#00ff41]/40 to-[#00ff41]/10" />
       </div>
       
@@ -96,7 +104,7 @@ function CybernewsSection({ onOpen }: CybernewsSectionProps) {
                 image: article.image || ''
               })
             }
-            className="group relative w-full overflow-hidden rounded border border-[#00ff41]/20 bg-[#1a1a1a] p-5 text-left transition-all duration-300 hover:border-[#00ff41]/60 hover:bg-[#0f1a0f] hover:shadow-[0_0_30px_rgba(0,255,65,0.1)]"
+            className="group relative w-full overflow-hidden rounded border border-[#00ff41]/20 bg-[#1a1a1a] p-5 text-left transition-all duration-300 hover:border-[#00ff41]/60 hover:bg-[#0f1a0f] hover:shadow-[0_0_30px_rgba(0,255,65,0.1)] cursor-pointer"
           >
             {/* Index number accent */}
             <span className="absolute right-4 top-4 text-4xl font-bold text-[#00ff41]/5 group-hover:text-[#00ff41]/10 transition-all">

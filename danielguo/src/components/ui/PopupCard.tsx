@@ -27,21 +27,31 @@ const PopupCard = ({ item, isClosing, onClose }: PopupCardProps) => {
       e.preventDefault()
     }
 
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose()
+      }
+    }
+
     document.body.style.overflow = 'hidden'
     el.addEventListener('wheel', handleWheel, { passive: false })
     document.addEventListener('touchmove', preventScroll, { passive: false })
+    window.addEventListener('keydown', handleKeyDown)
 
     return () => {
       document.body.style.overflow = ''
       el.removeEventListener('wheel', handleWheel)
       document.removeEventListener('touchmove', preventScroll)
+      window.removeEventListener('keydown', handleKeyDown)
     }
-  }, [])
+  }, [onClose])
 
   return (
     <div
       className={`${isClosing ? 'animate-modal-overlay-out' : 'animate-modal-overlay'} fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4`}
       onClick={onClose}
+      role="dialog"
+      aria-modal="true"
     >
       <div
         className={`${isClosing ? 'animate-modal-panel-out' : 'animate-modal-panel'} relative w-full max-w-2xl text-left`}
@@ -56,7 +66,14 @@ const PopupCard = ({ item, isClosing, onClose }: PopupCardProps) => {
               <span className="h-1.5 w-1.5 rounded-full bg-[#00ff41] shadow-[0_0_6px_#00ff41]" />
               <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#888888]">INTEL REPORT</span>
             </div>
-            <button type="button" onClick={onClose} className="flex h-6 w-6 items-center justify-center rounded border border-[#333] text-xs text-[#888888] transition hover:border-[#e0e0e0]/40 hover:text-[#e0e0e0]">✕</button>
+            <button
+              type="button"
+              onClick={onClose}
+              aria-label="Close modal"
+              className="flex h-6 w-6 items-center justify-center rounded border border-[#333] text-xs text-[#888888] transition hover:border-[#e0e0e0]/40 hover:text-[#e0e0e0] cursor-pointer"
+            >
+              ✕
+            </button>
           </div>
 
           {/* Scrollable content */}
@@ -101,7 +118,13 @@ const PopupCard = ({ item, isClosing, onClose }: PopupCardProps) => {
                   READ MORE →
                 </a>
               )}
-              <button onClick={onClose} className="text-[11px] font-mono uppercase tracking-widest text-[#00ff41] hover:text-[#00ff41]/60">[ CLOSE ]</button>
+              <button
+                type="button"
+                onClick={onClose}
+                className="text-[11px] font-mono uppercase tracking-widest text-[#00ff41] hover:text-[#00ff41]/60 cursor-pointer"
+              >
+                [ CLOSE ]
+              </button>
             </div>
           </div>
         </div>

@@ -5,11 +5,33 @@ const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY || ''
 
 declare global {
   interface Window {
-    grecaptcha: {
+    grecaptcha?: {
       ready: (callback: () => void) => void
       execute: (siteKey: string, options: { action: string }) => Promise<string>
     }
   }
+}
+
+const loadRecaptchaScript = (siteKey: string): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    if (typeof window === 'undefined' || window.grecaptcha) {
+      resolve()
+      return
+    }
+    const scriptId = 'google-recaptcha-script'
+    if (document.getElementById(scriptId)) {
+      resolve()
+      return
+    }
+    const script = document.createElement('script')
+    script.id = scriptId
+    script.src = `https://www.google.com/recaptcha/api.js?render=${encodeURIComponent(siteKey)}`
+    script.async = true
+    script.defer = true
+    script.onload = () => resolve()
+    script.onerror = () => reject(new Error('Failed to load reCAPTCHA'))
+    document.head.appendChild(script)
+  })
 }
 
 function ContactSection() {
@@ -35,15 +57,18 @@ function ContactSection() {
     setIsSubmitting(true)
     try {
       let recaptchaToken = ''
-      
-      if (RECAPTCHA_SITE_KEY && window.grecaptcha) {
+
+      if (RECAPTCHA_SITE_KEY) {
         try {
-          recaptchaToken = await new Promise<string>((resolve) => {
-            window.grecaptcha.ready(async () => {
-              const token = await window.grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'contact' })
-              resolve(token)
+          await loadRecaptchaScript(RECAPTCHA_SITE_KEY)
+          if (window.grecaptcha) {
+            recaptchaToken = await new Promise<string>((resolve) => {
+              window.grecaptcha?.ready(async () => {
+                const token = await window.grecaptcha?.execute(RECAPTCHA_SITE_KEY, { action: 'contact' })
+                resolve(token || '')
+              })
             })
-          })
+          }
         } catch {
           setStatus('Security check failed. Please refresh and try again.')
           setStatusTone('error')
@@ -65,13 +90,13 @@ function ContactSection() {
         return
       }
 
-      setStatus(data?.message || 'Please check your email to verify your message.')
+      setStatus(data?.message || 'Message sent successfully. Thank you!')
       setStatusTone('success')
       setName('')
       setEmail('')
       setMessage('')
     } catch {
-      setStatus('Message failed to send.')
+      setStatus('Message failed to send. Please check your connection.')
       setStatusTone('error')
     } finally {
       setIsSubmitting(false)
@@ -90,13 +115,13 @@ function ContactSection() {
             Connect
           </div>
           <div className="flex flex-col items-center gap-3 text-center">
-              <div className="text-center">
-                <h2 className="text-3xl font-mono font-black tracking-wide text-[#00ff41] uppercase italic">Contact</h2>
-                <p className="mt-1 text-[10px] font-mono uppercase tracking-[0.3em] text-[#888]">Get In Touch</p>
-              </div>
-              <p className="max-w-2xl text-sm leading-relaxed text-[#c7c7c7] md:text-base">
-                If you have any questions, or just want to connect, feel free to reach out to me.
-              </p>
+            <div className="text-center">
+              <h2 className="text-3xl font-mono font-black tracking-wide text-[#00ff41] uppercase italic">Contact</h2>
+              <p className="mt-1 text-[10px] font-mono uppercase tracking-[0.3em] text-[#888]">Get In Touch</p>
+            </div>
+            <p className="max-w-2xl text-sm leading-relaxed text-[#c7c7c7] md:text-base">
+              If you have any questions, or just want to connect, feel free to reach out to me.
+            </p>
           </div>
         </div>
         <div className="grid gap-8 md:grid-cols-[0.95fr_1.05fr]">

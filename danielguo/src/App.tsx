@@ -13,34 +13,34 @@ import { type DetailItem } from '@/data/portfolio'
 import PopupCard from '@/components/ui/PopupCard'
 import NetworkNodesBackground from './components/ui/NetworkNodeBackground'
 import GlitchHeading from '@/components/ui/GlitchEffect'
-// import SplashIntro from '@/components/ui/LoginFeature'
 import ScrollReveal from '@/components/ui/ScrollingAnimation'
 import { useLocation } from "react-router-dom"
 import BootScreen from '@/components/ui/BootScreen'
 import EducationSection from './components/sections/EducationSection'
 
-type Phase = "boot" | "splash" | "app"
+type Phase = "boot" | "app"
 
 function App() {
-  const alreadyLoggedIn = !!sessionStorage.getItem('hasLoggedIn')
+  const alreadyBooted = typeof window !== 'undefined' && sessionStorage.getItem('hasBooted') === 'true'
 
-  // Skip boot+splash entirely for returning visitors
-  const [phase, setPhase] = useState<Phase>(alreadyLoggedIn ? "app" : "boot")
+  // Skip boot screen for returning visitors in current session
+  const [phase, setPhase] = useState<Phase>(alreadyBooted ? "app" : "boot")
   const [activeItem, setActiveItem] = useState<DetailItem | null>(null)
   const [isClosing, setIsClosing] = useState(false)
   const location = useLocation()
-  const handleBootDone = useCallback(() => setPhase("splash"), [])
 
+  const handleBootDone = useCallback(() => {
+    sessionStorage.setItem('hasBooted', 'true')
+    setPhase("app")
+  }, [])
 
-  // Separate component handles boot so it unmounts cleanly after 5s
-  // This avoids StrictMode timer issues entirely
   const openItem = (item: DetailItem) => {
     setIsClosing(false)
     setActiveItem(item)
   }
 
   useEffect(() => {
-    // Wait for DOM update after route change
+    // Wait for DOM update after route or hash change
     if (location.hash) {
       const scrollToHash = () => {
         const element = document.querySelector(location.hash)
@@ -48,9 +48,9 @@ function App() {
           element.scrollIntoView({ behavior: "smooth", block: "start" })
         }
       }
-      // Try immediately, then again after a short delay
       scrollToHash()
-      setTimeout(scrollToHash, 350)
+      const t = setTimeout(scrollToHash, 350)
+      return () => clearTimeout(t)
     }
   }, [location.pathname, location.hash])
 
@@ -63,25 +63,10 @@ function App() {
     }, 200)
   }
 
-  // ── boot ────────────────────────────────────────────────────────────────────
-
   if (phase === "boot") {
     return <BootScreen onDone={handleBootDone} />
   }
 
-  // ── splash / login ──────────────────────────────────────────────────────────
-  // if (phase === "splash") {
-  //   return (
-  //     <SplashIntro
-  //       onFinish={() => {
-  //         sessionStorage.setItem('hasLoggedIn', 'true')
-  //         setPhase("app")
-  //       }}
-  //     />
-  //   )
-  // }
-
-  // ── main app ────────────────────────────────────────────────────────────────
   return (
     <>
       <NetworkNodesBackground />
