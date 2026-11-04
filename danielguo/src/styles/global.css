@@ -94,8 +94,8 @@
   --bg-color: #0d0d0d;        /* Deep background */
   --card-bg: #1a1a1a;         /* Project cards & sections */
   --primary-accent: #00ff41;  /* Terminal Green for buttons/links */
-  --secondary-accent: #888888;/* Labels and dates */
-  --main-text: #e0e0e0;       /* Readable body text */
+  --secondary-accent: #a3a3a3;/* Labels and dates */
+  --main-text: #f3f4f6;       /* Readable body text */
   --font-mono: 'JetBrains Mono', 'Courier New', monospace;
 
   font-family: var(--font-mono);
@@ -148,13 +148,12 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
-a {
-  font-weight: 500;
-  color: var(--primary-accent);
-  text-decoration: none;
-}
-a:hover {
-  opacity: 0.8;
+@layer base {
+  a {
+    font-weight: 500;
+    color: inherit;
+    text-decoration: none;
+  }
 }
 
 body {

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import HeroSection from '@/components/sections/HeroSection'
@@ -6,13 +6,11 @@ import AboutSection from '@/components/sections/AboutSection'
 import ProjectsSection from '@/components/sections/ProjectsSection'
 import ExperienceSection from '@/components/sections/ExperienceSection'
 import CybernewsSection from '@/components/sections/CybernewsSection'
-import CertificationsSection from '@/components/sections/CertificationsSection'
-import ActivitiesSection from '@/components/sections/ActivitiesSection'
+import CredentialsSection from '@/components/sections/CredentialsSection'
 import ContactSection from '@/components/sections/ContactSection'
 import { type DetailItem } from '@/data/portfolio'
 import PopupCard from '@/components/ui/PopupCard'
 import NetworkNodesBackground from './components/ui/NetworkNodeBackground'
-import GlitchHeading from '@/components/ui/GlitchEffect'
 import ScrollReveal from '@/components/ui/ScrollingAnimation'
 import { useLocation } from "react-router-dom"
 import BootScreen from '@/components/ui/BootScreen'
@@ -29,10 +27,10 @@ function App() {
   const [isClosing, setIsClosing] = useState(false)
   const location = useLocation()
 
-  const handleBootDone = useCallback(() => {
+  const handleBootDone = () => {
     sessionStorage.setItem('hasBooted', 'true')
     setPhase("app")
-  }, [])
+  }
 
   const openItem = (item: DetailItem) => {
     setIsClosing(false)
@@ -40,19 +38,20 @@ function App() {
   }
 
   useEffect(() => {
-    // Wait for DOM update after route or hash change
-    if (location.hash) {
+    // Wait for DOM update after route, hash, or phase change
+    if (phase === 'app' && location.hash) {
+      const id = location.hash.replace('#', '')
       const scrollToHash = () => {
-        const element = document.querySelector(location.hash)
+        const element = document.getElementById(id)
         if (element) {
-          element.scrollIntoView({ behavior: "smooth", block: "start" })
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' })
         }
       }
       scrollToHash()
-      const t = setTimeout(scrollToHash, 350)
+      const t = setTimeout(scrollToHash, 250)
       return () => clearTimeout(t)
     }
-  }, [location.pathname, location.hash])
+  }, [location.pathname, location.hash, phase])
 
   const closeModal = () => {
     if (!activeItem || isClosing) return
@@ -73,21 +72,16 @@ function App() {
       <div className="flex min-h-screen w-full flex-col overflow-x-hidden scroll-smooth relative">
         <Navbar />
 
-        <div className="min-h-screen flex items-center justify-center">
-          <GlitchHeading />
-        </div>
-
         <main className="w-full flex-1" style={{ paddingTop: 'var(--navbar-height)' }}>
-          <div className="mx-auto w-full max-w-6xl px-6 py-10 text-center">
-            <ScrollReveal><HeroSection /></ScrollReveal>
-            <ScrollReveal delay={100}><AboutSection /></ScrollReveal>
-            <ScrollReveal delay={200}><EducationSection /></ScrollReveal>
-            <ScrollReveal delay={300}><ExperienceSection /></ScrollReveal>
-            <ScrollReveal delay={200}><ProjectsSection onOpen={openItem} /></ScrollReveal>
-            <ScrollReveal delay={400}><CertificationsSection onOpen={openItem} /></ScrollReveal>
-            <ScrollReveal delay={450}><ActivitiesSection onOpen={openItem} /></ScrollReveal>
-            <ScrollReveal delay={500}><CybernewsSection onOpen={openItem} /></ScrollReveal>
-            <ScrollReveal delay={550}><ContactSection /></ScrollReveal>
+          <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 py-6 text-center">
+            <HeroSection />
+            <ScrollReveal><AboutSection /></ScrollReveal>
+            <ScrollReveal><EducationSection /></ScrollReveal>
+            <ScrollReveal><ExperienceSection /></ScrollReveal>
+            <ScrollReveal><ProjectsSection onOpen={openItem} /></ScrollReveal>
+            <ScrollReveal><CredentialsSection onOpen={openItem} /></ScrollReveal>
+            <ScrollReveal><CybernewsSection onOpen={openItem} /></ScrollReveal>
+            <ScrollReveal><ContactSection /></ScrollReveal>
           </div>
         </main>
 

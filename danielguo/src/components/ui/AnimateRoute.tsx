@@ -1,13 +1,26 @@
-import { Routes, Route, useLocation } from "react-router-dom"
+import { Routes, Route, useLocation, Navigate } from "react-router-dom"
 import { AnimatePresence, motion, type Variants } from "framer-motion"
-import { lazy, Suspense } from "react"
+import { lazy, Suspense, useEffect } from "react"
 import App from "../../App"
 
 // Lazy load pages
 const CybernewsPage = lazy(() => import("../../pages/CybernewsPage"))
 const ProjectsPage = lazy(() => import("../../pages/ProjectsPage"))
 
-// Minimal additions that complement your existing globals — no overrides
+// Automatically reset scroll position to top when navigating across pages
+function ScrollToTop() {
+  const { pathname, hash } = useLocation()
+
+  useEffect(() => {
+    if (!hash) {
+      window.scrollTo(0, 0)
+    }
+  }, [pathname, hash])
+
+  return null
+}
+
+// Fast, snappy cyber loader styling
 const extraStyles = `
   .cyber-loader {
     min-height: 100vh;
@@ -88,7 +101,7 @@ const extraStyles = `
 
   .cl-title::after {
     content: '_';
-    animation: cl-blink 1s step-end infinite;
+    animation: cl-blink 0.8s step-end infinite;
   }
 
   @keyframes cl-blink {
@@ -103,19 +116,19 @@ const extraStyles = `
     position: relative;
     z-index: 1;
     opacity: 0;
-    animation: cl-appear 0.25s ease forwards;
+    animation: cl-appear 0.18s ease forwards;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100%;
   }
 
-  .cl-line:nth-child(3) { animation-delay: 0.05s; }
-  .cl-line:nth-child(4) { animation-delay: 0.2s; }
-  .cl-line:nth-child(5) { animation-delay: 0.38s; }
-  .cl-line:nth-child(6) { animation-delay: 0.56s; }
-  .cl-line:nth-child(7) { animation-delay: 0.74s; }
-  .cl-line:nth-child(8) { animation-delay: 0.92s; }
+  .cl-line:nth-child(3) { animation-delay: 0.04s; }
+  .cl-line:nth-child(4) { animation-delay: 0.12s; }
+  .cl-line:nth-child(5) { animation-delay: 0.22s; }
+  .cl-line:nth-child(6) { animation-delay: 0.32s; }
+  .cl-line:nth-child(7) { animation-delay: 0.42s; }
+  .cl-line:nth-child(8) { animation-delay: 0.52s; }
 
   @keyframes cl-appear {
     to { opacity: 1; }
@@ -140,13 +153,13 @@ const extraStyles = `
     height: 100%;
     background: linear-gradient(90deg, var(--primary-accent), #00f5ff);
     box-shadow: 0 0 8px var(--primary-accent);
-    animation: cl-bar 2.2s ease-in-out infinite;
+    animation: cl-bar 0.95s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
   @keyframes cl-bar {
     0%   { width: 0%;   opacity: 1; }
-    75%  { width: 100%; opacity: 1; }
-    100% { width: 100%; opacity: 0; }
+    85%  { width: 100%; opacity: 1; }
+    100% { width: 100%; opacity: 0.9; }
   }
 
   .cl-status {
@@ -156,30 +169,6 @@ const extraStyles = `
     margin-top: 0.5rem;
     position: relative;
     z-index: 1;
-    animation: cl-flicker 4s ease infinite;
-  }
-
-  @keyframes cl-flicker {
-    0%, 92%, 100% { opacity: 0.6; }
-    93%            { opacity: 0.1; }
-    95%            { opacity: 0.7; }
-    97%            { opacity: 0.15; }
-  }
-
-  /* Global scanlines */
-  body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0,255,65,0.012) 2px,
-      rgba(0,255,65,0.012) 4px
-    );
-    pointer-events: none;
-    z-index: 9999;
   }
 `
 
@@ -200,12 +189,12 @@ export const LoadingScreen = () => (
         <p className="cl-line"><span className="cl-tag">[ENC]</span><span className="cl-ok">▶ AES-256 .............. ACTIVE</span></p>
         <p className="cl-line"><span className="cl-tag">[FW]</span> <span className="cl-ok">▶ FIREWALL ............. ONLINE</span></p>
         <p className="cl-line"><span className="cl-tag">[MEM]</span><span className="cl-ok">▶ HEAP ................. 2048 MB</span></p>
-        <p className="cl-line"><span className="cl-tag">[MOD]</span><span className="cl-warn">▶ LOADING MODULES .....</span></p>
+        <p className="cl-line"><span className="cl-tag">[MOD]</span><span className="cl-ok">▶ CORE MODULES ......... LOADED</span></p>
 
         <div className="cl-bar-track">
           <div className="cl-bar-fill" />
         </div>
-        <p className="cl-status">INITIALIZING — PLEASE WAIT</p>
+        <p className="cl-status">INITIALIZING — INITIAL SEQUENCE READY</p>
       </div>
     </div>
   </>
@@ -219,12 +208,12 @@ const pageTransition: Variants = {
   animate: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.4, ease: "easeOut" },
+    transition: { duration: 0.35, ease: "easeOut" },
   },
   exit: {
     opacity: 0,
     y: -10,
-    transition: { duration: 0.22, ease: "easeIn" },
+    transition: { duration: 0.2, ease: "easeIn" },
   },
 }
 
@@ -233,6 +222,7 @@ export default function AnimatedRoutes() {
 
   return (
     <Suspense fallback={<LoadingScreen />}>
+      <ScrollToTop />
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
           key={location.pathname}
@@ -242,9 +232,11 @@ export default function AnimatedRoutes() {
           exit="exit"
         >
           <Routes location={location} key={location.pathname}>
-            <Route path="/"       element={<App />} />
+            <Route path="/" element={<App />} />
             <Route path="/cybernews" element={<CybernewsPage />} />
-            <Route path="/projects"  element={<ProjectsPage />} />
+            <Route path="/projects" element={<ProjectsPage />} />
+            {/* Catch-all route to prevent 404 or blank screens */}
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </motion.div>
       </AnimatePresence>

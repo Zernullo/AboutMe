@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 
-const NODE_COUNT = 30
-const LINK_DISTANCE = 120
+const NODE_COUNT = 32
+const LINK_DISTANCE = 130
 
 function random(min: number, max: number) {
   return Math.random() * (max - min) + min
@@ -19,14 +19,24 @@ const NetworkNodesBackground = () => {
 
     let width = window.innerWidth
     let height = window.innerHeight
-    canvas.width = width
-    canvas.height = height
+    const dpr = window.devicePixelRatio || 1
+
+    const resizeCanvas = () => {
+      width = window.innerWidth
+      height = window.innerHeight
+      canvas.width = width * dpr
+      canvas.height = height * dpr
+      canvas.style.width = `${width}px`
+      canvas.style.height = `${height}px`
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+    }
+    resizeCanvas()
 
     let protectedArea = {
-      width: width * 0.7,
-      height: height * 0.3,
-      x: width * 0.15,
-      y: height * 0.35,
+      width: width * 0.65,
+      height: height * 0.35,
+      x: width * 0.175,
+      y: height * 0.325,
     }
 
     const isInProtectedArea = (x: number, y: number) =>
@@ -39,8 +49,8 @@ const NetworkNodesBackground = () => {
     nodes.current = Array.from({ length: NODE_COUNT }, () => ({
       x: random(0, width),
       y: random(0, height),
-      vx: random(-0.5, 0.5),
-      vy: random(-0.5, 0.5),
+      vx: random(-0.4, 0.4),
+      vy: random(-0.4, 0.4),
     }))
 
     let animationId: number
@@ -49,7 +59,7 @@ const NetworkNodesBackground = () => {
 
       // Draw links
       ctx.strokeStyle = '#00ff41'
-      ctx.globalAlpha = 0.6
+      ctx.globalAlpha = 0.5
       ctx.lineWidth = 1
       ctx.beginPath()
 
@@ -74,13 +84,13 @@ const NetworkNodesBackground = () => {
 
       // Draw nodes
       ctx.shadowColor = '#00ff41'
-      ctx.shadowBlur = 10
+      ctx.shadowBlur = 8
       ctx.fillStyle = '#00ff41'
-      ctx.globalAlpha = 0.7
+      ctx.globalAlpha = 0.75
 
       for (const node of nodes.current) {
         ctx.beginPath()
-        ctx.arc(node.x, node.y, 4, 0, Math.PI * 2)
+        ctx.arc(node.x, node.y, 3.5, 0, Math.PI * 2)
         ctx.fill()
 
         // Bounce off protected area
@@ -100,26 +110,20 @@ const NetworkNodesBackground = () => {
         if (node.y < 0 || node.y > height) node.vy *= -1
       }
 
-      // Reset shadow for next frame
       ctx.shadowBlur = 0
-
       animationId = requestAnimationFrame(animate)
     }
 
     animate()
 
     const handleResize = () => {
-      width = window.innerWidth
-      height = window.innerHeight
-      canvas.width = width
-      canvas.height = height
+      resizeCanvas()
       protectedArea = {
-        width: width * 0.7,
-        height: height * 0.3,
-        x: width * 0.15,
-        y: height * 0.35,
+        width: width * 0.65,
+        height: height * 0.35,
+        x: width * 0.175,
+        y: height * 0.325,
       }
-      // Re-clamp any out of bound nodes
       for (const node of nodes.current) {
         if (node.x > width) node.x = width - 10
         if (node.y > height) node.y = height - 10
@@ -144,7 +148,7 @@ const NetworkNodesBackground = () => {
         height: '100vh',
         zIndex: 0,
         pointerEvents: 'none',
-        opacity: 0.8,
+        opacity: 0.85,
         mixBlendMode: 'normal',
       }}
     />

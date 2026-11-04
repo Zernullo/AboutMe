@@ -1,18 +1,19 @@
-import { useEffect, useRef, useState, type ReactNode } from "react"
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 
 interface ScrollRevealProps {
   children: ReactNode
   delay?: number
+  className?: string
 }
 
-function ScrollReveal({ children, delay = 0 }: ScrollRevealProps) {
+function ScrollReveal({ children, delay = 0, className = '' }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement | null>(null)
-  const [isVisible, setIsVisible] = useState(false)
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  // If IntersectionObserver is unavailable (e.g. legacy/testing environment), default to visible immediately
+  const [isVisible, setIsVisible] = useState(() => typeof IntersectionObserver === 'undefined')
 
   useEffect(() => {
     const element = ref.current
-    if (!element) return
+    if (!element || typeof IntersectionObserver === 'undefined') return
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -22,24 +23,32 @@ function ScrollReveal({ children, delay = 0 }: ScrollRevealProps) {
         }
       },
       {
-        threshold: 0.08,
-        rootMargin: '0px 0px -50px 0px',
+        threshold: 0.06,
+        rootMargin: '0px 0px -40px 0px',
       }
     )
 
     observer.observe(element)
 
-    return () => observer.disconnect()
+    return () => {
+      observer.disconnect()
+    }
   }, [])
 
   return (
     <div
       ref={ref}
-      style={{ transitionDelay: prefersReducedMotion ? '0ms' : `${delay}ms` }}
-      className={`
-        ${prefersReducedMotion ? '' : 'transition-all duration-1800 ease-[cubic-bezier(0.22,0.61,0.36,1)]'}
-        ${isVisible || prefersReducedMotion ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}
-      `}
+      style={{
+        transitionDuration: '700ms',
+        transitionDelay: `${delay}ms`,
+        transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
+        willChange: 'transform, opacity',
+      }}
+      className={`transform transition-all ${
+        isVisible
+          ? 'opacity-100 translate-y-0 scale-100'
+          : 'opacity-0 translate-y-10 scale-[0.99]'
+      } ${className}`}
     >
       {children}
     </div>

@@ -1,7 +1,9 @@
 import { useState } from 'react'
+import { Mail, Check, Copy, ExternalLink, Send } from 'lucide-react'
 
-const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:3001'
+const API_BASE = import.meta.env.VITE_API_BASE ?? ''
 const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY || ''
+const DIRECT_EMAIL = 'dguo83212@gmail.com'
 
 declare global {
   interface Window {
@@ -42,14 +44,31 @@ function ContactSection() {
   const [status, setStatus] = useState('')
   const [statusTone, setStatusTone] = useState<'success' | 'error' | 'info'>('info')
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showMailtoFallback, setShowMailtoFallback] = useState(false)
+  const [copied, setCopied] = useState(false)
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText(DIRECT_EMAIL)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
+  const getMailtoUrl = () => {
+    const subject = encodeURIComponent(`Portfolio Inquiry from ${name.trim() || 'Colleague / Recruiter'}`)
+    const bodyText = message.trim()
+      ? `${message.trim()}\n\n---\nSent by: ${name.trim() || 'Anonymous'}\nContact Email: ${email.trim() || 'Not specified'}`
+      : `Hi Daniel,\n\nI reviewed your portfolio and would like to connect with you regarding...\n\nBest regards,\n${name.trim() || '[Your Name]'}\n${email.trim() || '[Your Email]'}`
+    return `mailto:${DIRECT_EMAIL}?subject=${subject}&body=${encodeURIComponent(bodyText)}`
+  }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setStatus('')
     setStatusTone('info')
+    setShowMailtoFallback(false)
 
     if (name.trim().length < 2 || message.trim().length < 10) {
-      setStatus('Please provide your name and a longer message.')
+      setStatus('Please provide your name and a message with at least 10 characters.')
       setStatusTone('error')
       return
     }
@@ -70,14 +89,12 @@ function ContactSection() {
             })
           }
         } catch {
-          setStatus('Security check failed. Please refresh and try again.')
-          setStatusTone('error')
-          setIsSubmitting(false)
-          return
+          console.warn('reCAPTCHA failed, proceeding without token')
         }
       }
 
-      const response = await fetch(`${API_BASE}/api/contact`, {
+      const endpoint = API_BASE ? `${API_BASE}/api/contact` : '/api/contact'
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, message, honeypot, recaptchaToken })
@@ -85,8 +102,9 @@ function ContactSection() {
 
       const data = await response.json()
       if (!response.ok) {
-        setStatus(data?.error || 'Message failed to send.')
+        setStatus(data?.error || 'Message delivery failed.')
         setStatusTone('error')
+        setShowMailtoFallback(true)
         return
       }
 
@@ -96,8 +114,9 @@ function ContactSection() {
       setEmail('')
       setMessage('')
     } catch {
-      setStatus('Message failed to send. Please check your connection.')
+      setStatus('Could not connect to the backend mail service.')
       setStatusTone('error')
+      setShowMailtoFallback(true)
     } finally {
       setIsSubmitting(false)
     }
@@ -109,48 +128,89 @@ function ContactSection() {
         <div className="absolute left-1/2 top-4 h-40 w-72 -translate-x-1/2 rounded-full bg-[#00ff41]/10 blur-3xl" />
         <div className="absolute bottom-0 right-0 h-40 w-56 rounded-full bg-[#00ff41]/5 blur-2xl" />
       </div>
-      <div className="mx-auto flex max-w-5xl flex-col gap-8 rounded-[28px] border border-[#1f2a1f] bg-[linear-gradient(135deg,#0b0f0b_0%,#0e1410_45%,#0a0d0a_100%)] p-6 shadow-[0_20px_80px_rgba(0,0,0,0.55)] md:p-10">
+
+      <div className="mx-auto flex max-w-5xl flex-col gap-8 rounded-[28px] border border-[#2a382c] bg-[linear-gradient(135deg,#0b0f0b_0%,#0e1410_45%,#0a0d0a_100%)] p-6 shadow-[0_20px_80px_rgba(0,0,0,0.55)] md:p-10">
         <div className="flex flex-col gap-3">
-          <div className="inline-flex w-fit items-center gap-2 rounded-full border border-[#234026] bg-[#0a120c] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.25em] text-[#7dfc9c]">
-            Connect
+          <div className="inline-flex w-fit items-center gap-2 rounded-full border border-[#2b4d2e] bg-[#0c160e] px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-[#00ff41]">
+            TRANSMISSION TERMINAL
           </div>
           <div className="flex flex-col items-center gap-3 text-center">
-            <div className="text-center">
-              <h2 className="text-3xl font-mono font-black tracking-wide text-[#00ff41] uppercase italic">Contact</h2>
-              <p className="mt-1 text-[10px] font-mono uppercase tracking-[0.3em] text-[#888]">Get In Touch</p>
-            </div>
-            <p className="max-w-2xl text-sm leading-relaxed text-[#c7c7c7] md:text-base">
-              If you have any questions, or just want to connect, feel free to reach out to me.
+            <h2 className="text-3xl font-mono font-black tracking-wide text-[#00ff41] uppercase italic">Contact</h2>
+            <p className="mt-1 text-xs font-mono uppercase tracking-[0.3em] text-[#a3a3a3]">Get In Touch</p>
+            <p className="max-w-2xl text-base leading-relaxed text-[#d1d5db]">
+              Have an opportunity, question, or project inquiry? Send a message directly through the terminal below.
             </p>
           </div>
         </div>
+
         <div className="grid gap-8 md:grid-cols-[0.95fr_1.05fr]">
-          <div className="flex flex-col justify-between gap-6 rounded-2xl border border-[#1a231c] bg-[#0a0f0a] p-5 text-left">
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-[#d9ffd0]">What to include</h3>
-              <ul className="space-y-3 text-sm text-[#9db3a3]">
-                <li className="flex items-start gap-3">
-                  <span className="mt-1 h-2 w-2 rounded-full bg-[#00ff41]" />
-                  Briefly describe your inquiry.
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-1 h-2 w-2 rounded-full bg-[#00ff41]" />
-                  Any relevant details, links, or context.
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-1 h-2 w-2 rounded-full bg-[#00ff41]" />
-                  Your preferred contact method and availability.
-                </li>
-              </ul>
+          {/* Left card: info & fallback options */}
+          <div className="flex flex-col justify-between gap-6 rounded-2xl border border-[#263528] bg-[#0a0f0a] p-6 text-left">
+            <div className="space-y-5">
+              <h3 className="text-lg font-bold text-[#ffffff] flex items-center gap-2">
+                <Mail className="h-5 w-5 text-[#00ff41]" /> Direct Channel
+              </h3>
+
+              <div className="rounded-xl border border-[#2a3e2d] bg-[#0c160e] p-4 space-y-3">
+                <div>
+                  <p className="text-xs font-mono uppercase tracking-wider text-[#9ca3af] mb-1 font-semibold">Primary Email</p>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-mono text-sm text-[#00ff41] font-bold">{DIRECT_EMAIL}</span>
+                    <button
+                      type="button"
+                      onClick={copyEmail}
+                      className="flex items-center gap-1.5 rounded-lg border border-[#00ff41]/40 bg-[#162719] px-3 py-1.5 text-xs font-mono font-semibold text-[#00ff41] hover:bg-[#00ff41] hover:!text-black transition-all cursor-pointer"
+                    >
+                      {copied ? <Check className="h-3.5 w-3.5 text-[#00ff41]" /> : <Copy className="h-3.5 w-3.5" />}
+                      {copied ? 'Copied!' : 'Copy'}
+                    </button>
+                  </div>
+                </div>
+
+                <div className="pt-2 border-t border-[#1f2d21] flex items-center justify-between text-xs font-mono">
+                  <span className="text-[#9ca3af]">Phone</span>
+                  <span className="text-[#f3f4f6] font-semibold">(929) 317-1863</span>
+                </div>
+
+                <div className="pt-2 border-t border-[#1f2d21] flex items-center justify-between text-xs font-mono">
+                  <span className="text-[#9ca3af]">Location</span>
+                  <span className="text-[#f3f4f6] font-semibold">Baton Rouge, LA</span>
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <h4 className="text-xs font-mono uppercase tracking-wider text-[#00ff41] font-bold">What to include</h4>
+                <ul className="space-y-2.5 text-sm text-[#d1d5db]">
+                  <li className="flex items-start gap-2.5">
+                    <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[#00ff41] shrink-0" />
+                    <span>Brief summary of the role, project, or question.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[#00ff41] shrink-0" />
+                    <span>Relevant links, repositories, or documentation.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[#00ff41] shrink-0" />
+                    <span>Your timeline and preferred follow-up method.</span>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div className="rounded-xl border border-[#18301d] bg-[#0b140d] p-4 text-xs text-[#7fb58b]">
-              Tip: If you have links, share them in the message field.
+
+            <div className="space-y-2.5 pt-3 border-t border-[#1f2d21]">
+              <p className="text-xs font-medium text-[#9ca3af]">Prefer using your desktop email client?</p>
+              <a
+                href={getMailtoUrl()}
+                className="inline-flex w-full items-center justify-center gap-2 rounded-xl border-2 border-[#00ff41] bg-transparent px-4 py-2.5 text-xs font-mono font-bold text-[#00ff41] hover:bg-[#00ff41] hover:text-black transition-all"
+              >
+                <ExternalLink className="h-4 w-4" />
+                Launch Default Mail Client
+              </a>
             </div>
           </div>
-          <form
-            className="flex flex-col gap-4 text-left"
-            onSubmit={handleSubmit}
-          >
+
+          {/* Right card: Form */}
+          <form className="flex flex-col gap-4 text-left" onSubmit={handleSubmit}>
             <input
               type="text"
               name="website"
@@ -161,57 +221,81 @@ function ContactSection() {
               autoComplete="off"
               aria-hidden="true"
             />
-            <label className="text-xs uppercase tracking-[0.2em] text-[#8aa395]">
+
+            <label className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#e0e0e0]">
               Name
               <input
                 value={name}
                 onChange={(event) => setName(event.target.value)}
-                className="mt-2 w-full rounded-xl border border-[#203124] bg-[#0c120c] px-4 py-3 text-sm text-[#e6ffe6] outline-none transition-all focus:border-[#00ff41] focus:shadow-[0_0_0_1px_#00ff41,0_0_16px_rgba(0,255,65,0.35)]"
+                placeholder="Jane Doe"
+                className="mt-2 w-full rounded-xl border border-[#2f4233] bg-[#0c120c] px-4 py-3 text-sm text-[#ffffff] placeholder-[#6b7280] outline-none transition-all focus:border-[#00ff41] focus:shadow-[0_0_0_1px_#00ff41,0_0_16px_rgba(0,255,65,0.35)]"
                 required
               />
             </label>
-            <label className="text-xs uppercase tracking-[0.2em] text-[#8aa395]">
+
+            <label className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#e0e0e0]">
               Email
               <input
                 type="email"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
-                className="mt-2 w-full rounded-xl border border-[#203124] bg-[#0c120c] px-4 py-3 text-sm text-[#e6ffe6] outline-none transition-all focus:border-[#00ff41] focus:shadow-[0_0_0_1px_#00ff41,0_0_16px_rgba(0,255,65,0.35)]"
+                placeholder="jane@example.com"
+                className="mt-2 w-full rounded-xl border border-[#2f4233] bg-[#0c120c] px-4 py-3 text-sm text-[#ffffff] placeholder-[#6b7280] outline-none transition-all focus:border-[#00ff41] focus:shadow-[0_0_0_1px_#00ff41,0_0_16px_rgba(0,255,65,0.35)]"
                 required
               />
             </label>
-            <label className="text-xs uppercase tracking-[0.2em] text-[#8aa395]">
+
+            <label className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#e0e0e0]">
               Message
               <textarea
                 value={message}
                 onChange={(event) => setMessage(event.target.value)}
-                className="mt-2 min-h-35 w-full resize-none rounded-xl border border-[#203124] bg-[#0c120c] px-4 py-3 text-sm text-[#e6ffe6] outline-none transition-all focus:border-[#00ff41] focus:shadow-[0_0_0_1px_#00ff41,0_0_16px_rgba(0,255,65,0.35)]"
+                placeholder="Hello Daniel, I'd like to discuss an opportunity..."
+                className="mt-2 min-h-35 w-full resize-none rounded-xl border border-[#2f4233] bg-[#0c120c] px-4 py-3 text-sm text-[#ffffff] placeholder-[#6b7280] outline-none transition-all focus:border-[#00ff41] focus:shadow-[0_0_0_1px_#00ff41,0_0_16px_rgba(0,255,65,0.35)]"
                 rows={5}
                 required
               />
             </label>
+
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <p className="text-xs text-[#6e8476]">Minimum 10 characters.</p>
+              <p className="text-xs text-[#9ca3af] font-mono">Minimum 10 characters.</p>
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full rounded-xl border border-[#00ff41] px-5 py-3 text-sm font-semibold text-[#00ff41] transition-all hover:-translate-y-0.5 hover:bg-[#00ff41]/10 hover:shadow-[0_0_20px_rgba(0,255,65,0.45)] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#00ff41] px-7 py-3 text-sm font-bold text-black shadow-[0_0_18px_rgba(0,255,65,0.4)] transition-all hover:bg-[#00ff41]/90 hover:shadow-[0_0_28px_rgba(0,255,65,0.6)] hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60 cursor-pointer sm:w-auto"
               >
-                {isSubmitting ? 'Sending...' : 'Send Message'}
+                <Send className="h-4 w-4" />
+                {isSubmitting ? 'Transmitting...' : 'Send Message'}
               </button>
             </div>
+
             {status && (
-              <p
-                className={`rounded-lg border px-3 py-2 text-xs ${
+              <div
+                className={`rounded-xl border p-4 text-xs font-mono ${
                   statusTone === 'success'
-                    ? 'border-[#1f3a24] bg-[#0d1710] text-[#7ef7a3]'
+                    ? 'border-[#00ff41] bg-[#0d1c10] text-[#7ef7a3]'
                     : statusTone === 'error'
-                      ? 'border-[#3a1f1f] bg-[#170d0d] text-[#f59292]'
-                      : 'border-[#2b2f2b] bg-[#0e100e] text-[#8aa395]'
+                      ? 'border-[#ff4444] bg-[#220d0d] text-[#ff8888]'
+                      : 'border-[#444] bg-[#141414] text-[#d1d5db]'
                 }`}
               >
-                {status}
-              </p>
+                <p className="font-bold text-sm mb-1">{status}</p>
+
+                {showMailtoFallback && (
+                  <div className="mt-3 pt-3 border-t border-white/10 flex flex-col gap-2">
+                    <p className="text-gray-200">
+                      You can instantly dispatch this message through your mail app:
+                    </p>
+                    <a
+                      href={getMailtoUrl()}
+                      className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#00ff41] px-4 py-2 font-mono text-xs font-bold text-black hover:bg-[#00ff41]/90 transition-colors w-fit"
+                    >
+                      <ExternalLink className="h-3.5 w-3.5" />
+                      Open Mail App With This Message
+                    </a>
+                  </div>
+                )}
+              </div>
             )}
           </form>
         </div>
