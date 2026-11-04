@@ -1,0 +1,16 @@
+{
+  "name": "danielguo-api",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "echo 'no build needed'",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "helmet": "^7.1.0",
+    "nodemailer": "^6.9.0",
+    "zod": "^3.22.0"
+  }
+}
